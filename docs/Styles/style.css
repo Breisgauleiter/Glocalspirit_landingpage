@@ -1,0 +1,189 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&family=Syne:wght@400..800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --main-background-color: 12 12 34; /*#0C0C22*/
+    --secondary-links-color: 85 166 217; /*#55A6D9*/
+     --special-cta-color: 255 159 85 ; /*#FF9F55*/
+    --main-font-family: "Saira", sans-serif;
+    --secondary-font-family: "Syne", sans-serif;
+
+    --main-font-color: 255, 255, 255; /*#FFFFFF*/
+    --secondary-font-color: 30 29 64; /*#1E1D40*/
+} 
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+body{
+    font-family: var(--main-font-family);
+    background-color: rgb(var(--main-background-color));
+    color: rbg(var(--main-font-color));
+    line-height: 1.5;
+    font-size: 1rem;
+    position: relative;
+}
+
+main{
+    position: relative;
+    .img__wrapper--background{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: -9999;
+
+        img{
+            padding: 0;
+            margin-top: -7px;
+            width: 100%;
+            height: 100%;
+        }
+
+        img:nth-child(2){
+            mix-blend-mode: normal;
+            rotate: 180deg;
+        }
+
+    }
+}
+.header__nav{
+    z-index: 9999;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.1rem 1rem;
+    background-color: rgba(var(--main-font-color),0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(var(--main-font-color),0.10);
+
+
+    .header__links{
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        list-style: none;
+
+        .header__logo{
+            img{
+                aspect-ratio: 1/1;
+                width: 56px;
+            }
+        }
+
+        .header__link{
+            font-family: var(--secondary-font-family);
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 0.45rem;
+            color: rgb(var(--secondary-links-color));
+            filter: drop-shadow(0 0 4.8px rgb(var(--secondary-links-color)));
+
+            &:hover{
+                color: rgb(var(--main-font-color));
+            }
+        }
+
+        .header__link--active{
+                color: rgb(var(--main-font-color));
+            }
+    }
+
+    .header__beta-tester{
+
+        .header__beta-link{
+            filter: drop-shadow(0 0 2px rgb(var(--special-cta-color)));
+            border: 1px solid rgb(var(--special-cta-color));
+            letter-spacing: 0.24rem;
+            padding: 0.1rem 0.3rem;
+            font-weight: bolder;
+            font-size: 1.5rem;
+            font-family: var(--secondary-font-family);
+            color: rgb(var(--special-cta-color));
+        }
+    }
+}
+
+.hero{
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    align-items: center;
+    .hero__title{
+        font-size: 11.2rem;
+        font-weight: 800;
+        background: radial-gradient(circle at 30%,#6E6BBF 31%,#FFC857 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(3 7 10px rgba(0, 0, 0, 0.203));
+
+        margin-bottom: -10rem;
+    }
+
+    .hero__image{
+
+        margin-top: 5rem;
+
+    }
+}
+
+.about{
+    .about__wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5rem 0;
+        /* background-color: white; */
+        gap: 5rem;
+
+        .about__description{
+            font-size: 1.5rem;
+            width: 40%;
+        }
+
+        
+    }
+
+    .about__scroller{
+        max-height: 40vh;
+        overflow: hidden;
+        -webkit-mask: linear-gradient(transparent 0%, white 20%, white 80%, transparent);
+        mask: linear-gradient(transparent 0%, white 20%, white 80%, transparent);
+
+       
+
+        .about__scroller--inner{
+            display: flex;
+            width: fit-content;
+            flex-flow: column nowrap;
+            animation: scroll 30s linear infinite;
+            img{
+                aspect-ratio: 1/1;
+                width: 100px;
+            }
+        }
+    
+    }
+    
+    
+}
+
+@keyframes scroll {
+        to{
+            transform: translateY(-50%);
+        }
+
+    }
