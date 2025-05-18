@@ -54,10 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ScrollTrigger animation for scaling .hero__image
     gsap.to(".hero__image", {
-        scale: 1.5, // Scale to 1.5 times its size
+        scale: 2.1, // Scale to 1.5 times its size
         scrollTrigger: {
             trigger: ".hero__image", // Trigger when the hero image enters the viewport
-            start: "top 20%", // Start rotation when the top of the image reaches the center of the viewport
+            start: "top 80%", // Start rotation when the top of the image reaches the center of the viewport
             end: "bottom top", // End rotation when the bottom of the image scrolls out of the viewport
             scrub: 1, // Smoothly tie the rotation to the scroll position
         },
