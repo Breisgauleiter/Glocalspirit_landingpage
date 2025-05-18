@@ -31,7 +31,7 @@ body{
     line-height: 1.5;
     font-size: 1rem;
     position: relative;
-    background-image: url('../Assets/Nebula-optimized.png'); /* Add the background image */
+    background-image: url('../Assets/Nebula-optimized.png'); /* Add the background imagee */
     background-size: cover; /* Ensure the image covers the entire background */
     background-attachment: fixed;
     background-repeat: no-repeat; /* Prevent the image from repeating */
