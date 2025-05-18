@@ -1,0 +1,34 @@
+body{
+    /* background-color: yellow; */
+}
+
+.roadmap{
+    padding-bottom: 400px;
+    svg{
+        width: 85%;
+    }
+}
+.card{
+    transform: translate(0px);
+    width: clamp(35ch,50vw,40ch);
+
+    div{
+        display: flex;
+        justify-content: space-between;
+
+        h4{
+            font-weight: 450;
+            font-size: 0.6rem;
+            
+        }
+    }
+
+    h3{
+        font-size: clamp(1rem,1.2vw,1.5rem);
+        white-space: nowrap;
+    }
+    p{
+        font-weight: 300;
+        font-size: clamp(0.7rem,1vw,1rem);
+    }
+}

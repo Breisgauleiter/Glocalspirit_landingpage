@@ -4,12 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>glocalSpirit</title>
+    <!-- css -->
     <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" media="screen and (max-width: 800px)" href="Styles/roadmap.css">
+    <link rel="stylesheet" media="screen and (min-width: 805px) and (max-width: 870px)" href="Styles/big_tablets.css">
+    <link rel="stylesheet" media="screen and (max-width: 690px)" href="Styles/tablets.css">
+    <!-- scripts -->
     <script src="JS_Files/app.js" defer></script>
+    <!-- gsap dependencies-->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathHelper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+    <!-- gsap animations -->
     <script src="JS_Files/animations.js" defer></script>
 </head>
 <body>
     <header class="header">
+        <input type="checkbox" id="imenu__toggle" class="menu__toggle">
+        <label for="imenu__toggle" class="toggle__label">
+            <img src="Assets/hamburger.svg" alt="hamburger_menu">
+            <img src="Assets/cross.svg" alt="menu__toggle--closed">
+        </label>
         <nav class="header__nav">
             <div class="header__links">
                 <a href="#" class="header__logo">
@@ -25,127 +43,280 @@
             </div>
         </nav>
     </header>
-    <main class="main">
-        <div class="img__wrapper--background">
-            <img src="Assets/Nebula_background.png" alt="Nebula_background"><img src="Assets/Nebula_background.png" alt="Nebula_background">
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <main class="main">
+                <div class="img__wrapper--background">
+                    <img src="Assets/Nebula_background.png" alt="Nebula_background">
+                </div>
+                
+                <section class="hero">
+                    <h1 class="hero__title">glocalSpirit</h1>
+                    <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="hero__image">
+                </section>
+                <section class="about">
+                    <div class="about__wrapper about__wrapper--glasmorphism">
+                        <div class="about__scroller">
+                            <div class="about__scroller--inner">
+                                <img src="Assets/SynBols/Bewegung & Flow.svg" alt="Bewegung & Flow icon" class="about__carousel-img">
+                                <img src="Assets/SynBols/Bewusstsein.svg" alt="Bewusstsein icon" class="about__carousel-img">
+                                <img src="Assets/SynBols/Gute Produkte & Ernährung.svg" alt="Ernährung icon" class="about__carousel-img">
+                                <img src="Assets/SynBols/Heilung & Gesundheit.svg" alt="Gesundheit icon" class="about__carousel-img">
+                                <img src="Assets/SynBols/House of Hope.svg" alt="House of Hope icon" class="about__carousel-img">
+                                <img src="Assets/SynBols/Kreativität & Ausdruck.svg" alt="Kreativität icon" class="about__carousel-img">
+                                <img src="Assets/SynBols/Lernen & Bildung.svg" alt="Bildung icon" class="about__carousel-img">
+                                <img src="Assets/SynBols/Natur & Nachhaltigkeit.svg" alt="Nachhaltigkeit icon" class="about__carousel-img">
+                                <img src="Assets/SynBols/Spiritualität & Mystik.svg" alt="Spiritualität icon" class="about__carousel-img">
+                                <img src="Assets/SynBols/Wertschöpfung & Kreislauf.svg" alt="Wertschöpfung icon" class="about__carousel-img">
+                                <img src="Assets/SynBols/Technologie & Bewusstsein.svg" alt="Technologie icon" class="about__carousel-img">
+                            </div>
+                        </div>
+                        <p class="about__description">
+                            GlocalSpirit ist eine Plattform für Bewusstseinsbildung und Vernetzung, die lokale und globale Gemeinschaften verbindet.
+                            Unser Ziel ist es, ein lebendiges Friedensnetzwerk zu schaffen, in dem Menschen ihre Werte, Fähigkeiten und Ressourcen
+                            teilen können.<br><br>
+                            Durch Online-Resonanzräume, regionale Treffen und innovative Finanzmodelle wie den GlocalSpirit-Coin fördern wir eine
+                            nachhaltige, kooperative Wirtschaft.
+                        </p>
+                    </div>
+                    <div class="wrapper__content">
+                        <button class="btn__slider btn__slider--right"><img src="Assets/arrow-double L.svg" alt="arrow-right" srcset=""></button>
+                        <button class="btn__slider btn__slider--left"><img src="Assets/arrow-double R.svg" alt="arrow-left"></button>
+                        <div class="wrapper__outside">
+                            <div class="about__content">
+                                <div class="about__item">
+                                    <img src="Assets/SynBols/Bewegung & Flow.svg" alt="Bewegung icon" class="about__item-img">
+                                    <div class="about__item-text">
+                                        <h3 class="about__item-title">Bewegung & Flow</h3>
+                                        <p class="about__item-description">Körper, Geist und Seele verbindet sich durch achtsame, kreative und heilende Formen der Bewegung. Ob durch Yoga, Tanz, Atemarbeit oder intuitive Körperpraxis. GlocalSpirit lädt dazu ein, in einen natürlichen Rhythmus zu finden und sich darüber im Einklang mit dem Leben zu spüren.</p>
+                                    </div>
+                                </div>
+                                <div class="about__item">
+                                    <img src="Assets/SynBols/Bewusstsein.svg" alt="Bewusstsein icon" class="about__item-img">
+                                    <div class="about__item-text">
+                                        <h3 class="about__item-title">Bewusstsein</h3>
+                                        <p class="about__item-description">Bewusstsein ist gemäß der Quantentheorie ein universeller und gleichzeitig ein energiegeladener Zustand. So ist Bewusstseinsentwicklung beziehungsweise Bewusstseinserweiterung gleichzeitig ein energetisch verwandelnder Zustand. Individuelle Bewusstseinszustände folgen bestimmten energetischen Gesetzmäßigkeiten und beeinflussen somit unmittelbar die Körperfunktionen. Dies nimmt Einfluss auf Gesundheit und Krankheit, auf Wohlgefühl und Unwohlsein.</p>
+                                    </div>
+                                </div>
+                                <div class="about__item">
+                                    <img src="Assets/SynBols/Gute Produkte & Ernährung.svg" alt="Ernährung icon" class="about__item-img">
+                                    <div class="about__item-text">
+                                        <h3 class="about__item-title">Gute Produkte & Ernährung</h3>
+                                        <p class="about__item-description">GlocalSpirit steht für bewussten Konsum, achtsame Ernährung und Nährendes für Körper, Geist und Seele. Idealerweise stehen Qualität, Einfachheit und Ursprünglichkeit der Produkte im Einklang mit „Mensch und Natur“.</p>
+                                    </div>
+                                </div>
+                                <div class="about__item">
+                                    <img src="Assets/SynBols/Heilung & Gesundheit.svg" alt="Gesundheit icon" class="about__item-img">
+                                    <div class="about__item-text">
+                                        <h3 class="about__item-title">Heilung & Gesundheit</h3>
+                                        <p class="about__item-description">Bei GlocalSpirit umfasst Gesundheit einen ganzheitlichen Ansatz für körperliches, seelisches und geistiges Wohlbefinden. Wir laden dazu ein, Heilung als einen natürlichen Prozess zu verstehen. Getragen von Bewusstheit, Gemeinschaft, Naturverbundenheit und innerem Frieden.</p>
+                                    </div>
+                                </div>
+                                <div class="about__item">
+                                    <img src="Assets/SynBols/House of Hope.svg" alt="House of Hope icon" class="about__item-img">
+                                    <div class="about__item-text">
+                                        <h3 class="about__item-title">Houses of Hope</h3>
+                                        <p class="about__item-description">Die „Houses of Hope“ sind lebendige Orte der Begegnung, Heilung und Ko-Kreation. Sie dienen als spirituelle, soziale und kulturelle Räume, in denen sich Menschen im Geiste des inneren Friedens und der Synarchie versammeln können. Die „Houses of Hope“ sind physische Ankerpunkte innerhalb des GlocalSpirit-Netzwerks.</p>
+                                    </div>
+                                </div>
+                                <div class="about__item">
+                                    <img src="Assets/SynBols/Kreativität & Ausdruck.svg" alt="Kreativität icon" class="about__item-img">
+                                    <div class="about__item-text">
+                                        <h3 class="about__item-title">Kreativität & Ausdruck</h3>
+                                        <p class="about__item-description">GlocalSpirit bietet hier geschützte Räume für freie Entfaltung, schöpferischen Fluss und authentischen Selbstausdruck. Was vielleicht vormals als Leistungsdruck erlebt wurde, kann hier als erleb- hör- und fühlbare Kreativität erlebt werden.</p>
+                                    </div>
+                                </div>
+                                <div class="about__item">
+                                    <img src="Assets/SynBols/Lernen & Bildung.svg" alt="Bildung icon" class="about__item-img">
+                                    <div class="about__item-text">
+                                        <h3 class="about__item-title">Lernen & Bildung</h3>
+                                        <p class="about__item-description">GlocalSpirit verkörpert eine neue Form des Wissensaustausches, basierend auf Resonanz, Selbstentfaltung und innerer Stimmigkeit. Jenseits von Druck, Bewertung oder festen Lehrplänen.</p>
+                                    </div>
+                                </div>
+                                <div class="about__item">
+                                    <img src="Assets/SynBols/Natur & Nachhaltigkeit.svg" alt="Nachhaltigkeit icon" class="about__item-img">
+                                    <div class="about__item-text">
+                                        <h3 class="about__item-title">Natur & Nachhaltigkeit</h3>
+                                        <p class="about__item-description">GlocalSpirit erinnert an unsere ursprüngliche Verbindung zur Erde. Sie lädt ein, im Einklang mit den natürlichen Zyklen zu leben, Ressourcen achtsam zu nutzen und regenerative Lebensformen zu gestalten.</p>
+                                    </div>
+                                </div>
+                                <div class="about__item">
+                                    <img src="Assets/SynBols/Spiritualität & Mystik.svg" alt="Spiritualität icon" class="about__item-img">
+                                    <div class="about__item-text">
+                                        <h3 class="about__item-title">Spiritualität & Mystik</h3>
+                                        <p class="about__item-description">Hier begegnen sich Weisheitstraditionen, zeitlose Symbole und moderne Formen spirituellen Erwachens. Diese Kategorie bietet Raum für das Unaussprechliche. Sei es für die Stille hinter den Worten, die Tiefe jenseits des Denkens oder das universelle Mysterium, welches alles durchdringt.</p>
+                                    </div>
+                                </div>
+                                <div class="about__item">
+                                    <img src="Assets/SynBols/Technologie & Bewusstsein.svg" alt="Technologie icon" class="about__item-img">
+                                    <div class="about__item-text">
+                                        <h3 class="about__item-title">Technologie & Bewusstheit</h3>
+                                        <p class="about__item-description">GlocalSpirit verbindet das scheinbar Unvereinbare: Digitale Intelligenz und spirituelle Tiefe. Technologie muss nicht „entmenschlicht“ werden. Durch bewusstes Gestalten kann Technisches zum Werkzeug für Frieden, Verbindung und innere Entwicklung werden.</p>
+                                    </div>
+                                </div>
+                                <div class="about__item">
+                                    <img src="Assets/SynBols/Wertschöpfung & Kreislauf.svg" alt="Wertschöpfung icon" class="about__item-img">
+                                    <div class="about__item-text">
+                                        <h3 class="about__item-title">Wertschöpfung & Finanzen</h3>
+                                        <p class="about__item-description">Ein neues Verständnis von Ökonomie. Eines, welches auf Bewusstsein, Vertrauen und Zirkulation basiert. Statt Profitmaximierung geht es um echte Wertschöpfung durch Sinn, Begegnung und inneren Reichtum.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="roadmap">
+                    <h2 class="roadmap__title">Roadmap</h2>
+                    <div class="roadmap__content">
+                        <svg
+                            class="roadmap_svg"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="800px"
+                            height="2800px"
+                            viewBox="314 -6 256.3 1430"
+                            preserveAspectRatio="xMidYMid meet"
+                            style="background: transparent;">
+                            <path transform="translate(0 2)"class="line" d="M316-4C990 430 45 1077 527 1422" stroke="#A2A3C4" stroke-width="3" fill="none"/>
+                             <path
+                            class="circle_initial"
+                            transform="translate(313 -6.1)"
+                            d="M0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8Z"
+                            fill="#A2A3C4"
+                            />
+                            <path
+                            class="circle_01"
+                            transform="translate(400 60)"
+                            d="M0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8Z"
+                            fill="#6EC2F8"
+                            filter =  "drop-shadow( 0px 0px 4px rgba(110, 194, 248, 100%))"
+                            />
+                            <path
+                            class="circle_02"
+                            transform="translate(518 210)"
+                            d="M0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8Z"
+                            fill="#6EC2F8"
+                            filter =  "drop-shadow( 0px 0px 4px rgba(110, 194, 248, 100%))"
+                            />
+                            <path
+                            class="circle_03"
+                            transform="translate(560 400)"
+                            d="M0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8Z"
+                            fill="#6EC2F8"
+                            filter =  "drop-shadow( 0px 0px 4px rgba(110, 194, 248, 100%))"
+                            />
+                            <path
+                            class="circle_04"
+                            transform="translate(530 600)"
+                            d="M0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8Z"
+                            fill="#6EC2F8"
+                            filter =  "drop-shadow( 0px 0px 4px rgba(110, 194, 248, 100%))"
+                            />
+                            <path
+                            class="circle_05"
+                            transform="translate(470 780)"
+                            d="M0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8Z"
+                            fill="#6EC2F8"
+                            filter =  "drop-shadow( 0px 0px 4px rgba(110, 194, 248, 100%))"
+                            />
+                            <path
+                            class="circle_06"
+                            transform="translate(408 960)"
+                            d="M0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8Z"
+                            fill="#6EC2F8"
+                            filter =  "drop-shadow( 0px 0px 4px rgba(110, 194, 248, 100%))"
+                            />
+                            <path
+                            class="circle_07"
+                            transform="translate(378 1190)"
+                            d="M0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8Z"
+                            fill="#6EC2F8"
+                            filter =  "drop-shadow( 0px 0px 4px rgba(110, 194, 248, 100%))"
+                            />
+                            <path
+                            class="circle_08"
+                            transform="translate(450 1355)"
+                            d="M0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8Z"
+                            fill="#6EC2F8"
+                            filter =  "drop-shadow( 0px 0px 4px rgba(110, 194, 248, 100%))"
+                            />
+                            <path
+                            transform = "translate (255 -101)"
+                            class="arrowhead"
+                            d="M274.5 1526L267.306 1510.24L257.258 1524.35L274.5 1526Z"
+                            fill="#A2A3C4"
+                            />
+                            <!-- text -->
+                             <text class="text01" x="368" y="25" font-family="Saira, sans-serif" font-size="25" z-index="100000" fill="#FFFFFF"
+                            filter="drop-shadow( 0px 0px 8px #55A6D9)">2024</text>
+                            <text class="text02" x="570" y="620" font-family="Saira, sans-serif" font-size="25" z-index="100000" fill="#FFFFFF"
+                            filter="drop-shadow( 0px 0px 8px #55A6D9)">2025</text>
+                        </svg>
+
+                        <div class="cards__wrapper">
+                            <div class="card card01">
+                                <div>
+                                    <h3>Der erste Impuls</h3>
+                                    <h4>August 2024</h4>
+                                </div>
+                                <p>Die Vision von glocalSpirit wird empfangen  nicht als technisches Projekt, sondern als lebendiger Impuls eines neuen sozialen Nervensystems. Drei Menschen folgen dem inneren Ruf und bilden ein erstes bewusstes Dreieck: das Triangle. Es steht für Verbindung, Klarheit und Hingabe. In dieser Anfangsbewegung zeigt sich bereits das Herzstück von glocalSpirit: Das Gute, das bereits in der Welt wirkt, sichtbar zu machen und Menschen über innere Resonanz zu vernetzen. Die Idee atmet.</p>
+                            </div>
+                            <div class="card card02">
+                                <div>
+                                    <h3>Geburt des Feldes</h3>
+                                    <h4>September/Oktober 2024</h4>
+                                </div>
+                                <p>Ein fühlbarer TeamSpirit entfaltet sich. In einem geschützten Kreis wächst die Vision durch gemeinsames Denken, Fühlen und Lauschen weiter.getragen von Vertrauen statt Kontrolle. Der erste Förderantrag entsteht, nicht um etwas zu erschaffen, sondern um Raum zu halten für das, was schon lebt.Dann geschieht das Wesentliche: Menschen kommen wirklich zusammen. Die erste Zusammenkunft wird zum Resonanzrau. nicht als Meeting, sondern als Moment echter Präsenz.Es ist der erste Vorgeschmack auf das, was glocalSpirit ausmacht: Räume, in denen Verbindung geschieht intuitiv, echt, transformierend.</p>
+                            </div>
+                            <div class="card card03">
+                                <div>
+                                    <h3>Das erste SyNbol</h3>
+                                    <h4>November 2024</h4>
+                                </div>
+                                <p>Ein SyNbol wird geboren kein Logo, sondern ein lebendiges Portal. Der Begriff „SyNbol“ vereint das klassische Symbolhafte mit der Tiefe synchroner Verbindung: Das große „N“ steht für Now, Netzwerk und Naturintelligenz. Dieses erste SyNbol verkörpert die archetypischen Felder von glocalSpirit: Frieden, Kreativität, Heilung, Bewusstheit, Natürlichkeit, Verbundenheit, Wertschöpfung. Es ist nicht nur Zeichen, sondern Einladung. Auf der Plattform erscheinen sie später als Purpose Hubs nicht als Kategorien, sondern als energetische Resonanzräume, die Menschen intuitiv zusammenführen.</p>
+                            </div>
+                            <div class="card card04">
+                                <div>
+                                    <h3>Die Struktur im Fluss</h3>
+                                    <h4>Dez 2024 - Jan 2025</h4>
+                                </div>
+                                <p>Die Struktur beginnt sich zu formen nicht als starres Gerüst, sondern als lebendige Architektur. Das Business Model Canvas wird entwickelt, Hostingverträge aufgesetzt, ein erstes Konzeptpapier formuliert. Zugleich beginnt das Netzwerken nicht als Zielgruppenstrategie, sondern als sanftes Lauschen: Wer schwingt schon mit? glocalSpirit bleibt dabei, was es ist: ein syntropischer Raum, der nicht Menschen steuert, sondern sie durch Synchronizität zueinander ruft</p>
+                            </div>
+                            <div class="card card05">
+                                <div>
+                                    <h3>Form aus der Mitte</h3>
+                                    <h4>Februar - März 2025</h4>
+                                </div>
+                                <p>Die Vision verdichtet sich. Die Organisation wächst bewusst kreisförmig, nicht hierarchisch. Erste Kooperationspartner treten ins Feld: Menschen, Projekte, Orte, die selbst bereits Gutes tun. Das Prinzip des Synchronizitätsmatchings wird technisch und philosophisch verankert: Nicht Interessen, sondern innere Ausrichtung verbindet Menschen. Wer sich in einen Purpose Hub einschwingt, wird auf natürliche Weise mit jenen zusammengeführt, mit denen Wandel entstehen kann. </p>
+                            </div>
+                            <div class="card card06">
+                                <div>
+                                    <h3>Der erste Atemzug</h3>
+                                    <h4>April 2025</h4>
+                                </div>
+                                <p>Die erste Testphase beginnt. Die Plattform erwacht in der realen Welt: Inhalte fließen ein, Rückmeldungen werden empfangen, erste bewusste Verbindungen entstehen. Die Software atmet, das Feld antwortet. Begegnungen geschehen nicht nach Mustern, sondern nach Bedeutung. glocalSpirit beginnt, seine Intelligenz zu zeigen nicht als Code, sondern als fühlendes Feld.</p>
+                            </div>
+                            <div class="card card07">
+                                <div>
+                                    <h3>Öffnung des Feldes</h3>
+                                    <h4>Mai 2025</h4>
+                                </div>
+                                <p>Die zweite Testphase bringt Bewegung. Bestehende Netzwerke werden eingeladen, Teil des Feldes zu werden. Die glocalMap entsteht eine Landkarte gelebter Wirksamkeit, auf der Menschen sichtbar werden, die aus dem Herzen heraus wirken. Die Biete-Suche-Funktion wird aktiviert: ein Werkzeug für tiefe, passgenaue Verbindung durch Resonanz statt Reiz. Die Landingpage öffnet sich als Einladung an alle, die das Neue nicht nur träumen, sondern leben wollen. </p>
+                            </div>
+                            <div class="card card08">
+                                <div>
+                                    <h3>Der erste Ruf in die Welt</h3>
+                                    <h4>August/September 2025</h4>
+                                </div>
+                                <p>Der erste größere Launch steht bevor. Die Plattform wird für weitere Kreise geöffnet. Parallel wird die Infrastruktur stabilisiert, eine Geschäftsführung etabliert nicht zur Kontrolle, sondern zur Raumhaltung. glocalSpirit beginnt zu leuchten: als Netzwerk, als Resonanzfeld, als gelebte Vision.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
-        
-        <section class="hero">
-            <h1 class="hero__title">glocalSpirit</h1>
-            <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="hero__image">
-        </section>
-        <section class="about">
-            <div class="about__wrapper about__wrapper--glasmorphism">
-                <div class="about__scroller">
-                    <div class="about__scroller--inner">
-                        <img src="Assets/SynBols/Bewegung & Flow.svg" alt="Bewegung & Flow icon" class="about__carousel-img">
-                        <img src="Assets/SynBols/Bewusstsein.svg" alt="Bewusstsein icon" class="about__carousel-img">
-                        <img src="Assets/SynBols/Gute Produkte & Ernährung.svg" alt="Ernährung icon" class="about__carousel-img">
-                        <img src="Assets/SynBols/Heilung & Gesundheit.svg" alt="Gesundheit icon" class="about__carousel-img">
-                        <img src="Assets/SynBols/House of Hope.svg" alt="House of Hope icon" class="about__carousel-img">
-                        <img src="Assets/SynBols/Kreativität & Ausdruck.svg" alt="Kreativität icon" class="about__carousel-img">
-                        <img src="Assets/SynBols/Lernen & Bildung.svg" alt="Bildung icon" class="about__carousel-img">
-                        <img src="Assets/SynBols/Natur & Nachhaltigkeit.svg" alt="Nachhaltigkeit icon" class="about__carousel-img">
-                        <img src="Assets/SynBols/Spiritualität & Mystik.svg" alt="Spiritualität icon" class="about__carousel-img">
-                        <img src="Assets/SynBols/Wertschöpfung & Kreislauf.svg" alt="Wertschöpfung icon" class="about__carousel-img">
-                        <img src="Assets/SynBols/Technologie & Bewusstsein.svg" alt="Technologie icon" class="about__carousel-img">
-                    </div>
-                </div>
-                <p class="about__description">
-                    GlocalSpirit ist eine Plattform für Bewusstseinsbildung und Vernetzung, die lokale und globale Gemeinschaften verbindet.
-                    Unser Ziel ist es, ein lebendiges Friedensnetzwerk zu schaffen, in dem Menschen ihre Werte, Fähigkeiten und Ressourcen
-                    teilen können.
-                    Durch Online-Resonanzräume, regionale Treffen und innovative Finanzmodelle wie den GlocalSpirit-Coin fördern wir eine
-                    nachhaltige, kooperative Wirtschaft.
-                </p>
-            </div>
-            <div class="about__content">
-                <div class="about__item">
-                    <img src="Assets/SynBols/Bewegung & Flow.svg" alt="Bewegung icon" class="about__item-img">
-                    <div class="about__item-text">
-                        <h3 class="about__item-title">Bewegung & Flow</h3>
-                        <p class="about__item-description">Körper, Geist und Seele verbindet sich durch achtsame, kreative und heilende Formen der Bewegung. Ob durch Yoga, Tanz, Atemarbeit oder intuitive Körperpraxis. GlocalSpirit lädt dazu ein, in einen natürlichen Rhythmus zu finden und sich darüber im Einklang mit dem Leben zu spüren.</p>
-                    </div>
-                </div>
-                <div class="about__item">
-                    <img src="Assets/SynBols/Bewusstsein.svg" alt="Bewusstsein icon" class="about__item-img">
-                    <div class="about__item-text">
-                        <h3 class="about__item-title">Bewusstsein</h3>
-                        <p class="about__item-description">Bewusstsein ist gemäß der Quantentheorie ein universeller und gleichzeitig ein energiegeladener Zustand. So ist Bewusstseinsentwicklung beziehungsweise Bewusstseinserweiterung gleichzeitig ein energetisch verwandelnder Zustand. Individuelle Bewusstseinszustände folgen bestimmten energetischen Gesetzmäßigkeiten und beeinflussen somit unmittelbar die Körperfunktionen. Dies nimmt Einfluss auf Gesundheit und Krankheit, auf Wohlgefühl und Unwohlsein.</p>
-                    </div>
-                </div>
-                <div class="about__item">
-                    <img src="Assets/SynBols/Gute Produkte & Ernährung.svg" alt="Ernährung icon" class="about__item-img">
-                    <div class="about__item-text">
-                        <h3 class="about__item-title">Gute Produkte & Ernährung</h3>
-                        <p class="about__item-description">GlocalSpirit steht für bewussten Konsum, achtsame Ernährung und Nährendes für Körper, Geist und Seele. Idealerweise stehen Qualität, Einfachheit und Ursprünglichkeit der Produkte im Einklang mit „Mensch und Natur“.</p>
-                    </div>
-                </div>
-                <div class="about__item">
-                    <img src="Assets/SynBols/Heilung & Gesundheit.svg" alt="Gesundheit icon" class="about__item-img">
-                    <div class="about__item-text">
-                        <h3 class="about__item-title">Heilung & Gesundheit</h3>
-                        <p class="about__item-description">Bei GlocalSpirit umfasst Gesundheit einen ganzheitlichen Ansatz für körperliches, seelisches und geistiges Wohlbefinden. Wir laden dazu ein, Heilung als einen natürlichen Prozess zu verstehen. Getragen von Bewusstheit, Gemeinschaft, Naturverbundenheit und innerem Frieden.</p>
-                    </div>
-                </div>
-                <div class="about__item">
-                    <img src="Assets/SynBols/House of Hope.svg" alt="House of Hope icon" class="about__item-img">
-                    <div class="about__item-text">
-                        <h3 class="about__item-title">Houses of Hope</h3>
-                        <p class="about__item-description">Die „Houses of Hope“ sind lebendige Orte der Begegnung, Heilung und Ko-Kreation. Sie dienen als spirituelle, soziale und kulturelle Räume, in denen sich Menschen im Geiste des inneren Friedens und der Synarchie versammeln können. Die „Houses of Hope“ sind physische Ankerpunkte innerhalb des GlocalSpirit-Netzwerks.</p>
-                    </div>
-                </div>
-                <div class="about__item">
-                    <img src="Assets/SynBols/Kreativität & Ausdruck.svg" alt="Kreativität icon" class="about__item-img">
-                    <div class="about__item-text">
-                        <h3 class="about__item-title">Kreativität & Ausdruck</h3>
-                        <p class="about__item-description">GlocalSpirit bietet hier geschützte Räume für freie Entfaltung, schöpferischen Fluss und authentischen Selbstausdruck. Was vielleicht vormals als Leistungsdruck erlebt wurde, kann hier als erleb- hör- und fühlbare Kreativität erlebt werden.</p>
-                    </div>
-                </div>
-                <div class="about__item">
-                    <img src="Assets/SynBols/Lernen & Bildung.svg" alt="Bildung icon" class="about__item-img">
-                    <div class="about__item-text">
-                        <h3 class="about__item-title">Lernen & Bildung</h3>
-                        <p class="about__item-description">GlocalSpirit verkörpert eine neue Form des Wissensaustausches, basierend auf Resonanz, Selbstentfaltung und innerer Stimmigkeit. Jenseits von Druck, Bewertung oder festen Lehrplänen.</p>
-                    </div>
-                </div>
-                <div class="about__item">
-                    <img src="Assets/SynBols/Natur & Nachhaltigkeit.svg" alt="Nachhaltigkeit icon" class="about__item-img">
-                    <div class="about__item-text">
-                        <h3 class="about__item-title">Natur & Nachhaltigkeit</h3>
-                        <p class="about__item-description">GlocalSpirit erinnert an unsere ursprüngliche Verbindung zur Erde. Sie lädt ein, im Einklang mit den natürlichen Zyklen zu leben, Ressourcen achtsam zu nutzen und regenerative Lebensformen zu gestalten.</p>
-                    </div>
-                </div>
-                <div class="about__item">
-                    <img src="Assets/SynBols/Spiritualität & Mystik.svg" alt="Spiritualität icon" class="about__item-img">
-                    <div class="about__item-text">
-                        <h3 class="about__item-title">Spiritualität & Mystik</h3>
-                        <p class="about__item-description">Hier begegnen sich Weisheitstraditionen, zeitlose Symbole und moderne Formen spirituellen Erwachens. Diese Kategorie bietet Raum für das Unaussprechliche. Sei es für die Stille hinter den Worten, die Tiefe jenseits des Denkens oder das universelle Mysterium, welches alles durchdringt.</p>
-                    </div>
-                </div>
-                <div class="about__item">
-                    <img src="Assets/SynBols/Technologie & Bewusstsein.svg" alt="Technologie icon" class="about__item-img">
-                    <div class="about__item-text">
-                        <h3 class="about__item-title">Technologie & Bewusstheit</h3>
-                        <p class="about__item-description">GlocalSpirit verbindet das scheinbar Unvereinbare: Digitale Intelligenz und spirituelle Tiefe. Technologie muss nicht „entmenschlicht“ werden. Durch bewusstes Gestalten kann Technisches zum Werkzeug für Frieden, Verbindung und innere Entwicklung werden.</p>
-                    </div>
-                </div>
-                <div class="about__item">
-                    <img src="Assets/SynBols/Wertschöpfung & Kreislauf.svg" alt="Wertschöpfung icon" class="about__item-img">
-                    <div class="about__item-text">
-                        <h3 class="about__item-title">Wertschöpfung & Finanzen</h3>
-                        <p class="about__item-description">Ein neues Verständnis von Ökonomie. Eines, welches auf Bewusstsein, Vertrauen und Zirkulation basiert. Statt Profitmaximierung geht es um echte Wertschöpfung durch Sinn, Begegnung und inneren Reichtum.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathHelper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-    <!-- ScrollSmoother requires ScrollTrigger -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+    </div>
 </body>
 </html>
+
+
