@@ -23,19 +23,20 @@ a{
     color: inherit;
 }
 
-body{
+body {
     overflow-x: hidden;
     font-family: var(--main-font-family);
     background-color: rgb(var(--main-background-color));
-    color: rbg(var(--main-font-color));
+    color: rgb(var(--main-font-color));
     line-height: 1.5;
     font-size: 1rem;
     position: relative;
-    background-image: url('../Assets/Nebula-optimized.png'); /* Add the background imagee */
-    /* height: 100vh; */
+    background-image: url('../Assets/Nebula-optimized.png');
     background-size: cover; /* Ensure the image covers the entire background */
-    background-attachment: fixed;
+    background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-attachment: fixed;
+    height: 100vh; /* Fallback for browsers without JavaScript */
 }
 
 #viewport-wrapper {

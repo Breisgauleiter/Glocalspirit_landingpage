@@ -53,11 +53,11 @@ window.addEventListener('resize', recalculateWidths);
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    function setViewportHeight() {
-        const vh = window.innerHeight * 0.01; // Calculate 1vh based on the actual viewport height
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    function setBodyHeight() {
+        const screenHeight = window.screen.height; // Get the full screen height
+        document.body.style.height = `${screenHeight}px`; // Set the body's height to the screen height
     }
 
-    setViewportHeight(); // Set the initial height
-    window.addEventListener('resize', setViewportHeight); // Update on resize
+    setBodyHeight(); // Set the initial height
+    window.addEventListener('resize', setBodyHeight); // Update height on resize
 });
