@@ -52,4 +52,12 @@ window.addEventListener('resize', recalculateWidths);
 // canva js particles
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    function setViewportHeight() {
+        const vh = window.innerHeight * 0.01; // Calculate 1vh based on the actual viewport height
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
 
+    setViewportHeight(); // Set the initial height
+    window.addEventListener('resize', setViewportHeight); // Update on resize
+});
