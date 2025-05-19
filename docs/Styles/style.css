@@ -32,7 +32,7 @@ body{
     font-size: 1rem;
     position: relative;
     background-image: url('../Assets/Nebula-optimized.png'); /* Add the background imagee */
-    background-size: cover; /* Ensure the image covers the entire background */
+    background-size: 100% 100%; /* Ensure the image covers the entire background */
     background-attachment: fixed;
     background-repeat: no-repeat; /* Prevent the image from repeating */
 }
