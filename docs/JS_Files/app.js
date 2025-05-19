@@ -54,10 +54,11 @@ window.addEventListener('resize', recalculateWidths);
 
 document.addEventListener("DOMContentLoaded", () => {
     function setBodyHeight() {
-        const screenHeight = window.screen.height; // Get the full screen height
-        document.body.style.height = `${screenHeight}px`; // Set the body's height to the screen height
-    }
+    const body = document.getElementById('body');
+    const vh = window.innerHeight;
+    body.style.height = `${vh}px`;
+  }
 
-    setBodyHeight(); // Set the initial height
-    window.addEventListener('resize', setBodyHeight); // Update height on resize
+  window.addEventListener('load', setBodyHeight);
+  window.addEventListener('resize', setBodyHeight);
 });

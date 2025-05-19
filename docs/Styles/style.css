@@ -22,9 +22,6 @@ a{
     text-decoration: none;
     color: inherit;
 }
-html{
-    height: --webkit-fill-available
-}
 body {
     overflow-x: hidden;
     font-family: var(--main-font-family);
@@ -38,14 +35,9 @@ body {
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent the image from repeating */
     background-attachment: fixed;
-    height: --webkit-fill-available; /* Fallback for browsers without JavaScript */
+   
 }
 
-#viewport-wrapper {
-    height: calc(var(--vh, 1vh) * 100); /* Dynamically adjust height */
-    display: flex;
-    flex-direction: column; /* Ensure content flows properly */
-}
 
 
 main{
