@@ -22,7 +22,9 @@ a{
     text-decoration: none;
     color: inherit;
 }
-
+html{
+    height: --webkit-fill-available
+}
 body {
     overflow-x: hidden;
     font-family: var(--main-font-family);
@@ -36,7 +38,7 @@ body {
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent the image from repeating */
     background-attachment: fixed;
-    height: 100vh; /* Fallback for browsers without JavaScript */
+    height: --webkit-fill-available; /* Fallback for browsers without JavaScript */
 }
 
 #viewport-wrapper {
