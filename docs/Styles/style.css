@@ -22,6 +22,10 @@ a{
     text-decoration: none;
     color: inherit;
 }
+
+body, html{
+    width: 100%;
+}
 body {
     overflow-x: hidden;
     font-family: var(--main-font-family);
@@ -42,7 +46,7 @@ body {
   background-image: url('../Assets/Nebula-optimized.png');
   background-size: cover;
   background-position: center;
-  z-index: -1; /* stays behind your content */
+  z-index: -3; /* stays behind your content */
   pointer-events: none; /* allows clicks through to content */
 }
 
@@ -65,6 +69,7 @@ main{
 .header{
     width: 100%;
 }
+
 .header__nav{
     z-index: 99998;
     position: fixed;
@@ -155,7 +160,7 @@ main{
         -webkit-text-fill-color: transparent;
         filter: drop-shadow(3 7 10px rgba(0, 0, 0, 0.203));
 
-        margin-bottom: -10rem;
+        margin-bottom: -8%;
     }
 
     .hero__image{
@@ -178,6 +183,8 @@ main{
         border: 1.5px solid rgba(var(--main-font-color),0.2);
         border-radius: 3px;
         width: 60%;
+        box-shadow:0 0px 30px rgba(69, 78, 197, 0.37);
+
     }
 
     .about__scroller{
@@ -349,9 +356,9 @@ main{
     }
 
     svg{
-        margin-left: -10%;
+        margin-left: 5%;
         height: fit-content;
-        width: 25%;
+        width: 25vw;
         min-width: 400px;
     }
 }
@@ -393,6 +400,7 @@ main{
     backdrop-filter: blur(20px);
     width: clamp(25ch,31vw,50ch);
     padding: 12px;
+    box-shadow:0 0px 30px rgba(69, 78, 197, 0.37);
 
 
     div{
@@ -414,4 +422,8 @@ main{
         font-weight: 300;
         font-size: clamp(0.7rem,1vw,1rem);
     }
+}
+
+.card--current{
+    box-shadow:0 0px 30px rgba(192, 3, 195, 0.478);
 }

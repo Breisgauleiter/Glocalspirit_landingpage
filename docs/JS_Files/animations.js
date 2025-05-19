@@ -25,15 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Pin the header
-    ScrollTrigger.create({
-        trigger: ".header",
-        start: "top top", // Pin when the header reaches the top of the viewport
-        end: "bottom top", // Optional: Define when to unpin
-        pin: true, // Pin the header
-        pinSpacing: false, // Prevent extra spacing from being added
-    });
-
     // Hero title animation
     gsap.from(".hero__title", {
         y: 50,
@@ -54,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ScrollTrigger animation for scaling .hero__image
     gsap.to(".hero__image", {
-        scale: 2.1, // Scale to 1.5 times its size
+        scale: 1.8, // Scale to 1.5 times its size
         scrollTrigger: {
             trigger: ".hero__image", // Trigger when the hero image enters the viewport
             start: "top 80%", // Start rotation when the top of the image reaches the center of the viewport
@@ -130,112 +121,144 @@ animateScroller();
 // svg animation
 gsap.defaults({ease:"none"});
 
+// Function to initialize animations
+function initializeAnimations() {
+    const viewportWidth = window.innerWidth;
 
-// Create a timeline for sequential animations
-const main = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".roadmap_svg",
-        scrub: 2,
-        start: "top 70%",
-        end: "bottom 70%",
-        // pin: true,
-        markers: true
+    if (viewportWidth > 800) {
+        // Create a timeline for sequential animations
+        const main = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".roadmap_svg",
+                scrub: 2,
+                start: "top 70%",
+                end: "bottom 70%",
+                markers: true, // Debug markers (optional)
+            },
+        });
+
+        // Animate the line
+        main.from(".line", {
+            drawSVG: 0,
+            duration: 20,
+        });
+
+        // Animate the circles and cards together
+        main.from(".circle_01", {
+            scale: 0,
+            transformOrigin: "center",
+            ease: "elastic(2.5, 1)",
+            duration: 1.0,
+        }, 1.2).from(".card01", {
+            opacity: 0,
+            y: 50,
+            ease: "power4.out",
+            duration: 7.0,
+        }, 1.2);
+
+        main.from(".circle_02", {
+            scale: 0,
+            transformOrigin: "center",
+            ease: "elastic(2.5, 1)",
+            duration: 1.0,
+        }, 3.8).from(".card02", {
+            opacity: 0,
+            y: 50,
+            ease: "power4.out",
+            duration: 7.0,
+        }, 3.8);
+
+        main.from(".circle_03", {
+            scale: 0,
+            transformOrigin: "center",
+            ease: "elastic(2.5, 1)",
+            duration: 1.0,
+        }, 6.3).from(".card03", {
+            opacity: 0,
+            y: 50,
+            ease: "power4.out",
+            duration: 7.0,
+        }, 6.3);
+
+        main.from(".circle_04", {
+            scale: 0,
+            transformOrigin: "center",
+            ease: "elastic(2.5, 1)",
+            duration: 1.0,
+        }, 8.7).from(".card04", {
+            opacity: 0,
+            y: 50,
+            ease: "power4.out",
+            duration: 7.0,
+        }, 8.7);
+
+        main.from(".circle_05", {
+            scale: 0,
+            transformOrigin: "center",
+            ease: "elastic(2.5, 1)",
+            duration: 1.0,
+        }, 11.0).from(".card05", {
+            opacity: 0,
+            y: 50,
+            ease: "power4.out",
+            duration: 7.0,
+        }, 11.0);
+
+        main.from(".circle_06", {
+            scale: 0,
+            transformOrigin: "center",
+            ease: "elastic(2.5, 1)",
+            duration: 1.0,
+        }, 13.5).from(".card06", {
+            opacity: 0,
+            y: 50,
+            ease: "power4.out",
+            duration: 7.0,
+        }, 13.5);
+
+        main.from(".circle_07", {
+            scale: 0,
+            transformOrigin: "center",
+            ease: "elastic(2.5, 1)",
+            duration: 1.0,
+        }, 16.5).from(".card07", {
+            opacity: 0,
+            y: 50,
+            ease: "power4.out",
+            duration: 7.0,
+        }, 16.5);
+
+        main.from(".circle_08", {
+            scale: 0,
+            transformOrigin: "center",
+            ease: "elastic(2.5, 1)",
+            duration: 1.0,
+        }, 18.8).from(".card08", {
+            opacity: 0,
+            y: 50,
+            ease: "power4.out",
+            duration: 7.0,
+        }, 18.8);
+
+        main.from(".arrowhead", {
+            scale: 0,
+            transformOrigin: "center",
+            ease: "elastic(2.5, 1)",
+            duration: 1.0,
+        }, 19.9);
+    } else {
+        console.log("Viewport width is less than or equal to 800px. Animations are disabled.");
     }
+}
+
+// Initialize animations on page load
+initializeAnimations();
+
+// Reinitialize animations on window resize
+window.addEventListener("resize", () => {
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // Kill all existing ScrollTriggers
+    initializeAnimations(); // Reinitialize animations
 });
-
-
-
-// Animate the line
-main.from(".line", {
-    drawSVG: 0,
-    duration: 10, // Was 20
-    ease: "ease",
-});
-
-main.from(".circle_initial", {
-    scale: 0,
-    transformOrigin: "center",
-    ease: "elastic(2.5, 1)",
-    duration: 0.2, // Was 1
-}, 0); // Was 1.2
-
-main.from(".text01", {
-    scale: 0,
-    transformOrigin: "center",
-    ease: "elastic(2.5, 1)",
-    duration: 0.5, // Was 1
-}, 0.6); // Was 1.2
-
-main.from(".text02", {
-    scale: 0,
-    transformOrigin: "center",
-    ease: "elastic(2.5, 1)",
-    duration: 0.5,
-}, 4.35); // Was 8.7
-
-main.from(".circle_01", {
-    scale: 0,
-    transformOrigin: "center",
-    ease: "elastic(2.5, 1)",
-    duration: 0.5,
-}, 0.6); // Was 1.2
-
-main.from(".circle_02", {
-    scale: 0,
-    transformOrigin: "center",
-    ease: "elastic(2.5, 1)",
-    duration: 0.5,
-}, 1.9); // Was 3.8
-
-main.from(".circle_03", {
-    scale: 0,
-    transformOrigin: "center",
-    ease: "elastic(2.5, 1)",
-    duration: 0.5,
-}, 3.15); // Was 6.3
-
-main.from(".circle_04", {
-    scale: 0,
-    transformOrigin: "center",
-    ease: "elastic(2.5, 1)",
-    duration: 0.5,
-}, 4.35); // Was 8.7
-
-main.from(".circle_05", {
-    scale: 0,
-    transformOrigin: "center",
-    ease: "elastic(2.5, 1)",
-    duration: 0.5,
-}, 5.5); // Was 11
-
-main.from(".circle_06", {
-    scale: 0,
-    transformOrigin: "center",
-    ease: "elastic(2.5, 1)",
-    duration: 0.5,
-}, 6.75); // Was 13.5
-
-main.from(".circle_07", {
-    scale: 0,
-    transformOrigin: "center",
-    ease: "elastic(2.5, 1)",
-    duration: 0.5,
-}, 8.25); // Was 16.5
-
-main.from(".circle_08", {
-    scale: 0,
-    transformOrigin: "center",
-    ease: "elastic(2.5, 1)",
-    duration: 0.5,
-}, 9.4); // Was 18.8
-
-main.from(".arrowhead", {
-    scale: 0,
-    transformOrigin: "center",
-    ease: "elastic(2.5, 1)",
-    duration: 0.5,
-}, 9.95); // Was 19.9
-
 // roadmap cards positioning
 document.addEventListener("DOMContentLoaded", () => {
     const roadmapContent = document.querySelector(".roadmap__content");
