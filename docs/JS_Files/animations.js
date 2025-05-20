@@ -130,7 +130,7 @@ function initializeAnimations() {
         const main = gsap.timeline({
             scrollTrigger: {
                 trigger: ".roadmap_svg",
-                scrub: 2,
+                scrub: 1.5,
                 start: "top 70%",
                 end: "bottom 70%",
                 markers: true, // Debug markers (optional)
@@ -254,11 +254,11 @@ function initializeAnimations() {
 // Initialize animations on page load
 initializeAnimations();
 
-// Reinitialize animations on window resize
-window.addEventListener("resize", () => {
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // Kill all existing ScrollTriggers
-    initializeAnimations(); // Reinitialize animations
-});
+// // Reinitialize animations on window resize
+// window.addEventListener("resize", () => {
+//     ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // Kill all existing ScrollTriggers
+//     initializeAnimations(); // Reinitialize animations
+// });
 // roadmap cards positioning
 document.addEventListener("DOMContentLoaded", () => {
     const roadmapContent = document.querySelector(".roadmap__content");
