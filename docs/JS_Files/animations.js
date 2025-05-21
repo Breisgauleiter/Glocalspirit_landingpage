@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", () => {
+function initializeAnimations() {
+    const viewportWidth = window.innerWidth;
+
     // Ensure DrawSVGPlugin is properly registered
     if (typeof DrawSVGPlugin === "undefined") {
         console.error("DrawSVGPlugin is not loaded. Ensure it is included in your project.");
@@ -8,14 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize ScrollSmoother
     ScrollSmoother.create({
-        smooth: 1.5, // Smooth scrolling duration
+        smooth: 2, // Smooth scrolling duration
         effects: true, // Enable effects like opacity and transforms
     });
 
     // Header animation
     gsap.from(".header", {
-        y: -10,
-        scale: 0.8,
+        // y: -10,
+        // scale: 0.8,
         opacity: 0,
         duration: 0.8,
         ease: "power2.in",
@@ -45,86 +47,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ScrollTrigger animation for scaling .hero__image
     gsap.to(".hero__image", {
-        scale: 1.8, // Scale to 1.5 times its size
+        scale: 1.5,
         scrollTrigger: {
-            trigger: ".hero__image", // Trigger when the hero image enters the viewport
-            start: "top 80%", // Start rotation when the top of the image reaches the center of the viewport
-            end: "bottom top", // End rotation when the bottom of the image scrolls out of the viewport
-            scrub: 1, // Smoothly tie the rotation to the scroll position
+            trigger: ".hero__image",
+            start: "top 20%",
+            end: "bottom top",
+            scrub: 2,
+            markers: true,
         },
     });
 
     // ScrollTrigger animation for .about__wrapper--glasmorphism
     gsap.from(".about__wrapper--glasmorphism", {
-        scale: 0.8, // Start with scale 0.8
-        y: 50, // Move upwards
-        opacity: 0, // Start with opacity 0
-        duration: 1.5, // Adjusted animation duration for smoother control
-        ease: "power2.out", // Smooth easing
+        scale: 0.8,
+        y: 50,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power2.out",
         scrollTrigger: {
             trigger: ".about__wrapper--glasmorphism",
-            start: "top 60%", // Start when the top of the element is 60% down the viewport
-            end: "top 40%", // End when the top of the element is 40% down the viewport
-            scrub: 1.5, // Smoothly scrub the animation over 1 second
-            // markers: true, // Add markers for debugging
+            start: "top 60%",
+            end: "top 40%",
+            scrub: 1.5,
         },
     });
 
     // ScrollTrigger animation for .wrapper__content
     gsap.from(".wrapper__content", {
-        scale: 0.8, // Start with scale 0.8
-        y: 50, // Move upwards
-        opacity: 0, // Start with opacity 0
-        duration: 1, // Animation duration
-        ease: "power2.out", // Smooth easing
+        scale: 0.8,
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
         scrollTrigger: {
             trigger: ".wrapper__content",
-            start: "top 55%", // Start when the top of the element is 80% down the viewport
-            end: "top 35%", // End when the top of the element is 60% down the viewport
-            scrub: 1.5, // Tie animation to scroll position
+            start: "top 55%",
+            end: "top 35%",
+            scrub: 1.5,
         },
     });
 
+    // ScrollTrigger animation for .roadmap__title
     gsap.from(".roadmap__title", {
-        scale: 0.8, // Start with scale 0.8
-        y: 50, // Move upwards
-        opacity: 0, // Start with opacity 0
-        duration: 1, // Animation duration
-        ease: "power2.out", // Smooth easing
+        scale: 0.8,
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
         scrollTrigger: {
             trigger: ".roadmap__title",
-            start: "top 55%", // Start when the top of the element is 80% down the viewport
-            end: "top 35%", // End when the top of the element is 60% down the viewport
-            scrub: 1.5, // Tie animation to scroll position
+            start: "top 55%",
+            end: "top 35%",
+            scrub: 1.5,
         },
     });
-});
 
-// scroller animation (about section)
-const scroller = document.querySelector('.about__scroller');
-
-function animateScroller() {
-    scroller.setAttribute("data-animated", "true");
-
-    const scrollerInner = scroller.querySelector('.about__scroller--inner');
-    const scrollerContent = Array.from(scrollerInner.children);
-
-    scrollerContent.forEach((item) => {
-        const duplicateItem = item.cloneNode(true);
-        duplicateItem.setAttribute("aria-hidden", "true");
-        scrollerInner.appendChild(duplicateItem);
-    })
-}
-
-animateScroller();
-
-// svg animation
-gsap.defaults({ease:"none"});
-
-// Function to initialize animations
-function initializeAnimations() {
-    const viewportWidth = window.innerWidth;
-
+    // Roadmap SVG animations (only for viewport > 800px)
     if (viewportWidth > 800) {
         // Create a timeline for sequential animations
         const main = gsap.timeline({
@@ -133,191 +111,189 @@ function initializeAnimations() {
                 scrub: 1.5,
                 start: "top 70%",
                 end: "bottom 70%",
-                markers: true, // Debug markers (optional)
+                // markers: true, // Debug markers (optional)
             },
         });
 
         // Animate the line
         main.from(".line", {
             drawSVG: 0,
-            duration: 20,
+            duration: 25, // increased from 20
+            ease: "none",
         });
-
+        
         // Animate the circles and cards together
+        main.from(".circle_initial", {
+            scale: 0,
+            transformOrigin: "center",
+            ease: "elastic(2.5, 1)",
+            duration: 1.0,
+        }, 0)
+
         main.from(".circle_01", {
             scale: 0,
             transformOrigin: "center",
             ease: "elastic(2.5, 1)",
             duration: 1.0,
-        }, 1.2).from(".card01", {
+        }, 1.5).from(".card01", {
             opacity: 0,
             y: 50,
             ease: "power4.out",
-            duration: 7.0,
-        }, 1.2);
+            duration: 8.75,
+        }, 1.5).from(".text01", {
+            opacity: 0,
+            y: 20, // Slide in from below
+            ease: "power4.out",
+            duration: 1.5,
+        }, 1.5); // Same start time as circle_01 and card01
 
         main.from(".circle_02", {
             scale: 0,
             transformOrigin: "center",
             ease: "elastic(2.5, 1)",
             duration: 1.0,
-        }, 3.8).from(".card02", {
+        }, 4.75).from(".card02", {
             opacity: 0,
             y: 50,
             ease: "power4.out",
-            duration: 7.0,
-        }, 3.8);
+            duration: 8.75,
+        }, 4.75);
 
         main.from(".circle_03", {
             scale: 0,
             transformOrigin: "center",
             ease: "elastic(2.5, 1)",
             duration: 1.0,
-        }, 6.3).from(".card03", {
+        }, 7.875).from(".card03", {
             opacity: 0,
             y: 50,
             ease: "power4.out",
-            duration: 7.0,
-        }, 6.3);
+            duration: 8.75,
+        }, 7.875);
 
         main.from(".circle_04", {
             scale: 0,
             transformOrigin: "center",
             ease: "elastic(2.5, 1)",
             duration: 1.0,
-        }, 8.7).from(".card04", {
+        }, 10.875).from(".card04", {
             opacity: 0,
             y: 50,
             ease: "power4.out",
-            duration: 7.0,
-        }, 8.7);
+            duration: 8.75,
+        }, 10.875).from(".text02", {
+            opacity: 0,
+            y: 20, // Slide in from below
+            ease: "power4.out",
+            duration: 1.5,
+        }, 10.875); // Same start time as circle_02 and card02
 
         main.from(".circle_05", {
             scale: 0,
             transformOrigin: "center",
             ease: "elastic(2.5, 1)",
             duration: 1.0,
-        }, 11.0).from(".card05", {
+        }, 13.75).from(".card05", {
             opacity: 0,
             y: 50,
             ease: "power4.out",
-            duration: 7.0,
-        }, 11.0);
+            duration: 8.75,
+        }, 13.75);
 
         main.from(".circle_06", {
             scale: 0,
             transformOrigin: "center",
             ease: "elastic(2.5, 1)",
             duration: 1.0,
-        }, 13.5).from(".card06", {
+        }, 16.875).from(".card06", {
             opacity: 0,
             y: 50,
             ease: "power4.out",
-            duration: 7.0,
-        }, 13.5);
+            duration: 8.75,
+        }, 16.875);
 
         main.from(".circle_07", {
             scale: 0,
             transformOrigin: "center",
             ease: "elastic(2.5, 1)",
             duration: 1.0,
-        }, 16.5).from(".card07", {
+        }, 20.625).from(".card07", {
             opacity: 0,
             y: 50,
             ease: "power4.out",
-            duration: 7.0,
-        }, 16.5);
+            duration: 8.75,
+        }, 20.625);
 
         main.from(".circle_08", {
             scale: 0,
             transformOrigin: "center",
             ease: "elastic(2.5, 1)",
             duration: 1.0,
-        }, 18.8).from(".card08", {
+        }, 23.5).from(".card08", {
             opacity: 0,
             y: 50,
             ease: "power4.out",
-            duration: 7.0,
-        }, 18.8);
+            duration: 8.75,
+        }, 23.5);
 
         main.from(".arrowhead", {
             scale: 0,
             transformOrigin: "center",
             ease: "elastic(2.5, 1)",
             duration: 1.0,
-        }, 19.9);
+        }, 24.875);
+
     } else {
         console.log("Viewport width is less than or equal to 800px. Animations are disabled.");
     }
-}
 
-// Initialize animations on page load
-initializeAnimations();
-
-// // Reinitialize animations on window resize
-// window.addEventListener("resize", () => {
-//     ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // Kill all existing ScrollTriggers
-//     initializeAnimations(); // Reinitialize animations
-// });
-// roadmap cards positioning
-document.addEventListener("DOMContentLoaded", () => {
+    // Position roadmap cards
     const roadmapContent = document.querySelector(".roadmap__content");
     const circles = document.querySelectorAll(".roadmap_svg .circle_01, .roadmap_svg .circle_02, .roadmap_svg .circle_03, .roadmap_svg .circle_04, .roadmap_svg .circle_05, .roadmap_svg .circle_06, .roadmap_svg .circle_07, .roadmap_svg .circle_08");
     const cards = document.querySelectorAll(".cards__wrapper .card");
 
-    // Define individual offsets for each card as percentages of the parent container's width
     const cardOffsets = {
-        circle_01: { left: 8 }, // 8% of the container width
-        circle_02: { left: -45 }, // -45% of the container width
-        circle_03: { left: 3 }, // 3% of the container width
-        circle_04: { left: -42 }, // -42% of the container width
-        circle_05: { left: 7 }, // 7% of the container width
-        circle_06: { left: -39 }, // -39% of the container width
-        circle_07: { left: 5 }, // 5% of the container width
-        circle_08: { left: -43 }, // -43% of the container width
+        circle_01: { left: 8 },
+        circle_02: { left: -45 },
+        circle_03: { left: 3 },
+        circle_04: { left: -42 },
+        circle_05: { left: 7 },
+        circle_06: { left: -39 },
+        circle_07: { left: 5 },
+        circle_08: { left: -43 },
     };
 
-    // Define custom offsets for viewport widths between 870px and 800px
     const customCardOffsets = {
-        circle_01: { left: 10 }, // Custom offset for this range
+        circle_01: { left: 10 },
         circle_02: { left: -50 },
         circle_03: { left: 5 },
         circle_04: { left: -38 },
         circle_05: { left: 10 },
-        circle_06: { left: -37},
+        circle_06: { left: -37 },
         circle_07: { left: 8 },
         circle_08: { left: -40 },
     };
 
-    // Function to position cards
     function positionCards() {
-        const viewportWidth = window.innerWidth; // Get the current viewport width
-        const roadmapContentWidth = roadmapContent.offsetWidth; // Get the container width
+        const roadmapContentWidth = roadmapContent.offsetWidth;
 
         circles.forEach((circle, index) => {
-            const circleRect = circle.getBoundingClientRect(); // Get the circle's position
-            const roadmapContentRect = roadmapContent.getBoundingClientRect(); // Get the parent container's position
-            const topPosition = circleRect.top - roadmapContentRect.top; // Calculate top position
+            const circleRect = circle.getBoundingClientRect();
+            const roadmapContentRect = roadmapContent.getBoundingClientRect();
+            const topPosition = circleRect.top - roadmapContentRect.top;
 
             const card = cards[index];
             if (card) {
                 if (viewportWidth > 800) {
-                    // Use custom offsets for widths between 870px and 800px
-                    const offsets =
-                        viewportWidth <= 870 && viewportWidth > 800
-                            ? customCardOffsets
-                            : cardOffsets;
-
-                    const circleClass = circle.classList[0]; // e.g., "circle_01"
-                    const offset = offsets[circleClass] || { left: 0 }; // Default offset if not defined
+                    const offsets = viewportWidth <= 870 && viewportWidth > 800 ? customCardOffsets : cardOffsets;
+                    const circleClass = circle.classList[0];
+                    const offset = offsets[circleClass] || { left: 0 };
                     const leftOffsetInPixels = (offset.left / 100) * roadmapContentWidth;
 
-                    // Apply absolute positioning
                     card.style.position = "absolute";
                     card.style.top = `${topPosition}px`;
                     card.style.left = `${circleRect.left - roadmapContentRect.left + leftOffsetInPixels}px`;
                 } else {
-                    // For widths <= 800px, reset to relative positioning
                     card.style.position = "relative";
                     card.style.top = "auto";
                     card.style.left = "auto";
@@ -326,9 +302,58 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Initial positioning
     positionCards();
-
-    // Recalculate positions on window resize
     window.addEventListener("resize", positionCards);
-});
+}
+
+// Initialize animations on page load
+initializeAnimations();
+
+// Reinitialize animations on window resize
+window.addEventListener("resize", () => {
+        console.log("Resize event triggered"); // Debugging log
+
+        // Scroll to the top of the page or the ScrollSmoother container
+        if (ScrollSmoother.get()) {
+            console.log("Using ScrollSmoother to scroll to the top");
+            ScrollSmoother.get().scrollTo(0, true); // Smooth scroll to the top of the smooth scrolling container
+        } else {
+            console.log("Using window.scrollTo to scroll to the top");
+            window.scrollTo({ top: 0, behavior: "smooth" }); // Fallback for normal scrolling
+        }
+
+        // Kill all existing ScrollTriggers
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        console.log("All ScrollTriggers killed");
+
+        // Reset all properties for general elements
+        gsap.set(".header, .hero__title, .hero__image, .about__wrapper--glasmorphism, .wrapper__content, .roadmap__title, .roadmap_svg, .card01, .card02, .card03, .card04, .card05, .card06, .card07, .card08, .line, .text01, .text02", {
+            clearProps: "all",
+        });
+        console.log("General elements reset to default state");
+
+        // Reset only scale and opacity for circles and arrowhead
+        gsap.set(".circle_01, .circle_02, .circle_03, .circle_04, .circle_05, .circle_06, .circle_07, .circle_08, .arrowhead, .circle_initial", {
+            scale: 1,   // Reset scale
+            opacity: 1, // Reset opacity
+        });
+        console.log("Circles and arrowhead reset (scale and opacity only)");
+
+        // // Recalculate positions of roadmap cards and circles
+        // positionCards();
+        // console.log("Roadmap card and circle positions recalculated");
+
+        // Reinitialize animations
+        initializeAnimations();
+        console.log("Animations reinitialized");
+
+        // Refresh ScrollSmoother (if used)
+        if (ScrollSmoother.get()) {
+            ScrollSmoother.get().refresh(); // Recalculate smooth scrolling
+            console.log("ScrollSmoother refreshed");
+        }
+
+        // Refresh ScrollTrigger
+        ScrollTrigger.refresh(); // Recalculate start and end positions
+        console.log("ScrollTrigger refreshed");
+    });

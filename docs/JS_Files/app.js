@@ -52,13 +52,13 @@ window.addEventListener('resize', recalculateWidths);
 // canva js particles
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    function setBodyHeight() {
-    const body = document.getElementById('body');
-    const vh = window.innerHeight;
-    body.style.height = `${vh}px`;
-  }
+// document.addEventListener("DOMContentLoaded", () => {
+//     function setBodyHeight() {
+//     const body = document.getElementById('body');
+//     const vh = window.innerHeight;
+//     body.style.height = `${vh}px`;
+//   }
 
-  window.addEventListener('load', setBodyHeight);
-  window.addEventListener('resize', setBodyHeight);
-});
+//   window.addEventListener('load', setBodyHeight);
+//   window.addEventListener('resize', setBodyHeight);
+// });
