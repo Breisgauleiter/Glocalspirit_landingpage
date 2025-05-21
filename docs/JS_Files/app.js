@@ -47,18 +47,55 @@ btnLeft.addEventListener('click', () => {
 // Event listener for window resize
 window.addEventListener('resize', recalculateWidths);
 
-// Initial centering of the first item
-// updateSlider();
-// canva js particles
 
+// cards mobile logic
+// Select all cards
+// Select all cards
+// Select all cards
+let cards = document.querySelectorAll(".card");
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     function setBodyHeight() {
-//     const body = document.getElementById('body');
-//     const vh = window.innerHeight;
-//     body.style.height = `${vh}px`;
-//   }
+// Function to attach click event listeners to cards
+function attachCardListeners() {
+    cards.forEach(card => {
+        card.addEventListener("click", () => {
+            // Toggle the 'expanded' class
+            card.classList.toggle("expanded");
+        });
+    });
+}
 
-//   window.addEventListener('load', setBodyHeight);
-//   window.addEventListener('resize', setBodyHeight);
-// });
+// Function to detach click event listeners from cards
+function detachCardListeners() {
+    cards.forEach(card => {
+        const clonedCard = card.cloneNode(true); // Clone the card
+        card.replaceWith(clonedCard); // Replace the original card with the clone
+    });
+
+    // Reselect the cards after replacing them
+    cards = document.querySelectorAll(".card");
+}
+
+// Initial setup for screens below 800px
+if (window.innerWidth <= 800) {
+    attachCardListeners();
+}
+
+// Handle resize event
+window.addEventListener("resize", () => {
+    if (window.innerWidth <= 800) {
+        // Close all open cards by removing the 'expanded' class
+        cards.forEach(card => {
+            card.classList.remove("expanded"); // Collapse all cards
+        });
+
+        detachCardListeners(); // Remove existing listeners
+        attachCardListeners(); // Reattach listeners
+    } else {
+        // Close all open cards by removing the 'expanded' class
+        cards.forEach(card => {
+            card.classList.remove("expanded"); // Collapse all cards
+        });
+
+        detachCardListeners(); // Remove listeners for larger screens
+    }
+});

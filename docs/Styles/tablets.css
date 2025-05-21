@@ -1,163 +1,81 @@
 body{
-    /* background-color: red; */
-}
-/* hero */
-
-.hero{
-    height: 90vh;
-    gap: 10rem;
-}
-/* about 1st content */
-.about__wrapper{
-    display: flex;
-    flex-flow: column nowrap;
-    /* overflow: hidden; */
-    gap: 1rem;
-    /* color: white; */
-    .about__description{
-        text-align: center;
-        padding: 2rem;
-        width: fit-content;
-    }
+    /* background-color: yellow; */
 }
 
-.about .about__wrapper--glasmorphism{
-    margin-top: 4rem;
-        width: 80%;
-
-
-}
-
-.about .about__scroller {
-    width: 100%;
-    overflow: hidden;
-    -webkit-mask: linear-gradient(transparent 0%, white 20%, white 60%, transparent);
-    mask: linear-gradient(to right, transparent 20%, white 50%, white 50%, transparent 80%);
-}
-
-.about__scroller--inner {
-    display: flex;
-    flex-flow: row nowrap ;
-}
-
-.about__scroller--inner img {
-    width: 100px;
-    height: 100%;
-}
-
-@keyframes scroll {
-        to{
-            transform: translateX(-50%);
-        }
-
-    }
-
-/* about 2nd content */
-.about__content {
-    margin: 0;
-    padding: 1rem 0;
-    .about__item{
-        flex-flow: column nowrap;
-        text-align: center;
-
-
-        .about__item-text{
-            gap: 1rem;
-        }
-    }
-}
-
-/* buttons position */
-.wrapper__content{
-    .btn__slider{
-        top: 70%;
-    }
-}
-
-
-/* menu hamburger */
-.toggle__label {
-    display: block;
-    position: fixed;
-    z-index: 1000;
-    top: 25px;
-    right: 25px;
-    cursor: pointer;
-    img{
-        filter: invert(1) drop-shadow(0 0 10px rgba(239, 238, 238, 0.46));;
-        aspect-ratio: 1/1;
-        width: 2rem;
-        transition: all 0.3s ease-in-out;
-    }
-
-    img:nth-child(2){
+.roadmap{
+    padding-bottom: 400px;
+    svg{
         display: none;
-        width: 3rem;
-        margin-right: -8px;
     }
 }
-.menu__toggle {
-    display: none;
-}
-
-.menu__toggle:checked ~ .toggle__label img:nth-child(1) {
-    display: none;
-}
-.menu__toggle:checked ~ .toggle__label img:nth-child(2) {
-    display: block;
-}
-
-.menu__toggle:checked ~ .header__nav {
+.card{
+    /* transform: translate(0px);
+    width: clamp(29ch,50vw,40ch);
+    height: 2.5rem;
+    padding-top: 10px;
+    overflow: hidden;
     display: flex;
-    flex-flow: column nowrap;
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 250px;
-    background-color: rgba(247, 247, 247, 0.025);
-    padding: 1rem;
-    z-index: 999;
-    transform: translateX(0);
-    transition: transform 0.5s ease-in-out;
-}
-
-.header__nav {
-    display: none; /* Initially hidden */
-    transform: translateX(100%); /* Hidden off-screen */
-}
-
-.menu__toggle:checked ~ .header__nav {
+    justify-content: flex-start; */
+    transform: translate(0px);
+    width: clamp(29ch, 55vw, 200ch);
+    height: 3.5rem;
+    padding-top: 10px;
+    overflow: hidden;
     display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    transition: height 1 ease; /* Smooth height transition */
+    position: relative; /* For the toggle indicator */
+
+    div{
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+
+        h4{
+            font-weight: 450;
+            font-size: 0.6rem;
+            
+        }
+    }
+
+    h3{
+        font-size: clamp(1rem,1.2vw,1.5rem);
+        white-space: nowrap;
+    }
+    p{
+        font-weight: 300;
+        font-size: clamp(0.7rem,1vw,1rem);
+    }
+}
+
+/* Add transition for smooth height change */
+
+/* Expanded state */
+.card.expanded {
+    height: fit-content;
+}
+
+/* Toggle indicator */
+.card::after {
+    content: "+"; /* Default indicator for collapsed state */
+    position: absolute;
+    right: 10px;
+    top: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Change indicator for expanded state */
+.card.expanded::after {
+    top: 0.5rem;
+    content: "-"; /* Indicator for expanded state */
+}
+.cards__wrapper{
+    position: relative;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    transform: translateX(0); /* Slide into view */
+    gap: 1rem;
 }
 
-.header__nav .header__links{
-    flex-flow: column nowrap;
-    gap: 2rem;
-    padding: 1rem 0;
-    list-style: none;
-    margin: 0;
-    .header__link{
-        font-size: clamp(1.5rem, 2vw, 2rem);
-        font-weight: 400;
-        letter-spacing: clamp(5.3px, 0.5vw, 8px);
-        color: rgb(var(--secondary-links-color));
-        filter: drop-shadow(0 0 4.8px rgb(var(--secondary-links-color)));
-        text-align: center;
-        &:hover{
-            color: rgb(var(--main-font-color));
-        }
-    }
-}
-
-
-.header__beta-tester{
-    .header__beta-link{
-        font-size: 1.4rem !important;
-
-    }
-
-}

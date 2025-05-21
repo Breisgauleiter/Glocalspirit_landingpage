@@ -245,6 +245,25 @@ function initializeAnimations() {
 
     } else {
         console.log("Viewport width is less than or equal to 800px. Animations are disabled.");
+
+        // Animate cards (card01 to card08) with ScrollTrigger
+        const cards = document.querySelectorAll(".card01, .card02, .card03, .card04, .card05, .card06, .card07, .card08");
+
+        cards.forEach((card, index) => {
+            gsap.from(card, {
+                opacity: 0,
+                y: 50,
+                scale: 0.8,
+                duration: 1.5,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%", // Adjust as needed
+                    end: "top 60%", // Adjust as needed
+                    scrub: 1.5,
+                },
+            });
+        });
     }
 
     // Position roadmap cards
