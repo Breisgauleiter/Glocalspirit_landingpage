@@ -53,7 +53,7 @@ function initializeAnimations() {
             start: "top 20%",
             end: "bottom top",
             scrub: 2,
-            markers: true,
+            markers: false,
         },
     });
 
@@ -244,7 +244,7 @@ function initializeAnimations() {
         }, 24.875);
 
     } else {
-        console.log("Viewport width is less than or equal to 800px. Animations are disabled.");
+        console.log("Viewport width is less than or equal to 800px. custom animations are displayed.");
 
         // Animate cards (card01 to card08) with ScrollTrigger
         const cards = document.querySelectorAll(".card01, .card02, .card03, .card04, .card05, .card06, .card07, .card08");
