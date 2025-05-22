@@ -37,6 +37,11 @@ body {
    
 }
 
+body.is-ios {
+  overflow: hidden;
+  background-color: yellow;
+}
+
 .background-layer {
   position: fixed;
   top: 0;
