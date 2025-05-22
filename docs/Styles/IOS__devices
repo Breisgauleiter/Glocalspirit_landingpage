@@ -40,7 +40,6 @@
 
     .btn__slider--right{
         cursor: pointer;
-        transform: rotate(180deg);
         right: 2%;
     }
 
