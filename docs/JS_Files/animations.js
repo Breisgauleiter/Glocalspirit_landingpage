@@ -327,10 +327,18 @@ function initializeAnimations() {
 
 // Initialize animations on page load
 initializeAnimations();
+// Track the current viewport width
+let currentViewportWidth = window.innerWidth;
 
-// Reinitialize animations on window resize
+// Reinitialize animations on window resize (only if width changes)
 window.addEventListener("resize", () => {
-        console.log("Resize event triggered"); // Debugging log
+    const newViewportWidth = window.innerWidth;
+
+    // Trigger only if the width has changed
+    if (newViewportWidth !== currentViewportWidth) {
+        currentViewportWidth = newViewportWidth; // Update the stored width
+
+        console.log("Resize event triggered due to width change"); // Debugging log
 
         // Scroll to the top of the page or the ScrollSmoother container
         if (ScrollSmoother.get()) {
@@ -358,10 +366,6 @@ window.addEventListener("resize", () => {
         });
         console.log("Circles and arrowhead reset (scale and opacity only)");
 
-        // // Recalculate positions of roadmap cards and circles
-        // positionCards();
-        // console.log("Roadmap card and circle positions recalculated");
-
         // Reinitialize animations
         initializeAnimations();
         console.log("Animations reinitialized");
@@ -375,4 +379,5 @@ window.addEventListener("resize", () => {
         // Refresh ScrollTrigger
         ScrollTrigger.refresh(); // Recalculate start and end positions
         console.log("ScrollTrigger refreshed");
-    });
+    }
+});
