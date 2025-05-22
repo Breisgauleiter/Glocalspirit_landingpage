@@ -267,14 +267,12 @@ main{
     .btn__slider--left{
         cursor: pointer;
         left: 2%;
-        transform: rotate(-180deg);
 
     }
 
 
     .btn__slider--right{
         cursor: pointer;
-        transform: rotate(180deg);
         right: 2%;
     }
 
