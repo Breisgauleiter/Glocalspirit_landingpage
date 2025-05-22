@@ -38,7 +38,6 @@ body {
 }
 
 body.is-ios {
-  overflow: hidden;
   background-color: yellow;
 }
 
