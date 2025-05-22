@@ -1,22 +1,17 @@
-const isIOS = () => {
-    return (
-      [
-        'iPad Simulator',
-        'iPhone Simulator',
-        'iPod Simulator',
-        'iPad',
-        'iPhone',
-        'iPod'
-      ].includes(navigator.platform)
-      ||
-      // iPadOS 13+ reports itself as "MacIntel" with touch support
-      (navigator.userAgent.includes("Mac") && "ontouchend" in document)
-    );
-  };
+function isIOS() {
+    const ua = window.navigator.userAgent || '';
+    const isAppleDevice = /iPad|iPhone|iPod/.test(ua);
+    const isTouchDevice = 'ontouchend' in document;
 
-  if (isIOS()) {
-    document.body.classList.add('is-ios');
+    // iPadOS in desktop mode reports as Mac but has touch support
+    const isIPadOSDesktop = ua.includes('Macintosh') && isTouchDevice;
+
+    return isAppleDevice || isIPadOSDesktop;
   }
+
+if (isIOS()) {
+  document.body.classList.add('is-ios');
+}
 
 // links class toggler
 const headerLinks = document.querySelectorAll('.header__link');
