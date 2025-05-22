@@ -1,12 +1,11 @@
 
 
-
 @supports (-webkit-touch-callout: none) {
   body{
-    background-color: red;
+    background-color: yellow;
   }
 
-  .wrapper__content{
+    .wrapper__content{
     overflow: hidden; /* Hide items outside the visible area */
     position: relative;
     z-index: 1; /* Ensure the container is above other elements */
@@ -43,6 +42,5 @@
         right: 2%;
     }
 
-    
-}
+    }
 }
