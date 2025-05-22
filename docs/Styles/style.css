@@ -38,7 +38,7 @@ body {
 }
 
 body.is-ios {
-  background-color: yellow;
+  background-color: green;
 }
 
 .background-layer {
