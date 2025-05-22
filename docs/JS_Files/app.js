@@ -1,3 +1,23 @@
+const isIOS = () => {
+    return (
+      [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+      ].includes(navigator.platform)
+      ||
+      // iPadOS 13+ reports itself as "MacIntel" with touch support
+      (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+    );
+  };
+
+  if (isIOS()) {
+    document.body.classList.add('is-ios');
+  }
+
 // links class toggler
 const headerLinks = document.querySelectorAll('.header__link');
 
