@@ -1,46 +1,43 @@
 
 
 @supports (-webkit-touch-callout: none) {
-  body{
-    background-color: yellow;
+    body {
+      background-color: yellow;
+    }
+  
+    .wrapper__content {
+      overflow: hidden; /* Hide items outside the visible area */
+      position: relative;
+      z-index: 1; /* Ensure the container is above other elements */
+    }
+  
+    .btn__slider {
+      all: unset;
+      cursor: pointer; /* Ensures the pointer changes to a hand icon */
+      position: absolute;
+      top: 55%;
+      transform: translate(0%, -50%);
+      z-index: 10; /* Ensure buttons are above other elements */
+      transition: all 0.4s ease-in-out;
+    }
+  
+    .btn__slider img {
+      aspect-ratio: 1/1;
+      width: clamp(1.2rem, 5vw, 3rem);
+    }
+  
+    .btn__slider:hover {
+      scale: 1.1;
+    }
+  
+    .btn__slider--left {
+      cursor: pointer;
+      left: 2%;
+      transform: rotate(-180deg);
+    }
+  
+    .btn__slider--right {
+      cursor: pointer;
+      right: 2%;
+    }
   }
-
-    .wrapper__content{
-    overflow: hidden; /* Hide items outside the visible area */
-    position: relative;
-    z-index: 1; /* Ensure the container is above other elements */
-
-    .btn__slider{
-        all: unset;
-        cursor: pointer; /* Ensures the pointer changes to a hand icon */
-        position: absolute;
-        top: 55%;
-        transform: translate(0%, -50%);
-        z-index: 10; /* Ensure buttons are above other elements */
-        transition: all 0.4s ease-in-out;
-
-        img{
-            aspect-ratio: 1/1;
-            width: clamp(1.2rem, 5vw,3rem);      
-          }
-    }
-
-    .btn__slider:hover{
-        scale: 1.1;
-    }
-
-    .btn__slider--left{
-        cursor: pointer;
-        left: 2%;
-        transform: rotate(-180deg);
-
-    }
-
-
-    .btn__slider--right{
-        cursor: pointer;
-        right: 2%;
-    }
-
-    }
-}

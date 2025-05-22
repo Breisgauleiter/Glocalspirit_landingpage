@@ -309,7 +309,44 @@
                         </div>
                     </div>
                 </section>
+                <div class="transition_wrapper">
+                    <img src="Assets/door.svg" alt="Door" class="door__img">
+                    <img src="Assets/spiral.svg" alt="Spiral" class="spiral__img">
+                </div>
+                <section class="test__form">
+                    <div class="form_wrapper">
+                        <svg width="0" height="0">
+                            <filter id="inner-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                            <!-- Create a black blurred copy -->
+                            <feOffset dx="0" dy="6" result="offOut" />
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur" />
+                            <feComposite in="blur" in2="SourceAlpha" operator="arithmetic"
+                                        k2="-1" k3="1" result="innerShadow" />
+                            <feColorMatrix in="innerShadow" type="matrix"
+                                            values="0 0 0 0 0
+                                                    0 0 0 0 0
+                                                    0 0 0 0 0
+                                                    0 0 0 0.71 0" result="shadowColor" />
+                            <feMerge>
+                                <feMergeNode in="shadowColor"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                            </filter>
+                        </svg>
+                        <h2>Testnutzer werden</h2>
+                        <form action="" method="post">
+                            <label for="iname">Name</label>
+                            <input type="text" id="iname" class="nameEL">
+                            <label for="iemail">E-mail</label>
+                            <input type="email" name="email" id="iemail" class="emailEL">
+                            <input type="submit" value="Senden">
+                        </form>
+                    </div>
+                </section>
             </main>
+            <footer>
+                <h1>test</h1>
+            </footer>
         </div>
     </div>
 </body>

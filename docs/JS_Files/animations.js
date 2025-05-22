@@ -323,6 +323,112 @@ function initializeAnimations() {
 
     positionCards();
     window.addEventListener("resize", positionCards);
+
+    // Ensure GSAP plugins are registered
+    gsap.registerPlugin(ScrollTrigger);
+
+    
+    // Ensure GSAP plugins are registered
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Pin the transition wrapper to stop scrolling down
+    const transitionWrapperTrigger = ScrollTrigger.create({
+        trigger: ".transition_wrapper",
+        start: "top top", // Pin when the top of the wrapper reaches the top of the viewport
+        end: "+=9999px", // Pin indefinitely
+        pin: true, // Pin the section
+        pinSpacing: false, // Prevent extra spacing after unpinning
+    });
+
+    // Track the last scroll position
+    let lastScrollY = window.scrollY;
+
+    // Scroll-down prevention logic
+    const preventScrollDown = () => {
+        const scrollHandler = () => {
+            if (window.scrollY > lastScrollY && transitionWrapperTrigger.isActive) {
+                // If scrolling down and the transition wrapper is pinned, reset scroll position
+                window.scrollTo(0, lastScrollY);
+            } else {
+                // Update the last scroll position
+                lastScrollY = window.scrollY;
+            }
+        };
+
+        // Remove any existing scroll event listener to avoid duplicates
+        window.removeEventListener("scroll", scrollHandler);
+
+        // Add the scroll event listener
+        window.addEventListener("scroll", scrollHandler);
+    };
+
+    preventScrollDown(); // Initialize scroll-down prevention
+
+    // Create a timeline for the door and spiral animations
+    const doorAndSpiralTimeline = gsap.timeline({
+        paused: true, // Start paused; will play on click
+        onComplete: () => {
+            // Scroll to the next section after the animation completes
+            gsap.to(window, {
+                scrollTo: { y: ".next_section", autoKill: false }, // Scroll to the next section
+                duration: 1,
+                ease: "power2.inOut",
+            });
+
+            // Unpin the transition wrapper
+            transitionWrapperTrigger.kill(); // Manually unpin the wrapper
+        },
+    });
+
+    // Door animation
+    doorAndSpiralTimeline
+        .to(".door__img", {
+            rotationY: -100, // Rotate around the Y-axis
+            transformOrigin: "left center", // Set the hinge point
+            duration: 1.5,
+            ease: "power2.out",
+        }, "doorOpen") // Label for snapping
+
+        // Spiral animation
+        .to(".spiral__img", {
+            scale: 10, // Scale up to fill the screen
+            rotation: 360, // Full rotation
+            opacity: 1,
+            duration: 1.5,
+            ease: "power2.inOut",
+        }, "spiralExpand"); // Label for snapping
+
+    // Add click event listener to the door
+    const door = document.querySelector(".door__img");
+    const resetDoorClick = () => {
+        door.addEventListener("click", () => {
+            doorAndSpiralTimeline.play(); // Play the timeline on click
+        }, { once: true }); // Ensure the event is only triggered once
+    };
+
+    resetDoorClick(); // Initialize the click event
+
+    // Reverse the animation when scrolling back up
+    ScrollTrigger.create({
+        trigger: ".transition_wrapper",
+        start: "top top", // Trigger when the top of the wrapper reaches the top of the viewport
+        end: "bottom top", // Trigger when the bottom of the wrapper leaves the viewport
+        onEnterBack: () => {
+            // Reverse the timeline when scrolling back up
+            doorAndSpiralTimeline.reverse();
+
+            // Reactivate scroll-down prevention
+            preventScrollDown();
+        },
+        onLeaveBack: () => {
+            // Reset the click event and animation state when scrolling above the transition wrapper
+            doorAndSpiralTimeline.pause(0); // Reset the timeline to the start
+            resetDoorClick(); // Reinitialize the click event
+
+            // Reactivate scroll-down prevention
+            preventScrollDown();
+        },
+    });
 }
 
 // Initialize animations on page load
@@ -331,6 +437,8 @@ initializeAnimations();
 let currentViewportWidth = window.innerWidth;
 
 // Reinitialize animations on window resize (only if width changes)
+
+
 window.addEventListener("resize", () => {
     const newViewportWidth = window.innerWidth;
 
