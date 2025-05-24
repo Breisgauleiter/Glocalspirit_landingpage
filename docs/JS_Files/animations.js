@@ -324,46 +324,7 @@ function initializeAnimations() {
     positionCards();
     window.addEventListener("resize", positionCards);
 
-    // Ensure GSAP plugins are registered
-    gsap.registerPlugin(ScrollTrigger);
-
-    
-    // Ensure GSAP plugins are registered
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Pin the transition wrapper to stop scrolling down
-    const transitionWrapperTrigger = ScrollTrigger.create({
-        trigger: ".transition_wrapper",
-        start: "top top", // Pin when the top of the wrapper reaches the top of the viewport
-        end: "+=9999px", // Pin indefinitely
-        pin: true, // Pin the section
-        pinSpacing: false, // Prevent extra spacing after unpinning
-    });
-
-    // Track the last scroll position
-    let lastScrollY = window.scrollY;
-
-    // Scroll-down prevention logic
-    const preventScrollDown = () => {
-        const scrollHandler = () => {
-            if (window.scrollY > lastScrollY && transitionWrapperTrigger.isActive) {
-                // If scrolling down and the transition wrapper is pinned, reset scroll position
-                window.scrollTo(0, lastScrollY);
-            } else {
-                // Update the last scroll position
-                lastScrollY = window.scrollY;
-            }
-        };
-
-        // Remove any existing scroll event listener to avoid duplicates
-        window.removeEventListener("scroll", scrollHandler);
-
-        // Add the scroll event listener
-        window.addEventListener("scroll", scrollHandler);
-    };
-
-    preventScrollDown(); // Initialize scroll-down prevention
-
+   
     // Create a timeline for the door and spiral animations
     const doorAndSpiralTimeline = gsap.timeline({
         paused: true, // Start paused; will play on click
@@ -407,28 +368,6 @@ function initializeAnimations() {
     };
 
     resetDoorClick(); // Initialize the click event
-
-    // Reverse the animation when scrolling back up
-    ScrollTrigger.create({
-        trigger: ".transition_wrapper",
-        start: "top top", // Trigger when the top of the wrapper reaches the top of the viewport
-        end: "bottom top", // Trigger when the bottom of the wrapper leaves the viewport
-        onEnterBack: () => {
-            // Reverse the timeline when scrolling back up
-            doorAndSpiralTimeline.reverse();
-
-            // Reactivate scroll-down prevention
-            preventScrollDown();
-        },
-        onLeaveBack: () => {
-            // Reset the click event and animation state when scrolling above the transition wrapper
-            doorAndSpiralTimeline.pause(0); // Reset the timeline to the start
-            resetDoorClick(); // Reinitialize the click event
-
-            // Reactivate scroll-down prevention
-            preventScrollDown();
-        },
-    });
 }
 
 // Initialize animations on page load
