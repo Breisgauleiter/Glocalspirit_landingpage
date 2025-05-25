@@ -396,7 +396,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (ScrollSmoother.get()) {
             ScrollSmoother.get().refresh();
         }
-        ScrollTrigger.refresh();
+        // Wait for layout to settle before refreshing ScrollTrigger
+        setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 100);
     });
 
     // Track the current viewport width
@@ -447,9 +450,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("ScrollSmoother refreshed");
             }
 
-            // Refresh ScrollTrigger
-            ScrollTrigger.refresh();
-            console.log("ScrollTrigger refreshed");
+            // Wait for layout to settle before refreshing ScrollTrigger
+            setTimeout(() => {
+                ScrollTrigger.refresh();
+                console.log("ScrollTrigger refreshed (after timeout)");
+            }, 100);
         }
     });
 });
