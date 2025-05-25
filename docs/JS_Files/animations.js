@@ -244,35 +244,51 @@ function initializeAnimations() {
     } else {
         console.log("Viewport width is less than or equal to 800px. custom animations are displayed.");
 
-        console.log("Roadmap content:", document.querySelector(".roadmap__content"));
-        console.log("Cards container:", document.querySelector(".cards__wrapper"));
-        // Animate cards (card01 to card08) with ScrollTrigger
+        // First ensure cards are in relative position for mobile layout
         const cards = document.querySelectorAll(".card01, .card02, .card03, .card04, .card05, .card06, .card07, .card08");
         console.log("Cards found:", cards);
 
         if (cards.length === 0) {
             console.warn("No cards found for animation!");
+            return;
         }
 
-        cards.forEach((card, index) => {
-            console.log("forblock", index)
-            gsap.from(card, {
-                opacity: 0,
-                y: 50,
-                scale: 0.8,
-                duration: 1.5,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 90%",
-                    end: "top 60%",
-                    scrub: 1.5,
-                    markers: true
-                },
-            });
+        // Reset card positions for mobile layout
+        gsap.set(cards, {
+            clearProps: "all",
+            position: "relative",
+            top: "auto",
+            left: "auto",
+            opacity: 1  // Start visible to prevent flash
         });
 
-        console.log("finished cards")
+        // Wait for layout to settle before creating scroll triggers
+        requestAnimationFrame(() => {
+            cards.forEach((card, index) => {
+                console.log("Creating animation for card", index);
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 50,
+                    scale: 0.8,
+                    duration: 1.5,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1.5,
+                        markers: true,
+                        onEnter: () => console.log(`Card ${index + 1} animation triggered`),
+                        invalidateOnRefresh: true  // Recalculate positions on refresh
+                    },
+                });
+            });
+
+            // Force a refresh after creating triggers
+            ScrollTrigger.refresh();
+        });
+
+        console.log("finished cards");
     }
 
     // Position roadmap cards
