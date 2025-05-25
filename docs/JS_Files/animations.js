@@ -244,7 +244,6 @@ function initializeAnimations() {
     } else {
         console.log("Viewport width is less than or equal to 800px. custom animations are displayed.");
 
-        // First ensure cards are in relative position for mobile layout
         const cards = document.querySelectorAll(".card01, .card02, .card03, .card04, .card05, .card06, .card07, .card08");
         console.log("Cards found:", cards);
 
@@ -253,39 +252,50 @@ function initializeAnimations() {
             return;
         }
 
-        // Reset card positions for mobile layout
+        // First ensure all cards are visible and in their final position
         gsap.set(cards, {
             clearProps: "all",
             position: "relative",
             top: "auto",
             left: "auto",
-            opacity: 1  // Start visible to prevent flash
+            opacity: 1
         });
 
-        // Wait for layout to settle before creating scroll triggers
+        // Use double requestAnimationFrame to ensure layout is complete
         requestAnimationFrame(() => {
-            cards.forEach((card, index) => {
-                console.log("Creating animation for card", index);
-                gsap.from(card, {
-                    opacity: 0,
-                    y: 50,
-                    scale: 0.8,
-                    duration: 1.5,
-                    ease: "power2.out",
-                    scrollTrigger: {
+            requestAnimationFrame(() => {
+                cards.forEach((card, index) => {
+                    // Create the ScrollTrigger first
+                    const trigger = ScrollTrigger.create({
                         trigger: card,
-                        start: "top 90%",
-                        end: "top 60%",
-                        scrub: 1.5,
+                        start: "top bottom-=100",
+                        end: "top center",
                         markers: true,
-                        onEnter: () => console.log(`Card ${index + 1} animation triggered`),
-                        invalidateOnRefresh: true  // Recalculate positions on refresh
-                    },
-                });
-            });
+                        onEnter: () => console.log(`Card ${index + 1} entering`),
+                        onLeave: () => console.log(`Card ${index + 1} leaving`),
+                    });
 
-            // Force a refresh after creating triggers
-            ScrollTrigger.refresh();
+                    // Then create the animation
+                    gsap.fromTo(card, 
+                        {
+                            opacity: 0,
+                            y: 50,
+                            scale: 0.8
+                        },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            scale: 1,
+                            duration: 0.75,
+                            ease: "power2.out",
+                            scrollTrigger: trigger
+                        }
+                    );
+                });
+
+                // Final refresh after all animations are set up
+                ScrollTrigger.refresh(true);
+            });
         });
 
         console.log("finished cards");
