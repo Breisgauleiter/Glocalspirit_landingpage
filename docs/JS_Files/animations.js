@@ -246,6 +246,8 @@ function initializeAnimations() {
     } else {
         console.log("Viewport width is less than or equal to 800px. custom animations are displayed.");
 
+        console.log("Roadmap content:", document.querySelector(".roadmap__content"));
+        console.log("Cards container:", document.querySelector(".cards__wrapper"));
         // Animate cards (card01 to card08) with ScrollTrigger
         const cards = document.querySelectorAll(".card01, .card02, .card03, .card04, .card05, .card06, .card07, .card08");
         console.log("Cards found:", cards);
