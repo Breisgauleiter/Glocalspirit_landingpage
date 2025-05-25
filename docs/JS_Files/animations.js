@@ -261,6 +261,7 @@ function initializeAnimations() {
                     start: "top 80%", // Adjust as needed
                     end: "top 60%", // Adjust as needed
                     scrub: 1.5,
+                    markers: true
                 },
             });
         });
