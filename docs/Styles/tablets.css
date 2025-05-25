@@ -12,7 +12,7 @@ body{
     /* display: block; test */
     /* opacity: 1;
     visibility: visible; */
-    /* transform: translate(0px); */
+    transform: translate(0px);
     width: clamp(29ch, 55vw, 200ch);
     height: 3.5rem;
     padding-top: 10px;
