@@ -63,9 +63,6 @@ btnLeft.addEventListener('click', () => {
 window.addEventListener('resize', recalculateWidths);
 
 
-// cards mobile logic
-// Select all cards
-// Select all cards
 // Select all cards
 let cards = document.querySelectorAll(".card");
 
