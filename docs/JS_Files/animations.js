@@ -254,7 +254,7 @@ function initializeAnimations() {
 
         cards.forEach((card, index) => {
             gsap.from(card, {
-                opacity: 1,
+                opacity: 0,
                 y: 50,
                 scale: 0.8,
                 duration: 1.5,
