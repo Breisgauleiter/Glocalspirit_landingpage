@@ -215,7 +215,7 @@ main{
 
         .about__description{
             color: rgb(var(--main-font-color));
-            font-size: clamp(0.8rem,2vw,2.2rem);
+            font-size: clamp(0.8rem,2vw,1.5rem);
             font-weight: 400;
             filter: drop-shadow(3 7 10px rgba(0, 0, 0, 0.203));
             padding-right: 2rem;

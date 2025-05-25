@@ -367,64 +367,69 @@ function initializeAnimations() {
         }, { once: true }); // Ensure the event is only triggered once
     };
 
+    // Force a refresh of ScrollTrigger
+    ScrollTrigger.refresh();
+
     resetDoorClick(); // Initialize the click event
 }
 
-// Initialize animations on page load
-initializeAnimations();
-// Track the current viewport width
-let currentViewportWidth = window.innerWidth;
+document.addEventListener("DOMContentLoaded", () => {
+    initializeAnimations();
 
-// Reinitialize animations on window resize (only if width changes)
+    // Track the current viewport width
+    let currentViewportWidth = window.innerWidth;
 
-
-window.addEventListener("resize", () => {
+    window.addEventListener("resize", () => {
     const newViewportWidth = window.innerWidth;
 
-    // Trigger only if the width has changed
-    if (newViewportWidth !== currentViewportWidth) {
-        currentViewportWidth = newViewportWidth; // Update the stored width
+        // Trigger only if the width has changed
+        if (newViewportWidth !== currentViewportWidth) {
+            currentViewportWidth = newViewportWidth; // Update the stored width
 
-        console.log("Resize event triggered due to width change"); // Debugging log
+            console.log("Resize event triggered due to width change"); // Debugging log
 
-        // Scroll to the top of the page or the ScrollSmoother container
-        if (ScrollSmoother.get()) {
-            console.log("Using ScrollSmoother to scroll to the top");
-            ScrollSmoother.get().scrollTo(0, true); // Smooth scroll to the top of the smooth scrolling container
-        } else {
-            console.log("Using window.scrollTo to scroll to the top");
-            window.scrollTo({ top: 0, behavior: "smooth" }); // Fallback for normal scrolling
+            // Scroll to the top of the page or the ScrollSmoother container
+            if (ScrollSmoother.get()) {
+                console.log("Using ScrollSmoother to scroll to the top");
+                ScrollSmoother.get().scrollTo(0, true); // Smooth scroll to the top of the smooth scrolling container
+            } else {
+                console.log("Using window.scrollTo to scroll to the top");
+                window.scrollTo({ top: 0, behavior: "smooth" }); // Fallback for normal scrolling
+            }
+
+            // Kill all existing ScrollTriggers
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            console.log("All ScrollTriggers killed");
+
+            // Reset all properties for general elements
+            gsap.set(".header, .hero__title, .hero__image, .about__wrapper--glasmorphism, .wrapper__content, .roadmap__title, .roadmap_svg, .card01, .card02, .card03, .card04, .card05, .card06, .card07, .card08, .line, .text01, .text02", {
+                clearProps: "all",
+            });
+            console.log("General elements reset to default state");
+
+            // Reset only scale and opacity for circles and arrowhead
+            gsap.set(".circle_01, .circle_02, .circle_03, .circle_04, .circle_05, .circle_06, .circle_07, .circle_08, .arrowhead, .circle_initial", {
+                scale: 1,   // Reset scale
+                opacity: 1, // Reset opacity
+            });
+            console.log("Circles and arrowhead reset (scale and opacity only)");
+
+            // Reinitialize animations
+            initializeAnimations();
+            console.log("Animations reinitialized");
+
+            // Refresh ScrollSmoother (if used)
+            if (ScrollSmoother.get()) {
+                ScrollSmoother.get().refresh(); // Recalculate smooth scrolling
+                console.log("ScrollSmoother refreshed");
+            }
+
+            // Refresh ScrollTrigger
+            ScrollTrigger.refresh(); // Recalculate start and end positions
+            console.log("ScrollTrigger refreshed");
         }
-
-        // Kill all existing ScrollTriggers
-        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        console.log("All ScrollTriggers killed");
-
-        // Reset all properties for general elements
-        gsap.set(".header, .hero__title, .hero__image, .about__wrapper--glasmorphism, .wrapper__content, .roadmap__title, .roadmap_svg, .card01, .card02, .card03, .card04, .card05, .card06, .card07, .card08, .line, .text01, .text02", {
-            clearProps: "all",
-        });
-        console.log("General elements reset to default state");
-
-        // Reset only scale and opacity for circles and arrowhead
-        gsap.set(".circle_01, .circle_02, .circle_03, .circle_04, .circle_05, .circle_06, .circle_07, .circle_08, .arrowhead, .circle_initial", {
-            scale: 1,   // Reset scale
-            opacity: 1, // Reset opacity
-        });
-        console.log("Circles and arrowhead reset (scale and opacity only)");
-
-        // Reinitialize animations
-        initializeAnimations();
-        console.log("Animations reinitialized");
-
-        // Refresh ScrollSmoother (if used)
-        if (ScrollSmoother.get()) {
-            ScrollSmoother.get().refresh(); // Recalculate smooth scrolling
-            console.log("ScrollSmoother refreshed");
-        }
-
-        // Refresh ScrollTrigger
-        ScrollTrigger.refresh(); // Recalculate start and end positions
-        console.log("ScrollTrigger refreshed");
-    }
+    });
 });
+
+
+
