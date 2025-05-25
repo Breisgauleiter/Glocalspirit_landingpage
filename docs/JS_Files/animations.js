@@ -332,55 +332,13 @@ function initializeAnimations() {
     }
 
     positionCards();
-    window.addEventListener("resize", positionCards);
-
-    // Create a timeline for the door and spiral animations
-    const doorAndSpiralTimeline = gsap.timeline({
-        paused: true,
-        onComplete: () => {
-            gsap.to(window, {
-                scrollTo: { y: ".next_section", autoKill: false },
-                duration: 1,
-                ease: "power2.inOut",
-            });
-            if (typeof transitionWrapperTrigger !== "undefined" && transitionWrapperTrigger) {
-                transitionWrapperTrigger.kill();
-            }
-        },
-    });
-
-    doorAndSpiralTimeline
-        .to(".door__img", {
-            rotationY: -100,
-            transformOrigin: "left center",
-            duration: 1.5,
-            ease: "power2.out",
-        }, "doorOpen")
-        .to(".spiral__img", {
-            scale: 10,
-            rotation: 360,
-            opacity: 1,
-            duration: 1.5,
-            ease: "power2.inOut",
-        }, "spiralExpand");
-
-    // Add click event listener to the door
-    const door = document.querySelector(".door__img");
-    const resetDoorClick = () => {
-        if (!door) return;
-        door.replaceWith(door.cloneNode(true));
-        const newDoor = document.querySelector(".door__img");
-        newDoor.addEventListener("click", () => {
-            doorAndSpiralTimeline.play();
-        }, { once: true });
-    };
+    // window.addEventListener("resize", positionCards);
 
     if (ScrollSmoother.get()) {
         ScrollSmoother.get().refresh();
     }
     ScrollTrigger.refresh();
 
-    resetDoorClick();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
