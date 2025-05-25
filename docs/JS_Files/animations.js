@@ -253,6 +253,7 @@ function initializeAnimations() {
         console.log("Cards found:", cards);
 
         cards.forEach((card, index) => {
+            console.log("forblock", index)
             gsap.from(card, {
                 opacity: 0,
                 y: 50,
@@ -268,6 +269,8 @@ function initializeAnimations() {
                 },
             });
         });
+
+        console.log("finished cards")
     }
 
     // Position roadmap cards
