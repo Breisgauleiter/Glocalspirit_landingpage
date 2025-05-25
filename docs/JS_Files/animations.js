@@ -255,7 +255,7 @@ function initializeAnimations() {
         cards.forEach((card, index) => {
             console.log("forblock", index)
             gsap.from(card, {
-                opacity: 0,
+                opacity: 1,
                 y: 50,
                 scale: 0.8,
                 duration: 1.5,
