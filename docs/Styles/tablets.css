@@ -9,14 +9,10 @@ body{
     }
 }
 .card{
-    /* transform: translate(0px);
-    width: clamp(29ch,50vw,40ch);
-    height: 2.5rem;
-    padding-top: 10px;
-    overflow: hidden;
-    display: flex;
-    justify-content: flex-start; */
-    transform: translate(0px);
+    display: block; /*test*/
+    opacity: 1;
+    visibility: visible;
+    /* transform: translate(0px); */
     width: clamp(29ch, 55vw, 200ch);
     height: 3.5rem;
     padding-top: 10px;
@@ -77,5 +73,9 @@ body{
     flex-flow: column nowrap;
     justify-content: flex-start;
     gap: 1rem;
+}
+
+.roadmap__content{
+
 }
 
