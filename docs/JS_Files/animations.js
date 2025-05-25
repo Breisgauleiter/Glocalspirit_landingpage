@@ -8,16 +8,16 @@ function initializeAnimations() {
     }
     gsap.registerPlugin(DrawSVGPlugin, MotionPathHelper, MotionPathPlugin, ScrollTrigger, ScrollSmoother);
 
-    // Initialize ScrollSmoother
-    ScrollSmoother.create({
-        smooth: 2, // Smooth scrolling duration
-        effects: true, // Enable effects like opacity and transforms
-    });
+    // Only create ScrollSmoother if not already created
+    if (!ScrollSmoother.get()) {
+        ScrollSmoother.create({
+            smooth: 2, // Smooth scrolling duration
+            effects: true, // Enable effects like opacity and transforms
+        });
+    }
 
     // Header animation
     gsap.from(".header", {
-        // y: -10,
-        // scale: 0.8,
         opacity: 0,
         duration: 0.8,
         ease: "power2.in",
@@ -42,7 +42,6 @@ function initializeAnimations() {
         duration: 1.3,
         ease: "power2.in",
         delay: 1.5,
-
     });
 
     // ScrollTrigger animation for scaling .hero__image
@@ -118,17 +117,17 @@ function initializeAnimations() {
         // Animate the line
         main.from(".line", {
             drawSVG: 0,
-            duration: 25, // increased from 20
+            duration: 25,
             ease: "none",
         });
-        
+
         // Animate the circles and cards together
         main.from(".circle_initial", {
             scale: 0,
             transformOrigin: "center",
             ease: "elastic(2.5, 1)",
             duration: 1.0,
-        }, 0)
+        }, 0);
 
         main.from(".circle_01", {
             scale: 0,
@@ -142,10 +141,10 @@ function initializeAnimations() {
             duration: 8.75,
         }, 1.5).from(".text01", {
             opacity: 0,
-            y: 20, // Slide in from below
+            y: 20,
             ease: "power4.out",
             duration: 1.5,
-        }, 1.5); // Same start time as circle_01 and card01
+        }, 1.5);
 
         main.from(".circle_02", {
             scale: 0,
@@ -183,10 +182,10 @@ function initializeAnimations() {
             duration: 8.75,
         }, 10.875).from(".text02", {
             opacity: 0,
-            y: 20, // Slide in from below
+            y: 20,
             ease: "power4.out",
             duration: 1.5,
-        }, 10.875); // Same start time as circle_02 and card02
+        }, 10.875);
 
         main.from(".circle_05", {
             scale: 0,
@@ -252,18 +251,22 @@ function initializeAnimations() {
         const cards = document.querySelectorAll(".card01, .card02, .card03, .card04, .card05, .card06, .card07, .card08");
         console.log("Cards found:", cards);
 
+        if (cards.length === 0) {
+            console.warn("No cards found for animation!");
+        }
+
         cards.forEach((card, index) => {
             console.log("forblock", index)
             gsap.from(card, {
-                opacity: 1,
+                opacity: 0, // Always animate from 0 for fade-in
                 y: 50,
                 scale: 0.8,
                 duration: 1.5,
                 ease: "power2.out",
                 scrollTrigger: {
                     trigger: card,
-                    start: "top 90%", // Adjust as needed
-                    end: "top 60%", // Adjust as needed
+                    start: "top 90%",
+                    end: "top 60%",
                     scrub: 1.5,
                     markers: true
                 },
@@ -301,6 +304,7 @@ function initializeAnimations() {
     };
 
     function positionCards() {
+        if (!roadmapContent) return;
         const roadmapContentWidth = roadmapContent.offsetWidth;
 
         circles.forEach((circle, index) => {
@@ -331,77 +335,89 @@ function initializeAnimations() {
     positionCards();
     window.addEventListener("resize", positionCards);
 
-   
     // Create a timeline for the door and spiral animations
     const doorAndSpiralTimeline = gsap.timeline({
         paused: true, // Start paused; will play on click
         onComplete: () => {
             // Scroll to the next section after the animation completes
             gsap.to(window, {
-                scrollTo: { y: ".next_section", autoKill: false }, // Scroll to the next section
+                scrollTo: { y: ".next_section", autoKill: false },
                 duration: 1,
                 ease: "power2.inOut",
             });
 
             // Unpin the transition wrapper
-            transitionWrapperTrigger.kill(); // Manually unpin the wrapper
+            if (typeof transitionWrapperTrigger !== "undefined" && transitionWrapperTrigger) {
+                transitionWrapperTrigger.kill();
+            }
         },
     });
 
     // Door animation
     doorAndSpiralTimeline
         .to(".door__img", {
-            rotationY: -100, // Rotate around the Y-axis
-            transformOrigin: "left center", // Set the hinge point
+            rotationY: -100,
+            transformOrigin: "left center",
             duration: 1.5,
             ease: "power2.out",
-        }, "doorOpen") // Label for snapping
-
-        // Spiral animation
+        }, "doorOpen")
         .to(".spiral__img", {
-            scale: 10, // Scale up to fill the screen
-            rotation: 360, // Full rotation
+            scale: 10,
+            rotation: 360,
             opacity: 1,
             duration: 1.5,
             ease: "power2.inOut",
-        }, "spiralExpand"); // Label for snapping
+        }, "spiralExpand");
 
     // Add click event listener to the door
     const door = document.querySelector(".door__img");
     const resetDoorClick = () => {
-        door.addEventListener("click", () => {
-            doorAndSpiralTimeline.play(); // Play the timeline on click
-        }, { once: true }); // Ensure the event is only triggered once
+        if (!door) return;
+        // Remove previous click listeners if any
+        door.replaceWith(door.cloneNode(true));
+        const newDoor = document.querySelector(".door__img");
+        newDoor.addEventListener("click", () => {
+            doorAndSpiralTimeline.play();
+        }, { once: true });
     };
 
-    // Force a refresh of ScrollTrigger
+    // Force a refresh of ScrollTrigger and ScrollSmoother
+    if (ScrollSmoother.get()) {
+        ScrollSmoother.get().refresh();
+    }
     ScrollTrigger.refresh();
 
-    resetDoorClick(); // Initialize the click event
+    resetDoorClick();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    initializeAnimations();
+    window.addEventListener("load", () => {
+        initializeAnimations();
+        if (ScrollSmoother.get()) {
+            ScrollSmoother.get().refresh();
+        }
+        ScrollTrigger.refresh();
+    });
 
     // Track the current viewport width
     let currentViewportWidth = window.innerWidth;
 
     window.addEventListener("resize", () => {
-    const newViewportWidth = window.innerWidth;
+        const newViewportWidth = window.innerWidth;
 
         // Trigger only if the width has changed
         if (newViewportWidth !== currentViewportWidth) {
-            currentViewportWidth = newViewportWidth; // Update the stored width
+            currentViewportWidth = newViewportWidth;
 
-            console.log("Resize event triggered due to width change"); // Debugging log
+            console.log("Resize event triggered due to width change");
 
             // Scroll to the top of the page or the ScrollSmoother container
             if (ScrollSmoother.get()) {
                 console.log("Using ScrollSmoother to scroll to the top");
-                ScrollSmoother.get().scrollTo(0, true); // Smooth scroll to the top of the smooth scrolling container
+                ScrollSmoother.get().scrollTo(0, true);
             } else {
                 console.log("Using window.scrollTo to scroll to the top");
-                window.scrollTo({ top: 0, behavior: "smooth" }); // Fallback for normal scrolling
+                window.scrollTo({ top: 0, behavior: "smooth" });
             }
 
             // Kill all existing ScrollTriggers
@@ -416,8 +432,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Reset only scale and opacity for circles and arrowhead
             gsap.set(".circle_01, .circle_02, .circle_03, .circle_04, .circle_05, .circle_06, .circle_07, .circle_08, .arrowhead, .circle_initial", {
-                scale: 1,   // Reset scale
-                opacity: 1, // Reset opacity
+                scale: 1,
+                opacity: 1,
             });
             console.log("Circles and arrowhead reset (scale and opacity only)");
 
@@ -427,16 +443,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Refresh ScrollSmoother (if used)
             if (ScrollSmoother.get()) {
-                ScrollSmoother.get().refresh(); // Recalculate smooth scrolling
+                ScrollSmoother.get().refresh();
                 console.log("ScrollSmoother refreshed");
             }
 
             // Refresh ScrollTrigger
-            ScrollTrigger.refresh(); // Recalculate start and end positions
+            ScrollTrigger.refresh();
             console.log("ScrollTrigger refreshed");
         }
     });
 });
-
-
-
