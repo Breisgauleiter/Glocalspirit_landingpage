@@ -1,4 +1,6 @@
 function initializeAnimations() {
+    const roadmapSVG = document.querySelector('.roadmap_svg');
+    const svgVisible = roadmapSVG && window.getComputedStyle(roadmapSVG).display !== 'none';
     const viewportWidth = window.innerWidth;
 
     // Ensure DrawSVGPlugin is properly registered
@@ -101,8 +103,8 @@ function initializeAnimations() {
         },
     });
 
-    // Roadmap SVG animations (only for viewport > 800px)
-    if (viewportWidth > 800) {
+    // === DESKTOP ANIMATIONS (SVG VISIBLE) ===
+    if (svgVisible) {
         // Create a timeline for sequential animations
         const main = gsap.timeline({
             scrollTrigger: {
@@ -240,19 +242,18 @@ function initializeAnimations() {
             ease: "elastic(2.5, 1)",
             duration: 1.0,
         }, 24.875);
-
-    } else {
-        console.log("Viewport width is less than or equal to 800px. custom animations are displayed.");
+    }
+    // === MOBILE/TABLET ANIMATIONS (SVG HIDDEN) ===
+    else {
+        console.log("SVG is hidden, using custom card animations.");
 
         const cards = document.querySelectorAll(".card01, .card02, .card03, .card04, .card05, .card06, .card07, .card08");
-        console.log("Cards found:", cards);
-
         if (cards.length === 0) {
             console.warn("No cards found for animation!");
             return;
         }
 
-        // First ensure all cards are visible and in their final position
+        // Reset card positions for mobile/tablet
         gsap.set(cards, {
             clearProps: "all",
             position: "relative",
@@ -261,86 +262,70 @@ function initializeAnimations() {
             opacity: 1
         });
 
-        // Use double requestAnimationFrame to ensure layout is complete
+        // Wait for layout to settle before creating scroll triggers
         requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                cards.forEach((card, index) => {
-                    // Create the ScrollTrigger first
-                    const trigger = ScrollTrigger.create({
+            cards.forEach((card, index) => {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 50,
+                    scale: 0.8,
+                    duration: 1.5,
+                    ease: "power2.out",
+                    scrollTrigger: {
                         trigger: card,
-                        start: "top bottom-=100",
-                        end: "top center",
+                        start: "top 90%",
+                        end: "top 60%",
+                        scrub: 1.5,
                         markers: true,
-                        onEnter: () => console.log(`Card ${index + 1} entering`),
-                        onLeave: () => console.log(`Card ${index + 1} leaving`),
-                    });
-
-                    // Then create the animation
-                    gsap.fromTo(card, 
-                        {
-                            opacity: 0,
-                            y: 50,
-                            scale: 0.8
-                        },
-                        {
-                            opacity: 1,
-                            y: 0,
-                            scale: 1,
-                            duration: 0.75,
-                            ease: "power2.out",
-                            scrollTrigger: trigger
-                        }
-                    );
+                        invalidateOnRefresh: true
+                    },
                 });
-
-                // Final refresh after all animations are set up
-                ScrollTrigger.refresh(true);
             });
+            ScrollTrigger.refresh();
         });
-
-        console.log("finished cards");
     }
 
-    // Position roadmap cards
-    const roadmapContent = document.querySelector(".roadmap__content");
-    const circles = document.querySelectorAll(".roadmap_svg .circle_01, .roadmap_svg .circle_02, .roadmap_svg .circle_03, .roadmap_svg .circle_04, .roadmap_svg .circle_05, .roadmap_svg .circle_06, .roadmap_svg .circle_07, .roadmap_svg .circle_08");
-    const cards = document.querySelectorAll(".cards__wrapper .card");
+    // === CARD POSITIONING ===
+    // Only position cards if SVG is visible
+    if (svgVisible) {
+        const roadmapContent = document.querySelector(".roadmap__content");
+        const circles = document.querySelectorAll(".roadmap_svg .circle_01, .roadmap_svg .circle_02, .roadmap_svg .circle_03, .roadmap_svg .circle_04, .roadmap_svg .circle_05, .roadmap_svg .circle_06, .roadmap_svg .circle_07, .roadmap_svg .circle_08");
+        const cards = document.querySelectorAll(".cards__wrapper .card");
 
-    const cardOffsets = {
-        circle_01: { left: 8 },
-        circle_02: { left: -45 },
-        circle_03: { left: 3 },
-        circle_04: { left: -42 },
-        circle_05: { left: 7 },
-        circle_06: { left: -39 },
-        circle_07: { left: 5 },
-        circle_08: { left: -43 },
-    };
+        const cardOffsets = {
+            circle_01: { left: 8 },
+            circle_02: { left: -45 },
+            circle_03: { left: 3 },
+            circle_04: { left: -42 },
+            circle_05: { left: 7 },
+            circle_06: { left: -39 },
+            circle_07: { left: 5 },
+            circle_08: { left: -43 },
+        };
 
-    const customCardOffsets = {
-        circle_01: { left: 10 },
-        circle_02: { left: -50 },
-        circle_03: { left: 5 },
-        circle_04: { left: -38 },
-        circle_05: { left: 10 },
-        circle_06: { left: -37 },
-        circle_07: { left: 8 },
-        circle_08: { left: -40 },
-    };
+        const customCardOffsets = {
+            circle_01: { left: 10 },
+            circle_02: { left: -50 },
+            circle_03: { left: 5 },
+            circle_04: { left: -38 },
+            circle_05: { left: 10 },
+            circle_06: { left: -37 },
+            circle_07: { left: 8 },
+            circle_08: { left: -40 },
+        };
 
-    function positionCards() {
-        if (!roadmapContent) return;
-        const roadmapContentWidth = roadmapContent.offsetWidth;
+        function positionCards() {
+            if (!roadmapContent) return;
+            const roadmapContentWidth = roadmapContent.offsetWidth;
 
-        circles.forEach((circle, index) => {
-            const circleRect = circle.getBoundingClientRect();
-            const roadmapContentRect = roadmapContent.getBoundingClientRect();
-            const topPosition = circleRect.top - roadmapContentRect.top;
+            circles.forEach((circle, index) => {
+                const circleRect = circle.getBoundingClientRect();
+                const roadmapContentRect = roadmapContent.getBoundingClientRect();
+                const topPosition = circleRect.top - roadmapContentRect.top;
 
-            const card = cards[index];
-            if (card) {
-                if (viewportWidth > 800) {
-                    const offsets = viewportWidth <= 870 && viewportWidth > 800 ? customCardOffsets : cardOffsets;
+                const card = cards[index];
+                if (card) {
+                    const offsets = window.innerWidth <= 870 && window.innerWidth > 800 ? customCardOffsets : cardOffsets;
                     const circleClass = circle.classList[0];
                     const offset = offsets[circleClass] || { left: 0 };
                     const leftOffsetInPixels = (offset.left / 100) * roadmapContentWidth;
@@ -348,23 +333,18 @@ function initializeAnimations() {
                     card.style.position = "absolute";
                     card.style.top = `${topPosition}px`;
                     card.style.left = `${circleRect.left - roadmapContentRect.left + leftOffsetInPixels}px`;
-                } else {
-                    card.style.position = "relative";
-                    card.style.top = "auto";
-                    card.style.left = "auto";
                 }
-            }
-        });
-    }
+            });
+        }
 
-    positionCards();
-    // window.addEventListener("resize", positionCards);
+        positionCards();
+        window.addEventListener("resize", positionCards);
+    }
 
     if (ScrollSmoother.get()) {
         ScrollSmoother.get().refresh();
     }
     ScrollTrigger.refresh();
-
 }
 
 document.addEventListener("DOMContentLoaded", () => {
