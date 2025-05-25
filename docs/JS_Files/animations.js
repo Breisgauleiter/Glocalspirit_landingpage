@@ -11,8 +11,8 @@ function initializeAnimations() {
     // Only create ScrollSmoother if not already created
     if (!ScrollSmoother.get()) {
         ScrollSmoother.create({
-            smooth: 2, // Smooth scrolling duration
-            effects: true, // Enable effects like opacity and transforms
+            smooth: 2,
+            effects: true,
         });
     }
 
@@ -110,7 +110,6 @@ function initializeAnimations() {
                 scrub: 1.5,
                 start: "top 70%",
                 end: "bottom 70%",
-                // markers: true, // Debug markers (optional)
             },
         });
 
@@ -258,7 +257,7 @@ function initializeAnimations() {
         cards.forEach((card, index) => {
             console.log("forblock", index)
             gsap.from(card, {
-                opacity: 0, // Always animate from 0 for fade-in
+                opacity: 0,
                 y: 50,
                 scale: 0.8,
                 duration: 1.5,
@@ -337,23 +336,19 @@ function initializeAnimations() {
 
     // Create a timeline for the door and spiral animations
     const doorAndSpiralTimeline = gsap.timeline({
-        paused: true, // Start paused; will play on click
+        paused: true,
         onComplete: () => {
-            // Scroll to the next section after the animation completes
             gsap.to(window, {
                 scrollTo: { y: ".next_section", autoKill: false },
                 duration: 1,
                 ease: "power2.inOut",
             });
-
-            // Unpin the transition wrapper
             if (typeof transitionWrapperTrigger !== "undefined" && transitionWrapperTrigger) {
                 transitionWrapperTrigger.kill();
             }
         },
     });
 
-    // Door animation
     doorAndSpiralTimeline
         .to(".door__img", {
             rotationY: -100,
@@ -373,7 +368,6 @@ function initializeAnimations() {
     const door = document.querySelector(".door__img");
     const resetDoorClick = () => {
         if (!door) return;
-        // Remove previous click listeners if any
         door.replaceWith(door.cloneNode(true));
         const newDoor = document.querySelector(".door__img");
         newDoor.addEventListener("click", () => {
@@ -381,7 +375,6 @@ function initializeAnimations() {
         }, { once: true });
     };
 
-    // Force a refresh of ScrollTrigger and ScrollSmoother
     if (ScrollSmoother.get()) {
         ScrollSmoother.get().refresh();
     }
@@ -392,29 +385,27 @@ function initializeAnimations() {
 
 document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("load", () => {
+        console.log("loaded")
         initializeAnimations();
         if (ScrollSmoother.get()) {
             ScrollSmoother.get().refresh();
         }
-        // Wait for layout to settle before refreshing ScrollTrigger
         setTimeout(() => {
             ScrollTrigger.refresh();
         }, 100);
     });
 
-    // Track the current viewport width
     let currentViewportWidth = window.innerWidth;
 
     window.addEventListener("resize", () => {
+        console.log("resized___")
         const newViewportWidth = window.innerWidth;
 
-        // Trigger only if the width has changed
         if (newViewportWidth !== currentViewportWidth) {
             currentViewportWidth = newViewportWidth;
 
             console.log("Resize event triggered due to width change");
 
-            // Scroll to the top of the page or the ScrollSmoother container
             if (ScrollSmoother.get()) {
                 console.log("Using ScrollSmoother to scroll to the top");
                 ScrollSmoother.get().scrollTo(0, true);
@@ -423,37 +414,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
             }
 
-            // Kill all existing ScrollTriggers
             ScrollTrigger.getAll().forEach(trigger => trigger.kill());
             console.log("All ScrollTriggers killed");
 
-            // Reset all properties for general elements
             gsap.set(".header, .hero__title, .hero__image, .about__wrapper--glasmorphism, .wrapper__content, .roadmap__title, .roadmap_svg, .card01, .card02, .card03, .card04, .card05, .card06, .card07, .card08, .line, .text01, .text02", {
                 clearProps: "all",
             });
             console.log("General elements reset to default state");
 
-            // Reset only scale and opacity for circles and arrowhead
             gsap.set(".circle_01, .circle_02, .circle_03, .circle_04, .circle_05, .circle_06, .circle_07, .circle_08, .arrowhead, .circle_initial", {
                 scale: 1,
                 opacity: 1,
             });
             console.log("Circles and arrowhead reset (scale and opacity only)");
 
-            // Reinitialize animations
-            initializeAnimations();
-            console.log("Animations reinitialized");
-
-            // Refresh ScrollSmoother (if used)
-            if (ScrollSmoother.get()) {
-                ScrollSmoother.get().refresh();
-                console.log("ScrollSmoother refreshed");
-            }
-
-            // Wait for layout to settle before refreshing ScrollTrigger
+            // Wait for layout to settle before re-initializing animations and refreshing triggers
             setTimeout(() => {
-                ScrollTrigger.refresh();
-                console.log("ScrollTrigger refreshed (after timeout)");
+                initializeAnimations();
+                console.log("Animations reinitialized");
+
+                if (ScrollSmoother.get()) {
+                    ScrollSmoother.get().refresh();
+                    console.log("ScrollSmoother refreshed");
+                }
+
+                setTimeout(() => {
+                    ScrollTrigger.refresh();
+                    console.log("ScrollTrigger refreshed (after timeout)");
+                }, 100);
             }, 100);
         }
     });
