@@ -273,8 +273,8 @@ function initializeAnimations() {
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: card,
-                        start: "top 90%",
-                        end: "top 60%",
+                        start: "top 70%",
+                        end: "top 50%",
                         scrub: 1.5,
                         markers: true,
                         invalidateOnRefresh: true
