@@ -439,8 +439,12 @@ main{
 }
 
 .form_wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-60%, -50%);
     padding: 15px;
-    width: clamp(300px,90vw,800px);
+    width: 40vw;
     background: linear-gradient(to bottom, rgba(110, 107, 191, 0.8) 31%, rgba(255, 200, 87, 0.8) 100%
     );
     border-radius: 5px;
@@ -524,30 +528,117 @@ main{
 }
 
 .forms__content{
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 20%;
+    /* background-color: rgba(255, 255, 0, 0.463); */
 }
 
 .wrapper__form{
-    
+    position: relative;
+    width: fit-content;
     button{
-        aspect-ratio: 1;
+        overflow: hidden;
+        all: unset;
+        cursor: pointer;
+        border-radius: 10%;
+        outline: 4px rgba(253, 253, 253, 0.162) solid;
+        background-color: transparent;
+        aspect-ratio: 1/1;
         height: 200px;
         width: 200px;
 
-        svg{
-            aspect-ratio: 1;
-            width: 300px;
-            left: 0;
-            top: 0;
-            transform: translate(-18%, -15%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .door_svg{
+            scale: 0.7;
+            opacity: 90%;
+            pointer-events: none;
         }
-        img{
-            aspect-ratio: 1;
-            width: 200px;
+
+        .hand_svg{
+            scale: 1.5;
+            opacity: 90%;
+            pointer-events: none;
         }
+
+        
     }
 }
+
+@keyframes pulse-glow-door {
+    0%, 100% {
+        opacity: 0.4;
+        scale: 0.7;
+    }
+    50% {
+        filter: drop-shadow(0 0 8px #0bf3fb5a) drop-shadow(0 0 8px #01f7ff);
+        opacity: 1;
+        scale: 0.75;
+    }
+}
+
+@keyframes pulse-glow-hand {
+    0%, 100% {
+        opacity: 0.4;
+        scale: 1.5;
+    }
+    50% {
+        filter: drop-shadow(0 0 8px #0bf3fb5a) drop-shadow(0 0 8px #01f7ff);
+        opacity: 1;
+        scale: 1.55;
+    }
+}
+
+.door_svg{
+    animation: pulse-glow-door 4.2s infinite;
+}
+.hand_svg {
+    animation: pulse-glow-hand 4.2s infinite;
+}
+.form1{
+    position: relative;
+    opacity: 1;
+    .form_wrapper{
+        display: none;
+        position: absolute;
+
+    }
+}
+
+.form1::after, .form2::after{
+    content: "TESTEN";
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    font-weight: 800;
+    text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.471);
+    position: absolute;
+    color: rgb(253, 253, 253);
+    top: -12%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.form2::after{
+    content: "SPENDEN";
+}
+
+.form2{
+    h3{
+        display: none;
+        text-align: center;
+        top: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-40%, -50%);
+        background-color: rgba(255, 0, 0, 0.641);
+        padding: 15px;
+        height: 400px;
+        width: 40vw;
+    }
+}
+
