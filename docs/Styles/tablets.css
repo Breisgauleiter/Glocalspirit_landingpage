@@ -79,3 +79,12 @@ body{
 
 }
 
+.footer__content{
+    h2{
+        margin-top: 15%;
+    }
+}
+
+.forms__content{
+    flex-flow: column nowrap;
+}
