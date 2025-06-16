@@ -17,10 +17,11 @@ html, body {
     min-height: 100vh; /* Vollbildhöhe um genug Platz zu schaffen */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Ändere von center zu flex-start */
+    justify-content: flex-start; /* Zurück zu flex-start für kontrollierten Abstand */
     align-items: center;
     padding: 2rem;
-    padding-top: 5.25rem !important; /* Angepasst für gleichen visuellen Abstand wie zwischen Überschrift und Text */
+    padding-top: 10.5rem; /* Header-Abstand */
+    padding-bottom: 5.25rem; /* Abstand für Pakete vom unteren Rand */
     text-align: center;
     overflow-y: auto; /* Ermöglicht vertikales Scrollen */
 }
@@ -48,29 +49,10 @@ html, body {
     }
 }
 
-/* Form Title mit Gradient-Effekt wie auf Hauptseite */
-.form-title {
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    font-weight: 800;
-    margin-bottom: 0.1rem !important; /* Reduziert von 0.25rem auf 0.1rem */
-    background: radial-gradient(circle at 30%, #6E6BBF 31%, #FFC857 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 10px 5px rgba(0, 0, 0, 0.342));
-    
-    /* Initial state für Animation */
-    opacity: 0;
-    transform: translateY(50px);
-    
-    /* CSS Fallback Animation */
-    animation: slideUpFade 1.5s ease-out 0.2s forwards;
-}
-
-/* Hero Description */
+/* Hero Description - mit festem Abstand zu den Paketen */
 .hero-description {
     max-width: 600px;
-    margin: 0 auto 0.1rem auto !important; /* Reduziert von 0.25rem auf 0.1rem */
+    margin: 10.5rem auto auto auto; /* 5.25rem Abstand zu den Paketen */
     font-size: clamp(1rem, 2.5vw, 1.2rem);
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.9);
@@ -80,11 +62,11 @@ html, body {
     opacity: 0;
     transform: translateY(30px);
     
-    /* CSS Fallback Animation */
-    animation: slideUpFade 1.3s ease-out 0.8s forwards;
+    /* CSS Fallback Animation - früher gestartet da es jetzt das erste Element ist */
+    animation: slideUpFade 1.3s ease-out 0.2s forwards;
 }
 
-/* Packages Container - Grid Layout */
+/* Packages Container - am unteren Ende der Hero Section positioniert */
 .packages-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Immer 3 Spalten auf Desktop */
@@ -92,7 +74,7 @@ html, body {
     max-width: 800px; /* Reduziert von 1200px auf 67% = ~800px */
     margin: 0 auto;
     width: 100%;
-    padding: 2rem 0;
+    padding: 0; /* Kein padding, da space-between und padding-bottom verwendet wird */
     justify-content: center;
     transform: scale(0.67); /* Skaliert alle Package-Cards auf 67% */
 }
@@ -362,7 +344,7 @@ html, body {
     .packages-container {
         grid-template-columns: 1fr; /* Mobile: Übereinander */
         gap: 1.5rem;
-        padding: 1.5rem 0;
+        padding: 1rem 0;
         max-width: 400px; /* Begrenzte Breite für Mobile */
     }
     
@@ -395,7 +377,7 @@ html, body {
     .packages-container {
         grid-template-columns: 1fr; /* Mobile: Alle übereinander */
         gap: 1.5rem;
-        padding: 1rem 0;
+        padding: 0.1rem 0;
         max-width: 350px;
     }
     
