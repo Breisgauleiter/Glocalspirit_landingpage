@@ -6,15 +6,14 @@ const PHP_BACKEND_CONFIG = {
     // 🔧 PHP BACKEND URL KONFIGURATION
     // ===============================================
     
-    // URL zu deinem PHP-Script auf Strato
-    // Ersetze mit deiner echten Domain
-    BACKEND_URL: 'https://deine-domain.de/submit_testuser.php',
+    // URL zu deinem PHP-Script auf Strato (glocalSpirit konfiguriert)
+    BACKEND_URL: 'https://glocalspirit.org/submit_testuser.php',
     
     // Optional: Verschiedene URLs für verschiedene Umgebungen
     ENVIRONMENT_URLS: {
         development: 'http://localhost:8000/submit_testuser.php',
-        staging: 'https://staging.deine-domain.de/submit_testuser.php',
-        production: 'https://deine-domain.de/submit_testuser.php'
+        staging: 'https://staging.glocalspirit.org/submit_testuser.php',
+        production: 'https://glocalspirit.org/submit_testuser.php'
     },
     
     // Weitere Einstellungen

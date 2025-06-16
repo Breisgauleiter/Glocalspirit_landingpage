@@ -118,9 +118,15 @@ function sanitizeInput($data) {
 // ===============================================
 
 /**
- * Nachricht an Teams senden
+ * Nachricht an Teams senden (DEAKTIVIERT - E-Mail-only Modus)
  */
 function sendTeamsMessage($name, $email, $newsletter) {
+    // Teams-Integration deaktiviert - verwenden E-Mail-only
+    if (!defined('ENABLE_TEAMS') || !ENABLE_TEAMS) {
+        error_log("ℹ️ Teams-Integration deaktiviert. Verwende E-Mail-only Modus.");
+        return ['success' => true, 'disabled' => true, 'message' => 'Teams deaktiviert'];
+    }
+    
     $webhook_url = TEAMS_WEBHOOK_URL;
     
     // In Entwicklungsumgebung simulieren
@@ -130,8 +136,9 @@ function sendTeamsMessage($name, $email, $newsletter) {
     }
     
     // Webhook URL prüfen
-    if (strpos($webhook_url, 'YOUR_WEBHOOK_ID') !== false) {
-        throw new Exception('Teams Webhook URL ist noch nicht konfiguriert.');
+    if (empty($webhook_url) || strpos($webhook_url, 'YOUR_WEBHOOK_ID') !== false) {
+        error_log("⚠️ Teams Webhook URL ist nicht konfiguriert - E-Mail-only Modus");
+        return ['success' => true, 'disabled' => true, 'message' => 'Teams nicht konfiguriert'];
     }
     
     $message = getTeamsMessage($name, $email, $newsletter);
@@ -190,6 +197,100 @@ function sendConfirmationEmail($name, $email) {
     }
     
     return ['success' => true];
+}
+
+/**
+ * Admin-Benachrichtigung per E-Mail senden
+ */
+function sendAdminNotification($name, $email, $newsletter) {
+    // In Entwicklungsumgebung simulieren
+    if (isDevelopmentEnvironment()) {
+        error_log("🔧 DEV: Admin-E-Mail würde gesendet werden für: $name ($email)");
+        return ['success' => true, 'simulated' => true];
+    }
+    
+    $subject = ADMIN_EMAIL_SUBJECT;
+    $message = getAdminEmailTemplate($name, $email, $newsletter);
+    
+    // E-Mail Headers
+    $headers = [
+        'MIME-Version: 1.0',
+        'Content-type: text/html; charset=UTF-8',
+        'From: ' . SENDER_NAME . ' <' . SENDER_EMAIL . '>',
+        'Reply-To: ' . SENDER_EMAIL,
+        'X-Mailer: glocalSpirit-Backend/1.0'
+    ];
+    
+    $success = mail(ADMIN_EMAIL, $subject, $message, implode("\r\n", $headers));
+    
+    if (!$success) {
+        error_log("⚠️ Admin-E-Mail konnte nicht versendet werden an: " . ADMIN_EMAIL);
+        // Kein Exception werfen - Admin-Mail ist nicht kritisch für User-Experience
+        return ['success' => false, 'error' => 'Admin-E-Mail fehlgeschlagen'];
+    }
+    
+    return ['success' => true];
+}
+
+/**
+ * E-Mail-Template für Admin-Benachrichtigung
+ */
+function getAdminEmailTemplate($name, $email, $newsletter) {
+    $newsletter_text = $newsletter ? 'Ja' : 'Nein';
+    
+    return "
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; }
+        .content { background: #f9f9f9; padding: 20px; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .data-table th, .data-table td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+        .data-table th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <div class='header'>
+            <h2>🎉 Neue Testnutzer-Anmeldung</h2>
+            <p>glocalSpirit Landing Page</p>
+        </div>
+        <div class='content'>
+            <p>Eine neue Person hat sich als Testnutzer angemeldet:</p>
+            
+            <table class='data-table'>
+                <tr>
+                    <th>Name:</th>
+                    <td>$name</td>
+                </tr>
+                <tr>
+                    <th>E-Mail:</th>
+                    <td>$email</td>
+                </tr>
+                <tr>
+                    <th>Newsletter:</th>
+                    <td>$newsletter_text</td>
+                </tr>
+                <tr>
+                    <th>Zeitpunkt:</th>
+                    <td>" . date('d.m.Y H:i:s') . "</td>
+                </tr>
+            </table>
+            
+            <p>Die Person wurde automatisch über die Anmeldung informiert.</p>
+            
+            <hr>
+            <p style='font-size: 12px; color: #666;'>
+                Diese E-Mail wurde automatisch vom glocalSpirit Backend-System generiert.
+            </p>
+        </div>
+    </div>
+</body>
+</html>";
 }
 
 // ===============================================
@@ -301,7 +402,7 @@ try {
     // Alle Aktionen ausführen
     $results = [];
     
-    // 1️⃣ Teams-Nachricht senden
+    // 1️⃣ Teams-Nachricht senden (deaktiviert in E-Mail-only Modus)
     try {
         $teams_result = sendTeamsMessage($clean_data['name'], $clean_data['email'], $clean_data['newsletter']);
         $results['teams'] = $teams_result;
@@ -310,7 +411,7 @@ try {
         $results['teams'] = ['success' => false, 'error' => $e->getMessage()];
     }
     
-    // 2️⃣ E-Mail senden
+    // 2️⃣ Bestätigungs-E-Mail an Nutzer senden
     try {
         $email_result = sendConfirmationEmail($clean_data['name'], $clean_data['email']);
         $results['email'] = $email_result;
@@ -319,13 +420,31 @@ try {
         $results['email'] = ['success' => false, 'error' => $e->getMessage()];
     }
     
-    // 3️⃣ Logging
+    // 3️⃣ Admin-Benachrichtigung senden
+    try {
+        $admin_result = sendAdminNotification($clean_data['name'], $clean_data['email'], $clean_data['newsletter']);
+        $results['admin_email'] = $admin_result;
+    } catch (Exception $e) {
+        error_log("Admin-E-Mail-Fehler: " . $e->getMessage());
+        $results['admin_email'] = ['success' => false, 'error' => $e->getMessage()];
+    }
+    
+    // 4️⃣ Logging
     try {
         logRegistration($clean_data['name'], $clean_data['email'], $clean_data['newsletter']);
         $results['logging'] = ['success' => true];
     } catch (Exception $e) {
         error_log("Logging-Fehler: " . $e->getMessage());
         $results['logging'] = ['success' => false, 'error' => $e->getMessage()];
+    }
+    
+    // 4️⃣ Admin-Benachrichtigung senden
+    try {
+        $admin_result = sendAdminNotification($clean_data['name'], $clean_data['email'], $clean_data['newsletter']);
+        $results['admin'] = $admin_result;
+    } catch (Exception $e) {
+        error_log("Admin-Benachrichtigung-Fehler: " . $e->getMessage());
+        $results['admin'] = ['success' => false, 'error' => $e->getMessage()];
     }
     
     // Erfolgreiche Response (auch bei Teil-Fehlern)

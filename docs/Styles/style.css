@@ -7,6 +7,17 @@
     box-sizing: border-box;
 }
 
+/* Enable smooth scrolling for better navigation UX */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Improve focus states for accessibility */
+:focus-visible {
+    outline: 2px solid rgb(var(--special-cta-color));
+    outline-offset: 2px;
+}
+
 :root{
     --main-background-color: 12 12 34; /*#0C0C22*/
     --secondary-links-color: 85 166 217; /*#55A6D9*/
@@ -108,15 +119,35 @@ main{
             letter-spacing: clamp(5.3px, 0.5vw, 8px);
             color: rgb(var(--secondary-links-color));
             filter: drop-shadow(0 0 4.8px rgb(var(--secondary-links-color)));
+            transition: all 0.3s ease-in-out;
+            position: relative;
 
             &:hover{
                 color: rgb(var(--main-font-color));
+                transform: translateY(-1px);
+            }
+
+            /* Smooth transition effect for active state */
+            &::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -4px;
+                left: 50%;
+                background: linear-gradient(135deg, rgb(var(--main-font-color)), rgb(var(--special-cta-color)));
+                transition: all 0.3s ease-in-out;
+                transform: translateX(-50%);
             }
         }
 
         .header__link--active{
-                color: rgb(var(--main-font-color));
+            color: rgb(var(--main-font-color));
+            
+            &::after {
+                width: 100%;
             }
+        }
     }
 
     .header__beta-tester{

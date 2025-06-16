@@ -7,23 +7,28 @@
  */
 
 // ===============================================
-// 🔧 TEAMS WEBHOOK KONFIGURATION
+// 🔧 TEAMS WEBHOOK KONFIGURATION (DEAKTIVIERT)
 // ===============================================
 
-// Teams Incoming Webhook URL (MUSS ANGEPASST WERDEN!)
-// Erhältst du über: Teams Kanal > ... > Connectors > Incoming Webhook
-define('TEAMS_WEBHOOK_URL', 'https://outlook.office.com/webhook/YOUR_WEBHOOK_ID/IncomingWebhook/YOUR_CHANNEL_ID/YOUR_CONNECTOR_ID');
+// Teams Integration deaktiviert - verwenden E-Mail-only
+// Kann später mit Power Automate aktiviert werden
+define('TEAMS_WEBHOOK_URL', null); // Teams deaktiviert
+define('ENABLE_TEAMS', false); // Teams-Nachrichten deaktivieren
 
 // ===============================================
 // 📧 E-MAIL KONFIGURATION
 // ===============================================
 
-// Absender-E-Mail (MUSS ANGEPASST WERDEN!)
-define('SENDER_EMAIL', 'no-reply@deine-domain.de');
+// Absender-E-Mail (glocalSpirit konfiguriert)
+define('SENDER_EMAIL', 'no-reply@glocalspirit.com');
 define('SENDER_NAME', 'glocalSpirit Team');
 
+// Empfänger für Benachrichtigungen (Admin-E-Mail)
+define('ADMIN_EMAIL', 'info@glocalspirit.com');
+
 // E-Mail Betreff und Template
-define('EMAIL_SUBJECT', 'Willkommen als Testnutzer');
+define('EMAIL_SUBJECT', 'Willkommen als Testnutzer bei glocalSpirit');
+define('ADMIN_EMAIL_SUBJECT', 'Neue Testnutzer-Anmeldung - glocalSpirit');
 
 // ===============================================
 // 📁 LOGGING KONFIGURATION
@@ -39,10 +44,10 @@ define('MAX_LOG_SIZE', 10 * 1024 * 1024);
 // 🛡️ SICHERHEITS-EINSTELLUNGEN
 // ===============================================
 
-// Erlaubte Origins für CORS (passe deine Domain an)
+// Erlaubte Origins für CORS (glocalSpirit konfiguriert)
 $allowed_origins = [
-    'https://deine-domain.de',
-    'https://www.deine-domain.de',
+    'https://glocalspirit.org',
+    'https://www.glocalspirit.org',
     'http://localhost:8000', // Für lokale Entwicklung
 ];
 

@@ -10,6 +10,7 @@
     <link rel="stylesheet" media="screen and (max-width: 700px)" href="Styles/smallscreens.css">
     <!-- scripts -->
     <script src="JS_Files/app.js" defer></script>
+    <script src="JS_Files/navigation.js" defer></script>
     <!-- gsap dependencies-->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
@@ -33,24 +34,24 @@
                 <a href="#" class="header__logo">
                     <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="header__logo-img">
                 </a>
-                <a href="index.html" class="header__link header__link--active">Startseite</a>
-                <a href="#" class="header__link">Über uns</a>
-                <a href="#" class="header__link">Kontakt</a>
-                <a href="#" class="header__link">Roadmap</a>
+                <a href="#hero" class="header__link header__link--active">Startseite</a>
+                <a href="#about" class="header__link">Über uns</a>
+                <a href="#roadmap" class="header__link">Roadmap</a>
+                <a href="#forms" class="header__link">Kontakt</a>
             </div>
             <div class="header__beta-tester">
-                <a href="#" class="header__beta-link">Beta Testen</a>
+                <a href="testformular.html" class="header__beta-link">Beta Testen</a>
             </div>
         </nav>
     </header>
     <div id="smooth-wrapper">
         <div id="smooth-content">
             <main class="main">
-                <section class="hero">
+                <section class="hero" id="hero">
                     <h1 class="hero__title">glocalSpirit</h1>
                     <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="hero__image">
                 </section>
-                <section class="about">
+                <section class="about" id="about">
                     <div class="about__wrapper about__wrapper--glasmorphism">
                         <div class="about__scroller">
                             <div class="about__scroller--inner">
@@ -161,7 +162,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="roadmap">
+                <section class="roadmap" id="roadmap">
                     <h2 class="roadmap__title">Roadmap</h2>
                     <div class="roadmap__content">
                         <svg
@@ -308,7 +309,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="forms__content">
+                <section class="forms__content" id="forms">
                     <div class="wrapper__form form1">
                         <section class="test__form">
                             <a href="testformular.html" class="test-form-link">

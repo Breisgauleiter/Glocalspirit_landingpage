@@ -24,11 +24,11 @@
 
 ## 📋 **VERBLIBENDE KRITISCHE AUFGABEN**
 
-### 🚀 **Backend-Deployment (IN BEARBEITUNG)** *(30-45 Min)*
-- [x] **Backend für E-Mail-only konfiguriert** ✅ Teams deaktiviert, Admin-E-Mails aktiviert
-- [x] **config.php mit glocalspirit.org/com URLs angepasst** ✅ 
-- [x] **JS_Files/config.js mit glocalspirit.org Backend-URL konfiguriert** ✅
-- [ ] **PHP-Dateien auf Strato-Server hochladen** ⏳ NÄCHSTER SCHRITT
+### 🚀 **Backend-Deployment (NÄCHSTER SCHRITT)** *(30-45 Min)*
+- [ ] **Teams Webhook erstellen und konfigurieren**
+- [ ] **PHP-Dateien auf Strato-Server hochladen**  
+- [ ] **config.php mit echter Webhook-URL anpassen**
+- [ ] **JS_Files/config.js mit echter Backend-URL konfigurieren**
 - [ ] **Backend mit backend-test.html testen**
 - [ ] **Produktiv-Test mit echtem Formular durchführen**
 
