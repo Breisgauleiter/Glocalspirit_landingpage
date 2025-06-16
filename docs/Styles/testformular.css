@@ -16,9 +16,9 @@
 
 .testformular-container {
     width: 100%;
-    max-width: 1200px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 /* Hauptformular-Box mit Gradient wie im Mockup */
@@ -31,8 +31,12 @@
     
     /* Minimum und Maximum für bessere Responsiveness */
     min-width: 400px;
-    max-width: 1200px;
+    max-width: 800px;
     min-height: 300px;
+    max-height: 450px;
+    
+    /* Zentriertes Layout */
+    margin: 0 auto;
     
     background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 25%, #a855f7 50%, #d946ef 75%, #f59e0b 100%);
     border-radius: 16px;
