@@ -142,6 +142,112 @@
     transform: translateY(0);
 }
 
+/* Success/Error Messages */
+.message {
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: slideIn 0.5s ease-out;
+}
+
+.success-message {
+    background: rgba(76, 175, 80, 0.1);
+    border: 2px solid rgba(76, 175, 80, 0.3);
+    color: #4CAF50;
+}
+
+.error-message {
+    background: rgba(244, 67, 54, 0.1);
+    border: 2px solid rgba(244, 67, 54, 0.3);
+    color: #F44336;
+}
+
+.message-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.message h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.message p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Form Validation Styles */
+.form-input.error {
+    border-color: #F44336;
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+.form-input.success {
+    border-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.error-text {
+    color: #F44336;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+    display: block;
+    min-height: 1.2rem;
+}
+
+/* Submit Button Loading State */
+.submit-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Form Hidden State */
+.form-hidden {
+    display: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero {

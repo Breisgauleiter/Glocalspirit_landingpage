@@ -21,6 +21,7 @@
     <!-- gsap animations -->
     <script src="JS_Files/animations.js" defer></script>
     <script src="JS_Files/form-animation.js" defer></script>
+    <script src="JS_Files/form-validation.js" defer></script>
 </head>
 <body id="body">
     <div class="background-layer"></div>
@@ -41,7 +42,7 @@
                 <a href="index.html#roadmap" class="header__link">Roadmap</a>
             </div>
             <div class="header__beta-tester">
-                <a href="testformular.html" class="header__beta-link header__beta-link--active">Beta Testen</a>
+                <a href="index.html" class="header__beta-link">← Zurück</a>
             </div>
         </nav>
     </header>
@@ -51,18 +52,41 @@
                 <section class="hero">
                     <div class="form-container hero__form">
                         <h1 class="form-title">Testnutzer Werden</h1>
+                        
+                        <!-- Success Message -->
+                        <div id="successMessage" class="message success-message" style="display: none;">
+                            <div class="message-icon">✅</div>
+                            <h3>Erfolgreich angemeldet!</h3>
+                            <p>Vielen Dank für deine Anmeldung als Beta-Tester. Wir werden uns bald bei dir melden!</p>
+                        </div>
+                        
+                        <!-- Error Message -->
+                        <div id="errorMessage" class="message error-message" style="display: none;">
+                            <div class="message-icon">❌</div>
+                            <h3>Fehler bei der Anmeldung</h3>
+                            <p id="errorText">Es ist ein Fehler aufgetreten. Bitte versuche es erneut.</p>
+                        </div>
+                        
                         <form class="testform" id="testForm">
                             <div class="form-group">
-                                <label class="form-label" for="name">Name</label>
+                                <label class="form-label" for="name">Name *</label>
                                 <input type="text" id="name" name="name" class="form-input" required>
+                                <span class="error-text" id="nameError"></span>
                             </div>
                             
                             <div class="form-group">
-                                <label class="form-label" for="email">E-mail</label>
+                                <label class="form-label" for="email">E-mail *</label>
                                 <input type="email" id="email" name="email" class="form-input" required>
+                                <span class="error-text" id="emailError"></span>
                             </div>
                             
-                            <button type="submit" class="submit-button">SENDEN</button>
+                            <button type="submit" class="submit-button" id="submitBtn">
+                                <span class="btn-text">SENDEN</span>
+                                <span class="btn-loading" style="display: none;">
+                                    <span class="spinner"></span>
+                                    WIRD GESENDET...
+                                </span>
+                            </button>
                         </form>
                     </div>
                 </section>
