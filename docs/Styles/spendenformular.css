@@ -1,0 +1,453 @@
+/* Spenden-Formular - Abo-Pakete mit Glassmorphism Design */
+
+/* Override main overflow für Spendenformular-Seite */
+body#body main {
+    overflow: visible; /* Überschreibt das globale overflow: hidden */
+    min-height: 100vh;
+}
+
+/* Stelle sicher, dass die Seite scrollbar ist */
+html, body {
+    overflow-x: hidden; /* Verhindert horizontales Scrollen */
+    overflow-y: auto; /* Erlaubt vertikales Scrollen */
+}
+
+/* Hero Section zentriert die Paket-Container */
+.hero {
+    min-height: 100vh; /* Vollbildhöhe um genug Platz zu schaffen */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Ändere von center zu flex-start */
+    align-items: center;
+    padding: 2rem;
+    padding-top: 5.25rem !important; /* Angepasst für gleichen visuellen Abstand wie zwischen Überschrift und Text */
+    text-align: center;
+    overflow-y: auto; /* Ermöglicht vertikales Scrollen */
+}
+
+/* Fallback CSS Animation falls GSAP nicht lädt */
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes packageStagger {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form Title mit Gradient-Effekt wie auf Hauptseite */
+.form-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 0.1rem !important; /* Reduziert von 0.25rem auf 0.1rem */
+    background: radial-gradient(circle at 30%, #6E6BBF 31%, #FFC857 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 10px 5px rgba(0, 0, 0, 0.342));
+    
+    /* Initial state für Animation */
+    opacity: 0;
+    transform: translateY(50px);
+    
+    /* CSS Fallback Animation */
+    animation: slideUpFade 1.5s ease-out 0.2s forwards;
+}
+
+/* Hero Description */
+.hero-description {
+    max-width: 600px;
+    margin: 0 auto 0.1rem auto !important; /* Reduziert von 0.25rem auf 0.1rem */
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    
+    /* Initial state für Animation */
+    opacity: 0;
+    transform: translateY(30px);
+    
+    /* CSS Fallback Animation */
+    animation: slideUpFade 1.3s ease-out 0.8s forwards;
+}
+
+/* Packages Container - Grid Layout */
+.packages-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Immer 3 Spalten auf Desktop */
+    gap: 1.5rem;
+    max-width: 800px; /* Reduziert von 1200px auf 67% = ~800px */
+    margin: 0 auto;
+    width: 100%;
+    padding: 2rem 0;
+    justify-content: center;
+    transform: scale(0.67); /* Skaliert alle Package-Cards auf 67% */
+}
+
+/* Individual Package Card */
+.package-card {
+    /* Glassmorphism + Gradient Background */
+    background: linear-gradient(135deg, #8B7BBF 0%, #FFC857 100%);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    height: auto; /* Flexible Höhe basierend auf Inhalt */
+    
+    /* Box Shadow für Tiefe */
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        0 0px 30px rgba(69, 78, 197, 0.3);
+    
+    /* Transition für Hover-Effekte */
+    transition: all 0.3s ease;
+    
+    /* Initial state für Animation - wird von GSAP überschrieben */
+    opacity: 0;
+    transform: translateY(50px);
+    
+    /* CSS Fallback Animation mit Stagger-Effekt */
+    animation: packageStagger 1.3s ease-out forwards;
+}
+
+/* Staggered Animation Delays für CSS Fallback */
+.package-card:nth-child(1) {
+    animation-delay: 1.5s;
+}
+
+.package-card:nth-child(2) {
+    animation-delay: 1.8s;
+}
+
+.package-card:nth-child(3) {
+    animation-delay: 2.1s;
+}
+
+/* Package Card Hover Effect */
+.package-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.3),
+        0 0px 40px rgba(69, 78, 197, 0.5);
+}
+
+/* Package Header */
+.package-header {
+    margin-bottom: 2rem;
+}
+
+.package-title {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.package-description {
+    font-size: 1rem;
+    opacity: 0.9;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Package Features */
+.package-features {
+    margin-bottom: 2rem;
+}
+
+.package-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.package-features li {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.4;
+}
+
+/* Custom Bullet Points */
+.package-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Package Price */
+.package-price {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.3rem;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.period {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+/* Package Button */
+.package-button {
+    background: #4285F4;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.package-button:hover {
+    background: #3367D6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(66, 133, 244, 0.4);
+}
+
+.package-button:active {
+    transform: translateY(0);
+}
+
+.package-button:disabled {
+    background: #888;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Loading Spinner */
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Message Container */
+.message-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 400px;
+}
+
+.error-message,
+.success-message {
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    color: white;
+    position: relative;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.error-message {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+}
+
+.success-message {
+    background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+}
+
+.message-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 1rem;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.message-close:hover {
+    opacity: 1;
+}
+
+/* Responsive Design */
+
+/* Desktop Optimierung für bessere Sichtbarkeit */
+@media screen and (min-width: 1200px) {
+    .packages-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        max-width: 1400px;
+    }
+    
+    .hero {
+        padding: 3rem 2rem;
+    }
+}
+
+/* Tablet Breakpoint - noch 3 nebeneinander aber enger */
+@media screen and (max-width: 1199px) and (min-width: 801px) {
+    .packages-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        max-width: 900px;
+    }
+    
+    .package-card {
+        padding: 1.8rem 1.2rem;
+    }
+    
+    .package-title {
+        font-size: 1.6rem;
+    }
+    
+    .price {
+        font-size: 2.2rem;
+    }
+}
+
+/* Tablet Breakpoint - Übergang zu Mobile */
+@media screen and (max-width: 800px) {
+    .packages-container {
+        grid-template-columns: 1fr; /* Mobile: Übereinander */
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+        max-width: 400px; /* Begrenzte Breite für Mobile */
+    }
+    
+    .package-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .package-title {
+        font-size: 1.8rem;
+    }
+    
+    .price {
+        font-size: 2.5rem;
+    }
+    
+    .hero {
+        padding-top: 5rem;
+        min-height: 60vh; /* Weniger Höhe auf Tablets */
+    }
+}
+
+/* Mobile Breakpoint */
+@media screen and (max-width: 700px) {
+    .hero {
+        padding: 1rem;
+        padding-top: 5rem;
+        min-height: 50vh; /* Goldener Schnitt für Mobile angepasst */
+    }
+    
+    .packages-container {
+        grid-template-columns: 1fr; /* Mobile: Alle übereinander */
+        gap: 1.5rem;
+        padding: 1rem 0;
+        max-width: 350px;
+    }
+    
+    .package-card {
+        padding: 1.5rem 1rem;
+        margin: 0 auto;
+    }
+    
+    .package-title {
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+    }
+    
+    .price {
+        font-size: 2.2rem;
+    }
+    
+    .package-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .hero-description {
+        margin-bottom: 2rem;
+    }
+    
+    .message-container {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        max-width: none;
+    }
+}
+
+/* Ultra-wide screens */
+@media screen and (min-width: 1400px) {
+    .packages-container {
+        max-width: 1400px;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* High DPI / Retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .package-card {
+        border-width: 1px;
+    }
+}
+
+/* Dark mode support (falls gewünscht) */
+@media (prefers-color-scheme: dark) {
+    .hero-description {
+        color: rgba(255, 255, 255, 0.95);
+    }
+}

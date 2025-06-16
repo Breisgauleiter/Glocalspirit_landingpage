@@ -786,3 +786,34 @@ footer{
     scale: 1.1;
     outline: 4px rgba(35, 231, 249, 0.19) solid;
 }
+
+/* Spenden-Form Link Styling (für den Spenden-Button) */
+.spenden-form-link {
+    /* Alle bestehenden button styles übernehmen */
+    overflow: hidden;
+    all: unset;
+    cursor: pointer;
+    border-radius: 10%;
+    outline: 4px rgba(253, 253, 253, 0.162) solid;
+    background-color: transparent;
+    aspect-ratio: 1/1;
+    height: 200px;
+    width: 200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+
+    .hand_svg{
+        scale: 1.5;
+        opacity: 90%;
+        pointer-events: none;
+    }
+}
+
+.spenden-form-link:hover {
+    border-radius: 10%;
+    outline: 4px rgba(35, 231, 249, 0.19) solid;
+}

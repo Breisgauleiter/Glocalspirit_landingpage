@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de_DE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>glocalSpirit unterstützen - Abo-Pakete</title>
+    <meta name="description" content="Unterstützen Sie glocalSpirit mit einem monatlichen Abo. Wählen Sie zwischen Support (€20), Premium (€50) oder Celebration (€100) Paketen.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="glocalSpirit Abo-Pakete">
+    <meta property="og:description" content="Monatliche Unterstützung für bewusste Vernetzung und spirituelle Gemeinschaft.">
+    <meta property="og:type" content="website">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" media="screen and (max-width: 800px)" href="Styles/tablets.css">
+    <link rel="stylesheet" media="screen and (max-width: 700px)" href="Styles/smallscreens.css">
+    <link rel="stylesheet" href="Styles/spendenformular.css">
+    
+    <!-- Scripts -->
+    <script src="JS_Files/app.js" defer></script>
+    <script src="JS_Files/config.js" defer></script>
+    
+    <!-- GSAP Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathHelper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+    
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="JS_Files/spenden-animation.js" defer></script>
+    <script src="JS_Files/stripe-integration.js" defer></script>
+    <script src="JS_Files/spenden-validation.js" defer></script>
+</head>
+<body id="body">
+    <div class="background-layer"></div>
+    <header class="header">
+        <input type="checkbox" id="imenu__toggle" class="menu__toggle">
+        <label for="imenu__toggle" class="toggle__label">
+            <img src="Assets/hamburger.svg" alt="hamburger_menu">
+            <img src="Assets/cross.svg" alt="menu__toggle--closed">
+        </label>
+        <nav class="header__nav">
+            <div class="header__links">
+                <a href="index.html" class="header__logo">
+                    <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="header__logo-img">
+                </a>
+                <a href="index.html" class="header__link">Startseite</a>
+                <a href="index.html#about" class="header__link">Über uns</a>
+                <a href="mailto:info@glocalspirit.de" class="header__link">Kontakt</a>
+                <a href="index.html#roadmap" class="header__link">Roadmap</a>
+            </div>
+            <div class="header__beta-tester">
+                <a href="index.html" class="header__beta-link">← Zurück</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <main class="main">
+                <section class="hero">
+                    <h1 class="form-title">glocalSpirit Unterstützen</h1>
+                    <p class="hero-description">
+                        Werde Teil der Bewegung für bewusste Vernetzung und spirituelle Gemeinschaft. 
+                        Wähle dein Abo-Paket und unterstütze uns dabei, eine neue Form der Zusammenarbeit zu schaffen.
+                    </p>
+                    
+                    <div class="packages-container">
+                        <!-- Support Paket -->
+                        <div class="package-card support-package" data-price-id="price_support">
+                            <div class="package-header">
+                                <h2 class="package-title">SUPPORT</h2>
+                                <p class="package-description">Beschreibung des Support-Pakets</p>
+                            </div>
+                            <div class="package-features">
+                                <ul>
+                                    <li>Merkmal eins</li>
+                                    <li>Merkmal zwei</li>
+                                    <li>Merkmal drei</li>
+                                </ul>
+                            </div>
+                            <div class="package-price">
+                                <span class="price">€20</span>
+                                <span class="period">/Monat</span>
+                            </div>
+                            <button class="package-button" data-package="support" data-price-id="price_support">
+                                <span class="button-text">JETZT BUCHEN</span>
+                                <span class="button-loading" style="display: none;">
+                                    <span class="spinner"></span>
+                                    Wird geladen...
+                                </span>
+                            </button>
+                        </div>
+
+                        <!-- Premium Paket -->
+                        <div class="package-card premium-package" data-price-id="price_premium">
+                            <div class="package-header">
+                                <h2 class="package-title">PREMIUM</h2>
+                                <p class="package-description">Beschreibung des Premium-Pakets</p>
+                            </div>
+                            <div class="package-features">
+                                <ul>
+                                    <li>Merkmal eins</li>
+                                    <li>Merkmal zwei</li>
+                                    <li>Merkmal drei</li>
+                                </ul>
+                            </div>
+                            <div class="package-price">
+                                <span class="price">€50</span>
+                                <span class="period">/Monat</span>
+                            </div>
+                            <button class="package-button" data-package="premium" data-price-id="price_premium">
+                                <span class="button-text">JETZT BUCHEN</span>
+                                <span class="button-loading" style="display: none;">
+                                    <span class="spinner"></span>
+                                    Wird geladen...
+                                </span>
+                            </button>
+                        </div>
+
+                        <!-- Celebration Paket -->
+                        <div class="package-card celebration-package" data-price-id="price_celebration">
+                            <div class="package-header">
+                                <h2 class="package-title">CELEBRATION</h2>
+                                <p class="package-description">Beschreibung des Celebration-Pakets</p>
+                            </div>
+                            <div class="package-features">
+                                <ul>
+                                    <li>Merkmal eins</li>
+                                    <li>Merkmal zwei</li>
+                                    <li>Merkmal drei</li>
+                                </ul>
+                            </div>
+                            <div class="package-price">
+                                <span class="price">€100</span>
+                                <span class="period">/Monat</span>
+                            </div>
+                            <button class="package-button" data-package="celebration" data-price-id="price_celebration">
+                                <span class="button-text">JETZT BUCHEN</span>
+                                <span class="button-loading" style="display: none;">
+                                    <span class="spinner"></span>
+                                    Wird geladen...
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Error/Success Messages -->
+                    <div id="message-container" class="message-container" style="display: none;">
+                        <div id="error-message" class="error-message" style="display: none;">
+                            <span class="message-text"></span>
+                            <button class="message-close" onclick="hideMessage()">&times;</button>
+                        </div>
+                        <div id="success-message" class="success-message" style="display: none;">
+                            <span class="message-text"></span>
+                            <button class="message-close" onclick="hideMessage()">&times;</button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
