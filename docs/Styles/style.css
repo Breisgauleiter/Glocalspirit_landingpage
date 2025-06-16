@@ -758,3 +758,31 @@ footer{
         text-decoration: underline;
     }
 }
+
+/* Test-Form Link Styling (für den Testen-Button) */
+.test-form-link {
+    overflow: hidden;
+    all: unset;
+    cursor: pointer;
+    border-radius: 10%;
+    outline: 4px rgba(253, 253, 253, 0.162) solid;
+    background-color: transparent;
+    aspect-ratio: 1/1;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    
+    .door_svg {
+        scale: 0.7;
+        opacity: 90%;
+        pointer-events: none;
+    }
+}
+
+.test-form-link:hover {
+    scale: 1.1;
+    outline: 4px rgba(35, 231, 249, 0.19) solid;
+}
