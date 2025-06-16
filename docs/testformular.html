@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de_DE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beta-Tester werden - glocalSpirit</title>
+    <!-- css -->
+    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" media="screen and (max-width: 800px)" href="Styles/tablets.css">
+    <link rel="stylesheet" media="screen and (max-width: 700px)" href="Styles/smallscreens.css">
+    <link rel="stylesheet" href="Styles/testformular.css">
+    <!-- scripts -->
+    <script src="JS_Files/app.js" defer></script>
+    <!-- gsap dependencies-->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathHelper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+    <!-- gsap animations -->
+    <script src="JS_Files/animations.js" defer></script>
+    <script src="JS_Files/form-animation.js" defer></script>
+</head>
+<body id="body">
+    <div class="background-layer"></div>
+    <header class="header">
+        <input type="checkbox" id="imenu__toggle" class="menu__toggle">
+        <label for="imenu__toggle" class="toggle__label">
+            <img src="Assets/hamburger.svg" alt="hamburger_menu">
+            <img src="Assets/cross.svg" alt="menu__toggle--closed">
+        </label>
+        <nav class="header__nav">
+            <div class="header__links">
+                <a href="index.html" class="header__logo">
+                    <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="header__logo-img">
+                </a>
+                <a href="index.html" class="header__link">Startseite</a>
+                <a href="#" class="header__link">Über uns</a>
+                <a href="#" class="header__link">Kontakt</a>
+                <a href="index.html#roadmap" class="header__link">Roadmap</a>
+            </div>
+            <div class="header__beta-tester">
+                <a href="testformular.html" class="header__beta-link header__beta-link--active">Beta Testen</a>
+            </div>
+        </nav>
+    </header>
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <main class="main">
+                <section class="hero">
+                    <div class="form-container hero__form">
+                        <h1 class="form-title">Testnutzer Werden</h1>
+                        <form class="testform" id="testForm">
+                            <div class="form-group">
+                                <label class="form-label" for="name">Name</label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="email">E-mail</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+                            
+                            <button type="submit" class="submit-button">SENDEN</button>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+/* Testnutzer Formular - Mit korrigierten CSS-Variablen */
+
+/* Hero Section zentriert das Formular */
+.hero {
+    min-height: calc(100vh - 80px); /* Abzug für Header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Fallback CSS Animation falls GSAP nicht lädt */
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form Container mit Triangle-ähnlichen Effekten */
+.form-container {
+    /* Glassmorphism mit festen Werten */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0px 30px rgba(69, 78, 197, 0.37);
+    
+    /* Größe und Positionierung */
+    width: 100%;
+    max-width: 500px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    
+    /* Animation wie Triangle */
+    transition: all 0.3s ease;
+    
+    /* Initial state für Animation - wird von GSAP überschrieben */
+    opacity: 0;
+    transform: translateY(50px);
+    
+    /* Fallback CSS Animation */
+    animation: slideUpFade 1.3s ease-out 0.5s forwards;
+}
+
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(69, 78, 197, 0.5);
+}
+
+/* Titel mit Gradient-Effekt wie auf Hauptseite */
+.form-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    font-family: "Syne", sans-serif;
+    
+    /* Gradient-Text wie Hero-Title */
+    background: radial-gradient(circle at 30%, #6E6BBF 31%, #FFC857 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Form Styling */
+.testform {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Form Groups */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Labels */
+.form-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+/* Input Fields mit Glassmorphism */
+.form-input {
+    padding: 1rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    font-size: 1rem;
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: "Saira", sans-serif;
+}
+
+.form-input:focus {
+    border-color: rgba(255, 200, 87, 0.8);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(255, 200, 87, 0.2);
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Submit Button mit Gradient */
+.submit-button {
+    background: linear-gradient(135deg, #6E6BBF 0%, #FFC857 100%);
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    font-family: "Syne", sans-serif;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.1);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding: 1rem;
+        min-height: calc(100vh - 60px);
+    }
+    
+    .form-container {
+        padding: 2rem 1.5rem;
+        max-width: 100%;
+    }
+    
+    .form-title {
+        font-size: 2rem;
+    }
+    
+    .submit-button {
+        padding: 0.875rem 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .form-title {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+        font-size: 1rem;
+    }
+    
+    .form-input {
+        padding: 0.875rem;
+    }
+    
+    .submit-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
