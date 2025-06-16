@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('testForm');
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
+    const newsletterCheckbox = document.getElementById('newsletter');
     const submitBtn = document.getElementById('submitBtn');
     const btnText = document.querySelector('.btn-text');
     const btnLoading = document.querySelector('.btn-loading');
@@ -121,8 +122,15 @@ document.addEventListener('DOMContentLoaded', function() {
         setLoadingState(true);
 
         try {
+            // Get form data including checkbox
+            const formData = {
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                newsletter: newsletterCheckbox.checked
+            };
+            
             // Simulate API call (replace with actual submission later)
-            await simulateFormSubmission();
+            await simulateFormSubmission(formData);
             
             // Show success message
             showSuccessMessage();
@@ -131,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
             form.reset();
             nameInput.classList.remove('success', 'error');
             emailInput.classList.remove('success', 'error');
+            newsletterCheckbox.checked = false;
             
         } catch (error) {
             console.error('Form submission error:', error);
@@ -141,9 +150,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Simulate form submission (replace with actual backend later)
-    function simulateFormSubmission() {
+    function simulateFormSubmission(formData) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
+                console.log('Form data to be submitted:', formData);
                 // Simulate 90% success rate
                 if (Math.random() > 0.1) {
                     resolve({ success: true });
