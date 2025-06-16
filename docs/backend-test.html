@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Test - glocalSpirit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .success { border-left: 4px solid #4CAF50; }
+        .error { border-left: 4px solid #f44336; }
+        .warning { border-left: 4px solid #ff9800; }
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #1976D2; }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+        .result-success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .result-error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>🧪 PHP Backend Test</h1>
+    <p>Diese Seite hilft beim Testen des PHP-Backends für das Testnutzer-Formular.</p>
+    
+    <div class="test-section warning">
+        <h3>⚠️ Wichtiger Hinweis</h3>
+        <p>Diese Test-Seite sollte nur während der Entwicklung verwendet und vor dem Produktivbetrieb entfernt werden!</p>
+    </div>
+    
+    <div class="test-section">
+        <h3>🔧 Backend-Konfiguration testen</h3>
+        <p>Teste verschiedene Aspekte des PHP-Backends:</p>
+        
+        <button onclick="testBackendConnection()">🌐 Backend-Verbindung testen</button>
+        <button onclick="testValidData()">✅ Gültige Daten senden</button>
+        <button onclick="testInvalidData()">❌ Ungültige Daten senden</button>
+        <button onclick="testRateLimit()">⏱️ Rate Limiting testen</button>
+    </div>
+    
+    <div class="test-section">
+        <h3>📝 Manueller Test</h3>
+        <p>Sende eigene Testdaten:</p>
+        
+        <div style="margin: 10px 0;">
+            <label>Name: </label>
+            <input type="text" id="testName" value="Test User" style="padding: 5px; margin: 5px;">
+        </div>
+        
+        <div style="margin: 10px 0;">
+            <label>E-Mail: </label>
+            <input type="email" id="testEmail" value="test@example.com" style="padding: 5px; margin: 5px;">
+        </div>
+        
+        <div style="margin: 10px 0;">
+            <label>
+                <input type="checkbox" id="testNewsletter" checked>
+                Newsletter
+            </label>
+        </div>
+        
+        <button onclick="sendManualTest()">📤 Manuell senden</button>
+    </div>
+    
+    <div id="result"></div>
+    
+    <div class="test-section">
+        <h3>📋 Test-Checkliste</h3>
+        <p>Überprüfe folgende Punkte:</p>
+        <ul>
+            <li>✅ PHP-Dateien auf Server hochgeladen</li>
+            <li>✅ config.php mit Teams Webhook URL konfiguriert</li>
+            <li>✅ Dateiberechtigungen gesetzt</li>
+            <li>✅ Teams-Kanal reagiert auf Test-Nachrichten</li>
+            <li>✅ E-Mails werden korrekt versendet</li>
+            <li>✅ Log-Datei wird erstellt und beschrieben</li>
+        </ul>
+    </div>
+
+    <script>
+        // Backend URL aus der Konfiguration oder Standard
+        const backendUrl = window.getBackendUrl ? getBackendUrl() : 'submit_testuser.php';
+        
+        function showResult(message, isSuccess = true) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = message;
+            resultDiv.className = isSuccess ? 'result-success' : 'result-error';
+        }
+        
+        async function testBackendConnection() {
+            showResult('🔄 Teste Backend-Verbindung...');
+            
+            try {
+                const response = await fetch(backendUrl, {
+                    method: 'OPTIONS'
+                });
+                
+                if (response.ok) {
+                    showResult('✅ Backend ist erreichbar!\nHTTP Status: ' + response.status);
+                } else {
+                    showResult('❌ Backend-Verbindung fehlgeschlagen!\nHTTP Status: ' + response.status, false);
+                }
+            } catch (error) {
+                showResult('❌ Backend-Verbindung fehlgeschlagen!\nFehler: ' + error.message, false);
+            }
+        }
+        
+        async function testValidData() {
+            showResult('🔄 Sende gültige Testdaten...');
+            
+            const testData = {
+                name: 'Max Mustermann',
+                email: 'max.mustermann@example.com',
+                newsletter: true,
+                timestamp: new Date().toISOString(),
+                source: 'Backend_Test_Page'
+            };
+            
+            try {
+                const response = await fetch(backendUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showResult('✅ Gültige Daten erfolgreich versendet!\n\nResponse:\n' + JSON.stringify(result, null, 2));
+                } else {
+                    showResult('❌ Fehler beim Senden gültiger Daten!\n\nResponse:\n' + JSON.stringify(result, null, 2), false);
+                }
+            } catch (error) {
+                showResult('❌ Fehler beim Senden gültiger Daten!\nFehler: ' + error.message, false);
+            }
+        }
+        
+        async function testInvalidData() {
+            showResult('🔄 Teste Validierung mit ungültigen Daten...');
+            
+            const invalidData = {
+                name: '', // Leerer Name
+                email: 'invalid-email', // Ungültige E-Mail
+                newsletter: 'maybe' // Ungültiger Boolean-Wert
+            };
+            
+            try {
+                const response = await fetch(backendUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(invalidData)
+                });
+                
+                const result = await response.json();
+                
+                if (!response.ok) {
+                    showResult('✅ Validierung funktioniert! Ungültige Daten wurden korrekt abgelehnt.\n\nResponse:\n' + JSON.stringify(result, null, 2));
+                } else {
+                    showResult('❌ Validierung fehlerhaft! Ungültige Daten wurden akzeptiert.\n\nResponse:\n' + JSON.stringify(result, null, 2), false);
+                }
+            } catch (error) {
+                showResult('❌ Fehler beim Testen der Validierung!\nFehler: ' + error.message, false);
+            }
+        }
+        
+        async function testRateLimit() {
+            showResult('🔄 Teste Rate Limiting (5 schnelle Requests)...');
+            
+            const testData = {
+                name: 'Rate Limit Test',
+                email: 'ratelimit@example.com',
+                newsletter: false
+            };
+            
+            let results = [];
+            
+            for (let i = 1; i <= 6; i++) {
+                try {
+                    const response = await fetch(backendUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({...testData, name: testData.name + ' #' + i})
+                    });
+                    
+                    results.push(`Request ${i}: HTTP ${response.status}`);
+                    
+                    if (response.status === 429) {
+                        results.push('✅ Rate Limiting funktioniert!');
+                        break;
+                    }
+                } catch (error) {
+                    results.push(`Request ${i}: Fehler - ${error.message}`);
+                }
+                
+                // Kurze Pause zwischen Requests
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            
+            showResult('Rate Limiting Test abgeschlossen:\n\n' + results.join('\n'));
+        }
+        
+        async function sendManualTest() {
+            const name = document.getElementById('testName').value;
+            const email = document.getElementById('testEmail').value;
+            const newsletter = document.getElementById('testNewsletter').checked;
+            
+            showResult('🔄 Sende manuelle Testdaten...');
+            
+            const testData = {
+                name: name,
+                email: email,
+                newsletter: newsletter,
+                timestamp: new Date().toISOString(),
+                source: 'Manual_Backend_Test'
+            };
+            
+            try {
+                const response = await fetch(backendUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showResult('✅ Manuelle Testdaten erfolgreich versendet!\n\nResponse:\n' + JSON.stringify(result, null, 2));
+                } else {
+                    showResult('❌ Fehler beim Senden manueller Testdaten!\n\nResponse:\n' + JSON.stringify(result, null, 2), false);
+                }
+            } catch (error) {
+                showResult('❌ Fehler beim Senden manueller Testdaten!\nFehler: ' + error.message, false);
+            }
+        }
+        
+        // Auto-Test beim Laden der Seite
+        window.addEventListener('load', function() {
+            showResult('🔧 Backend-Test-Seite geladen. Bereit für Tests!');
+        });
+    </script>
+</body>
+</html>

@@ -129,11 +129,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 newsletter: newsletterCheckbox.checked
             };
             
-            // Simulate API call (replace with actual submission later)
-            await simulateFormSubmission(formData);
-            
-            // Show success message
-            showSuccessMessage();
+            // Submit to backend using the new integration
+            try {
+                await submitFormToBackend(formData);
+                
+                // Show success message
+                showSuccessMessage();
+                
+            } catch (backendError) {
+                console.error('Backend submission failed, using fallback:', backendError);
+                
+                // Fallback to simulation if backend fails
+                try {
+                    await simulateFormSubmission(formData);
+                    showSuccessMessage();
+                } catch (fallbackError) {
+                    throw fallbackError;
+                }
+            }
             
             // Reset form
             form.reset();
@@ -149,7 +162,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Simulate form submission (replace with actual backend later)
+    // Real form submission using Power Automate backend
+    async function submitFormToBackend(formData) {
+        // Initialize backend integration
+        const backend = new FormBackend();
+        
+        // TODO: Uncomment and replace with your actual Power Automate URL
+        // backend.setPowerAutomateUrl('YOUR_POWER_AUTOMATE_HTTP_TRIGGER_URL');
+        
+        // Submit to backend
+        return await backend.submitForm(formData);
+    }
+    
+    // Fallback simulation for testing (will be used in development mode)
     function simulateFormSubmission(formData) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {

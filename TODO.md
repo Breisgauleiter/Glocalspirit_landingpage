@@ -29,11 +29,23 @@
   - [x] Hover-States und Animationen beibehalten
   - [x] CSS-Styling für Link-Button
 
-- [ ] **Form-Backend Integration**
-  - [ ] Netlify Forms oder anderer Service implementieren
-  - [ ] Form validation (client-side) hinzufügen
-  - [ ] Success/Error states implementieren
-  - [ ] Email-Versand konfigurieren
+- [x] **Form-Backend Integration**
+  - [x] PHP-Backend für Strato-Hosting erstellt
+  - [x] Teams-Integration per Incoming Webhook implementiert
+  - [x] E-Mail-Bestätigung für Testnutzer eingerichtet
+  - [x] Form validation (server-side) implementiert
+  - [x] Success/Error states implementiert
+  - [x] Rate Limiting und Sicherheitsfeatures hinzugefügt
+  - [x] Logging-System für Anmeldungen erstellt
+  - [x] Development-Simulation für lokale Tests
+  - [ ] **NÄCHSTER SCHRITT: Backend auf Strato deployen**
+    - [ ] Teams Incoming Webhook URL erstellen und konfigurieren
+    - [ ] PHP-Dateien auf Strato-Server hochladen
+    - [ ] config.php mit echter Webhook-URL und E-Mail-Einstellungen anpassen
+    - [ ] JS_Files/config.js mit echter Backend-URL konfigurieren
+    - [ ] Backend mit backend-test.html testen
+    - [ ] Produktiv-Test mit echtem Formular durchführen
+    - [ ] Optional: backend-test.html vor Produktivbetrieb entfernen
 
 ### Spenden-Button Funktionalität
 - [ ] **Payment-Integration wählen**
@@ -233,3 +245,93 @@
 ---
 
 *Letzte Aktualisierung: 16. Juni 2025 - Beta-Tester Formular fertiggestellt*
+
+---
+
+## 🚀 **SOFORTIGE NÄCHSTE SCHRITTE - Backend Deployment**
+
+### 1️⃣ Teams Webhook erstellen (5 Min)
+- [ ] **Teams-Kanal öffnen** (z.B. "Testnutzer" oder gewünschter Kanal)
+- [ ] **Kanal-Menü** → drei Punkte klicken → **"Connectors"** 
+- [ ] **"Incoming Webhook" suchen** → **"Konfigurieren"**
+- [ ] **Name eingeben:** "glocalSpirit Testnutzer Anmeldungen"
+- [ ] **Avatar hochladen** (optional)
+- [ ] **"Erstellen" klicken**
+- [ ] **Webhook-URL kopieren** (Format: `https://outlook.office.com/webhook/...`)
+- [ ] **Test-Nachricht senden** mit curl:
+  ```bash
+  curl -X POST "WEBHOOK_URL" -H "Content-Type: application/json" -d '{"text":"Test von glocalSpirit Backend"}'
+  ```
+
+### 2️⃣ Strato-Hosting vorbereiten (5 Min)
+- [ ] **Strato-Control-Panel einloggen**
+- [ ] **Webspace-Verwaltung** öffnen
+- [ ] **File-Manager** oder **FTP-Zugang** vorbereiten
+- [ ] **Domain prüfen** (z.B. https://deine-domain.de)
+- [ ] **PHP-Version prüfen** (sollte 7.4+ oder 8.x sein)
+
+### 3️⃣ Backend-Dateien hochladen (10 Min)
+- [ ] **Folgende Dateien auf Strato hochladen:**
+  - [ ] `docs/config.php` → **ROOT-Verzeichnis** deiner Domain
+  - [ ] `docs/submit_testuser.php` → **ROOT-Verzeichnis** deiner Domain  
+  - [ ] `docs/.htaccess` → **ROOT-Verzeichnis** deiner Domain
+  - [ ] `docs/backend-test.html` → **ROOT-Verzeichnis** (optional, für Tests)
+
+### 4️⃣ Konfiguration anpassen (10 Min)
+- [ ] **config.php bearbeiten:**
+  ```php
+  // Zeile 11: Teams Webhook URL eintragen
+  define('TEAMS_WEBHOOK_URL', 'DEINE_ECHTE_WEBHOOK_URL_HIER');
+  
+  // Zeile 17-18: E-Mail-Einstellungen
+  define('SENDER_EMAIL', 'no-reply@deine-domain.de');
+  define('SENDER_NAME', 'glocalSpirit Team');
+  
+  // Zeile 33-36: Erlaubte Domains
+  $allowed_origins = [
+      'https://deine-domain.de',
+      'https://www.deine-domain.de'
+  ];
+  ```
+
+- [ ] **JS_Files/config.js bearbeiten:**
+  ```javascript
+  // Zeile 8: Backend URL anpassen
+  BACKEND_URL: 'https://deine-domain.de/submit_testuser.php',
+  ```
+
+### 5️⃣ Testing und Validierung (10 Min)
+- [ ] **Backend-Test-Seite öffnen:** `https://deine-domain.de/backend-test.html`
+- [ ] **"Backend-Verbindung testen" klicken** → sollte ✅ zeigen
+- [ ] **"Gültige Daten senden" klicken** → Teams-Nachricht prüfen
+- [ ] **E-Mail-Postfach prüfen** → Bestätigungsmail sollte ankommen
+- [ ] **Teams-Kanal prüfen** → Neue Anmeldung sollte sichtbar sein
+
+### 6️⃣ Produktiv-Test (5 Min)
+- [ ] **Testformular öffnen:** `https://deine-domain.de/testformular.html`
+- [ ] **Echte Daten eingeben** und absenden
+- [ ] **Teams + E-Mail prüfen** 
+- [ ] **Log-Datei prüfen:** `https://deine-domain.de/testnutzer_log.txt` (sollte Error 403 zeigen = korrekt geschützt)
+
+### 7️⃣ Aufräumen (2 Min)
+- [ ] **backend-test.html löschen** (optional, für Sicherheit)
+- [ ] **Frontend auf neue Backend-URL testen**
+- [ ] **Dokumentation für zukünftige Änderungen bereitlegen**
+
+---
+
+## 📋 **Backend-Integration Checkliste** 
+*(Alle Punkte müssen ✅ sein bevor Live-Gang)*
+
+- [ ] ✅ Teams erhält automatisch Nachrichten bei neuen Anmeldungen
+- [ ] ✅ Testnutzer erhalten Bestätigungsmail
+- [ ] ✅ Rate Limiting funktioniert (max. 5 Requests pro 10 Min pro IP)
+- [ ] ✅ Ungültige Daten werden korrekt abgelehnt
+- [ ] ✅ Log-Datei wird geschrieben aber ist vor Zugriff geschützt
+- [ ] ✅ Frontend zeigt Erfolgs-/Fehlermeldungen korrekt an
+- [ ] ✅ CORS-Schutz ist aktiv und funktioniert
+- [ ] ✅ Formular funktioniert auf Desktop und Mobile
+
+**📧 Bei Problemen:** Siehe `BACKEND_SETUP.md` und `QUICK_START.md` für detaillierte Hilfe
+
+---

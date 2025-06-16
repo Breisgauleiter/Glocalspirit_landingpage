@@ -1,0 +1,127 @@
+{
+  "description": "Beispiel-Request Bodies für PHP Backend Testing",
+  "examples": [
+    {
+      "name": "Standard-Anmeldung",
+      "request": {
+        "name": "Max Mustermann",
+        "email": "max.mustermann@example.com",
+        "newsletter": true,
+        "timestamp": "2025-06-16T10:30:00.000Z",
+        "source": "glocalSpirit_Landing_Page"
+      },
+      "description": "Normale Anmeldung mit Newsletter-Subscription"
+    },
+    {
+      "name": "Anmeldung ohne Newsletter",
+      "request": {
+        "name": "Anna Schmidt",
+        "email": "anna.schmidt@test.de",
+        "newsletter": false,
+        "timestamp": "2025-06-16T10:35:00.000Z",
+        "source": "glocalSpirit_Landing_Page"
+      },
+      "description": "Anmeldung ohne Newsletter-Subscription"
+    },
+    {
+      "name": "Internationaler Nutzer",
+      "request": {
+        "name": "John O'Connor-Smith",
+        "email": "john.oconnor@international.com",
+        "newsletter": true,
+        "timestamp": "2025-06-16T10:40:00.000Z",
+        "source": "glocalSpirit_Landing_Page"
+      },
+      "description": "Internationaler Name mit Sonderzeichen und Bindestrichen"
+    },
+    {
+      "name": "Deutsche Umlaute",
+      "request": {
+        "name": "Müller-Weiß",
+        "email": "mueller.weiss@example.de",
+        "newsletter": false,
+        "timestamp": "2025-06-16T10:45:00.000Z",
+        "source": "glocalSpirit_Landing_Page"
+      },
+      "description": "Deutsche Umlaute und Bindestriche im Namen"
+    },
+    {
+      "name": "Minimaler Name",
+      "request": {
+        "name": "Li",
+        "email": "li@example.cn",
+        "newsletter": false,
+        "timestamp": "2025-06-16T10:50:00.000Z",
+        "source": "glocalSpirit_Landing_Page"
+      },
+      "description": "Minimaler gültiger Name (2 Zeichen)"
+    }
+  ],
+  "invalid_examples": [
+    {
+      "name": "Leerer Name",
+      "request": {
+        "name": "",
+        "email": "test@example.com",
+        "newsletter": true
+      },
+      "expected_error": "Name darf nicht leer sein"
+    },
+    {
+      "name": "Ungültige E-Mail",
+      "request": {
+        "name": "Test User",
+        "email": "invalid-email",
+        "newsletter": true
+      },
+      "expected_error": "E-Mail-Adresse ist ungültig"
+    },
+    {
+      "name": "Name zu kurz",
+      "request": {
+        "name": "A",
+        "email": "test@example.com",
+        "newsletter": true
+      },
+      "expected_error": "Name muss mindestens 2 Zeichen lang sein"
+    },
+    {
+      "name": "Name mit ungültigen Zeichen",
+      "request": {
+        "name": "Test<script>alert('hack')</script>",
+        "email": "test@example.com",
+        "newsletter": true
+      },
+      "expected_error": "Name enthält ungültige Zeichen"
+    }
+  ],
+  "testing_instructions": {
+    "curl_example": "curl -X POST 'https://deine-domain.de/submit_testuser.php' -H 'Content-Type: application/json' -d '{\"name\":\"Test User\",\"email\":\"test@example.com\",\"newsletter\":true,\"timestamp\":\"2025-06-16T10:30:00.000Z\",\"source\":\"glocalSpirit_Landing_Page\"}'",
+    "php_test": "Verwende die backend-test.html Seite für interaktive Tests",
+    "frontend_test": "Öffne die Browser-Konsole und verwende: new FormBackend().submitForm({name: 'Test', email: 'test@example.com', newsletter: true})",
+    "teams_webhook_test": "curl -X POST 'TEAMS_WEBHOOK_URL' -H 'Content-Type: application/json' -d '{\"text\":\"Test Nachricht von curl\"}'",
+    "rate_limit_test": "Sende 6 schnelle Requests um Rate Limiting zu testen"
+  },
+  "strato_deployment": {
+    "files_to_upload": [
+      "config.php",
+      "submit_testuser.php",
+      ".htaccess",
+      "backend-test.html (optional, nur für Testing)"
+    ],
+    "file_permissions": {
+      "config.php": "644",
+      "submit_testuser.php": "644",
+      ".htaccess": "644",
+      "testnutzer_log.txt": "666 (wird automatisch erstellt)"
+    },
+    "required_php_functions": [
+      "file_get_contents",
+      "stream_context_create",
+      "mail",
+      "json_decode",
+      "json_encode",
+      "filter_var"
+    ]
+  }
+}
