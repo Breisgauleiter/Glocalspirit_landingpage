@@ -1,0 +1,74 @@
+{
+  "testform": {
+    "title": "Devenir testeur bêta",
+    "labels": {
+      "name": "Nom",
+      "email": "E-mail",
+      "newsletter": "Recevoir des mises à jour par e-mail ?"
+    },
+    "buttons": {
+      "submit": "ENVOYER",
+      "sending": "ENVOI EN COURS..."
+    },
+    "messages": {
+      "success": {
+        "title": "Inscription réussie !",
+        "text": "Merci de vous être inscrit comme testeur bêta. Nous vous contacterons bientôt !"
+      },
+      "error": {
+        "title": "Erreur lors de l'envoi",
+        "network": "Erreur réseau - veuillez réessayer plus tard.",
+        "validation": "Veuillez vérifier vos saisies.",
+        "general": "Une erreur inattendue s'est produite."
+      }
+    }
+  },
+  "donationform": {
+    "title": "Soutenir glocalSpirit",
+    "description": "Rejoignez le mouvement pour la mise en réseau consciente et la communauté spirituelle. Choisissez votre forfait de soutien mensuel :",
+    "packages": {
+      "support": {
+        "title": "SOUTIEN",
+        "description": "Soutien de base pour la vision",
+        "price": "€20",
+        "period": "/mois",
+        "features": [
+          "Accès anticipé à la bêta",
+          "Mises à jour communautaires",
+          "Support de base"
+        ]
+      },
+      "premium": {
+        "title": "PREMIUM",
+        "description": "Intégration + mentor de soutien personnel",
+        "price": "€44",
+        "period": "/mois",
+        "features": [
+          "Toutes les fonctionnalités Early Bird",
+          "Mentor de soutien personnel",
+          "Surprises spéciales"
+        ]
+      },
+      "business": {
+        "title": "BUSINESS",
+        "description": "Premium + envoi newsletter + tableau d'affichage",
+        "price": "€55",
+        "period": "/mois",
+        "features": [
+          "Toutes les fonctionnalités Premium",
+          "Envoi de newsletter",
+          "Tableau d'affichage",
+          "Conseil stratégique"
+        ]
+      }
+    },
+    "buttons": {
+      "book": "RÉSERVER MAINTENANT",
+      "loading": "Chargement..."
+    }
+  },
+  "cta": {
+    "testuser": "DEVENIR TESTEUR BÊTA",
+    "donate": "FAIRE UN DON"
+  }
+}

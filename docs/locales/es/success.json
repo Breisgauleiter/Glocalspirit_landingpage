@@ -1,0 +1,23 @@
+{
+  "success": {
+    "title": "¡Pago exitoso!",
+    "subtitle": "Gracias por tu apoyo",
+    "description": "Tu pago ha sido procesado exitosamente. ¡Ahora eres parte de la comunidad glocalSpirit!",
+    "details": {
+      "title": "Detalles de tu suscripción:",
+      "items": [
+        "Tu suscripción está activa",
+        "Recibirás un correo de confirmación",
+        "Las primeras actualizaciones de la comunidad seguirán en los próximos días"
+      ]
+    },
+    "subscription": {
+      "title": "¿Qué pasa después?",
+      "text": "Serás automáticamente agregado a nuestra comunidad y tendrás acceso a contenido exclusivo y actualizaciones."
+    },
+    "actions": {
+      "home": "Ir al inicio",
+      "contact": "Contacto"
+    }
+  }
+}

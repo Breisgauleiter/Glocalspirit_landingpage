@@ -1,0 +1,74 @@
+{
+  "testform": {
+    "title": "Convertirse en probador beta",
+    "labels": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "newsletter": "¿Recibir actualizaciones por correo?"
+    },
+    "buttons": {
+      "submit": "ENVIAR",
+      "sending": "ENVIANDO..."
+    },
+    "messages": {
+      "success": {
+        "title": "¡Registro exitoso!",
+        "text": "Gracias por registrarte como probador beta. ¡Nos pondremos en contacto contigo pronto!"
+      },
+      "error": {
+        "title": "Error al enviar",
+        "network": "Error de red - por favor inténtalo de nuevo más tarde.",
+        "validation": "Por favor verifica tus entradas.",
+        "general": "Ocurrió un error inesperado."
+      }
+    }
+  },
+  "donationform": {
+    "title": "Apoyar glocalSpirit",
+    "description": "Únete al movimiento por la conexión consciente y la comunidad espiritual. Elige tu paquete de apoyo mensual:",
+    "packages": {
+      "support": {
+        "title": "APOYO",
+        "description": "Apoyo básico para la visión",
+        "price": "€20",
+        "period": "/mes",
+        "features": [
+          "Acceso temprano a la beta",
+          "Actualizaciones de la comunidad",
+          "Soporte básico"
+        ]
+      },
+      "premium": {
+        "title": "PREMIUM",
+        "description": "Incorporación + mentor de apoyo personal",
+        "price": "€44",
+        "period": "/mes",
+        "features": [
+          "Todas las características Early Bird",
+          "Mentor de apoyo personal",
+          "Sorpresas especiales"
+        ]
+      },
+      "business": {
+        "title": "BUSINESS",
+        "description": "Premium + envío de newsletter + tablón de anuncios",
+        "price": "€55",
+        "period": "/mes",
+        "features": [
+          "Todas las características Premium",
+          "Envío de newsletter",
+          "Tablón de anuncios",
+          "Consultoría estratégica"
+        ]
+      }
+    },
+    "buttons": {
+      "book": "RESERVAR AHORA",
+      "loading": "Cargando..."
+    }
+  },
+  "cta": {
+    "testuser": "CONVERTIRSE EN PROBADOR BETA",
+    "donate": "DONAR"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "roadmap": "Feuille de route",
+    "contact": "Contact",
+    "beta_test": "Rejoindre Beta",
+    "back": "← Retour"
+  },
+  "footer": {
+    "copyright": "© 2025 GlocalSpirit. Tous droits réservés",
+    "privacy": "Confidentialité",
+    "imprint": "Mentions légales",
+    "email": "info@glocalspirit.de",
+    "tagline": "Un réseau de sens, pas de bruit"
+  }
+}
