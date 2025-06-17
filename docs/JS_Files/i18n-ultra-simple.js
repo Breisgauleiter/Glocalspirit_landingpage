@@ -573,6 +573,70 @@ class UltraSimpleI18n {
             select.style.top = '16px';
             select.style.right = '24px';
             select.style.zIndex = '9999';
+            select.style.background = 'rgba(255, 255, 255, 0.1)';
+            select.style.border = '1px solid rgba(85, 166, 217, 0.3)';
+            select.style.color = 'rgb(85, 166, 217)';
+            select.style.padding = '0.2rem 0.5rem';
+            select.style.borderRadius = '4px';
+            select.style.fontFamily = '"Syne", sans-serif';
+            select.style.fontSize = 'clamp(0.8rem, 1.5vw, 1rem)';
+            select.style.fontWeight = '400';
+            select.style.letterSpacing = 'clamp(2px, 0.3vw, 4px)';
+            select.style.filter = 'drop-shadow(0 0 4.8px rgb(85, 166, 217))';
+            select.style.transition = 'all 0.3s ease-in-out';
+            select.style.backdropFilter = 'blur(8px)';
+            
+            // Option-Styles für das Dropdown
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = `
+                #language-select option {
+                    background-color: rgba(12, 12, 34, 0.95) !important;
+                    color: rgb(85, 166, 217) !important;
+                    padding: 0.3rem 0.5rem !important;
+                    border: none !important;
+                    font-family: "Syne", sans-serif !important;
+                    font-size: 0.9rem !important;
+                    letter-spacing: 2px !important;
+                }
+                #language-select option:hover,
+                #language-select option:focus,
+                #language-select option:active,
+                #language-select option:checked,
+                #language-select option[selected] {
+                    background-color: rgba(85, 166, 217, 0.3) !important;
+                    background: rgba(85, 166, 217, 0.3) !important;
+                    color: rgb(255, 255, 255) !important;
+                }
+                #language-select option:disabled {
+                    background-color: rgba(12, 12, 34, 0.7) !important;
+                    color: rgba(85, 166, 217, 0.5) !important;
+                }
+                #language-select:focus {
+                    outline: 2px solid rgb(255, 159, 85);
+                    outline-offset: 2px;
+                }
+                /* Zusätzliche Browser-spezifische Overrides */
+                select#language-select option {
+                    background-color: rgba(12, 12, 34, 0.95) !important;
+                    color: rgb(85, 166, 217) !important;
+                }
+                select#language-select option:hover,
+                select#language-select option:focus {
+                    background-color: rgba(85, 166, 217, 0.3) !important;
+                    color: rgb(255, 255, 255) !important;
+                }
+            `;
+            document.head.appendChild(styleSheet);
+            
+            // Hover-Effekt
+            select.addEventListener('mouseenter', () => {
+                select.style.color = 'rgb(255, 255, 255)';
+                select.style.transform = 'translateY(-1px)';
+            });
+            select.addEventListener('mouseleave', () => {
+                select.style.color = 'rgb(85, 166, 217)';
+                select.style.transform = 'translateY(0)';
+            });
             header.appendChild(select);
         }
         select.value = this.currentLanguage;

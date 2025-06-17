@@ -144,6 +144,44 @@
 
 ---
 
+## 🌍 **INTERNATIONALISIERUNG IMPRESSUM/DATENSCHUTZ** *(Optional - später)*
+
+### Rechtliche Seiten übersetzen
+- [ ] **Englische Versionen erstellen**
+  - [ ] `docs/impressum-en.html` - English Imprint/Legal Notice
+  - [ ] `docs/privacy-en.html` - English Privacy Policy
+  - [ ] Internationale rechtliche Anforderungen berücksichtigen
+  - [ ] UK GDPR vs EU GDPR Unterschiede beachten
+
+- [ ] **Footer-Navigation erweitern**
+  - [ ] Sprachauswahl für Impressum/Datenschutz implementieren
+  - [ ] Links je nach aktiver Sprache anzeigen
+  - [ ] URL-Struktur: `/impressum` vs `/impressum-en`
+
+- [ ] **Weitere Sprachen (bei Bedarf)**
+  - [ ] Französisch (`impressum-fr.html`, `privacy-fr.html`)
+  - [ ] Spanisch (`impressum-es.html`, `privacy-es.html`)  
+  - [ ] Alle anderen i18n-Sprachen nach Nutzerbedarf
+  - [ ] **Rechtliche Beratung** für jedes Land erforderlich
+
+- [ ] **JavaScript-Integration**
+  - [ ] i18n-ultra-simple.js erweitern für rechtliche Seiten
+  - [ ] Automatische Weiterleitung je nach Browser-Sprache
+  - [ ] Fallback auf deutsche Version bei nicht verfügbarer Übersetzung
+
+### Rechtliche Überlegungen
+- [ ] **Compliance pro Land prüfen**
+  - [ ] Deutschland: TMG-konform ✅ (bereits erledigt)
+  - [ ] UK: Companies Act requirements
+  - [ ] USA: State-specific disclosure requirements  
+  - [ ] EU: GDPR-konforme Übersetzungen
+  - [ ] **Anwaltliche Prüfung** für internationale Versionen
+
+**💡 Empfehlung:** Zunächst DE + EN implementieren (deckt ~80% der Nutzer ab)
+**⏱️ Geschätzter Aufwand:** 60-90 Min für DE + EN Versionen
+
+---
+
 ## 📝 **Notizen & Entscheidungen**
 
 ### Technische Entscheidungen:
