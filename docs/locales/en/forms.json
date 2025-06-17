@@ -1,0 +1,74 @@
+{
+  "testform": {
+    "title": "Become a Beta Tester",
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "newsletter": "Receive updates via email?"
+    },
+    "buttons": {
+      "submit": "SEND",
+      "sending": "SENDING..."
+    },
+    "messages": {
+      "success": {
+        "title": "Successfully registered!",
+        "text": "Thank you for signing up as a beta tester. We will contact you soon!"
+      },
+      "error": {
+        "title": "Error sending",
+        "network": "Network error - please try again later.",
+        "validation": "Please check your input.",
+        "general": "An unexpected error occurred."
+      }
+    }
+  },
+  "donationform": {
+    "title": "Support glocalSpirit",
+    "description": "Become part of the movement for conscious networking and spiritual community. Choose your monthly support package:",
+    "packages": {
+      "support": {
+        "title": "SUPPORT",
+        "description": "Basic support for the vision",
+        "price": "€20",
+        "period": "/month",
+        "features": [
+          "Early access to beta",
+          "Community updates",
+          "Basic support"
+        ]
+      },
+      "premium": {
+        "title": "PREMIUM",
+        "description": "Onboarding + personal support mentor",
+        "price": "€44",
+        "period": "/month",
+        "features": [
+          "All Early Bird features",
+          "Personal support mentor",
+          "Special surprises"
+        ]
+      },
+      "business": {
+        "title": "BUSINESS",
+        "description": "Premium + newsletter sending + bulletin board",
+        "price": "€55",
+        "period": "/month",
+        "features": [
+          "All Premium features",
+          "Newsletter sending",
+          "Bulletin board",
+          "Strategic consulting"
+        ]
+      }
+    },
+    "buttons": {
+      "book": "BOOK NOW",
+      "loading": "Loading..."
+    }
+  },
+  "cta": {
+    "testuser": "BECOME BETA TESTER",
+    "donate": "DONATE"
+  }
+}

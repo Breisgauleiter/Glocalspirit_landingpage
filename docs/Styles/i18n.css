@@ -1,0 +1,221 @@
+/* Language Switcher Styles */
+.language-switcher {
+    position: relative;
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.language-switcher__button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(var(--main-font-color), 0.1);
+    border: 1px solid rgba(var(--main-font-color), 0.2);
+    border-radius: 8px;
+    color: rgb(var(--main-font-color));
+    font-family: var(--secondary-font-family);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.language-switcher__button:hover {
+    background: rgba(var(--main-font-color), 0.15);
+    border-color: rgba(var(--special-cta-color), 0.5);
+    box-shadow: 0 0 10px rgba(var(--special-cta-color), 0.3);
+}
+
+.language-switcher__current {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.language-switcher__arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.language-switcher__dropdown--open .language-switcher__arrow {
+    transform: rotate(180deg);
+}
+
+.language-switcher__dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 160px;
+    background: rgba(var(--main-background-color), 0.95);
+    border: 1px solid rgba(var(--main-font-color), 0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(16px);
+    overflow: hidden;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.language-switcher__dropdown--open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.language-switcher__option {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    color: rgb(var(--main-font-color));
+    font-family: var(--main-font-family);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(var(--main-font-color), 0.1);
+}
+
+.language-switcher__option:last-child {
+    border-bottom: none;
+}
+
+.language-switcher__option:hover {
+    background: rgba(var(--special-cta-color), 0.1);
+    color: rgb(var(--special-cta-color));
+}
+
+.language-switcher__option--active {
+    background: rgba(var(--special-cta-color), 0.15);
+    color: rgb(var(--special-cta-color));
+    font-weight: 600;
+}
+
+.language-switcher__flag {
+    font-size: 1.2rem;
+}
+
+.language-switcher__name {
+    flex: 1;
+    text-align: left;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 800px) {
+    .language-switcher {
+        margin-left: 0.5rem;
+    }
+    
+    .language-switcher__button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .language-switcher__dropdown {
+        min-width: 140px;
+        right: -10px;
+    }
+    
+    .language-switcher__option {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .language-switcher__button {
+        padding: 0.3rem 0.6rem;
+    }
+    
+    .language-switcher__current {
+        font-size: 0.8rem;
+    }
+    
+    .language-switcher__arrow {
+        font-size: 0.7rem;
+    }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+    .language-switcher__dropdown {
+        background: rgba(var(--main-background-color), 0.98);
+        border-color: rgba(var(--main-font-color), 0.3);
+    }
+    
+    .language-switcher__button {
+        background: rgba(var(--main-font-color), 0.08);
+    }
+    
+    .language-switcher__button:hover {
+        background: rgba(var(--main-font-color), 0.12);
+    }
+}
+
+/* Animation for language switching */
+.language-switching {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.language-switched {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Loading state for language switcher */
+.language-switcher--loading .language-switcher__button {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.language-switcher--loading .language-switcher__current::after {
+    content: " ...";
+    animation: loading-dots 1.5s infinite;
+}
+
+@keyframes loading-dots {
+    0%, 20% { content: " ."; }
+    40% { content: " .."; }
+    60%, 100% { content: " ..."; }
+}
+
+/* Glassmorphism effect consistency */
+.language-switcher__button,
+.language-switcher__dropdown {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Focus states for accessibility */
+.language-switcher__button:focus,
+.language-switcher__option:focus {
+    outline: 2px solid rgb(var(--special-cta-color));
+    outline-offset: 2px;
+}
+
+/* Smooth transitions for better UX */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .language-switcher__button,
+    .language-switcher__dropdown {
+        border-width: 2px;
+        background: rgba(var(--main-background-color), 0.9);
+    }
+    
+    .language-switcher__option:hover,
+    .language-switcher__option--active {
+        background: rgba(var(--special-cta-color), 0.3);
+    }
+}

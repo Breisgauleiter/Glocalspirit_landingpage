@@ -1,0 +1,23 @@
+{
+  "success": {
+    "title": "Zahlung erfolgreich!",
+    "subtitle": "Vielen Dank für deine Unterstützung",
+    "description": "Deine Zahlung wurde erfolgreich verarbeitet. Du bist jetzt Teil der glocalSpirit-Community!",
+    "details": {
+      "title": "Deine Abo-Details:",
+      "items": [
+        "Dein Abonnement ist aktiv",
+        "Du erhältst eine Bestätigungs-E-Mail",
+        "Erste Community-Updates folgen in den nächsten Tagen"
+      ]
+    },
+    "subscription": {
+      "title": "Was passiert als nächstes?",
+      "text": "Du wirst automatisch in unsere Community aufgenommen und erhältst Zugang zu exklusiven Inhalten und Updates."
+    },
+    "actions": {
+      "home": "Zur Startseite",
+      "contact": "Kontakt"
+    }
+  }
+}

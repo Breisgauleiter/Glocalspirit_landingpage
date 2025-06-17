@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html lang="de_DE">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>glocalSpirit</title>
+    <title data-i18n="hero.title">glocalSpirit</title>
+    <meta name="description" content="GlocalSpirit ist eine Plattform für Bewusstseinsbildung und Vernetzung, die lokale und globale Gemeinschaften verbindet.">
+    <meta name="i18n-title" content="hero.title">
+    <meta name="i18n-description" content="hero.description">
+    
     <!-- css -->
     <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="Styles/i18n.css">
     <link rel="stylesheet" media="screen and (max-width: 800px)" href="Styles/tablets.css">
     <link rel="stylesheet" media="screen and (max-width: 700px)" href="Styles/smallscreens.css">
+    
+    <!-- i18n setup -->
+    <script src="JS_Files/i18n.js" defer></script>
+    
     <!-- scripts -->
     <script src="JS_Files/app.js" defer></script>
     <script src="JS_Files/navigation.js" defer></script>
@@ -34,13 +43,13 @@
                 <a href="#" class="header__logo">
                     <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="header__logo-img">
                 </a>
-                <a href="#hero" class="header__link header__link--active">Startseite</a>
-                <a href="#about" class="header__link">Über uns</a>
-                <a href="#roadmap" class="header__link">Roadmap</a>
-                <a href="#forms" class="header__link">Kontakt</a>
+                <a href="#hero" class="header__link header__link--active" data-i18n="nav.home">Startseite</a>
+                <a href="#about" class="header__link" data-i18n="nav.about">Über uns</a>
+                <a href="#roadmap" class="header__link" data-i18n="nav.roadmap">Roadmap</a>
+                <a href="#forms" class="header__link" data-i18n="nav.contact">Kontakt</a>
             </div>
             <div class="header__beta-tester">
-                <a href="testformular.html" class="header__beta-link">Beta Testen</a>
+                <a href="testformular.html" class="header__beta-link" data-i18n="nav.beta_test">Beta Testen</a>
             </div>
         </nav>
     </header>
@@ -48,7 +57,7 @@
         <div id="smooth-content">
             <main class="main">
                 <section class="hero" id="hero">
-                    <h1 class="hero__title">glocalSpirit</h1>
+                    <h1 class="hero__title" data-i18n="hero.title">glocalSpirit</h1>
                     <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="hero__image">
                 </section>
                 <section class="about" id="about">
@@ -68,7 +77,7 @@
                                 <img src="Assets/SynBols/Technologie & Bewusstsein.svg" alt="Technologie icon" class="about__carousel-img">
                             </div>
                         </div>
-                        <p class="about__description">
+                        <p class="about__description" data-i18n-html="hero.description">
                             GlocalSpirit ist eine Plattform für Bewusstseinsbildung und Vernetzung, die lokale und globale Gemeinschaften verbindet.
                             Unser Ziel ist es, ein lebendiges Friedensnetzwerk zu schaffen, in dem Menschen ihre Werte, Fähigkeiten und Ressourcen
                             teilen können.<br><br>
