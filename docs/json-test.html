@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Loading Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2rem; background: #0C0C22; color: white; }
+        .debug { background: rgba(255,255,255,0.1); padding: 1rem; margin: 1rem 0; border-radius: 8px; }
+        pre { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>JSON Loading Test</h1>
+    
+    <div class="debug" id="debug">Debug info will appear here...</div>
+
+    <script>
+        function debug(msg) {
+            document.getElementById('debug').innerHTML += msg + '<br>';
+            console.log(msg);
+        }
+
+        async function testJsonLoading() {
+            debug('Testing JSON loading...');
+            
+            try {
+                // Test hero.json
+                debug('Loading hero.json...');
+                const heroResponse = await fetch('locales/de/hero.json');
+                debug(`Hero response status: ${heroResponse.status}`);
+                debug(`Hero response ok: ${heroResponse.ok}`);
+                
+                if (heroResponse.ok) {
+                    const heroData = await heroResponse.json();
+                    debug(`Hero data: ${JSON.stringify(heroData, null, 2)}`);
+                    
+                    // Test key access
+                    if (heroData.hero && heroData.hero.title) {
+                        debug(`✅ Hero title found: ${heroData.hero.title}`);
+                    } else {
+                        debug(`❌ Hero title not found in structure`);
+                    }
+                } else {
+                    debug(`❌ Failed to load hero.json`);
+                }
+                
+                // Test navigation.json
+                debug('<br>Loading navigation.json...');
+                const navResponse = await fetch('locales/de/navigation.json');
+                debug(`Nav response status: ${navResponse.status}`);
+                
+                if (navResponse.ok) {
+                    const navData = await navResponse.json();
+                    debug(`Nav data: ${JSON.stringify(navData, null, 2)}`);
+                    
+                    // Test key access
+                    if (navData.nav && navData.nav.home) {
+                        debug(`✅ Nav home found: ${navData.nav.home}`);
+                    } else {
+                        debug(`❌ Nav home not found in structure`);
+                    }
+                } else {
+                    debug(`❌ Failed to load navigation.json`);
+                }
+                
+            } catch (error) {
+                debug(`❌ Error: ${error.message}`);
+            }
+        }
+
+        testJsonLoading();
+    </script>
+</body>
+</html>

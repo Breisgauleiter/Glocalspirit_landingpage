@@ -1,4 +1,6 @@
 {
-  "title": "glocalSpirit",
-  "description": "GlocalSpirit is a platform for consciousness development and networking that connects local and global communities.<br><br>Our goal is to create a living peace network where people can share their values, skills, and resources.<br><br>Through online resonance spaces, regional meetings, and innovative financial models like the GlocalSpirit-Coin, we promote a sustainable, cooperative economy."
+  "hero": {
+    "title": "glocalSpirit",
+    "description": "GlocalSpirit is a platform for consciousness development and networking that connects local and global communities.<br><br>Our goal is to create a living peace network where people can share their values, skills, and resources.<br><br>Through online resonance spaces, regional meetings, and innovative financial models like the GlocalSpirit-Coin, we promote a sustainable, cooperative economy."
+  }
 }

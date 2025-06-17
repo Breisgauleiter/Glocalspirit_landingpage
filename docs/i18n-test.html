@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i18n Test - GlocalSpirit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0C0C22;
+            color: white;
+            padding: 2rem;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .language-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(85, 166, 217, 0.3);
+            color: rgb(85, 166, 217);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        .test-item {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        .test-key {
+            font-family: monospace;
+            color: #55A6D9;
+            font-size: 0.9rem;
+        }
+        #debug {
+            background: rgba(255, 159, 85, 0.1);
+            border: 1px solid rgb(255, 159, 85);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>i18n Test Page</h1>
+        
+        <div>
+            <label for="language-select">Sprache:</label>
+            <select id="language-select" class="language-select">
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="es">🇪🇸 Español</option>
+            </select>
+        </div>
+
+        <div class="test-item">
+            <div class="test-key">home:</div>
+            <div data-i18n="home">Startseite</div>
+        </div>
+
+        <div class="test-item">
+            <div class="test-key">about:</div>
+            <div data-i18n="about">Über uns</div>
+        </div>
+
+        <div class="test-item">
+            <div class="test-key">beta_test:</div>
+            <div data-i18n="beta_test">Beta Testen</div>
+        </div>
+
+        <div class="test-item">
+            <div class="test-key">hero.title:</div>
+            <div data-i18n="hero.title">glocalSpirit</div>
+        </div>
+
+        <div class="test-item">
+            <div class="test-key">hero.description:</div>
+            <div data-i18n-html="hero.description">GlocalSpirit ist eine Plattform...</div>
+        </div>
+
+        <div id="debug">
+            Debug-Informationen werden hier angezeigt...
+        </div>
+    </div>
+
+    <script src="JS_Files/i18n-ultra-simple.js"></script>
+    <script>
+        // Debug-Protokollierung
+        function addDebugInfo(message) {
+            const debug = document.getElementById('debug');
+            debug.innerHTML += message + '<br>';
+        }
+
+        document.addEventListener('i18nReady', function(e) {
+            addDebugInfo(`✅ i18n Bereit! Sprache: ${e.detail.language}`);
+            addDebugInfo(`Verfügbare Schlüssel: ${Object.keys(window.glocalSpiritI18n.translations[e.detail.language]).join(', ')}`);
+        });
+    </script>
+</body>
+</html>

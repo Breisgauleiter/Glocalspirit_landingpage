@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Hero Translation Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2rem; background: #0C0C22; color: white; }
+        .debug { background: rgba(255,255,255,0.1); padding: 1rem; margin: 1rem 0; border-radius: 8px; }
+        pre { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>Hero Translation Test</h1>
+    
+    <div class="debug" id="debug">Debug info will appear here...</div>
+    
+    <h2>Test Elements:</h2>
+    <div>
+        <p>Home: <span data-i18n="home">FALLBACK</span></p>
+        <p>About: <span data-i18n="about">FALLBACK</span></p>
+        <p>Beta Test: <span data-i18n="beta_test">FALLBACK</span></p>
+        <p>Hero Title: <span data-i18n="hero.title">FALLBACK</span></p>
+        <p>Hero Description: <span data-i18n-html="hero.description">FALLBACK</span></p>
+    </div>
+
+    <script src="JS_Files/i18n-ultra-simple.js"></script>
+    <script>
+        function debug(msg) {
+            document.getElementById('debug').innerHTML += msg + '<br>';
+            console.log(msg);
+        }
+
+        debug('Starting test...');
+
+        document.addEventListener('i18nReady', function(e) {
+            debug(`✅ i18n Ready! Language: ${e.detail.language}`);
+            
+            // Test direct access to translations
+            const i18n = window.glocalSpiritI18n;
+            debug(`Translation object: ${JSON.stringify(i18n.translations, null, 2)}`);
+            
+            // Test individual translations
+            debug(`Testing hero.title: ${i18n.t('hero.title')}`);
+            debug(`Testing home: ${i18n.t('home')}`);
+            debug(`Testing about: ${i18n.t('about')}`);
+            debug(`Testing beta_test: ${i18n.t('beta_test')}`);
+            
+            // Test structure access
+            const de = i18n.translations.de;
+            debug(`DE structure: ${JSON.stringify(de, null, 2)}`);
+            
+            if (de && de.hero) {
+                debug(`Hero object exists: ${JSON.stringify(de.hero)}`);
+            } else {
+                debug('❌ Hero object not found!');
+            }
+        });
+
+        window.addEventListener('error', function(e) {
+            debug(`❌ Error: ${e.message}`);
+        });
+    </script>
+</body>
+</html>

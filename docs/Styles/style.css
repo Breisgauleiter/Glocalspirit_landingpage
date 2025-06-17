@@ -169,6 +169,35 @@ main{
             filter: grayscale(0.5) brightness(1.2) 
         }
     }
+
+    .header__language-switcher {
+        .language-select {
+            background: rgba(var(--main-font-color), 0.1);
+            border: 1px solid rgba(var(--secondary-links-color), 0.3);
+            color: rgb(var(--secondary-links-color));
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: var(--secondary-font-family);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: rgba(var(--main-font-color), 0.15);
+                border-color: rgb(var(--secondary-links-color));
+            }
+
+            &:focus {
+                outline: 2px solid rgb(var(--special-cta-color));
+                outline-offset: 2px;
+            }
+
+            option {
+                background: rgb(var(--main-background-color));
+                color: rgb(var(--main-font-color));
+            }
+        }
+    }
 }
 
 .toggle__label {
@@ -649,7 +678,7 @@ main{
 }
 
 .form1::after, .form2::after{
-    content: "TESTEN";
+    /* content: "TESTEN"; entfernt für i18n */
     font-size: 0.7rem;
     letter-spacing: 4px;
     font-weight: 800;
@@ -662,7 +691,7 @@ main{
 }
 
 .form2::after{
-    content: "SPENDEN";
+    /* content: "SPENDEN"; entfernt für i18n */
 }
 
 .form2{
@@ -847,4 +876,22 @@ footer{
 .spenden-form-link:hover {
     border-radius: 10%;
     outline: 4px rgba(35, 231, 249, 0.19) solid;
+}
+
+.form-label {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+  letter-spacing: 0.04em;
+  color: rgb(var(--special-cta-color));
+  display: block;
+}
+
+.wrapper__form .form-label {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  width: fit-content;
 }

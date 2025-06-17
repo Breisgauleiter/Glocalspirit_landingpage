@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple i18n Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2rem; background: #0C0C22; color: white; }
+        .debug { background: rgba(255,255,255,0.1); padding: 1rem; margin: 1rem 0; border-radius: 8px; }
+        .test-item { margin: 1rem 0; padding: 0.5rem; background: rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body>
+    <h1>Simple i18n Test</h1>
+    
+    <div>
+        <label>Language: </label>
+        <select id="language-select">
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="es">🇪🇸 Español</option>
+        </select>
+    </div>
+    
+    <div class="debug" id="debug">Loading...</div>
+
+    <h2>Test Elements:</h2>
+    <div class="test-item">
+        <strong>Home:</strong> <span data-i18n="home">FALLBACK</span>
+    </div>
+    <div class="test-item">
+        <strong>About:</strong> <span data-i18n="about">FALLBACK</span>
+    </div>
+    <div class="test-item">
+        <strong>Beta Test:</strong> <span data-i18n="beta_test">FALLBACK</span>
+    </div>
+    <div class="test-item">
+        <strong>Hero Title:</strong> <span data-i18n="hero.title">FALLBACK</span>
+    </div>
+    <div class="test-item">
+        <strong>Hero Description:</strong> <span data-i18n-html="hero.description">FALLBACK</span>
+    </div>
+
+    <script src="JS_Files/i18n-ultra-simple.js"></script>
+    <script>
+        function debug(msg) {
+            document.getElementById('debug').innerHTML += msg + '<br>';
+        }
+
+        document.addEventListener('i18nReady', function(e) {
+            debug(`✅ Ultra-simple i18n Ready! Language: ${e.detail.language}`);
+            debug(`Available keys: ${Object.keys(window.glocalSpiritI18n.translations[e.detail.language]).join(', ')}`);
+        });
+    </script>
+</body>
+</html>

@@ -22,6 +22,9 @@ class GlocalSpiritI18n {
             // Load translations for current language
             await this.loadTranslations(this.currentLanguage);
             
+            // Set initialized flag BEFORE calling updatePageLanguage
+            this.isInitialized = true;
+            
             // Update page content
             this.updatePageLanguage();
             
@@ -31,7 +34,6 @@ class GlocalSpiritI18n {
             // Update HTML lang attribute
             document.documentElement.lang = this.currentLanguage;
             
-            this.isInitialized = true;
             console.log(`🌍 i18n initialized with language: ${this.currentLanguage}`);
             
             // Trigger custom event for other scripts
@@ -44,6 +46,7 @@ class GlocalSpiritI18n {
             // Fallback to default language
             this.currentLanguage = this.fallbackLanguage;
             await this.loadTranslations(this.currentLanguage);
+            this.isInitialized = true; // Set flag for fallback too
             this.updatePageLanguage();
         }
     }
@@ -110,16 +113,20 @@ class GlocalSpiritI18n {
 
         try {
             const loadPromises = translationFiles.map(async (file) => {
+                console.log(`📥 Loading: locales/${language}/${file}.json`);
                 const response = await fetch(`locales/${language}/${file}.json`);
                 if (!response.ok) {
-                    throw new Error(`Failed to load ${file}.json for ${language}`);
+                    throw new Error(`Failed to load ${file}.json for ${language} (status: ${response.status})`);
                 }
                 const data = await response.json();
+                console.log(`📋 Loaded ${file}.json:`, data);
                 this.translations[language][file] = data;
+                return data;
             });
 
             await Promise.all(loadPromises);
             console.log(`✅ Loaded translations for ${language}`);
+            console.log(`📁 Translation structure:`, this.translations[language]);
             
         } catch (error) {
             console.error(`❌ Error loading translations for ${language}:`, error);
@@ -140,36 +147,79 @@ class GlocalSpiritI18n {
         }
 
         const keys = key.split('.');
-        let value = this.translations[this.currentLanguage];
-
-        for (const k of keys) {
-            if (value && typeof value === 'object' && k in value) {
-                value = value[k];
-            } else {
-                // Try fallback language
-                let fallbackValue = this.translations[this.fallbackLanguage];
-                for (const fk of keys) {
-                    if (fallbackValue && typeof fallbackValue === 'object' && fk in fallbackValue) {
-                        fallbackValue = fallbackValue[fk];
-                    } else {
-                        console.warn(`🔍 Translation missing: ${key} (${this.currentLanguage})`);
-                        return defaultValue || key;
-                    }
-                }
-                return fallbackValue;
+        
+        // Debug für bestimmte Keys
+        if (key.startsWith('hero.')) {
+            console.log(`🔍 Debugging ${key}:`);
+            console.log(`Available translations:`, Object.keys(this.translations));
+            console.log(`Current language translations:`, Object.keys(this.translations[this.currentLanguage] || {}));
+            if (this.translations[this.currentLanguage] && this.translations[this.currentLanguage].hero) {
+                console.log(`Hero file content:`, this.translations[this.currentLanguage].hero);
             }
         }
-
-        return value || defaultValue || key;
+        
+        // Search through all translation files for the key
+        const currentLangTranslations = this.translations[this.currentLanguage];
+        const fallbackLangTranslations = this.translations[this.fallbackLanguage];
+        
+        // Try current language first
+        for (const [fileName, fileData] of Object.entries(currentLangTranslations || {})) {
+            let value = fileData;
+            let found = true;
+            
+            for (const k of keys) {
+                if (value && typeof value === 'object' && k in value) {
+                    value = value[k];
+                } else {
+                    found = false;
+                    break;
+                }
+            }
+            
+            if (found && value !== undefined) {
+                if (key.startsWith('hero.')) {
+                    console.log(`✅ Found ${key} in ${fileName}:`, value);
+                }
+                return value;
+            }
+        }
+        
+        // Try fallback language
+        for (const [fileName, fileData] of Object.entries(fallbackLangTranslations || {})) {
+            let value = fileData;
+            let found = true;
+            
+            for (const k of keys) {
+                if (value && typeof value === 'object' && k in value) {
+                    value = value[k];
+                } else {
+                    found = false;
+                    break;
+                }
+            }
+            
+            if (found && value !== undefined) {
+                console.warn(`🔍 Using fallback translation for: ${key}`);
+                return value;
+            }
+        }
+        
+        console.warn(`🔍 Translation missing: ${key} (${this.currentLanguage})`);
+        return defaultValue || key;
     }
 
     updatePageLanguage() {
+        console.log('🔄 Updating page language to:', this.currentLanguage);
+        
         // Update all elements with data-i18n attributes
         const elements = document.querySelectorAll('[data-i18n]');
+        console.log(`📝 Found ${elements.length} elements with data-i18n attributes`);
         
         elements.forEach(element => {
             const key = element.getAttribute('data-i18n');
             const translation = this.t(key);
+            
+            console.log(`🔤 Translating '${key}' to '${translation}'`);
             
             if (element.hasAttribute('data-i18n-html')) {
                 element.innerHTML = translation;
@@ -183,6 +233,7 @@ class GlocalSpiritI18n {
         if (titleKey) {
             const title = this.t(titleKey.getAttribute('content'));
             document.title = title;
+            console.log(`📰 Updated title to: ${title}`);
         }
 
         // Update meta description
@@ -192,8 +243,11 @@ class GlocalSpiritI18n {
             const metaDesc = document.querySelector('meta[name="description"]');
             if (metaDesc) {
                 metaDesc.setAttribute('content', desc);
+                console.log(`📝 Updated meta description`);
             }
         }
+        
+        console.log('✅ Page language update completed');
     }
 
     async changeLanguage(newLanguage) {
@@ -254,19 +308,23 @@ class GlocalSpiritI18n {
     }
 
     setupLanguageSwitcher() {
-        // This will be called after DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            this.createLanguageSwitcher();
-        });
-        
-        // If DOM is already ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                this.createLanguageSwitcher();
+        // Handle existing select element
+        const existingSelect = document.getElementById('language-select');
+        if (existingSelect) {
+            // Set current language
+            existingSelect.value = this.currentLanguage;
+            
+            // Add event listener
+            existingSelect.addEventListener('change', (e) => {
+                this.changeLanguage(e.target.value);
             });
-        } else {
-            this.createLanguageSwitcher();
+            
+            console.log('✅ Language switcher setup complete');
+            return;
         }
+        
+        // Fallback: create custom switcher if select doesn't exist
+        this.createLanguageSwitcher();
     }
 
     createLanguageSwitcher() {

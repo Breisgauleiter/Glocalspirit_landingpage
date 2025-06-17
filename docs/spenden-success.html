@@ -14,6 +14,7 @@
     
     <!-- Scripts -->
     <script src="JS_Files/app.js" defer></script>
+    <script src="JS_Files/i18n-ultra-simple.js" defer></script>
     
     <!-- GSAP für Animationen -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
@@ -27,10 +28,10 @@
                 <a href="index.html" class="header__logo">
                     <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="header__logo-img">
                 </a>
-                <a href="index.html" class="header__link">Startseite</a>
-                <a href="index.html#about" class="header__link">Über uns</a>
-                <a href="index.html#roadmap" class="header__link">Roadmap</a>
-                <a href="index.html#forms" class="header__link">Kontakt</a>
+                <a href="index.html" class="header__link" data-i18n="home">Startseite</a>
+                <a href="index.html#about" class="header__link" data-i18n="about">Über uns</a>
+                <a href="index.html#roadmap" class="header__link" data-i18n="roadmap">Roadmap</a>
+                <a href="index.html#forms" class="header__link" data-i18n="contact">Kontakt</a>
             </div>
         </nav>
     </header>
@@ -46,18 +47,18 @@
                         </svg>
                     </div>
                     
-                    <h1 class="success-title">Vielen Dank für Ihre Unterstützung!</h1>
+                    <h1 class="success-title" data-i18n="donation_success_title">Vielen Dank für Ihre Unterstützung!</h1>
                     
                     <div class="success-message">
-                        <p>Ihr Abonnement wurde erfolgreich aktiviert. Sie erhalten in Kürze eine Bestätigungs-E-Mail von uns.</p>
+                        <p data-i18n="donation_success_msg">Ihr Abonnement wurde erfolgreich aktiviert. Sie erhalten in Kürze eine Bestätigungs-E-Mail von uns.</p>
                         
                         <div class="success-details">
-                            <h3>Was passiert als nächstes?</h3>
+                            <h3 data-i18n="donation_success_next">Was passiert als nächstes?</h3>
                             <ul>
-                                <li>📧 Sie erhalten eine Willkommens-E-Mail mit allen Details</li>
-                                <li>🎉 Ihr Beitrag hilft uns, bewusste Vernetzung zu fördern</li>
-                                <li>🌱 Gemeinsam schaffen wir eine bewusstere Zukunft</li>
-                                <li>💫 Sie werden über neue Features und Events informiert</li>
+                                <li data-i18n="donation_success_email">📧 Sie erhalten eine Willkommens-E-Mail mit allen Details</li>
+                                <li data-i18n="donation_success_help">🎉 Ihr Beitrag hilft uns, bewusste Vernetzung zu fördern</li>
+                                <li data-i18n="donation_success_together">🌱 Gemeinsam schaffen wir eine bewusstere Zukunft</li>
+                                <li data-i18n="donation_success_info">💫 Sie werden über neue Features und Events informiert</li>
                             </ul>
                         </div>
                         
