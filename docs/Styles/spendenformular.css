@@ -91,7 +91,9 @@ html, body {
     color: white;
     position: relative;
     overflow: hidden;
-    height: auto; /* Flexible Höhe basierend auf Inhalt */
+    height: 500px; /* Feste Höhe für alle Karten */
+    display: flex;
+    flex-direction: column;
     
     /* Box Shadow für Tiefe */
     box-shadow: 
@@ -152,13 +154,19 @@ html, body {
 
 /* Package Features */
 .package-features {
-    margin-bottom: 2rem;
+    flex: 1; /* Nimmt verfügbaren Platz ein */
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: left;
 }
 
 .package-features ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
 .package-features li {
@@ -167,6 +175,7 @@ html, body {
     padding-left: 1.5rem;
     position: relative;
     line-height: 1.4;
+    text-align: left; /* Sicherstellen dass Text linksbündig ist */
 }
 
 /* Custom Bullet Points */
@@ -182,11 +191,12 @@ html, body {
 
 /* Package Price */
 .package-price {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     display: flex;
     justify-content: center;
     align-items: baseline;
     gap: 0.3rem;
+    margin-top: auto; /* Drückt Preis nach unten */
 }
 
 .price {
@@ -213,7 +223,7 @@ html, body {
     letter-spacing: 2px;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 1rem;
+    margin-top: 0; /* Kein zusätzlicher margin-top */
     width: 100%;
     position: relative;
     overflow: hidden;
