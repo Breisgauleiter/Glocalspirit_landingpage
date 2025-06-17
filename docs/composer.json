@@ -1,0 +1,22 @@
+{
+    "name": "glocalspirit/landing-page",
+    "description": "glocalSpirit Landing Page with Stripe Integration",
+    "type": "project",
+    "require": {
+        "stripe/stripe-php": "^10.0"
+    },
+    "require-dev": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "GlocalSpirit\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

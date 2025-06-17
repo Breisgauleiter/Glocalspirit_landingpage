@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de_DE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vielen Dank! - glocalSpirit</title>
+    <meta name="description" content="Vielen Dank für Ihre Unterstützung von glocalSpirit. Ihr Abonnement wurde erfolgreich aktiviert.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" media="screen and (max-width: 800px)" href="Styles/tablets.css">
+    <link rel="stylesheet" media="screen and (max-width: 700px)" href="Styles/smallscreens.css">
+    <link rel="stylesheet" href="Styles/spendenformular.css">
+    
+    <!-- Scripts -->
+    <script src="JS_Files/app.js" defer></script>
+    
+    <!-- GSAP für Animationen -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="JS_Files/testform-animations.js" defer></script>
+</head>
+<body id="body">
+    <div class="background-layer"></div>
+    <header class="header">
+        <nav class="header__nav">
+            <div class="header__links">
+                <a href="index.html" class="header__logo">
+                    <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="header__logo-img">
+                </a>
+                <a href="index.html" class="header__link">Startseite</a>
+                <a href="index.html#about" class="header__link">Über uns</a>
+                <a href="index.html#roadmap" class="header__link">Roadmap</a>
+                <a href="index.html#forms" class="header__link">Kontakt</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="success-section">
+            <div class="container">
+                <div class="success-content form-container">
+                    <div class="success-icon">
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="40" cy="40" r="40" fill="#4CAF50"/>
+                            <path d="M25 40L35 50L55 30" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    
+                    <h1 class="success-title">Vielen Dank für Ihre Unterstützung!</h1>
+                    
+                    <div class="success-message">
+                        <p>Ihr Abonnement wurde erfolgreich aktiviert. Sie erhalten in Kürze eine Bestätigungs-E-Mail von uns.</p>
+                        
+                        <div class="success-details">
+                            <h3>Was passiert als nächstes?</h3>
+                            <ul>
+                                <li>📧 Sie erhalten eine Willkommens-E-Mail mit allen Details</li>
+                                <li>🎉 Ihr Beitrag hilft uns, bewusste Vernetzung zu fördern</li>
+                                <li>🌱 Gemeinsam schaffen wir eine bewusstere Zukunft</li>
+                                <li>💫 Sie werden über neue Features und Events informiert</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="subscription-info">
+                            <h3>Abonnement-Details</h3>
+                            <p id="package-info">Wird geladen...</p>
+                            <p><strong>Session ID:</strong> <span id="session-id">Wird geladen...</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="success-actions">
+                        <a href="index.html" class="btn btn-primary">Zur Startseite</a>
+                        <a href="index.html#about" class="btn btn-secondary">Mehr über uns</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <style>
+        .success-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+        
+        .success-content {
+            text-align: center;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .success-icon {
+            margin-bottom: 2rem;
+            animation: successPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .success-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .success-message p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .success-details, .subscription-info {
+            text-align: left;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .success-details h3, .subscription-info h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        .success-details ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .success-details li {
+            padding: 0.5rem 0;
+            font-size: 1rem;
+        }
+        
+        .success-actions {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        #session-id {
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        
+        @media (max-width: 768px) {
+            .success-title {
+                font-size: 2rem;
+            }
+            
+            .success-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .success-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+
+    <script>
+        // URL Parameter auslesen
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const sessionId = urlParams.get('session_id');
+            
+            if (sessionId) {
+                document.getElementById('session-id').textContent = sessionId;
+                
+                // Package-Info aus Session ID ableiten (vereinfacht)
+                // In einer echten Implementierung würdest du die Session Details von Stripe abrufen
+                const packageInfo = document.getElementById('package-info');
+                packageInfo.textContent = 'Ihr Abonnement ist aktiv. Details werden per E-Mail gesendet.';
+            } else {
+                document.getElementById('session-id').textContent = 'Nicht verfügbar';
+                document.getElementById('package-info').textContent = 'Abonnement erfolgreich aktiviert.';
+            }
+            
+            // GSAP Animation für die Success-Seite
+            if (typeof gsap !== 'undefined') {
+                gsap.from('.success-content', {
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power2.out'
+                });
+                
+                gsap.from('.success-icon', {
+                    scale: 0,
+                    duration: 0.8,
+                    ease: 'back.out(1.7)',
+                    delay: 0.3
+                });
+                
+                gsap.from('.success-actions .btn', {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: 'power2.out',
+                    delay: 0.8
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+# .htaccess für glocalSpirit API (WordPress-kompatibel)
+
+# CORS Headers für API-Zugriff
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, X-Requested-With"
+    Header always set Access-Control-Max-Age "3600"
+</IfModule>
+
+# PHP-Dateien als JSON ausliefern
+<FilesMatch "\.(php)$">
+    <IfModule mod_headers.c>
+        Header set Content-Type "application/json; charset=UTF-8"
+    </IfModule>
+</FilesMatch>
+
+# WordPress-Integration: API-Requests nicht an WordPress weiterleiten
+RewriteEngine On
+RewriteRule ^.*$ - [L]

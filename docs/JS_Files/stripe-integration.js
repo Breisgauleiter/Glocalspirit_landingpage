@@ -4,11 +4,11 @@
 // Stripe Instance (wird initialisiert wenn Stripe.js geladen ist)
 let stripe = null;
 
-// Stripe Price IDs (werden später durch echte IDs ersetzt)
+// Stripe Price IDs (echte IDs von Stripe Dashboard)
 const STRIPE_PRICES = {
-    support: 'price_support_test_id',
-    premium: 'price_premium_test_id',
-    celebration: 'price_celebration_test_id'
+    earlybird: 'price_1RagqmPQ7hNB5R7goFBX14jJ',  // €22/Monat
+    premium: 'price_1RanvQPQ7hNB5R7gOSpGuoMt',    // €44/Monat
+    business: 'price_1Ranw8PQ7hNB5R7ghbOlhEka'    // €55/Monat
 };
 
 // Backend URL für Stripe-Integration

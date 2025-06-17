@@ -22,34 +22,42 @@ const btnLeft = document.querySelector('.btn__slider--left');
 const btnRight = document.querySelector('.btn__slider--right');
 
 let currentIndex = 0; // Track the current visible item
-let itemWidth = aboutItems[0].offsetWidth; // Width of a single item
+let itemWidth = aboutItems.length > 0 ? aboutItems[0].offsetWidth : 0; // Width of a single item
 
 // Function to update the transform of the aboutContent
 function updateSlider() {
-  aboutContent.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+  if (aboutContent) {
+    aboutContent.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+  }
 }
 
 // Function to recalculate itemWidth on window resize
 function recalculateWidths() {
-  itemWidth = aboutItems[0].offsetWidth; // Recalculate the width of a single item
-  updateSlider(); // Reapply the transform to ensure proper alignment
+  if (aboutItems.length > 0) {
+    itemWidth = aboutItems[0].offsetWidth; // Recalculate the width of a single item
+    updateSlider(); // Reapply the transform to ensure proper alignment
+  }
 }
 
 // Event listener for the right button
-btnRight.addEventListener('click', () => {
-  if (currentIndex < aboutItems.length - 1) {
-    currentIndex++;
-    updateSlider();
-  }
-});
+if (btnRight) {
+  btnRight.addEventListener('click', () => {
+    if (currentIndex < aboutItems.length - 1) {
+      currentIndex++;
+      updateSlider();
+    }
+  });
+}
 
 // Event listener for the left button
-btnLeft.addEventListener('click', () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateSlider();
-  }
-});
+if (btnLeft) {
+  btnLeft.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSlider();
+    }
+  });
+}
 
 // Event listener for window resize
 window.addEventListener('resize', recalculateWidths);

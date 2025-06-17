@@ -1,4 +1,19 @@
+// Add a retry counter to limit the number of retries
+let gsapRetryCount = 0;
+const GSAP_MAX_RETRIES = 20;
+
 function initializeAnimations() {
+    // Check if we're on the main landing page or a subpage
+    const isMainPage = document.querySelector('.hero__title') !== null;
+    
+    if (!isMainPage) {
+        console.log('Not on main landing page, skipping main page animations');
+        // Don't try to initialize ScrollSmoother on subpages to avoid conflicts
+        return;
+    }
+
+    console.log('Main landing page detected, initializing full animations...');
+    
     const roadmapSVG = document.querySelector('.roadmap_svg');
     const svgVisible = roadmapSVG && window.getComputedStyle(roadmapSVG).display !== 'none';
     const viewportWidth = window.innerWidth;
@@ -8,14 +23,36 @@ function initializeAnimations() {
         console.error("DrawSVGPlugin is not loaded. Ensure it is included in your project.");
         return;
     }
+    
+    // Ensure all GSAP plugins are loaded, with retry limit
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined" || typeof ScrollSmoother === "undefined") {
+        gsapRetryCount++;
+        if (gsapRetryCount > GSAP_MAX_RETRIES) {
+            console.error("GSAP or plugins failed to load after maximum retries.");
+            return;
+        }
+        console.log(`GSAP or plugins not fully loaded, retrying... (${gsapRetryCount}/${GSAP_MAX_RETRIES})`);
+        setTimeout(() => initializeAnimations(), 200);
+        return;
+    }
+    
     gsap.registerPlugin(DrawSVGPlugin, MotionPathHelper, MotionPathPlugin, ScrollTrigger, ScrollSmoother);
 
-    // Only create ScrollSmoother if not already created
-    if (!ScrollSmoother.get()) {
-        ScrollSmoother.create({
-            smooth: 2,
-            effects: true,
-        });
+    // Only create ScrollSmoother if not already created and required elements exist
+    const smoothWrapper = document.querySelector('#smooth-wrapper');
+    const smoothContent = document.querySelector('#smooth-content');
+    
+    if (!ScrollSmoother.get() && smoothWrapper && smoothContent) {
+        try {
+            ScrollSmoother.create({
+                wrapper: '#smooth-wrapper',
+                content: '#smooth-content',
+                smooth: 2,
+                effects: true,
+            });
+        } catch (error) {
+            console.log('ScrollSmoother could not be created:', error);
+        }
     }
 
     // Header animation
@@ -30,78 +67,93 @@ function initializeAnimations() {
     });
 
     // Hero title animation
-    gsap.from(".hero__title", {
-        y: 50,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power2.in",
-    });
+    const heroTitle = document.querySelector(".hero__title");
+    if (heroTitle) {
+        gsap.from(".hero__title", {
+            y: 50,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power2.in",
+        });
+    }
 
     // Hero image animation (delayed)
-    gsap.from(".hero__image", {
-        y: 50,
-        opacity: 0,
-        duration: 1.3,
-        ease: "power2.in",
-        delay: 1.5,
-    });
+    const heroImage = document.querySelector(".hero__image");
+    if (heroImage) {
+        gsap.from(".hero__image", {
+            y: 50,
+            opacity: 0,
+            duration: 1.3,
+            ease: "power2.in",
+            delay: 1.5,
+        });
 
-    // ScrollTrigger animation for scaling .hero__image
-    gsap.to(".hero__image", {
-        scale: 1.5,
-        scrollTrigger: {
-            trigger: ".hero__image",
-            start: "top 20%",
-            end: "bottom top",
-            scrub: 2,
-            markers: false,
-        },
-    });
+        // ScrollTrigger animation for scaling .hero__image
+        gsap.to(".hero__image", {
+            scale: 1.5,
+            scrollTrigger: {
+                trigger: ".hero__image",
+                start: "top 20%",
+                end: "bottom top",
+                scrub: 2,
+                markers: false,
+            },
+        });
+    }
 
     // ScrollTrigger animation for .about__wrapper--glasmorphism
-    gsap.from(".about__wrapper--glasmorphism", {
-        scale: 0.8,
-        y: 50,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".about__wrapper--glasmorphism",
-            start: "top 60%",
-            end: "top 40%",
-            scrub: 1.5,
-        },
-    });
+    const aboutWrapper = document.querySelector(".about__wrapper--glasmorphism");
+    if (aboutWrapper) {
+        gsap.from(".about__wrapper--glasmorphism", {
+            scale: 0.8,
+            y: 50,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".about__wrapper--glasmorphism",
+                start: "top 60%",
+                end: "top 40%",
+                scrub: 1.5,
+            },
+        });
+    }
 
     // ScrollTrigger animation for .wrapper__content
-    gsap.from(".wrapper__content", {
-        scale: 0.8,
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".wrapper__content",
-            start: "top 55%",
-            end: "top 35%",
-            scrub: 1.5,
-        },
-    });
+    const wrapperContent = document.querySelector(".wrapper__content");
+    if (wrapperContent) {
+        gsap.from(".wrapper__content", {
+            scale: 0.8,
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".wrapper__content",
+                start: "top 55%",
+                end: "top 35%",
+                scrub: 1.5,
+            },
+        });
+    }
 
     // ScrollTrigger animation for .roadmap__title
-    gsap.from(".roadmap__title", {
-        scale: 0.8,
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".roadmap__title",
-            start: "top 55%",
-            end: "top 35%",
-            scrub: 1.5,
-        },
-    });
+    const roadmapTitle = document.querySelector(".roadmap__title");
+    if (roadmapTitle) {
+        gsap.from(".roadmap__title", {
+            scale: 0.8,
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".roadmap__title",
+                start: "top 55%",
+                end: "top 35%",
+                scrub: 1.5,
+            },
+        });
+    }
 
     // === DESKTOP ANIMATIONS (SVG VISIBLE) ===
     if (svgVisible) {
@@ -341,21 +393,35 @@ function initializeAnimations() {
         window.addEventListener("resize", positionCards);
     }
 
-    if (ScrollSmoother.get()) {
-        ScrollSmoother.get().refresh();
+    const smoother = ScrollSmoother.get();
+    if (smoother && typeof smoother.refresh === 'function') {
+        try {
+            smoother.refresh();
+        } catch (error) {
+            console.log('ScrollSmoother refresh failed:', error);
+        }
     }
     ScrollTrigger.refresh();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Wait for all resources including images and fonts to load
     window.addEventListener("load", () => {
-        console.log("loaded")
-        initializeAnimations();
-        if (ScrollSmoother.get()) {
-            ScrollSmoother.get().refresh();
-        }
+        // Additional small delay to ensure DOM is fully stable
         setTimeout(() => {
-            ScrollTrigger.refresh();
+            console.log("loaded")
+            initializeAnimations();
+            const smoother = ScrollSmoother.get();
+            if (smoother && typeof smoother.refresh === 'function') {
+                try {
+                    smoother.refresh();
+                } catch (error) {
+                    console.log('ScrollSmoother refresh failed:', error);
+                }
+            }
+            setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 200);
         }, 100);
     });
 
@@ -397,9 +463,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 initializeAnimations();
                 console.log("Animations reinitialized");
 
-                if (ScrollSmoother.get()) {
-                    ScrollSmoother.get().refresh();
-                    console.log("ScrollSmoother refreshed");
+                const smoother = ScrollSmoother.get();
+                if (smoother && typeof smoother.refresh === 'function') {
+                    try {
+                        smoother.refresh();
+                        console.log("ScrollSmoother refreshed");
+                    } catch (error) {
+                        console.log('ScrollSmoother refresh failed:', error);
+                    }
                 }
 
                 setTimeout(() => {

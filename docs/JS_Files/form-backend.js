@@ -5,7 +5,7 @@ class FormBackend {
     constructor() {
         // Verwende die Konfiguration wenn verfügbar, sonst Fallback
         this.backendUrl = window.getBackendUrl ? getBackendUrl() : 
-            'https://deine-domain.de/submit_testuser.php';
+            'https://glocalspirit.org/submit_testuser_minimal.php';
         
         // Backup URL für Entwicklung/Testing
         this.isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';

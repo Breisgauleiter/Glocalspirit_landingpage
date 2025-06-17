@@ -13,13 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 delay: 0.5
             });
             
-            // Optional: ScrollSmoother falls verfügbar
-            if (typeof ScrollSmoother !== 'undefined' && !ScrollSmoother.get()) {
-                ScrollSmoother.create({
-                    smooth: 2,
-                    effects: true,
-                });
-            }
+            // Skip ScrollSmoother on form pages - let animations.js handle it
+            // or handle it separately if needed
+            console.log('Form animation initialized without ScrollSmoother');
         } else {
             // Retry wenn GSAP noch nicht geladen ist
             setTimeout(initFormAnimation, 100);

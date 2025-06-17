@@ -1,5 +1,31 @@
-# .htaccess für glocalSpirit Testnutzer Backend
+# .htaccess für glocalSpirit Testnutzer Backend (Strato-optimiert)
 # Zusätzliche Sicherheit und Konfiguration
+
+# ===============================================
+# 🛡️ STRATO-SPEZIFISCHE OPTIMIERUNGEN
+# ===============================================
+
+# PHP-Einstellungen für Strato
+<IfModule mod_php8.c>
+    php_value max_execution_time 30
+    php_value memory_limit 128M
+    php_value post_max_size 10M
+    php_value upload_max_filesize 10M
+</IfModule>
+
+# CORS-Headers für alle Backend-Dateien
+<IfModule mod_headers.c>
+    # Globale CORS-Headers
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, X-Requested-With, Authorization"
+    Header always set Access-Control-Max-Age "3600"
+    
+    # Content-Type für PHP-Dateien
+    <FilesMatch "\.(php)$">
+        Header set Content-Type "application/json; charset=UTF-8"
+    </FilesMatch>
+</IfModule>
 
 # ===============================================
 # 🛡️ SICHERHEITS-HEADERS

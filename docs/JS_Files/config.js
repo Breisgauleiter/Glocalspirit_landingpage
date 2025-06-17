@@ -1,54 +1,31 @@
 // Konfiguration für PHP Backend Integration
-// Diese Datei enthält alle notwendigen Einstellungen für die Backend-Verbindung
-
 const PHP_BACKEND_CONFIG = {
-    // ===============================================
-    // 🔧 PHP BACKEND URL KONFIGURATION
-    // ===============================================
-    
-    // URL zu deinem PHP-Script auf Strato (glocalSpirit konfiguriert)
-    BACKEND_URL: 'https://glocalspirit.org/submit_testuser.php',
-    
-    // Optional: Verschiedene URLs für verschiedene Umgebungen
+    BACKEND_URL: 'https://glocalspirit.org/submit_testuser_minimal.php',
     ENVIRONMENT_URLS: {
-        development: 'http://localhost:8000/submit_testuser.php',
-        staging: 'https://staging.glocalspirit.org/submit_testuser.php',
-        production: 'https://glocalspirit.org/submit_testuser.php'
+        development: 'http://localhost:8000/submit_testuser_minimal.php',
+        production: 'https://glocalspirit.org/submit_testuser_minimal.php'
     },
-    
-    // Weitere Einstellungen
     SETTINGS: {
-        timeout: 30000, // 30 Sekunden Timeout
-        retryAttempts: 2, // Anzahl der Wiederholungsversuche bei Fehlern
-        enableLogging: true, // Console-Logging aktivieren
-        fallbackToSimulation: true // Fallback zur Simulation bei Fehlern
+        timeout: 30000,
+        retryAttempts: 2,
+        enableLogging: true,
+        fallbackToSimulation: true
     }
 };
 
-// Hilfsfunktion um die richtige URL basierend auf der Umgebung zu bekommen
 function getBackendUrl() {
-    const hostname = window.location.hostname;
+    // Immer den Production-Server verwenden (glocalspirit.org)
+    return PHP_BACKEND_CONFIG.BACKEND_URL;
     
-    // Bestimme Umgebung basierend auf Hostname
-    let environment = 'production';
-    if (hostname === 'localhost' || hostname === '127.0.0.1') {
-        environment = 'development';
-    } else if (hostname.includes('staging') || hostname.includes('test')) {
-        environment = 'staging';
-    }
-    
-    // Gib entsprechende URL zurück
-    const envUrl = PHP_BACKEND_CONFIG.ENVIRONMENT_URLS[environment];
-    return envUrl || PHP_BACKEND_CONFIG.BACKEND_URL;
+    // Alternative: Automatische Erkennung (auskommentiert)
+    // const hostname = window.location.hostname;
+    // let environment = 'production';
+    // if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    //     environment = 'development';
+    // }
+    // const envUrl = PHP_BACKEND_CONFIG.ENVIRONMENT_URLS[environment];
+    // return envUrl || PHP_BACKEND_CONFIG.BACKEND_URL;
 }
 
-// Export für andere Module
 window.PHP_BACKEND_CONFIG = PHP_BACKEND_CONFIG;
 window.getBackendUrl = getBackendUrl;
-
-// Debug-Information
-if (PHP_BACKEND_CONFIG.SETTINGS.enableLogging) {
-    console.log('🔧 PHP Backend Config loaded');
-    console.log('Environment:', window.location.hostname);
-    console.log('Backend URL:', getBackendUrl());
-}

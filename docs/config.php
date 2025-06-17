@@ -51,9 +51,9 @@ $allowed_origins = [
     'http://localhost:8000', // Für lokale Entwicklung
 ];
 
-// Rate Limiting: Maximal 5 Anfragen pro IP in 10 Minuten
+// Rate Limiting: Maximal 5 Anfragen pro IP in 10 Minuten (Fenster in Minuten)
 define('RATE_LIMIT_MAX_REQUESTS', 5);
-define('RATE_LIMIT_TIME_WINDOW', 600); // 10 Minuten in Sekunden
+define('RATE_LIMIT_WINDOW_MINUTES', 10); // Fenster in Minuten
 
 // ===============================================
 // 🎨 TEAMS NACHRICHT TEMPLATE
