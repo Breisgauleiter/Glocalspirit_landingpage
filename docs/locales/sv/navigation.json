@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Hem",
+    "about": "Om oss",
+    "roadmap": "Färdplan",
+    "contact": "Kontakt",
+    "beta_test": "Beta-test",
+    "back": "← Tillbaka"
+  },
+  "footer": {
+    "copyright": "© 2025 GlocalSpirit. Alla rättigheter förbehållna",
+    "privacy": "Integritetspolicy",
+    "imprint": "Impressum",
+    "email": "info@glocalspirit.de",
+    "tagline": "Ett nätverk av mening, inte av brus"
+  }
+}

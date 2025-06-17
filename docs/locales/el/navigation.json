@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Αρχική",
+    "about": "Σχετικά με εμάς",
+    "roadmap": "Οδικός χάρτης",
+    "contact": "Επικοινωνία",
+    "beta_test": "Beta Test",
+    "back": "← Πίσω"
+  },
+  "footer": {
+    "copyright": "© 2025 GlocalSpirit. Όλα τα δικαιώματα διατηρούνται",
+    "privacy": "Πολιτική απορρήτου",
+    "imprint": "Impressum",
+    "email": "info@glocalspirit.de",
+    "tagline": "Ένα δίκτυο νοήματος, όχι θορύβου"
+  }
+}

@@ -543,14 +543,43 @@ class UltraSimpleI18n {
     }
 
     setupSwitcher() {
-        const select = document.getElementById('language-select');
-        if (select) {
-            select.value = this.currentLanguage;
-            select.addEventListener('change', (e) => {
-                this.changeLanguage(e.target.value);
+        let select = document.getElementById('language-select');
+        if (!select) {
+            // Sprachmenü dynamisch erzeugen, wenn nicht vorhanden
+            const header = document.querySelector('.header__nav') || document.body;
+            select = document.createElement('select');
+            select.id = 'language-select';
+            select.className = 'language-select';
+            const langs = [
+                { code: 'de', label: 'DE' },
+                { code: 'en', label: 'EN' },
+                { code: 'fr', label: 'FR' },
+                { code: 'es', label: 'ES' },
+                { code: 'el', label: 'EL' },
+                { code: 'pl', label: 'PL' },
+                { code: 'pt', label: 'PT' },
+                { code: 'ru', label: 'RU' },
+                { code: 'sv', label: 'SV' },
+                { code: 'tr', label: 'TR' }
+            ];
+            langs.forEach(lang => {
+                const option = document.createElement('option');
+                option.value = lang.code;
+                option.textContent = lang.label;
+                select.appendChild(option);
             });
-            console.log('✅ Language switcher setup');
+            // Styling: oben rechts einfügen
+            select.style.position = 'absolute';
+            select.style.top = '16px';
+            select.style.right = '24px';
+            select.style.zIndex = '9999';
+            header.appendChild(select);
         }
+        select.value = this.currentLanguage;
+        select.addEventListener('change', (e) => {
+            this.changeLanguage(e.target.value);
+        });
+        console.log('✅ Language switcher setup');
     }
 }
 

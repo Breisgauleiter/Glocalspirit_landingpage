@@ -1,0 +1,74 @@
+{
+  "testform": {
+    "title": "Acesso Antecipado",
+    "labels": {
+      "name": "Nome",
+      "email": "E-mail",
+      "newsletter": "Receber atualizações por e-mail?"
+    },
+    "buttons": {
+      "submit": "ENVIAR",
+      "sending": "ENVIANDO..."
+    },
+    "messages": {
+      "success": {
+        "title": "Inscrição bem-sucedida!",
+        "text": "Obrigado por se inscrever como beta tester. Entraremos em contato em breve!"
+      },
+      "error": {
+        "title": "Erro ao enviar",
+        "network": "Erro de rede — tente novamente mais tarde.",
+        "validation": "Por favor, verifique seus dados.",
+        "general": "Ocorreu um erro inesperado."
+      }
+    }
+  },
+  "donationform": {
+    "title": "Apoiar o glocalSpirit",
+    "description": "Faça parte do movimento por conexão consciente e comunidade espiritual. Escolha seu pacote mensal de apoio:",
+    "packages": {
+      "support": {
+        "title": "SUPORTE",
+        "description": "Apoio básico à visão",
+        "price": "€20",
+        "period": "/mês",
+        "features": [
+          "Acesso antecipado à beta",
+          "Atualizações da comunidade",
+          "Suporte básico"
+        ]
+      },
+      "premium": {
+        "title": "PREMIUM",
+        "description": "Onboarding + mentor de suporte pessoal",
+        "price": "€44",
+        "period": "/mês",
+        "features": [
+          "Todos os recursos Early Bird",
+          "Mentor de suporte pessoal",
+          "Surpresas especiais"
+        ]
+      },
+      "business": {
+        "title": "NEGÓCIOS",
+        "description": "Premium + envio de newsletter + mural",
+        "price": "€55",
+        "period": "/mês",
+        "features": [
+          "Todos os recursos Premium",
+          "Envio de newsletter",
+          "Mural",
+          "Consultoria estratégica"
+        ]
+      }
+    },
+    "buttons": {
+      "book": "RESERVAR AGORA",
+      "loading": "Carregando..."
+    }
+  },
+  "cta": {
+    "testuser": "TORNAR-SE TESTADOR",
+    "donate": "DOAR"
+  }
+}

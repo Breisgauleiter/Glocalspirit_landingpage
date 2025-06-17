@@ -1,0 +1,48 @@
+{
+  "categories": {
+    "bewegung_flow": {
+      "title": "Movimento & Fluxo",
+      "description": "Corpo, mente e alma se conectam através de formas conscientes, criativas e curativas de movimento. Seja por ioga, dança, respiração ou práticas corporais intuitivas. O GlocalSpirit convida você a encontrar seu ritmo natural e sentir-se em harmonia com a vida."
+    },
+    "bewusstsein": {
+      "title": "Consciência",
+      "description": "Consciência não se mostra por conhecimento ou conceitos, mas pela forma de ser. No GlocalSpirit, trata-se de agir e viver a partir de uma postura consciente: presente, conectado e em harmonia com o todo maior."
+    },
+    "produkte_ernaehrung": {
+      "title": "Bons Produtos & Nutrição",
+      "description": "GlocalSpirit representa consumo consciente, alimentação cuidadosa e nutrição para corpo, mente e alma. Idealmente, qualidade, simplicidade e autenticidade dos produtos estão em harmonia com 'pessoa e natureza'."
+    },
+    "heilung_gesundheit": {
+      "title": "Cura & Saúde",
+      "description": "No GlocalSpirit, saúde significa uma abordagem holística para o bem-estar físico, emocional e espiritual. Convidamos a entender a cura como um processo natural, sustentado por consciência, comunidade, conexão com a natureza e paz interior."
+    },
+    "house_of_hope": {
+      "title": "Casas da Esperança",
+      "description": "As 'Casas da Esperança' são lugares vivos de encontro, cura e co-criação. Servem como espaços espirituais, sociais e culturais onde as pessoas se reúnem no espírito da paz interior e da sinarquia. São pontos de ancoragem física dentro da rede GlocalSpirit."
+    },
+    "kreativitaet_ausdruck": {
+      "title": "Criatividade & Expressão",
+      "description": "GlocalSpirit oferece espaços protegidos para desenvolvimento livre, fluxo criativo e expressão autêntica. O que antes era percebido como pressão de desempenho pode aqui ser vivido como criatividade tangível e sentida."
+    },
+    "lernen_bildung": {
+      "title": "Aprendizagem & Educação",
+      "description": "GlocalSpirit representa uma nova forma de troca de conhecimento, baseada em ressonância, autoexpressão e sintonia interior. Além de pressão, avaliação ou currículos rígidos."
+    },
+    "natur_nachhaltigkeit": {
+      "title": "Natureza & Sustentabilidade",
+      "description": "GlocalSpirit lembra nossa conexão original com a Terra. Convida a viver em harmonia com os ciclos naturais, usar recursos com cuidado e criar formas de vida regenerativas."
+    },
+    "spiritualitaet_mystik": {
+      "title": "Espiritualidade & Mística",
+      "description": "Aqui se encontram tradições de sabedoria, símbolos atemporais e formas modernas de despertar espiritual. Esta categoria oferece espaço para o indizível: o silêncio além das palavras, a profundidade além do pensamento ou o mistério universal que permeia tudo."
+    },
+    "technologie_bewusstsein": {
+      "title": "Tecnologia & Consciência",
+      "description": "GlocalSpirit une o aparentemente incompatível: inteligência digital e profundidade espiritual. A tecnologia não precisa ser desumana — com uso consciente, pode ser uma ferramenta para paz, conexão e desenvolvimento interior."
+    },
+    "wertschoepfung_finanzen": {
+      "title": "Criação de Valor & Finanças",
+      "description": "Um novo entendimento de economia, baseado em consciência, confiança e circulação. Em vez de maximizar lucros, trata-se de valor real através de significado, encontros e riqueza interior."
+    }
+  }
+}

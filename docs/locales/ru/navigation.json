@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Главная",
+    "about": "О нас",
+    "roadmap": "Дорожная карта",
+    "contact": "Контакт",
+    "beta_test": "Бета-тест",
+    "back": "← Назад"
+  },
+  "footer": {
+    "copyright": "© 2025 GlocalSpirit. Все права защищены",
+    "privacy": "Политика конфиденциальности",
+    "imprint": "Импрессум",
+    "email": "info@glocalspirit.de",
+    "tagline": "Сеть смысла, а не шума"
+  }
+}

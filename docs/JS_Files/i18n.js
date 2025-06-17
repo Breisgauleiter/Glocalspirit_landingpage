@@ -4,7 +4,7 @@
 class GlocalSpiritI18n {
     constructor() {
         this.currentLanguage = 'de';
-        this.supportedLanguages = ['de', 'en', 'fr', 'es'];
+        this.supportedLanguages = ['de', 'en', 'fr', 'es', 'ru', 'pt', 'sv', 'tr', 'el', 'pl'];
         this.fallbackLanguage = 'de';
         this.translations = {};
         this.isInitialized = false;
@@ -348,27 +348,23 @@ class GlocalSpiritI18n {
         const langDropdown = document.createElement('div');
         langDropdown.className = 'language-switcher__dropdown';
         
-        // Create language options
+        // Create language options (only show language code in uppercase)
         this.supportedLanguages.forEach(lang => {
             const option = document.createElement('button');
             option.className = 'language-switcher__option';
             option.setAttribute('data-lang', lang);
             option.innerHTML = `
-                <span class="language-switcher__flag">${this.getLanguageFlag(lang)}</span>
-                <span class="language-switcher__name">${this.getLanguageName(lang)}</span>
+                <span class="language-switcher__code">${lang.toUpperCase()}</span>
             `;
-            
             if (lang === this.currentLanguage) {
                 option.classList.add('language-switcher__option--active');
             }
-            
             option.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.changeLanguage(lang);
                 this.updateLanguageSwitcher();
                 langDropdown.classList.remove('language-switcher__dropdown--open');
             });
-            
             langDropdown.appendChild(option);
         });
         
@@ -397,7 +393,6 @@ class GlocalSpiritI18n {
         if (currentBtn) {
             currentBtn.textContent = this.currentLanguage.toUpperCase();
         }
-        
         // Update active option
         document.querySelectorAll('.language-switcher__option').forEach(option => {
             option.classList.remove('language-switcher__option--active');
@@ -410,9 +405,15 @@ class GlocalSpiritI18n {
     getLanguageFlag(lang) {
         const flags = {
             'de': '🇩🇪',
-            'en': '🇬🇧', 
+            'en': '🇬🇧',
             'fr': '🇫🇷',
-            'es': '🇪🇸'
+            'es': '🇪🇸',
+            'ru': '🇷🇺',
+            'pt': '🇵🇹',
+            'sv': '🇸🇪',
+            'tr': '🇹🇷',
+            'el': '🇬🇷',
+            'pl': '🇵🇱'
         };
         return flags[lang] || '🌍';
     }
@@ -421,8 +422,14 @@ class GlocalSpiritI18n {
         const names = {
             'de': 'Deutsch',
             'en': 'English',
-            'fr': 'Français', 
-            'es': 'Español'
+            'fr': 'Français',
+            'es': 'Español',
+            'ru': 'Русский',
+            'pt': 'Português',
+            'sv': 'Svenska',
+            'tr': 'Türkçe',
+            'el': 'Ελληνικά',
+            'pl': 'Polski'
         };
         return names[lang] || lang.toUpperCase();
     }

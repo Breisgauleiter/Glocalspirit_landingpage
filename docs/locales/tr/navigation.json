@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Anasayfa",
+    "about": "Hakkımızda",
+    "roadmap": "Yol Haritası",
+    "contact": "İletişim",
+    "beta_test": "Beta Testi",
+    "back": "← Geri"
+  },
+  "footer": {
+    "copyright": "© 2025 GlocalSpirit. Tüm hakları saklıdır",
+    "privacy": "Gizlilik",
+    "imprint": "Impressum",
+    "email": "info@glocalspirit.de",
+    "tagline": "Anlamın ağı, gürültünün değil"
+  }
+}

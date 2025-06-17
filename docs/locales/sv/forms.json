@@ -1,0 +1,74 @@
+{
+  "testform": {
+    "title": "Early Access",
+    "labels": {
+      "name": "Namn",
+      "email": "E-post",
+      "newsletter": "Få uppdateringar via e-post?"
+    },
+    "buttons": {
+      "submit": "SKICKA",
+      "sending": "SKICKAR..."
+    },
+    "messages": {
+      "success": {
+        "title": "Anmälan lyckades!",
+        "text": "Tack för din anmälan som beta-testare. Vi kontaktar dig snart!"
+      },
+      "error": {
+        "title": "Fel vid skickande",
+        "network": "Nätverksfel — försök igen senare.",
+        "validation": "Kontrollera dina uppgifter.",
+        "general": "Ett oväntat fel har inträffat."
+      }
+    }
+  },
+  "donationform": {
+    "title": "Stöd glocalSpirit",
+    "description": "Bli en del av rörelsen för medveten förbindelse och andlig gemenskap. Välj ditt månatliga stödpaket:",
+    "packages": {
+      "support": {
+        "title": "SUPPORT",
+        "description": "Grundläggande stöd för visionen",
+        "price": "€20",
+        "period": "/månad",
+        "features": [
+          "Tidigt tillträde till beta",
+          "Community-uppdateringar",
+          "Grundsupport"
+        ]
+      },
+      "premium": {
+        "title": "PREMIUM",
+        "description": "Onboarding + personlig supportmentor",
+        "price": "€44",
+        "period": "/månad",
+        "features": [
+          "Alla Early Bird-funktioner",
+          "Personlig supportmentor",
+          "Särskilda överraskningar"
+        ]
+      },
+      "business": {
+        "title": "BUSINESS",
+        "description": "Premium + nyhetsbrev + anslagstavla",
+        "price": "€55",
+        "period": "/månad",
+        "features": [
+          "Alla Premium-funktioner",
+          "Nyhetsbrev",
+          "Anslagstavla",
+          "Strategisk rådgivning"
+        ]
+      }
+    },
+    "buttons": {
+      "book": "BOKA NU",
+      "loading": "Laddar..."
+    }
+  },
+  "cta": {
+    "testuser": "BLI TESTANVÄNDARE",
+    "donate": "SKÄNKA"
+  }
+}

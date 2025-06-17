@@ -1,0 +1,45 @@
+{
+  "title": "Yol Haritası",
+  "cards": {
+    "card01": {
+      "title": "İlk impuls",
+      "date": "Ağustos 2024",
+      "description": "glocalSpirit'in vizyonu alınır — teknik bir proje olarak değil, yeni bir sosyal sinir sisteminin canlı bir dürtüsü olarak. Üç kişi içsel çağrıyı takip eder ve ilk bilinçli üçgeni oluşturur: Triangle. Bu, bağlantı, netlik ve adanmışlığı simgeler. Bu ilk hareketle glocalSpirit'in özü ortaya çıkar: Dünyada zaten var olan iyiliği görünür kılmak ve insanları içsel rezonans yoluyla birleştirmek. Fikir nefes alır."
+    },
+    "card02": {
+      "title": "Alan doğuyor",
+      "date": "Eylül/Ekim 2024",
+      "description": "İlk kavramsal şekillenme başlar. Bir iş planı olarak değil, ortaya çıkan için bir alan olarak. Temel fikir kristalleşir: İnsanları algoritmalarla değil, rezonansla birleştiren bir platform. Arayanların ve sunanların buluştuğu bir yer — rekabet ve değerlendirme ötesinde, sinerji ve ortak yaratım için."
+    },
+    "card03": {
+      "title": "Bağlantının SyNbol'ü",
+      "date": "Kasım 2024",
+      "description": "Bir SyNbol doğar — bir logo değil, canlı bir portal. 'SyNbol' terimi, klasik sembolizmi senkron bağlantının derinliğiyle birleştirir: büyük 'N', Now, Ağ ve Doğa Zekası anlamına gelir. Bu ilk SyNbol, glocalSpirit'in arketipsel alanlarını somutlaştırır: barış, yaratıcılık, şifa, bilinç, doğallık, bağlılık, değer. Sadece bir işaret değil, bir davettir. Platformda daha sonra Purpose Hubs olarak ortaya çıkarlar — kategoriler olarak değil, insanları sezgisel olarak birleştiren enerjik rezonans alanları olarak."
+    },
+    "card04": {
+      "title": "Akışta yapı",
+      "date": "Ara 2024 - Oca 2025",
+      "description": "Yapı şekillenmeye başlar — katı bir iskelet olarak değil, canlı bir mimari olarak. Business Model Canvas geliştirilir, barındırma sözleşmeleri yapılır, ilk konsept kağıdı oluşturulur. Aynı zamanda ağ kurma başlar — hedef kitle stratejisi olarak değil, nazik bir dinleme olarak: Kim zaten rezonansa giriyor? glocalSpirit olduğu gibi kalır: insanları yönetmeyen, senkronizasyon yoluyla bir araya getiren sentropik bir alan."
+    },
+    "card05": {
+      "title": "Merkezden şekil",
+      "date": "Şubat - Mart 2025",
+      "description": "Prototip ortaya çıkar. İlk wireframe'ler, görsel kimlik, temel işlevler — hepsi merkezi bir soru etrafında şekillenir: Teknoloji hayata nasıl hizmet edebilir? Platform bağımlılık yapmamalı, özgürleştirmeli. Dağıtmamalı, toplamalı. Bilinçli buluşmalar için bir araç."
+    },
+    "card06": {
+      "title": "Canlı nefes",
+      "date": "Nisan 2025",
+      "description": "İlk test aşaması başlar. Platform gerçek dünyada canlanır: içerikler akar, geri bildirimler alınır, ilk bilinçli bağlantılar oluşur. Yazılım nefes alır, alan yanıt verir. Karşılaşmalar kalıplara göre değil, anlamına göre gerçekleşir. glocalSpirit zekasını göstermeye başlar — kod olarak değil, hissedilen bir alan olarak."
+    },
+    "card07": {
+      "title": "Alan açılıyor",
+      "date": "Mayıs 2025",
+      "description": "İkinci test aşaması hareket getirir. Mevcut ağlar, alanın bir parçası olmaya davet edilir. glocalMap ortaya çıkar — kalpten hareket eden insanların göründüğü yaşanmış etkinliğin bir haritası. Arama-sunma fonksiyonu etkinleştirilir: rezonans yoluyla derin, hassas bağlantılar için bir araç, uyarı yerine. Açılış sayfası, yeniyi sadece hayal etmek değil, yaşamak isteyen herkese bir davet olarak açılır."
+    },
+    "card08": {
+      "title": "Dünyaya ilk çağrı",
+      "date": "Ağustos/Eylül 2025",
+      "description": "İlk büyük lansman yaklaşıyor. Platform yeni çevrelere açılıyor. Paralel olarak altyapı stabilize edilir, bir yönetim kurulur — kontrol için değil, alanı tutmak için. glocalSpirit parlamaya başlar: bir ağ, bir rezonans alanı, yaşanmış bir vizyon olarak."
+    }
+  }
+}

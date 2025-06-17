@@ -1,0 +1,74 @@
+{
+  "testform": {
+    "title": "Wczesny dostęp",
+    "labels": {
+      "name": "Imię",
+      "email": "E-mail",
+      "newsletter": "Otrzymuj aktualizacje e-mailem?"
+    },
+    "buttons": {
+      "submit": "WYŚLIJ",
+      "sending": "WYSYŁANIE..."
+    },
+    "messages": {
+      "success": {
+        "title": "Zgłoszenie udane!",
+        "text": "Dziękujemy za zgłoszenie się jako beta-tester. Skontaktujemy się wkrótce!"
+      },
+      "error": {
+        "title": "Błąd podczas wysyłania",
+        "network": "Błąd sieci — spróbuj ponownie później.",
+        "validation": "Sprawdź swoje dane.",
+        "general": "Wystąpił nieoczekiwany błąd."
+      }
+    }
+  },
+  "donationform": {
+    "title": "Wesprzyj glocalSpirit",
+    "description": "Dołącz do ruchu na rzecz świadomego połączenia i duchowej wspólnoty. Wybierz swój miesięczny pakiet wsparcia:",
+    "packages": {
+      "support": {
+        "title": "WSPARCIE",
+        "description": "Podstawowe wsparcie dla wizji",
+        "price": "€20",
+        "period": "/miesiąc",
+        "features": [
+          "Wczesny dostęp do bety",
+          "Aktualizacje społeczności",
+          "Podstawowe wsparcie"
+        ]
+      },
+      "premium": {
+        "title": "PREMIUM",
+        "description": "Onboarding + osobisty mentor wsparcia",
+        "price": "€44",
+        "period": "/miesiąc",
+        "features": [
+          "Wszystkie funkcje Early Bird",
+          "Osobisty mentor wsparcia",
+          "Specjalne niespodzianki"
+        ]
+      },
+      "business": {
+        "title": "BIZNES",
+        "description": "Premium + wysyłka newslettera + tablica ogłoszeń",
+        "price": "€55",
+        "period": "/miesiąc",
+        "features": [
+          "Wszystkie funkcje Premium",
+          "Wysyłka newslettera",
+          "Tablica ogłoszeń",
+          "Doradztwo strategiczne"
+        ]
+      }
+    },
+    "buttons": {
+      "book": "ZAREZERWUJ TERAZ",
+      "loading": "Ładowanie..."
+    }
+  },
+  "cta": {
+    "testuser": "ZOSTAŃ TESTEREM",
+    "donate": "WPŁAĆ"
+  }
+}

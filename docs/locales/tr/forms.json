@@ -1,0 +1,74 @@
+{
+  "testform": {
+    "title": "Erken Erişim",
+    "labels": {
+      "name": "İsim",
+      "email": "E-posta",
+      "newsletter": "E-posta ile güncellemeleri al?"
+    },
+    "buttons": {
+      "submit": "GÖNDER",
+      "sending": "GÖNDERİLİYOR..."
+    },
+    "messages": {
+      "success": {
+        "title": "Başarıyla kaydedildi!",
+        "text": "Beta test kullanıcısı olarak kaydolduğunuz için teşekkürler. Yakında sizinle iletişime geçeceğiz!"
+      },
+      "error": {
+        "title": "Gönderme hatası",
+        "network": "Ağ hatası — lütfen daha sonra tekrar deneyin.",
+        "validation": "Lütfen bilgilerinizi kontrol edin.",
+        "general": "Beklenmeyen bir hata oluştu."
+      }
+    }
+  },
+  "donationform": {
+    "title": "glocalSpirit'i Destekle",
+    "description": "Bilinçli bağlantı ve manevi topluluk hareketinin bir parçası olun. Aylık destek paketini seçin:",
+    "packages": {
+      "support": {
+        "title": "DESTEK",
+        "description": "Vizyon için temel destek",
+        "price": "€20",
+        "period": "/ay",
+        "features": [
+          "Betaya erken erişim",
+          "Topluluk güncellemeleri",
+          "Temel destek"
+        ]
+      },
+      "premium": {
+        "title": "PREMIUM",
+        "description": "Onboarding + kişisel destek mentoru",
+        "price": "€44",
+        "period": "/ay",
+        "features": [
+          "Tüm Early Bird özellikleri",
+          "Kişisel destek mentoru",
+          "Özel sürprizler"
+        ]
+      },
+      "business": {
+        "title": "İŞ",
+        "description": "Premium + bülten gönderimi + pano",
+        "price": "€55",
+        "period": "/ay",
+        "features": [
+          "Tüm Premium özellikler",
+          "Bülten gönderimi",
+          "Pano",
+          "Stratejik danışmanlık"
+        ]
+      }
+    },
+    "buttons": {
+      "book": "HEMEN REZERVE ET",
+      "loading": "Yükleniyor..."
+    }
+  },
+  "cta": {
+    "testuser": "TEST KULLANICISI OL",
+    "donate": "BAĞIŞ YAP"
+  }
+}
