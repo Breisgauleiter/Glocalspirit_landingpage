@@ -13,5 +13,11 @@
     "imprint": "Impressum",
     "email": "info@glocalspirit.de",
     "tagline": "Sieć znaczenia, nie hałasu"
-  }
+  },
+  "beta_test": "Testuj",
+  "spenden": "Wpłać",
+  "home": "Strona główna",
+  "about": "O nas",
+  "roadmap": "Mapa drogowa",
+  "contact": "Kontakt"
 }

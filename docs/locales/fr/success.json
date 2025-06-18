@@ -19,5 +19,23 @@
       "home": "Aller à l'accueil",
       "contact": "Contact"
     }
-  }
+  },
+  "donation_success_title": "Merci pour votre soutien !",
+  "donation_success_msg": "Votre abonnement a été activé avec succès. Vous recevrez bientôt un e-mail de confirmation de notre part.",
+  "donation_success_next": "Que se passe-t-il ensuite ?",
+  "donation_success_email": "📧 Vous recevrez un e-mail de bienvenue avec tous les détails",
+  "donation_success_help": "🎉 Votre contribution nous aide à promouvoir la mise en réseau consciente",
+  "donation_success_together": "🌱 Ensemble, nous créons un avenir plus conscient",
+  "donation_success_info": "💫 Vous serez informé des nouvelles fonctionnalités et événements",
+  "testform_title": "Devenir testeur bêta",
+  "form_success": "Inscription réussie !",
+  "testform_success_message": "Merci de vous être inscrit comme testeur bêta. Nous vous contacterons bientôt !",
+  "form_error": "Erreur d'inscription",
+  "form_error_message": "Une erreur s'est produite. Veuillez réessayer.",
+  "testform_name_label": "Nom *",
+  "testform_email_label": "E-mail *",
+  "testform_newsletter": "Recevoir des mises à jour par e-mail ?",
+  "testform_submit": "ENVOYER",
+  "testform_sending": "ENVOI EN COURS...",
+  "donation_title": "Soutenir glocalSpirit - Forfaits d'abonnement"
 }

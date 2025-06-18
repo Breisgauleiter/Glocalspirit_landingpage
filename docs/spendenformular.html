@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="donation_title">glocalSpirit unterstützen - Abo-Pakete</title>
-    <meta name="description" content="Unterstützen Sie glocalSpirit mit einem monatlichen Abo. Wählen Sie zwischen Support (€20), Premium (€50) oder Celebration (€100) Paketen.">
+    <title data-i18n="donation_title">Support glocalSpirit - Subscription Packages</title>
+    <meta name="description" data-i18n="donation_meta_description" content="Support glocalSpirit with a monthly subscription. Choose between Support (€20), Premium (€50), or Celebration (€100) packages.">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="glocalSpirit Abo-Pakete">
-    <meta property="og:description" content="Monatliche Unterstützung für bewusste Vernetzung und spirituelle Gemeinschaft.">
+    <meta property="og:title" data-i18n="donation_og_title" content="glocalSpirit Subscription Packages">
+    <meta property="og:description" data-i18n="donation_og_description" content="Monthly support for conscious networking and spiritual community.">
     <meta property="og:type" content="website">
     
     <!-- CSS -->
@@ -57,11 +57,11 @@
                 <a href="index.html#roadmap" class="header__link" data-i18n="roadmap">Roadmap</a>
             </div>
             <div class="header__right-section">
-                <div class="header__language-switcher">
-                    <!-- language menu generated via JS -->
-                </div>
                 <div class="header__beta-tester">
                     <a href="index.html" class="header__beta-link" data-i18n="back">← Zurück</a>
+                </div>
+                <div class="header__language-switcher">
+                    <!-- Sprachmenü wird jetzt per JS erzeugt -->
                 </div>
             </div>
         </nav>
@@ -71,32 +71,32 @@
         <div id="smooth-content">
             <main class="main">
                 <section class="hero">
-                    <p class="hero-description">
-                        Werde Teil der Bewegung für bewusste Vernetzung und spirituelle Gemeinschaft. 
-                        Wähle dein Abo-Paket und unterstütze uns dabei, eine neue Form der Zusammenarbeit zu schaffen.
+                    <p class="hero-description" data-i18n="donation_hero_description">
+                        Become part of the movement for conscious networking and spiritual community. 
+                        Choose your subscription package and help us create a new form of collaboration.
                     </p>
                     
                     <div class="packages-container">
                         <!-- Early Bird Paket -->
                         <div class="package-card earlybird-package" data-price-id="price_1RagqmPQ7hNB5R7goFBX14jJ">
                             <div class="package-header">
-                                <h2 class="package-title">EARLY BIRD</h2>
-                                <p class="package-description">Persönliches Onboarding für deinen Start</p>
+                                <h2 class="package-title" data-i18n="donation_package_earlybird_title">EARLY BIRD</h2>
+                                <p class="package-description" data-i18n="donation_package_earlybird_description">Personal onboarding for your start</p>
                             </div>
                             <div class="package-features">
                                 <ul>
-                                    <li>Persönliches Onboarding</li>
+                                    <li data-i18n="donation_package_earlybird_feature1">Personal Onboarding</li>
                                 </ul>
                             </div>
                             <div class="package-price">
                                 <span class="price">€22</span>
-                                <span class="period">/Monat</span>
+                                <span class="period" data-i18n="donation_package_price_period">/month</span>
                             </div>
                             <button class="package-button" data-package="earlybird" data-price-id="price_1RagqmPQ7hNB5R7goFBX14jJ">
-                                <span class="button-text">JETZT BUCHEN</span>
+                                <span class="button-text" data-i18n="donation_package_button">BOOK NOW</span>
                                 <span class="button-loading" style="display: none;">
                                     <span class="spinner"></span>
-                                    Wird geladen...
+                                    <span data-i18n="donation_package_loading">Loading...</span>
                                 </span>
                             </button>
                         </div>
@@ -104,25 +104,25 @@
                         <!-- Premium Paket -->
                         <div class="package-card premium-package" data-price-id="price_1RanvQPQ7hNB5R7gOSpGuoMt">
                             <div class="package-header">
-                                <h2 class="package-title">PREMIUM</h2>
-                                <p class="package-description">Onboarding + persönlicher Support Mentor</p>
+                                <h2 class="package-title" data-i18n="donation_package_premium_title">PREMIUM</h2>
+                                <p class="package-description" data-i18n="donation_package_premium_description">Onboarding + personal support mentor</p>
                             </div>
                             <div class="package-features">
                                 <ul>
-                                    <li>Alle Early Bird Features</li>
-                                    <li>Persönlicher Support Mentor</li>
-                                    <li>Besondere Überraschungen</li>
+                                    <li data-i18n="donation_package_premium_feature1">All Early Bird Features</li>
+                                    <li data-i18n="donation_package_premium_feature2">Personal Support Mentor</li>
+                                    <li data-i18n="donation_package_premium_feature3">Special Surprises</li>
                                 </ul>
                             </div>
                             <div class="package-price">
                                 <span class="price">€44</span>
-                                <span class="period">/Monat</span>
+                                <span class="period" data-i18n="donation_package_price_period">/month</span>
                             </div>
                             <button class="package-button" data-package="premium" data-price-id="price_1RanvQPQ7hNB5R7gOSpGuoMt">
-                                <span class="button-text">JETZT BUCHEN</span>
+                                <span class="button-text" data-i18n="donation_package_button">BOOK NOW</span>
                                 <span class="button-loading" style="display: none;">
                                     <span class="spinner"></span>
-                                    Wird geladen...
+                                    <span data-i18n="donation_package_loading">Loading...</span>
                                 </span>
                             </button>
                         </div>
@@ -130,26 +130,26 @@
                         <!-- Business Paket -->
                         <div class="package-card business-package" data-price-id="price_1Ranw8PQ7hNB5R7ghbOlhEka">
                             <div class="package-header">
-                                <h2 class="package-title">BUSINESS</h2>
-                                <p class="package-description">Premium + Newsletter-Versand + Pinnwand</p>
+                                <h2 class="package-title" data-i18n="donation_package_business_title">BUSINESS</h2>
+                                <p class="package-description" data-i18n="donation_package_business_description">Premium + Newsletter + Pinboard</p>
                             </div>
                             <div class="package-features">
                                 <ul>
-                                    <li>Alle Premium Features</li>
-                                    <li>Newsletter-Versand</li>
-                                    <li>Pinnwand</li>
-                                    <li>Strategische Beratung</li>
+                                    <li data-i18n="donation_package_business_feature1">All Premium Features</li>
+                                    <li data-i18n="donation_package_business_feature2">Newsletter Distribution</li>
+                                    <li data-i18n="donation_package_business_feature3">Pinboard</li>
+                                    <li data-i18n="donation_package_business_feature4">Strategic Consulting</li>
                                 </ul>
                             </div>
                             <div class="package-price">
                                 <span class="price">€55</span>
-                                <span class="period">/Monat</span>
+                                <span class="period" data-i18n="donation_package_price_period">/month</span>
                             </div>
                             <button class="package-button" data-package="business" data-price-id="price_1Ranw8PQ7hNB5R7ghbOlhEka">
-                                <span class="button-text">JETZT BUCHEN</span>
+                                <span class="button-text" data-i18n="donation_package_button">BOOK NOW</span>
                                 <span class="button-loading" style="display: none;">
                                     <span class="spinner"></span>
-                                    Wird geladen...
+                                    <span data-i18n="donation_package_loading">Loading...</span>
                                 </span>
                             </button>
                         </div>

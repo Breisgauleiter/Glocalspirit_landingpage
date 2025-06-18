@@ -1,4 +1,6 @@
 {
+  "beta_test": "Testen",
+  "spenden": "Spenden",
   "nav": {
     "home": "Startseite",
     "about": "Über uns",
@@ -13,5 +15,9 @@
     "imprint": "Impressum",
     "email": "info@glocalspirit.de",
     "tagline": "Ein Netzwerk der Bedeutung, nicht des lärms"
-  }
+  },
+  "home": "Startseite",
+  "about": "Über uns",
+  "roadmap": "Roadmap",
+  "contact": "Kontakt"
 }

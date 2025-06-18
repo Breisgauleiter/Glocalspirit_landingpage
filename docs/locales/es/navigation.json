@@ -13,5 +13,11 @@
     "imprint": "Aviso legal",
     "email": "info@glocalspirit.de",
     "tagline": "Una red de significado, no de ruido"
-  }
+  },
+  "beta_test": "Probar",
+  "spenden": "Donar",
+  "home": "Inicio",
+  "about": "Acerca de",
+  "roadmap": "Hoja de ruta",
+  "contact": "Contacto"
 }

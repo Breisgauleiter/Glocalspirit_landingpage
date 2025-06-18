@@ -19,5 +19,23 @@
       "home": "Ir al inicio",
       "contact": "Contacto"
     }
-  }
+  },
+  "donation_success_title": "¡Gracias por su apoyo!",
+  "donation_success_msg": "Su suscripción ha sido activada exitosamente. Recibirá un correo de confirmación de nosotros en breve.",
+  "donation_success_next": "¿Qué sigue?",
+  "donation_success_email": "📧 Recibirá un correo de bienvenida con todos los detalles",
+  "donation_success_help": "🎉 Su contribución nos ayuda a promover la conexión consciente",
+  "donation_success_together": "🌱 Juntos creamos un futuro más consciente",
+  "donation_success_info": "💫 Será informado sobre nuevas características y eventos",
+  "testform_title": "Convertirse en probador beta",
+  "form_success": "¡Registro exitoso!",
+  "testform_success_message": "Gracias por registrarte como probador beta. ¡Nos pondremos en contacto contigo pronto!",
+  "form_error": "Error de registro",
+  "form_error_message": "Ocurrió un error. Por favor inténtalo de nuevo.",
+  "testform_name_label": "Nombre *",
+  "testform_email_label": "Correo electrónico *",
+  "testform_newsletter": "¿Recibir actualizaciones por correo?",
+  "testform_submit": "ENVIAR",
+  "testform_sending": "ENVIANDO...",
+  "donation_title": "Apoyar glocalSpirit - Paquetes de suscripción"
 }

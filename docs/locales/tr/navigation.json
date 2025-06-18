@@ -13,5 +13,11 @@
     "imprint": "Impressum",
     "email": "info@glocalspirit.de",
     "tagline": "Anlamın ağı, gürültünün değil"
-  }
+  },
+  "beta_test": "Test Et",
+  "spenden": "Bağış Yap",
+  "home": "Ana Sayfa",
+  "about": "Hakkımızda",
+  "roadmap": "Yol Haritası",
+  "contact": "İletişim"
 }

@@ -70,5 +70,29 @@
   "cta": {
     "testuser": "СТАТЬ ТЕСТЕРОМ",
     "donate": "ПОЖЕРТВОВАТЬ"
+  },
+  "spendenformular": {
+    "donation_title": "Поддержать glocalSpirit - Пакеты подписки",
+    "donation_meta_description": "Поддержите glocalSpirit ежемесячной подпиской. Выберите между пакетами Поддержка (€20), Премиум (€50) или Праздничный (€100).",
+    "donation_og_title": "Пакеты подписки glocalSpirit",
+    "donation_og_description": "Ежемесячная поддержка для осознанного общения и духовного сообщества.",
+    "donation_hero_description": "Станьте частью движения за осознанное общение и духовное сообщество. Выберите свой пакет подписки и помогите нам создать новую форму сотрудничества.",
+    "donation_package_earlybird_title": "EARLY BIRD",
+    "donation_package_earlybird_description": "Персональная адаптация для вашего старта",
+    "donation_package_earlybird_feature1": "Персональная адаптация",
+    "donation_package_price_period": "/месяц",
+    "donation_package_button": "ЗАБРОНИРОВАТЬ",
+    "donation_package_loading": "Загрузка...",
+    "donation_package_premium_title": "ПРЕМИУМ",
+    "donation_package_premium_description": "Адаптация + персональный ментор поддержки",
+    "donation_package_premium_feature1": "Все функции Early Bird",
+    "donation_package_premium_feature2": "Персональный ментор поддержки",
+    "donation_package_premium_feature3": "Особые сюрпризы",
+    "donation_package_business_title": "БИЗНЕС",
+    "donation_package_business_description": "Премиум + рассылка + доска объявлений",
+    "donation_package_business_feature1": "Все функции Премиум",
+    "donation_package_business_feature2": "Рассылка новостей",
+    "donation_package_business_feature3": "Доска объявлений",
+    "donation_package_business_feature4": "Стратегические консультации"
   }
 }

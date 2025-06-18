@@ -153,7 +153,7 @@ main{
     .header__right-section {
         display: flex;
         align-items: center;
-        gap: 1rem; /* keep standard gap between buttons */
+        gap: 1.5rem; /* Adjusted for better spacing */
         margin-right: 1rem; /* ensure spacing from edge */
         min-width: max-content; /* prevent container from shrinking smaller than its children */
         flex-shrink: 0; /* do not shrink container */
@@ -170,7 +170,7 @@ main{
             letter-spacing: clamp(2px, 0.5vw, 4.16px);
             padding: 0.1rem 0.3rem;
             font-weight: bolder;
-            font-size: clamp(0.8rem,2vw,1.5rem);
+            font-size: clamp(0.8rem,1.2vw,1.5rem);
             font-family: var(--secondary-font-family);
             color: rgb(var(--special-cta-color));
             transition: grayscale 0.5s ease-in-out;
@@ -190,7 +190,7 @@ main{
             letter-spacing: clamp(2px, 0.5vw, 4.16px);
             padding: 0.1rem 0.3rem;
             font-weight: bolder;
-            font-size: clamp(0.8rem,2vw,1.5rem);
+            font-size: clamp(0.8rem,1.2vw,1.5rem);
             font-family: var(--secondary-font-family);
             color: rgb(var(--special-cta-color));
             transition: grayscale 0.5s ease-in-out;
@@ -205,9 +205,7 @@ main{
 
     .header__language-switcher {
         display: flex;
-    align-items: center;
-
-        margin-left: 3rem; /* increase horizontal gap before dropdown menu */
+        align-items: center;
         position: relative;
         /* z-index reset to default, horizontal spacing adjusted above */
 

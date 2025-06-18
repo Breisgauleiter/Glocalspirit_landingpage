@@ -13,5 +13,11 @@
     "imprint": "Импрессум",
     "email": "info@glocalspirit.de",
     "tagline": "Сеть смысла, а не шума"
-  }
+  },
+  "beta_test": "Тестировать",
+  "spenden": "Пожертвовать",
+  "home": "Главная",
+  "about": "О нас",
+  "roadmap": "Дорожная карта",
+  "contact": "Контакт"
 }

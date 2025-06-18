@@ -13,5 +13,11 @@
     "imprint": "Impressum",
     "email": "info@glocalspirit.de",
     "tagline": "Ένα δίκτυο νοήματος, όχι θορύβου"
-  }
+  },
+  "beta_test": "Δοκιμή",
+  "spenden": "Δωρεά",
+  "home": "Αρχική",
+  "about": "Σχετικά με εμάς",
+  "roadmap": "Χάρτης πορείας",
+  "contact": "Επικοινωνία"
 }

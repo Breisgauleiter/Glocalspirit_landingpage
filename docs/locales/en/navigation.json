@@ -1,8 +1,10 @@
 {
+  "beta_test": "Test",
+  "spenden": "Donate",
   "nav": {
     "home": "Home",
     "about": "About",
-    "roadmap": "Roadmap", 
+    "roadmap": "Roadmap",
     "contact": "Contact",
     "beta_test": "Test",
     "back": "← Back"
@@ -13,5 +15,9 @@
     "imprint": "Legal Notice",
     "email": "info@glocalspirit.de",
     "tagline": "A network of meaning, not noise"
-  }
+  },
+  "home": "Home",
+  "about": "About",
+  "roadmap": "Roadmap",
+  "contact": "Contact"
 }

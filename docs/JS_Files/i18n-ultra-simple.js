@@ -214,8 +214,8 @@ class UltraSimpleI18n {
 
                 // Legacy keys for backward compatibility
                 'hero.title': 'glocalSpirit',
-                'hero.description': 'GlocalSpirit is a platform for consciousness development and networking that connects local and global communities.<br><br>Our goal is to create a living peace network where people can share their values, skills, and resources.<br><br>Through online resonance spaces, regional meetings, and innovative financial models like the GlocalSpirit-Coin, we promote a sustainable, cooperative economy.',
-                'spenden': 'Donate'
+                'hero.description': 'GlocalSpirit ist eine Plattform für Bewusstseinsbildung und Vernetzung, die lokale und globale Gemeinschaften verbindet.<br><br>Unser Ziel ist es, ein lebendiges Friedensnetzwerk zu schaffen, in dem Menschen ihre Werte, Fähigkeiten und Ressourcen teilen können.<br><br>Durch Online-Resonanzräume, regionale Treffen und innovative Finanzmodelle wie den GlocalSpirit-Coin fördern wir eine nachhaltige, kooperative Wirtschaft.',
+                'spenden': 'Spenden'
             },
             'fr': {
                 // Navigation
@@ -434,8 +434,53 @@ class UltraSimpleI18n {
         };
     }
 
-    init() {
+    flattenJSON(obj) {
+        const result = {};
+        const recurse = (cur, prop) => {
+            if (Object(cur) !== cur) {
+                result[prop] = cur;
+            } else if (Array.isArray(cur)) {
+                result[prop] = cur;
+            } else {
+                for (const p in cur) {
+                    recurse(cur[p], p);
+                }
+            }
+        };
+        recurse(obj, "");
+        delete result[""];
+        return result;
+    }
+
+    async loadAllDynamicTranslations() {
+        const translationFiles = ['about', 'forms', 'hero', 'navigation', 'roadmap', 'success'];
+        const languages = ['de', 'en', 'fr', 'es', 'el', 'pl', 'pt', 'ru', 'sv', 'tr']; // All possible languages
+
+        for (const lang of languages) {
+            if (!this.translations[lang]) {
+                this.translations[lang] = {};
+            }
+            for (const file of translationFiles) {
+                try {
+                    const response = await fetch(`locales/${lang}/${file}.json`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const flattened = this.flattenJSON(data);
+                        Object.assign(this.translations[lang], flattened);
+                    }
+                } catch (error) {
+                    // It's okay if some files don't exist, just log it for debugging
+                    // console.warn(`Could not load or parse locales/${lang}/${file}.json`, error);
+                }
+            }
+        }
+        console.log("All dynamic translations loaded.");
+    }
+
+    async init() {
         console.log('🌍 Initializing ultra-simple i18n...');
+        
+        await this.loadAllDynamicTranslations();
         
         // Detect language
         const urlParams = new URLSearchParams(window.location.search);
@@ -451,7 +496,6 @@ class UltraSimpleI18n {
         }
         
         console.log(`Current language: ${this.currentLanguage}`);
-        console.log('Available translations:', Object.keys(this.translations[this.currentLanguage]));
         
         // Update page
         this.updatePage();

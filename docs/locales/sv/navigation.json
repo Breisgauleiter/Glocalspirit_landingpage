@@ -13,5 +13,11 @@
     "imprint": "Impressum",
     "email": "info@glocalspirit.de",
     "tagline": "Ett nätverk av mening, inte av brus"
-  }
+  },
+  "beta_test": "Testa",
+  "spenden": "Donera",
+  "home": "Hem",
+  "about": "Om oss",
+  "roadmap": "Färdplan",
+  "contact": "Kontakt"
 }

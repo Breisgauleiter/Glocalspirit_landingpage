@@ -13,5 +13,11 @@
     "imprint": "Mentions légales",
     "email": "info@glocalspirit.de",
     "tagline": "Un réseau de sens, pas de bruit"
-  }
+  },
+  "beta_test": "Tester",
+  "spenden": "Faire un don",
+  "home": "Accueil",
+  "about": "À propos",
+  "roadmap": "Feuille de route",
+  "contact": "Contact"
 }
