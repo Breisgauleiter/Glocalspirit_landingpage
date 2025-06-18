@@ -161,10 +161,10 @@
 }
 
 .header__language-switcher {
-    margin-top: 1rem;
+    /* Keine Margin-Änderungen - Grid übernimmt die Positionierung */
     
     .language-select {
-        width: 100%;
+        width: auto; /* Statt 100% für bessere Grid-Kompatibilität */
         font-size: 1.2rem !important;
         padding: 0.5rem !important;
         text-align: center;

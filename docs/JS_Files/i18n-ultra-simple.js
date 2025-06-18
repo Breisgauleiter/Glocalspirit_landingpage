@@ -9,7 +9,7 @@ class UltraSimpleI18n {
                 'about': 'Über uns',
                 'roadmap': 'Roadmap',
                 'contact': 'Kontakt',
-                'beta_test': 'Beta Testen',
+                'beta_test': 'Testen',
                 'back': '← Zurück',
                 
                 // Hero Section
@@ -116,7 +116,7 @@ class UltraSimpleI18n {
                 'about': 'About',
                 'roadmap': 'Roadmap',
                 'contact': 'Contact',
-                'beta_test': 'Join Beta',
+                'beta_test': 'Test',
                 'back': '← Back',
                 
                 // Hero Section
@@ -223,7 +223,7 @@ class UltraSimpleI18n {
                 'about': 'À propos',
                 'roadmap': 'Feuille de route',
                 'contact': 'Contact',
-                'beta_test': 'Rejoindre Beta',
+                'beta_test': 'Tester',
                 'back': '← Retour',
                 
                 // Hero Section
@@ -330,7 +330,7 @@ class UltraSimpleI18n {
                 'about': 'Acerca de',
                 'roadmap': 'Hoja de ruta',
                 'contact': 'Contacto',
-                'beta_test': 'Unirse a Beta',
+                'beta_test': 'Probar',
                 'back': '← Atrás',
                 
                 // Hero Section

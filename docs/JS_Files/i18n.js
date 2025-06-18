@@ -328,16 +328,16 @@ class GlocalSpiritI18n {
     }
 
     createLanguageSwitcher() {
-        const header = document.querySelector('.header__nav .header__links');
-        if (!header) {
-            console.warn('⚠️ Header navigation not found for language switcher');
+        const container = document.querySelector('.header__nav .header__language-switcher');
+        if (!container) {
+            console.warn('⚠️ Container for language switcher not found');
             return;
         }
 
-        // Create language switcher container
+        // Create language switcher wrapper inside placeholder
         const langSwitcher = document.createElement('div');
         langSwitcher.className = 'language-switcher';
-        
+
         const langButton = document.createElement('button');
         langButton.className = 'language-switcher__button';
         langButton.innerHTML = `
@@ -383,9 +383,8 @@ class GlocalSpiritI18n {
         
         langSwitcher.appendChild(langButton);
         langSwitcher.appendChild(langDropdown);
-        
-        // Insert before beta-tester link
-        header.appendChild(langSwitcher);
+        // Insert into existing placeholder
+        container.appendChild(langSwitcher);
     }
 
     updateLanguageSwitcher() {

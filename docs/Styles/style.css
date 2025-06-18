@@ -98,7 +98,6 @@ main{
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(var(--main-font-color),0.10);
 
-
     .header__links{
         display: flex;
         align-items: center;
@@ -150,8 +149,41 @@ main{
         }
     }
 
-    .header__beta-tester{
+    /* Container für die rechten Elemente */
+    .header__right-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem; /* keep standard gap between buttons */
+        margin-right: 1rem; /* ensure spacing from edge */
+        min-width: max-content; /* prevent container from shrinking smaller than its children */
+        flex-shrink: 0; /* do not shrink container */
 
+        > * {
+            flex-shrink: 0; /* prevent items from shrinking and overlapping */
+        }
+    }
+
+    .header__donate-button {
+        .header__donate-link{
+            filter: drop-shadow(0 0 1px rgb(var(--special-cta-color)));
+            border: 1px solid rgb(var(--special-cta-color));
+            letter-spacing: clamp(2px, 0.5vw, 4.16px);
+            padding: 0.1rem 0.3rem;
+            font-weight: bolder;
+            font-size: clamp(0.8rem,2vw,1.5rem);
+            font-family: var(--secondary-font-family);
+            color: rgb(var(--special-cta-color));
+            transition: grayscale 0.5s ease-in-out;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .header__donate-link:hover{
+            filter: grayscale(0.5) brightness(1.2);
+        }
+    }
+
+    .header__beta-tester {
         .header__beta-link{
             filter: drop-shadow(0 0 1px rgb(var(--special-cta-color)));
             border: 1px solid rgb(var(--special-cta-color));
@@ -162,15 +194,23 @@ main{
             font-family: var(--secondary-font-family);
             color: rgb(var(--special-cta-color));
             transition: grayscale 0.5s ease-in-out;
-
+            white-space: nowrap;
+            display: inline-block;
         }
 
         .header__beta-link:hover{
-            filter: grayscale(0.5) brightness(1.2) 
+            filter: grayscale(0.5) brightness(1.2);
         }
     }
 
     .header__language-switcher {
+        display: flex;
+    align-items: center;
+
+        margin-left: 3rem; /* increase horizontal gap before dropdown menu */
+        position: relative;
+        /* z-index reset to default, horizontal spacing adjusted above */
+
         .language-select {
             background: rgba(var(--main-font-color), 0.1);
             border: 1px solid rgba(var(--secondary-links-color), 0.3);
@@ -181,6 +221,12 @@ main{
             font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            min-width: 60px;
+            white-space: nowrap;
+
+            width: auto !important;
+    min-width: fit-content !important;
+    padding: 0.3rem 0.8rem !important;
 
             &:hover {
                 background: rgba(var(--main-font-color), 0.15);
@@ -690,9 +736,7 @@ main{
     transform: translateX(-50%);
 }
 
-.form2::after{
-    /* content: "SPENDEN"; entfernt für i18n */
-}
+/* .form2::after removed because it was empty */
 
 .form2{
     h3{
@@ -894,4 +938,36 @@ footer{
   margin-right: auto;
   margin-bottom: 1em;
   width: fit-content;
+}
+
+/* Fix language dropdown stacking over buttons */
+.header__beta-tester,
+.header__donate-button {
+    position: relative;
+    z-index: 1;
+}
+
+.header__language-switcher,
+.header__language-switcher .language-switcher,
+.language-switcher__dropdown {
+    position: relative;
+    z-index: 9999 !important;
+}
+
+/* Fix gap and overlap between Testen button and language menu */
+.header__nav > .header__right-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* keep standard gap between buttons */
+}
+
+.header__language-switcher {
+    margin-left: 3rem; /* increase horizontal gap before dropdown menu */
+    position: relative;
+    /* z-index reset to default, horizontal spacing adjusted above */
+}
+
+/* Reset inner switcher margin to avoid double spacing */
+.header__language-switcher .language-switcher {
+    margin-left: 0 !important;
 }
