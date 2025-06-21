@@ -1,0 +1,9 @@
+{
+    "testform_title": "Become a Beta Tester - glocalSpirit",
+    "testform_success_message": "Thank you for signing up as a beta tester. We will contact you soon!",
+    "testform_name_label": "Name *",
+    "testform_email_label": "Email *",
+    "testform_newsletter": "Receive updates via email?",
+    "testform_submit": "SEND",
+    "testform_sending": "SENDING..."
+}

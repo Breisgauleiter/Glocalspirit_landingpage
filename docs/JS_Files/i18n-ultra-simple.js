@@ -100,6 +100,16 @@ class UltraSimpleI18n {
                 'footer.copyright': '© 2025 GlocalSpirit',
                 'footer.privacy': 'Datenschutz',
                 'footer.imprint': 'Impressum',
+                
+                // Testform
+                'testform_title': 'Beta-Tester werden - glocalSpirit',
+                'testform_success_message': 'Vielen Dank für deine Anmeldung als Beta-Tester. Wir werden uns bald bei dir melden!',
+                'testform_name_label': 'Name *',
+                'testform_email_label': 'E-Mail *',
+                'testform_newsletter': 'Updates per Mail erhalten?',
+                'testform_submit': 'SENDEN',
+                'testform_sending': 'WIRD GESENDET...',
+                
                 // Cards 03 (use original roadmap_card3 text)
                 'cards.card03.title': 'Das erste SyNbol',
                 'cards.card03.date': 'November 2024',
@@ -207,6 +217,16 @@ class UltraSimpleI18n {
                 'footer.copyright': '© 2025 GlocalSpirit',
                 'footer.privacy': 'Privacy Policy',
                 'footer.imprint': 'Imprint',
+                
+                // Testform
+                'testform_title': 'Become a Beta Tester - glocalSpirit',
+                'testform_success_message': 'Thank you for signing up as a beta tester. We will contact you soon!',
+                'testform_name_label': 'Name *',
+                'testform_email_label': 'Email *',
+                'testform_newsletter': 'Receive updates via email?',
+                'testform_submit': 'SEND',
+                'testform_sending': 'SENDING...',
+                
                 // Cards 03
                 'cards.card03.title': 'The First SyNbol',
                 'cards.card03.date': 'November 2024',
@@ -314,6 +334,16 @@ class UltraSimpleI18n {
                 'footer.copyright': '© 2025 GlocalSpirit',
                 'footer.privacy': 'Politique de confidentialité',
                 'footer.imprint': 'Mentions légales',
+                
+                // Testform
+                'testform_title': 'Devenir bêta-testeur - glocalSpirit',
+                'testform_success_message': 'Merci de vous être inscrit comme bêta-testeur. Nous vous contactons bientôt !',
+                'testform_name_label': 'Nom *',
+                'testform_email_label': 'Email *',
+                'testform_newsletter': 'Recevoir des mises à jour par email ?',
+                'testform_submit': 'ENVOYER',
+                'testform_sending': 'ENVOI EN COURS...',
+                
                 // Cards 03
                 'cards.card03.title': 'Le Premier SyNbole',
                 'cards.card03.date': 'Novembre 2024',
@@ -421,6 +451,16 @@ class UltraSimpleI18n {
                 'footer.copyright': '© 2025 GlocalSpirit',
                 'footer.privacy': 'Política de privacidad',
                 'footer.imprint': 'Aviso legal',
+                
+                // Testform
+                'testform_title': 'Convertirse en Beta Tester - glocalSpirit',
+                'testform_success_message': '¡Gracias por registrarte como beta tester. Te contactaremos pronto!',
+                'testform_name_label': 'Nombre *',
+                'testform_email_label': 'Email *',
+                'testform_newsletter': '¿Recibir actualizaciones por email?',
+                'testform_submit': 'ENVIAR',
+                'testform_sending': 'ENVIANDO...',
+                
                 // Cards 03
                 'cards.card03.title': 'El Primer SíNbolo',
                 'cards.card03.date': 'Noviembre 2024',
@@ -434,7 +474,7 @@ class UltraSimpleI18n {
         };
     }
 
-    flattenJSON(obj) {
+    flattenJSON(obj, prefix = '') {
         const result = {};
         const recurse = (cur, prop) => {
             if (Object(cur) !== cur) {
@@ -443,17 +483,16 @@ class UltraSimpleI18n {
                 result[prop] = cur;
             } else {
                 for (const p in cur) {
-                    recurse(cur[p], p);
+                    recurse(cur[p], prop ? `${prop}.${p}` : p);
                 }
             }
         };
-        recurse(obj, "");
-        delete result[""];
+        recurse(obj, prefix);
         return result;
     }
 
     async loadAllDynamicTranslations() {
-        const translationFiles = ['about', 'forms', 'hero', 'navigation', 'roadmap', 'success'];
+        const translationFiles = ['about', 'forms', 'hero', 'navigation', 'roadmap', 'success', 'footer', 'testform'];
         const languages = ['de', 'en', 'fr', 'es', 'el', 'pl', 'pt', 'ru', 'sv', 'tr']; // All possible languages
 
         for (const lang of languages) {
@@ -465,7 +504,7 @@ class UltraSimpleI18n {
                     const response = await fetch(`locales/${lang}/${file}.json`);
                     if (response.ok) {
                         const data = await response.json();
-                        const flattened = this.flattenJSON(data);
+                        const flattened = this.flattenJSON(data, file);
                         Object.assign(this.translations[lang], flattened);
                     }
                 } catch (error) {

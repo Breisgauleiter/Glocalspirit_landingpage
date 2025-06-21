@@ -1,0 +1,9 @@
+{
+    "testform_title": "Bli Beta Testare - glocalSpirit",
+    "testform_success_message": "Tack för att du registrerat dig som beta testare. Vi kommer att kontakta dig snart!",
+    "testform_name_label": "Namn *",
+    "testform_email_label": "Email *",
+    "testform_newsletter": "Ta emot uppdateringar via email?",
+    "testform_submit": "SKICKA",
+    "testform_sending": "SKICKAR..."
+}

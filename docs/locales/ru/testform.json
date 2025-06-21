@@ -1,0 +1,9 @@
+{
+    "testform_title": "Стать бета-тестером - glocalSpirit",
+    "testform_success_message": "Спасибо за регистрацию в качестве бета-тестера. Мы свяжемся с вами в ближайшее время!",
+    "testform_name_label": "Имя *",
+    "testform_email_label": "Email *",
+    "testform_newsletter": "Получать обновления по email?",
+    "testform_submit": "ОТПРАВИТЬ",
+    "testform_sending": "ОТПРАВКА..."
+}

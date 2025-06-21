@@ -1,0 +1,9 @@
+{
+    "testform_title": "Beta Test Kullanıcısı Ol - glocalSpirit",
+    "testform_success_message": "Beta test kullanıcısı olarak kaydolduğunuz için teşekkürler. Yakında sizinle iletişime geçeceğiz!",
+    "testform_name_label": "İsim *",
+    "testform_email_label": "Email *",
+    "testform_newsletter": "Email ile güncellemeler almak ister misiniz?",
+    "testform_submit": "GÖNDER",
+    "testform_sending": "GÖNDERİLİYOR..."
+}
