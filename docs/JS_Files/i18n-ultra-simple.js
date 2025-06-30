@@ -443,7 +443,7 @@ class UltraSimpleI18n {
                 result[prop] = cur;
             } else {
                 for (const p in cur) {
-                    recurse(cur[p], p);
+                    recurse(cur[p], prop ? `${prop}.${p}` : p);
                 }
             }
         };
@@ -454,7 +454,8 @@ class UltraSimpleI18n {
 
     async loadAllDynamicTranslations() {
         const translationFiles = ['about', 'forms', 'hero', 'navigation', 'roadmap', 'success'];
-        const languages = ['de', 'en', 'fr', 'es', 'el', 'pl', 'pt', 'ru', 'sv', 'tr']; // All possible languages
+        const languages = ['de', 'en', 'fr', 'es']; // Only fully supported languages
+        // Temporarily disabled: 'fr', 'es', 'el', 'pl', 'pt', 'ru', 'sv', 'tr'
 
         for (const lang of languages) {
             if (!this.translations[lang]) {
@@ -482,16 +483,22 @@ class UltraSimpleI18n {
         
         await this.loadAllDynamicTranslations();
         
+        // Supported languages (only these are fully translated)
+        const supportedLanguages = ['de', 'en', 'fr', 'es'];
+        
         // Detect language
         const urlParams = new URLSearchParams(window.location.search);
         const urlLang = urlParams.get('lang');
-        if (urlLang && this.translations[urlLang]) {
+        if (urlLang && supportedLanguages.includes(urlLang)) {
             this.currentLanguage = urlLang;
+        } else if (urlLang && !supportedLanguages.includes(urlLang)) {
+            console.warn(`🚫 Language "${urlLang}" not yet supported. Falling back to German.`);
+            this.currentLanguage = 'de';
         }
         
         // Load from localStorage
         const savedLang = localStorage.getItem('glocalspirit-language');
-        if (savedLang && this.translations[savedLang]) {
+        if (savedLang && supportedLanguages.includes(savedLang)) {
             this.currentLanguage = savedLang;
         }
         
@@ -517,7 +524,26 @@ class UltraSimpleI18n {
     }
 
     t(key) {
-        const translation = this.translations[this.currentLanguage][key];
+        // First try flattened key (from flattenJSON)
+        if (this.translations[this.currentLanguage] && this.translations[this.currentLanguage][key]) {
+            const translation = this.translations[this.currentLanguage][key];
+            console.log(`✅ Translation found for ${key}: ${translation.substring(0, 50)}...`);
+            return translation;
+        }
+        
+        // Fallback: Try nested keys like "hero.description"
+        const keys = key.split('.');
+        let translation = this.translations[this.currentLanguage];
+        
+        for (const k of keys) {
+            if (translation && translation[k]) {
+                translation = translation[k];
+            } else {
+                console.warn(`🔍 Missing translation: ${key}`);
+                return key;
+            }
+        }
+        
         if (translation) {
             console.log(`✅ Translation found for ${key}: ${translation.substring(0, 50)}...`);
             return translation;
@@ -598,13 +624,14 @@ class UltraSimpleI18n {
                 { code: 'de', label: 'DE' },
                 { code: 'en', label: 'EN' },
                 { code: 'fr', label: 'FR' },
-                { code: 'es', label: 'ES' },
-                { code: 'el', label: 'EL' },
-                { code: 'pl', label: 'PL' },
-                { code: 'pt', label: 'PT' },
-                { code: 'ru', label: 'RU' },
-                { code: 'sv', label: 'SV' },
-                { code: 'tr', label: 'TR' }
+                { code: 'es', label: 'ES' }
+                // Temporarily disabled until translations are complete:
+                // { code: 'el', label: 'EL' },
+                // { code: 'pl', label: 'PL' },
+                // { code: 'pt', label: 'PT' },
+                // { code: 'ru', label: 'RU' },
+                // { code: 'sv', label: 'SV' },
+                // { code: 'tr', label: 'TR' }
             ];
             langs.forEach(lang => {
                 const option = document.createElement('option');
