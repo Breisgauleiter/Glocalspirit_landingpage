@@ -505,16 +505,17 @@ class UltraSimpleI18n {
                     const response = await fetch(`locales/${lang}/${file}.json`);
                     if (response.ok) {
                         const data = await response.json();
-                        const flattened = this.flattenJSON(data, file);
+                        const flattened = this.flattenJSON(data); // Remove file prefix
                         Object.assign(this.translations[lang], flattened);
+                        console.log(`✅ Loaded ${file}.json for ${lang}:`, Object.keys(flattened).slice(0, 5));
                     }
                 } catch (error) {
-                    // It's okay if some files don't exist, just log it for debugging
-                    // console.warn(`Could not load or parse locales/${lang}/${file}.json`, error);
+                    console.warn(`⚠️ Could not load locales/${lang}/${file}.json:`, error.message);
                 }
             }
         }
         console.log("All dynamic translations loaded.");
+        console.log(`🔍 Available keys for ${this.currentLanguage}:`, Object.keys(this.translations[this.currentLanguage] || {}).filter(k => k.startsWith('donation_')).slice(0, 10));
     }
 
     async init() {
@@ -566,7 +567,7 @@ class UltraSimpleI18n {
         // First try flattened key (from flattenJSON)
         if (this.translations[this.currentLanguage] && this.translations[this.currentLanguage][key]) {
             const translation = this.translations[this.currentLanguage][key];
-            console.log(`✅ Translation found for ${key}: ${translation.substring(0, 50)}...`);
+            // console.log(`✅ Translation found for ${key}: ${translation.substring(0, 50)}...`);
             return translation;
         }
         
@@ -584,7 +585,7 @@ class UltraSimpleI18n {
         }
         
         if (translation) {
-            console.log(`✅ Translation found for ${key}: ${translation.substring(0, 50)}...`);
+            // console.log(`✅ Translation found for ${key}: ${translation.substring(0, 50)}...`);
             return translation;
         }
         
@@ -601,7 +602,7 @@ class UltraSimpleI18n {
             const key = element.getAttribute('data-i18n');
             const translation = this.t(key);
             element.textContent = translation;
-            console.log(`🔤 Updated ${key} (TEXT): ${element.tagName}.${element.className}`);
+            // console.log(`🔤 Updated ${key} (TEXT): ${element.tagName}.${element.className}`);
         });
 
         // Update all data-i18n-html elements (HTML content)
@@ -610,7 +611,7 @@ class UltraSimpleI18n {
             const key = element.getAttribute('data-i18n-html');
             const translation = this.t(key);
             element.innerHTML = translation;
-            console.log(`🔤 Updated ${key} (HTML): ${element.tagName}.${element.className}`);
+            // console.log(`🔤 Updated ${key} (HTML): ${element.tagName}.${element.className}`);
         });
         
         // Update title
