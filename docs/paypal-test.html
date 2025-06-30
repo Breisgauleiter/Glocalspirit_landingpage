@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Integration Test - glocalSpirit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .paypal-container {
+            margin: 15px 0;
+            min-height: 50px;
+            border: 2px dashed #ddd;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .log-area {
+            background: #000;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        button {
+            background: #007cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .status.warning { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <h1>PayPal Integration Test - glocalSpirit</h1>
+    
+    <!-- Status Display -->
+    <div id="statusDisplay"></div>
+    
+    <!-- Test Section 1: SDK Loading -->
+    <div class="test-section">
+        <h2>Test 1: PayPal SDK Status</h2>
+        <div id="sdkStatus">Checking...</div>
+        <button onclick="checkSDK()">Recheck SDK</button>
+    </div>
+    
+    <!-- Test Section 2: One-Time Payments -->
+    <div class="test-section">
+        <h2>Test 2: One-Time Payments (Should Work)</h2>
+        <p>These buttons use one-time payments and should work immediately:</p>
+        
+        <div>
+            <strong>Early Bird - 22€</strong>
+            <div id="paypal-onetime-earlybird" class="paypal-container"></div>
+        </div>
+        
+        <div>
+            <strong>Premium - 44€</strong>
+            <div id="paypal-onetime-premium" class="paypal-container"></div>
+        </div>
+        
+        <div>
+            <strong>Celebration - 55€</strong>
+            <div id="paypal-onetime-celebration" class="paypal-container"></div>
+        </div>
+        
+        <button onclick="renderOneTimeButtons()">Load One-Time Payment Buttons</button>
+    </div>
+    
+    <!-- Test Section 3: Subscription Payments -->
+    <div class="test-section">
+        <h2>Test 3: Subscription Payments (Debug Mode)</h2>
+        <p>These buttons use your subscription Plan IDs:</p>
+        <ul>
+            <li>Early Bird: PROD-4B8498668Y691522C</li>
+            <li>Premium: P-2VU77543UV675582DNBRJQ7Y</li>
+            <li>Celebration: P-54C28465DA3191451NBRJSEY</li>
+        </ul>
+        
+        <div>
+            <strong>Early Bird Subscription - 22€/month</strong>
+            <div id="paypal-subscription-earlybird" class="paypal-container"></div>
+        </div>
+        
+        <div>
+            <strong>Premium Subscription - 44€/month</strong>
+            <div id="paypal-subscription-premium" class="paypal-container"></div>
+        </div>
+        
+        <div>
+            <strong>Celebration Subscription - 55€/month</strong>
+            <div id="paypal-subscription-celebration" class="paypal-container"></div>
+        </div>
+        
+        <button onclick="renderSubscriptionButtons()">Load Subscription Buttons</button>
+    </div>
+    
+    <!-- Console Log Display -->
+    <div class="test-section">
+        <h2>Console Log</h2>
+        <div id="logDisplay" class="log-area">Ready to display logs...\n</div>
+        <button onclick="clearLogs()">Clear Logs</button>
+    </div>
+    
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AbZZSwNgQGOHCi6tV3NQfWRK8KMxUF7595gs-iwql5VCbV3YFOvkE6yhCa0oNJxiQkngXGBonB634wdN&components=buttons&intent=subscription"></script>
+    
+    <script>
+        // Enhanced logging system
+        const logDisplay = document.getElementById('logDisplay');
+        const originalConsole = {
+            log: console.log,
+            error: console.error,
+            warn: console.warn
+        };
+        
+        function addToLog(type, ...args) {
+            const timestamp = new Date().toLocaleTimeString();
+            const message = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg, null, 2) : arg).join(' ');
+            logDisplay.innerHTML += `[${timestamp}] ${type.toUpperCase()}: ${message}\n`;
+            logDisplay.scrollTop = logDisplay.scrollHeight;
+        }
+        
+        console.log = (...args) => {
+            originalConsole.log(...args);
+            addToLog('info', ...args);
+        };
+        
+        console.error = (...args) => {
+            originalConsole.error(...args);
+            addToLog('error', ...args);
+        };
+        
+        console.warn = (...args) => {
+            originalConsole.warn(...args);
+            addToLog('warn', ...args);
+        };
+        
+        function clearLogs() {
+            logDisplay.innerHTML = 'Logs cleared...\n';
+        }
+        
+        function updateStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('statusDisplay');
+            statusDiv.className = `status ${type}`;
+            statusDiv.innerHTML = message;
+        }
+        
+        // Check PayPal SDK
+        function checkSDK() {
+            const sdkStatus = document.getElementById('sdkStatus');
+            if (typeof paypal !== 'undefined') {
+                sdkStatus.innerHTML = '<span style="color: green;">✅ PayPal SDK loaded successfully</span>';
+                console.log('PayPal SDK version:', paypal.version || 'Version not available');
+                updateStatus('PayPal SDK is loaded and ready!', 'success');
+            } else {
+                sdkStatus.innerHTML = '<span style="color: red;">❌ PayPal SDK not loaded</span>';
+                updateStatus('PayPal SDK failed to load! Check your internet connection.', 'error');
+            }
+        }
+        
+        // One-time payment buttons
+        function renderOneTimeButtons() {
+            console.log('Loading one-time payment buttons...');
+            
+            const packages = [
+                { container: '#paypal-onetime-earlybird', amount: '22.00', name: 'Early Bird' },
+                { container: '#paypal-onetime-premium', amount: '44.00', name: 'Premium' },
+                { container: '#paypal-onetime-celebration', amount: '55.00', name: 'Celebration' }
+            ];
+            
+            packages.forEach(pkg => {
+                paypal.Buttons({
+                    createOrder: function(data, actions) {
+                        console.log(`Creating order for ${pkg.name} - ${pkg.amount}€`);
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: pkg.amount,
+                                    currency_code: 'EUR'
+                                },
+                                description: `glocalSpirit ${pkg.name} Support`
+                            }]
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        return actions.order.capture().then(function(details) {
+                            console.log(`Payment successful for ${pkg.name}:`, details);
+                            updateStatus(`Payment successful for ${pkg.name}! Thank you!`, 'success');
+                        });
+                    },
+                    onError: function(err) {
+                        console.error(`Payment error for ${pkg.name}:`, err);
+                        updateStatus(`Payment error for ${pkg.name}. Check console for details.`, 'error');
+                    }
+                }).render(pkg.container).then(() => {
+                    console.log(`One-time payment button rendered for ${pkg.name}`);
+                }).catch(err => {
+                    console.error(`Failed to render one-time button for ${pkg.name}:`, err);
+                });
+            });
+        }
+        
+        // Subscription payment buttons
+        function renderSubscriptionButtons() {
+            console.log('Loading subscription payment buttons...');
+            
+            const plans = [
+                { container: '#paypal-subscription-earlybird', planId: 'PROD-4B8498668Y691522C', name: 'Early Bird' },
+                { container: '#paypal-subscription-premium', planId: 'P-2VU77543UV675582DNBRJQ7Y', name: 'Premium' },
+                { container: '#paypal-subscription-celebration', planId: 'P-54C28465DA3191451NBRJSEY', name: 'Celebration' }
+            ];
+            
+            plans.forEach(plan => {
+                console.log(`Attempting to render subscription button for ${plan.name} with Plan ID: ${plan.planId}`);
+                
+                paypal.Buttons({
+                    createSubscription: function(data, actions) {
+                        console.log(`Creating subscription for ${plan.name} with Plan ID: ${plan.planId}`);
+                        
+                        return actions.subscription.create({
+                            'plan_id': plan.planId 
+                        }).then(function(subscriptionId) {
+                            console.log(`Subscription created successfully for ${plan.name}: ${subscriptionId}`);
+                            return subscriptionId;
+                        }).catch(function(error) {
+                            console.error(`Failed to create subscription for ${plan.name}:`, error);
+                            updateStatus(`Failed to create subscription for ${plan.name}: ${error.message}`, 'error');
+                            throw error;
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        console.log(`Subscription approved for ${plan.name}:`, data);
+                        updateStatus(`Subscription successful for ${plan.name}! Subscription ID: ${data.subscriptionID}`, 'success');
+                    },
+                    onError: function(err) {
+                        console.error(`Subscription error for ${plan.name}:`, err);
+                        updateStatus(`Subscription error for ${plan.name}: ${err.message}`, 'error');
+                    },
+                    onCancel: function(data) {
+                        console.log(`Subscription cancelled for ${plan.name}:`, data);
+                        updateStatus(`Subscription cancelled for ${plan.name}`, 'warning');
+                    }
+                }).render(plan.container).then(function() {
+                    console.log(`Subscription button rendered successfully for ${plan.name}`);
+                }).catch(function(error) {
+                    console.error(`Failed to render subscription button for ${plan.name}:`, error);
+                    updateStatus(`Failed to render subscription button for ${plan.name}`, 'error');
+                });
+            });
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded, initializing PayPal test...');
+            checkSDK();
+        });
+    </script>
+</body>
+</html>

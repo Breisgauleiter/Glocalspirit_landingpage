@@ -1,68 +1,70 @@
 {
+  "about_movement_title": "Hareket ve Akış",
+  "about_movement_desc": "Vücut, zihin ve ruh bilinçli, yaratıcı ve şifa verici hareket biçimleri aracılığıyla bağlanır. Yoga, dans, nefes çalışması veya sezgisel vücut pratiği - GlocalSpirit doğal ritminizi bulmanız ve yaşamla uyum içinde hissetmeniz için davet eder.",
+  "about_consciousness_title": "Bilinç",
+  "about_consciousness_desc": "Bilinç bilgi veya kavramlarla değil, var olma biçimiyle kendini gösterir. GlocalSpirit'te bilinçli bir tavırdan hareket etmek ve yaşamak önemlidir: mevcut, bağlı ve bütünle uyum içinde.",
+  "about_nutrition_title": "İyi Ürünler ve Beslenme",
+  "about_nutrition_desc": "GlocalSpirit bilinçli tüketim, özenli beslenme ve vücut, zihin ve ruh için besini temsil eder. Ürünlerin kalitesi, sadeliği ve özgünlüğü 'insan ve doğa' ile uyum içinde olmalıdır.",
+  "about_healing_title": "İyileşme ve Sağlık",
+  "about_healing_desc": "GlocalSpirit'te sağlık, fiziksel, ruhsal ve manevi refah için bütüncül bir yaklaşım içerir. İyileşmeyi bilinç, topluluk, doğayla bağlantı ve iç huzur tarafından desteklenen doğal bir süreç olarak anlamamız için davet ediyoruz.",
+  "about_hope_title": "Umut Evleri",
+  "about_hope_desc": "\"Umut Evleri\" buluşma, iyileşme ve ortak yaratım mekanlarıdır. İç huzur ve synarşi ruhuyla insanların toplanabileceği manevi, sosyal ve kültürel alanlar olarak hizmet ederler. \"Umut Evleri\" GlocalSpirit ağı içindeki fiziksel bağlantı noktalarıdır.",
+  "about_creativity_title": "Yaratıcılık ve İfade",
+  "about_creativity_desc": "GlocalSpirit özgür gelişim, yaratıcı akış ve otantik kendini ifade etme için korumalı alanlar sunar. Daha önce performans baskısı olarak yaşanmış olan şey, burada somut, duyulabilir ve hissedilebilir yaratıcılık olarak yaşanabilir.",
+  "about_learning_title": "Öğrenme ve Eğitim",
+  "about_learning_desc": "GlocalSpirit rezonans, kendi kendini geliştirme ve iç uyuma dayalı yeni bir bilgi alışverişi biçimini temsil eder. Baskı, değerlendirme veya sabit müfredatların ötesinde.",
+  "about_nature_title": "Doğa ve Sürdürülebilirlik",
+  "about_nature_desc": "GlocalSpirit bize dünyayla olan özgün bağlantımızı hatırlatır. Doğal döngülerle uyum içinde yaşamaya, kaynakları bilinçli kullanmaya ve yenileyici yaşam biçimleri oluşturmaya davet eder.",
+  "about_spirituality_title": "Maneviyat ve Mistisizm",
+  "about_spirituality_desc": "Burada bilgelik gelenekleri, zamansız semboller ve modern manevi uyanış biçimleri buluşur. Bu kategori ifade edilemez olan için alan sunar. İster kelimelerin arkasındaki sessizlik, düşüncenin ötesindeki derinlik veya her şeye nüfuz eden evrensel gizem olsun.",
+  "about_technology_title": "Teknoloji ve Bilinç",
+  "about_technology_desc": "GlocalSpirit görünüşte bağdaşmaz olanı birleştirir: dijital zeka ve manevi derinlik. Teknolojinin 'insanlıktan çıkarılması' gerekmez. Bilinçli tasarım yoluyla teknik unsurlar barış, bağlantı ve iç gelişim için araçlar haline gelebilir.",
+  "about_value_title": "Değer Yaratma ve Finans",
+  "about_value_desc": "Bilinç, güven ve dolaşıma dayalı yeni bir ekonomi anlayışı. Kar maksimizasyonu yerine, anlam, buluşma ve iç zenginlik yoluyla gerçek değer yaratma.",
   "categories": {
     "bewegung_flow": {
-      "title": "Hareket & Akış",
-      "description": "Beden, zihin ve ruh; bilinçli, yaratıcı ve iyileştirici hareket biçimleriyle birleşir. Yoga, dans, nefes çalışması veya sezgisel beden uygulamalarıyla. GlocalSpirit, doğal ritmini bulmaya ve yaşamla uyum içinde hissetmeye davet ediyor."
+      "title": "Hareket ve Akış",
+      "description": "Vücut, zihin ve ruh bilinçli, yaratıcı ve şifa verici hareket biçimleri aracılığıyla bağlanır. Yoga, dans, nefes çalışması veya sezgisel vücut pratiği - GlocalSpirit doğal ritminizi bulmanız ve yaşamla uyum içinde hissetmeniz için davet eder."
     },
     "bewusstsein": {
       "title": "Bilinç",
-      "description": "Bilinç, bilgi veya kavramlarla değil, varoluş biçimiyle ortaya çıkar. GlocalSpirit'te amaç, bilinçli bir tutumla hareket etmek ve yaşamak: anda, bağlı ve bütünle uyumlu olmak."
+      "description": "Bilinç bilgi veya kavramlarla değil, var olma biçimiyle kendini gösterir. GlocalSpirit'te bilinçli bir tavırdan hareket etmek ve yaşamak önemlidir: mevcut, bağlı ve bütünle uyum içinde."
     },
     "produkte_ernaehrung": {
-      "title": "İyi Ürünler & Beslenme",
-      "description": "GlocalSpirit, bilinçli tüketim, özenli beslenme ve beden, zihin ve ruh için besleyici olanı temsil eder. Ürünlerin kalitesi, sadeliği ve özgünlüğü 'insan ve doğa' ile uyumlu olmalıdır."
+      "title": "İyi Ürünler ve Beslenme",
+      "description": "GlocalSpirit bilinçli tüketim, özenli beslenme ve vücut, zihin ve ruh için besini temsil eder. Ürünlerin kalitesi, sadeliği ve özgünlüğü 'insan ve doğa' ile uyum içinde olmalıdır."
     },
     "heilung_gesundheit": {
-      "title": "Şifa & Sağlık",
-      "description": "GlocalSpirit'te sağlık, fiziksel, ruhsal ve zihinsel iyilik haline bütüncül bir yaklaşımdır. Şifayı, bilinç, topluluk, doğayla bağ ve iç huzurla desteklenen doğal bir süreç olarak anlamaya davet ediyoruz."
+      "title": "İyileşme ve Sağlık",
+      "description": "GlocalSpirit'te sağlık, fiziksel, ruhsal ve manevi refah için bütüncül bir yaklaşım içerir. İyileşmeyi bilinç, topluluk, doğayla bağlantı ve iç huzur tarafından desteklenen doğal bir süreç olarak anlamamız için davet ediyoruz."
     },
     "house_of_hope": {
       "title": "Umut Evleri",
-      "description": "'Umut Evleri', buluşma, şifa ve ortak yaratım için canlı mekanlardır. İçsel barış ve sinerji ruhuyla insanların bir araya geldiği manevi, sosyal ve kültürel alanlardır. GlocalSpirit ağının fiziksel dayanak noktalarıdır."
+      "description": "\"Umut Evleri\" buluşma, iyileşme ve ortak yaratım mekanlarıdır. İç huzur ve synarşi ruhuyla insanların toplanabileceği manevi, sosyal ve kültürel alanlar olarak hizmet ederler. \"Umut Evleri\" GlocalSpirit ağı içindeki fiziksel bağlantı noktalarıdır."
     },
     "kreativitaet_ausdruck": {
-      "title": "Yaratıcılık & İfade",
-      "description": "GlocalSpirit, özgür gelişim, yaratıcı akış ve otantik kendini ifade için korunaklı alanlar sunar. Eskiden performans baskısı olarak hissedilen şey, burada canlı ve hissedilebilir yaratıcılığa dönüşebilir."
+      "title": "Yaratıcılık ve İfade",
+      "description": "GlocalSpirit özgür gelişim, yaratıcı akış ve otantik kendini ifade etme için korumalı alanlar sunar. Daha önce performans baskısı olarak yaşanmış olan şey, burada somut, duyulabilir ve hissedilebilir yaratıcılık olarak yaşanabilir."
     },
     "lernen_bildung": {
-      "title": "Öğrenme & Eğitim",
-      "description": "GlocalSpirit, rezonans, kendini geliştirme ve içsel uyum temelli yeni bir bilgi paylaşım biçimini temsil eder. Baskı, değerlendirme veya katı müfredatların ötesinde."
+      "title": "Öğrenme ve Eğitim",
+      "description": "GlocalSpirit rezonans, kendi kendini geliştirme ve iç uyuma dayalı yeni bir bilgi alışverişi biçimini temsil eder. Baskı, değerlendirme veya sabit müfredatların ötesinde."
     },
     "natur_nachhaltigkeit": {
-      "title": "Doğa & Sürdürülebilirlik",
-      "description": "GlocalSpirit, dünyayla olan özgün bağımızı hatırlatır. Doğal döngülerle uyum içinde yaşamak, kaynakları özenle kullanmak ve yenileyici yaşam biçimleri oluşturmak için davet eder."
+      "title": "Doğa ve Sürdürülebilirlik",
+      "description": "GlocalSpirit bize dünyayla olan özgün bağlantımızı hatırlatır. Doğal döngülerle uyum içinde yaşamaya, kaynakları bilinçli kullanmaya ve yenileyici yaşam biçimleri oluşturmaya davet eder."
     },
     "spiritualitaet_mystik": {
-      "title": "Spiritüellik & Mistik",
-      "description": "Burada bilgelik gelenekleri, zamansız semboller ve modern manevi uyanış biçimleri buluşur. Bu kategori, sözcüklerin ötesindeki sessizlik, düşüncenin ötesindeki derinlik ve her şeyi saran evrensel gizem için bir alandır."
+      "title": "Maneviyat ve Mistisizm",
+      "description": "Burada bilgelik gelenekleri, zamansız semboller ve modern manevi uyanış biçimleri buluşur. Bu kategori ifade edilemez olan için alan sunar. İster kelimelerin arkasındaki sessizlik, düşüncenin ötesindeki derinlik veya her şeye nüfuz eden evrensel gizem olsun."
     },
     "technologie_bewusstsein": {
-      "title": "Teknoloji & Bilinç",
-      "description": "GlocalSpirit, görünüşte uyumsuz olanı birleştirir: dijital zeka ve manevi derinlik. Teknoloji insanlıktan uzak olmak zorunda değil — bilinçli kullanım, onu barış, bağlantı ve içsel gelişim için bir araca dönüştürür."
+      "title": "Teknoloji ve Bilinç",
+      "description": "GlocalSpirit görünüşte bağdaşmaz olanı birleştirir: dijital zeka ve manevi derinlik. Teknolojinin 'insanlıktan çıkarılması' gerekmez. Bilinçli tasarım yoluyla teknik unsurlar barış, bağlantı ve iç gelişim için araçlar haline gelebilir."
     },
     "wertschoepfung_finanzen": {
-      "title": "Değer Yaratma & Finans",
-      "description": "Bilinç, güven ve dolaşıma dayalı yeni bir ekonomi anlayışı. Kâr maksimizasyonu yerine, anlam, buluşma ve içsel zenginlik yoluyla gerçek değer."
+      "title": "Değer Yaratma ve Finans",
+      "description": "Bilinç, güven ve dolaşıma dayalı yeni bir ekonomi anlayışı. Kar maksimizasyonu yerine, anlam, buluşma ve iç zenginlik yoluyla gerçek değer yaratma."
     }
-  },
-  "about_movement_title": "Hareket & Akış",
-  "about_movement_desc": "Beden, zihin ve ruh bilinçli, yaratıcı ve şifa verici hareket formları aracılığıyla bağlanır. Yoga, dans, nefes çalışması veya sezgisel beden pratiği yoluyla olsun. GlocalSpirit doğal bir ritim bulmaya ve bunun aracılığıyla yaşamla uyum içinde hissetmeye davet eder.",
-  "about_consciousness_title": "Bilinç",
-  "about_consciousness_desc": "Bilinç bilgi veya kavramlar aracılığıyla değil, var olma biçimi aracılığıyla gösterilir. GlocalSpirit'te bilinçli bir tutumla hareket etmek ve yaşamak söz konusudur: mevcut, bağlı ve daha büyük bütünle uyum içinde.",
-  "about_nutrition_title": "İyi Ürünler & Beslenme",
-  "about_nutrition_desc": "GlocalSpirit bilinçli tüketim, dikkatli beslenme ve beden, zihin ve ruh için besini temsil eder. İdeal olarak, ürünlerin kalitesi, sadeliği ve özgünlüğü \"insan ve doğa\" ile uyum içindedir.",
-  "about_healing_title": "Şifa & Sağlık",
-  "about_healing_desc": "GlocalSpirit'te sağlık, fiziksel, duygusal ve zihinsel refahın bütünsel bir yaklaşımını kapsar. Şifayı doğal bir süreç olarak anlamaya davet ediyoruz. Bilinç, topluluk, doğayla bağlantı ve iç huzur tarafından desteklenir.",
-  "about_hope_title": "Umut Evleri",
-  "about_hope_desc": "\"Umut Evleri\" karşılaşma, şifa ve ortak yaratımın yaşayan yerleridir. İç huzur ve sinarşi ruhunda insanların toplanabileceği ruhsal, sosyal ve kültürel alanlar olarak hizmet ederler. \"Umut Evleri\" GlocalSpirit ağı içindeki fiziksel çapa noktalarıdır.",
-  "about_creativity_title": "Yaratıcılık & İfade",
-  "about_creativity_desc": "GlocalSpirit özgür gelişim, yaratıcı akış ve otantik kendini ifade için korumalı alanlar sunar. Daha önce performans baskısı olarak yaşanmış olan şey, burada somut, işitilebilir ve hissedilebilir yaratıcılık olarak yaşanabilir.",
-  "about_learning_title": "Öğrenme & Eğitim",
-  "about_learning_desc": "GlocalSpirit rezonans, kendi kendini geliştirme ve iç tutarlılık temelli yeni bir bilgi alışverişi formunu somutlaştırır. Baskı, değerlendirme veya sabit müfredatların ötesinde.",
-  "about_nature_title": "Doğa & Sürdürülebilirlik",
-  "about_nature_desc": "GlocalSpirit bize toprakla olan orijinal bağlantımızı hatırlatır. Doğal döngülerle uyum içinde yaşamaya, kaynakları bilinçli kullanmaya ve yenileyici yaşam biçimleri yaratmaya davet eder.",
-  "about_spirituality_title": "Maneviyat & Mistisizm",
-  "about_spirituality_desc": "Burada bilgelik gelenekleri, zamansız semboller ve modern ruhsal uyanış biçimleri buluşur. Bu kategori söylenemez olan için alan sunar. Sözlerin arkasındaki sessizlik, düşüncenin ötesindeki derinlik veya her şeye nüfuz eden evrensel gizem için olsun.",
-  "about_technology_title": "Teknoloji & Bilinç",
-  "about_technology_desc": "GlocalSpirit görünüşte bağdaşmaz olanı bağlar: dijital zeka ve ruhsal derinlik. Teknolojinin \"insanlıktan çıkarılması\" gerekmez. Bilinçli tasarım aracılığıyla, teknik unsurlar barış, bağlantı ve iç gelişim için araçlar haline gelebilir."
+  }
 }

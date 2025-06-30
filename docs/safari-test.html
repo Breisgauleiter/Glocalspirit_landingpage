@@ -240,7 +240,80 @@
         </form>
     </section>
 
+    <!-- Mobile Debug Panel -->
+    <div id="mobileDebug" class="mobile-debug-panel">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <strong>Mobile Debug Console</strong>
+            <button onclick="clearMobileDebug()" style="background: #ff4444; color: white; border: none; padding: 2px 8px; border-radius: 3px;">Clear</button>
+        </div>
+        <div id="mobileDebugContent"></div>
+    </div>
+    
+    <!-- Debug Toggle Button -->
+    <button id="debugToggle" style="position: fixed; bottom: 10px; right: 10px; background: #007AFF; color: white; border: none; padding: 10px; border-radius: 50%; width: 50px; height: 50px; z-index: 10000; font-size: 12px;">🐛</button>
+
     <script>
+        // Mobile debugging functions
+        let mobileDebugVisible = false;
+        
+        function logToMobile(message, type = 'log') {
+            const content = document.getElementById('mobileDebugContent');
+            const colors = {
+                log: '#ffffff',
+                error: '#ff4444',
+                warn: '#ffaa00',
+                info: '#00aaff'
+            };
+            
+            const logEntry = document.createElement('div');
+            logEntry.style.color = colors[type];
+            logEntry.style.marginBottom = '2px';
+            logEntry.style.fontSize = '10px';
+            logEntry.innerHTML = `[${new Date().toLocaleTimeString()}] ${message}`;
+            content.appendChild(logEntry);
+            content.scrollTop = content.scrollHeight;
+        }
+        
+        function clearMobileDebug() {
+            document.getElementById('mobileDebugContent').innerHTML = '';
+        }
+        
+        function toggleMobileDebug() {
+            mobileDebugVisible = !mobileDebugVisible;
+            document.getElementById('mobileDebug').style.display = mobileDebugVisible ? 'block' : 'none';
+        }
+        
+        // Override console methods for mobile
+        const originalConsole = {
+            log: console.log,
+            error: console.error,
+            warn: console.warn,
+            info: console.info
+        };
+        
+        console.log = function(...args) {
+            originalConsole.log.apply(console, args);
+            logToMobile(args.join(' '), 'log');
+        };
+        
+        console.error = function(...args) {
+            originalConsole.error.apply(console, args);
+            logToMobile(args.join(' '), 'error');
+        };
+        
+        console.warn = function(...args) {
+            originalConsole.warn.apply(console, args);
+            logToMobile(args.join(' '), 'warn');
+        };
+        
+        console.info = function(...args) {
+            originalConsole.info.apply(console, args);
+            logToMobile(args.join(' '), 'info');
+        };
+        
+        // Debug toggle event
+        document.getElementById('debugToggle').addEventListener('click', toggleMobileDebug);
+        
         // Safari Detection and Testing
         document.addEventListener('DOMContentLoaded', function() {
             const startTime = performance.now();
@@ -378,9 +451,80 @@
         
         // Console log for debugging
         console.log('Safari Test Page Loaded');
+        
+        // Enhanced Safari debugging
+        console.group('🍎 Safari Debug Information');
         console.log('User Agent:', navigator.userAgent);
-        console.log('Screen Size:', screen.width, 'x', screen.height);
-        console.log('Viewport Size:', window.innerWidth, 'x', window.innerHeight);
+        console.log('Platform:', navigator.platform);
+        console.log('Vendor:', navigator.vendor);
+        console.log('Screen Resolution:', screen.width + 'x' + screen.height);
+        console.log('Viewport Size:', window.innerWidth + 'x' + window.innerHeight);
+        console.log('Device Pixel Ratio:', window.devicePixelRatio);
+        console.log('Touch Support:', 'ontouchstart' in window);
+        console.log('Online Status:', navigator.onLine);
+        
+        // Test CSS support
+        console.group('🎨 CSS Feature Support');
+        console.log('CSS Grid:', CSS.supports('display', 'grid'));
+        console.log('CSS Flexbox:', CSS.supports('display', 'flex'));
+        console.log('Backdrop Filter:', CSS.supports('backdrop-filter', 'blur(10px)'));
+        console.log('CSS Custom Properties:', CSS.supports('color', 'var(--test)'));
+        console.log('Smooth Scrolling:', CSS.supports('scroll-behavior', 'smooth'));
+        console.groupEnd();
+        
+        // Test JavaScript APIs
+        console.group('⚙️ JavaScript API Support');
+        console.log('IntersectionObserver:', 'IntersectionObserver' in window);
+        console.log('ResizeObserver:', 'ResizeObserver' in window);
+        console.log('Performance API:', 'performance' in window);
+        console.log('Service Worker:', 'serviceWorker' in navigator);
+        console.log('Web Share API:', 'share' in navigator);
+        console.groupEnd();
+        
+        console.groupEnd();
+        
+        // Global error handling for debugging
+        window.addEventListener('error', function(e) {
+            console.error('🚨 JavaScript Error:', e.error);
+            console.error('File:', e.filename);
+            console.error('Line:', e.lineno, 'Column:', e.colno);
+            
+            // Show error in UI
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `
+                position: fixed; 
+                top: 50px; 
+                right: 10px; 
+                background: red; 
+                color: white; 
+                padding: 10px; 
+                border-radius: 5px; 
+                z-index: 10000;
+                max-width: 300px;
+                font-size: 12px;
+            `;
+            errorDiv.innerHTML = `<strong>Error:</strong> ${e.error.message}<br><small>${e.filename}:${e.lineno}</small>`;
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => errorDiv.remove(), 10000);
+        });
+        
+        // Network debugging
+        window.addEventListener('online', () => console.log('🌐 Network: Online'));
+        window.addEventListener('offline', () => console.log('🌐 Network: Offline'));
+        
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            if (performance.getEntriesByType) {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.group('⚡ Performance Metrics');
+                console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart + 'ms');
+                console.log('Page Load Complete:', perfData.loadEventEnd - perfData.loadEventStart + 'ms');
+                console.log('DNS Lookup:', perfData.domainLookupEnd - perfData.domainLookupStart + 'ms');
+                console.log('TCP Connection:', perfData.connectEnd - perfData.connectStart + 'ms');
+                console.groupEnd();
+            }
+        });
     </script>
 </body>
 </html>

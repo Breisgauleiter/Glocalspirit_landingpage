@@ -40,8 +40,6 @@ class FormBackend {
             source: 'glocalSpirit_Landing_Page'
         };
 
-        console.log('Sending data to PHP Backend:', requestBody);
-
         try {
             // HTTP POST Request an PHP Backend mit Timeout
             const controller = new AbortController();
@@ -65,7 +63,6 @@ class FormBackend {
             }
 
             const responseData = await response.json();
-            console.log('PHP Backend Response:', responseData);
 
             return {
                 success: true,
@@ -74,8 +71,6 @@ class FormBackend {
             };
 
         } catch (error) {
-            console.error('Form submission error:', error);
-            
             // Fallback für Entwicklungsumgebung oder wenn in Konfiguration aktiviert
             if (this.isDevelopment || this.config.fallbackToSimulation) {
                 return await this.simulateSubmission(requestBody);
@@ -145,9 +140,6 @@ class FormBackend {
      * @returns {Promise<Object>} Simulierte Response
      */
     async simulateSubmission(requestBody) {
-        console.log('🔧 Development Mode: Simulating form submission');
-        console.log('Data that would be sent to Power Automate:', requestBody);
-
         // Simuliere Netzwerk-Delay
         await new Promise(resolve => setTimeout(resolve, 1500));
 

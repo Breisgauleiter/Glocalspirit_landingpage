@@ -350,3 +350,184 @@
         font-size: 1rem;
     }
 }
+
+/* Safari-specific optimizations for testformular */
+@supports (-webkit-appearance: none) {
+    .form-container {
+        /* Enhanced backdrop-filter for Safari */
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        
+        /* Force hardware acceleration on Safari */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        will-change: transform, opacity;
+    }
+    
+    .form-input, .form-textarea {
+        /* Prevent Safari input zoom */
+        font-size: 16px;
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 0;
+        
+        /* Enhanced focus styles for Safari */
+        outline: none;
+        transition: all 0.3s ease;
+    }
+    
+    .form-input:focus, .form-textarea:focus {
+        -webkit-tap-highlight-color: transparent;
+        outline: 2px solid rgba(69, 78, 197, 0.6);
+        outline-offset: 2px;
+        box-shadow: 0 0 0 3px rgba(69, 78, 197, 0.1);
+    }
+    
+    .submit-button {
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 0;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        
+        /* Prevent Safari button styling */
+        background: linear-gradient(135deg, #454EC7 0%, #5856D6 100%);
+        border: none;
+        
+        /* Enhanced touch feedback for Safari */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    .checkbox-input {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 4px;
+        position: relative;
+        cursor: pointer;
+        background: transparent;
+        
+        /* Safari checkbox enhancement */
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
+    }
+    
+    .checkbox-input:checked {
+        border-color: rgba(69, 78, 197, 0.8);
+        background: rgba(69, 78, 197, 0.2);
+    }
+    
+    .checkbox-input:checked::after {
+        content: '✓';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgba(69, 78, 197, 1);
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1;
+    }
+    
+    .checkbox-input:focus {
+        outline: 2px solid rgba(69, 78, 197, 0.6);
+        outline-offset: 2px;
+    }
+    
+    /* Safari loading spinner optimization */
+    .spinner {
+        -webkit-animation: safari-spinner 1s linear infinite;
+        animation: safari-spinner 1s linear infinite;
+        will-change: transform;
+    }
+    
+    @-webkit-keyframes safari-spinner {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+    
+    /* Safari message animations */
+    .message {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        will-change: transform, opacity;
+    }
+    
+    /* Safari form validation styling */
+    .form-input:invalid:not(:focus):not(:placeholder-shown) {
+        border-color: #FF3B30;
+        box-shadow: 0 0 0 1px rgba(255, 59, 48, 0.2);
+    }
+    
+    .form-input:valid:not(:focus):not(:placeholder-shown) {
+        border-color: #34C759;
+        box-shadow: 0 0 0 1px rgba(52, 199, 89, 0.2);
+    }
+}
+
+/* Safari viewport height fix for testformular */
+.safari-browser .hero {
+    min-height: calc(var(--vh, 1vh) * 100 - 80px);
+}
+
+/* iOS specific adjustments */
+.ios-device .form-container {
+    /* Account for safe area insets */
+    margin-left: env(safe-area-inset-left);
+    margin-right: env(safe-area-inset-right);
+    margin-bottom: env(safe-area-inset-bottom);
+}
+
+/* Safari touch device hover optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .submit-button:hover {
+        background: linear-gradient(135deg, #454EC7 0%, #5856D6 100%);
+        transform: none;
+    }
+    
+    .submit-button:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    .form-container:hover {
+        transform: translateY(0);
+        box-shadow: 0 0px 30px rgba(69, 78, 197, 0.37);
+    }
+}
+
+/* Safari scroll optimization for form */
+.safari-browser .form-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+}
+
+/* Safari date input fallback styling */
+.safari-browser input[type="date"] {
+    -webkit-appearance: textfield;
+    appearance: textfield;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Safari select dropdown styling */
+.safari-browser select {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 12px;
+    padding-right: 40px;
+}

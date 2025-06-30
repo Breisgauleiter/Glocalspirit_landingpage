@@ -1,4 +1,6 @@
 {
+  "beta_test": "Test Et",
+  "spenden": "Bağış Yap",
   "nav": {
     "home": "Anasayfa",
     "about": "Hakkımızda",
@@ -10,13 +12,11 @@
   "footer": {
     "copyright": "© 2025 GlocalSpirit. Tüm hakları saklıdır",
     "privacy": "Gizlilik",
-    "imprint": "Impressum",
+    "imprint": "Yasal Bilgiler",
     "email": "info@glocalspirit.de",
     "tagline": "Anlamın ağı, gürültünün değil"
   },
-  "beta_test": "Test Et",
-  "spenden": "Bağış Yap",
-  "home": "Ana Sayfa",
+  "home": "Anasayfa",
   "about": "Hakkımızda",
   "roadmap": "Yol Haritası",
   "contact": "İletişim"

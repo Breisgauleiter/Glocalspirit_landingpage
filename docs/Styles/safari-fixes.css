@@ -223,3 +223,137 @@ body {
         outline: none;
     }
 }
+
+/* Safari-specific form optimizations */
+@supports (-webkit-appearance: none) {
+    .form-input, .form-textarea {
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 0;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .form-input:focus, .form-textarea:focus {
+        -webkit-tap-highlight-color: transparent;
+        outline: 2px solid #007AFF;
+        outline-offset: 2px;
+    }
+    
+    .submit-button, .form-button {
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 0;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .checkbox-input {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #007AFF;
+        border-radius: 3px;
+        position: relative;
+        cursor: pointer;
+    }
+    
+    .checkbox-input:checked::after {
+        content: '✓';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #007AFF;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+/* Safari form validation styling */
+.form-input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: #FF3B30;
+    box-shadow: 0 0 0 1px rgba(255, 59, 48, 0.2);
+}
+
+.form-input:valid:not(:focus):not(:placeholder-shown) {
+    border-color: #34C759;
+    box-shadow: 0 0 0 1px rgba(52, 199, 89, 0.2);
+}
+
+/* Safari loading spinner optimization */
+@keyframes safari-spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    -webkit-animation: safari-spinner 1s linear infinite;
+    animation: safari-spinner 1s linear infinite;
+    will-change: transform;
+}
+
+/* Safari message animations */
+.message {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Safari button hover optimization for touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .submit-button:hover, .form-button:hover {
+        background-color: initial;
+        transform: initial;
+    }
+    
+    .submit-button:active, .form-button:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Safari-specific viewport fixes for forms */
+.form-container {
+    min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    min-height: calc(100vh - constant(safe-area-inset-top) - constant(safe-area-inset-bottom));
+    min-height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Safari scroll behavior for long forms */
+.form-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+}
+
+/* Safari keyboard avoidance */
+@supports (bottom: env(keyboard-inset-height)) {
+    .form-container {
+        padding-bottom: env(keyboard-inset-height);
+    }
+}
+
+/* Safari date/time input specific fixes */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 3 14 0 0 10-14 0zm3-2 0 4m6-4 0 4'/%3e%3c/svg%3e") no-repeat;
+    background-size: 1em;
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
+}
+
+/* Safari select dropdown optimization */
+select {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    padding-right: 2.5rem;
+}

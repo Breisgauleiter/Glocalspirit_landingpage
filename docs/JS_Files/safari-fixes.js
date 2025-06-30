@@ -8,8 +8,6 @@
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const safariVersion = navigator.userAgent.match(/Version\/(\d+\.\d+)/);
     
-    console.log('Safari Fixes loaded for:', isSafari ? 'Safari' : 'Other browser');
-    
     // Fix 1: Safari viewport height issue (100vh problem)
     function fixSafariViewportHeight() {
         if (isSafari || isIOS) {
@@ -142,8 +140,8 @@
                 video.muted = true;
                 video.addEventListener('canplay', () => {
                     if (video.autoplay) {
-                        video.play().catch(e => {
-                            console.log('Autoplay prevented:', e);
+                        video.play().catch(() => {
+                            // Autoplay prevented, handle gracefully
                         });
                     }
                 });
@@ -240,8 +238,6 @@
     
     // Initialize all fixes
     function initSafariFixes() {
-        console.log('Initializing Safari fixes...');
-        
         fixSafariViewportHeight();
         fixSafariSmoothScrolling();
         optimizeSafariTouchEvents();
@@ -254,8 +250,6 @@
         optimizeSafariMemory();
         checkIntersectionObserver();
         safariCSSCustomPropertiesFallback();
-        
-        console.log('Safari fixes initialized successfully');
         
         // Add Safari-specific class to body
         if (isSafari) {

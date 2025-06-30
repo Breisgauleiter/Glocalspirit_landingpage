@@ -137,8 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 showSuccessMessage();
                 
             } catch (backendError) {
-                console.error('Backend submission failed, using fallback:', backendError);
-                
                 // Fallback to simulation if backend fails
                 try {
                     await simulateFormSubmission(formData);
@@ -155,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
             newsletterCheckbox.checked = false;
             
         } catch (error) {
-            console.error('Form submission error:', error);
             showErrorMessage('Es ist ein Fehler aufgetreten. Bitte versuche es später erneut.');
         } finally {
             setLoadingState(false);
@@ -178,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function simulateFormSubmission(formData) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                console.log('Form data to be submitted:', formData);
                 // Simulate 90% success rate
                 if (Math.random() > 0.1) {
                     resolve({ success: true });

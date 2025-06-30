@@ -1,4 +1,6 @@
 {
+  "beta_test": "Testuj",
+  "spenden": "Wpłać",
   "nav": {
     "home": "Strona główna",
     "about": "O nas",
@@ -10,12 +12,10 @@
   "footer": {
     "copyright": "© 2025 GlocalSpirit. Wszelkie prawa zastrzeżone",
     "privacy": "Prywatność",
-    "imprint": "Impressum",
+    "imprint": "Nota Prawna",
     "email": "info@glocalspirit.de",
     "tagline": "Sieć znaczenia, nie hałasu"
   },
-  "beta_test": "Testuj",
-  "spenden": "Wpłać",
   "home": "Strona główna",
   "about": "O nas",
   "roadmap": "Mapa drogowa",

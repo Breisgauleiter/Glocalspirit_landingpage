@@ -4,20 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="testform_title">Beta-Tester werden - glocalSpirit</title>
+    <meta name="description" content="Werde Beta-Tester für glocalSpirit und hilf uns dabei, die Plattform zu verbessern.">
+    
+    <!-- Safari-specific meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="glocalSpirit Beta">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#007AFF">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="Assets/Logo_gradient.svg">
+    <link rel="icon" type="image/svg+xml" href="Assets/Logo_gradient.svg">
+    
     <!-- css -->
     <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="Styles/safari-fixes.css">
     <link rel="stylesheet" media="screen and (max-width: 800px)" href="Styles/tablets.css">
     <link rel="stylesheet" media="screen and (max-width: 700px)" href="Styles/smallscreens.css">
     <link rel="stylesheet" href="Styles/testformular.css">
+    
     <!-- scripts -->
+    <script src="JS_Files/safari-fixes.js" defer></script>
     <script src="JS_Files/app.js" defer></script>
     <script src="JS_Files/config.js" defer></script>
     <script src="JS_Files/form-backend.js" defer></script>
-    <script src="JS_Files/i18n-ultra-simple.js" defer></script>
+    <script src="JS_Files/i18n-production.js" defer></script>
     <!-- gsap dependencies-->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <!-- Simple animations without ScrollSmoother conflicts -->
-    <script src="JS_Files/testform-animations.js" defer></script>
+    <!-- Optimized animations for Safari -->
+    <script src="JS_Files/testform-animations-optimized.js" defer></script>
     <script src="JS_Files/form-validation.js" defer></script>
 </head>
 <body id="body">

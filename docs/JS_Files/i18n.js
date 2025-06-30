@@ -4,7 +4,7 @@
 class GlocalSpiritI18n {
     constructor() {
         this.currentLanguage = 'de';
-        this.supportedLanguages = ['de', 'en', 'fr', 'es', 'ru', 'pt', 'sv', 'tr', 'el', 'pl'];
+        this.supportedLanguages = ['de', 'en', 'fr', 'es']; // Andere Sprachen temporär deaktiviert: 'ru', 'pt', 'sv', 'tr', 'el', 'pl'
         this.fallbackLanguage = 'de';
         this.translations = {};
         this.isInitialized = false;

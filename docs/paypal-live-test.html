@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Live Test - glocalSpirit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .paypal-container {
+            margin: 15px 0;
+            min-height: 50px;
+            border: 2px dashed #ddd;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .client-id-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        button {
+            background: #007cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #005a8b;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .status.warning { background: #fff3cd; color: #856404; }
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .log-area {
+            background: #000;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>PayPal Live Client ID Test</h1>
+    
+    <div class="warning-box">
+        <h3>⚠️ WICHTIG - Live PayPal Test</h3>
+        <p><strong>Dies verwendet echte PayPal Zahlungen!</strong></p>
+        <ul>
+            <li>Teste nur mit kleinen Beträgen (z.B. 0.01€)</li>
+            <li>Verwende dein eigenes PayPal Account zum Testen</li>
+            <li>Du kannst Zahlungen später in PayPal stornieren</li>
+        </ul>
+    </div>
+    
+    <div id="statusDisplay"></div>
+    
+    <!-- Client ID Input -->
+    <div class="test-section">
+        <h2>1. Live PayPal Client ID eingeben</h2>
+        <label for="liveClientId">Live Client ID:</label>
+        <input type="text" id="liveClientId" class="client-id-input" 
+               value="AeF9WwYg-UeWYi_GfG95qVEo-nu3SBMPP9W0qK2fA1jT6tR0M88GUbbvtvQyP6O0eLeotkkQrw_eNk1Z"
+               placeholder="Hier deine Live PayPal Client ID einfügen...">
+        <br>
+        <button onclick="loadPayPalSDK()">PayPal SDK mit Live Client ID laden</button>
+        <div id="sdkStatus">SDK noch nicht geladen...</div>
+    </div>
+    
+    <!-- Test Payments -->
+    <div class="test-section">
+        <h2>2. Live Payment Tests</h2>
+        <p><strong>ACHTUNG:</strong> Diese sind echte Zahlungen!</p>
+        
+        <div>
+            <strong>Test Payment - 0.01€ (Empfohlen für Test)</strong>
+            <div id="paypal-test-minimal" class="paypal-container"></div>
+            <button onclick="renderTestButton('paypal-test-minimal', '0.01', 'Minimal Test')">Test 0.01€</button>
+        </div>
+        
+        <div>
+            <strong>Early Bird - 22€ (Nur wenn du bereit bist!)</strong>
+            <div id="paypal-live-earlybird" class="paypal-container"></div>
+            <button onclick="renderTestButton('paypal-live-earlybird', '22.00', 'Early Bird')">Test 22€</button>
+        </div>
+        
+        <div>
+            <strong>Premium - 44€ (Nur wenn du bereit bist!)</strong>
+            <div id="paypal-live-premium" class="paypal-container"></div>
+            <button onclick="renderTestButton('paypal-live-premium', '44.00', 'Premium')">Test 44€</button>
+        </div>
+    </div>
+    
+    <!-- Console Log -->
+    <div class="test-section">
+        <h2>Debug Log</h2>
+        <div id="logDisplay" class="log-area">Bereit für Live PayPal Test...\n</div>
+        <button onclick="clearLogs()">Clear Logs</button>
+    </div>
+    
+    <script>
+        let paypalSDKLoaded = false;
+        
+        // Logging system
+        const logDisplay = document.getElementById('logDisplay');
+        
+        function addToLog(type, ...args) {
+            const timestamp = new Date().toLocaleTimeString();
+            const message = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg, null, 2) : arg).join(' ');
+            logDisplay.innerHTML += `[${timestamp}] ${type.toUpperCase()}: ${message}\n`;
+            logDisplay.scrollTop = logDisplay.scrollHeight;
+        }
+        
+        function clearLogs() {
+            logDisplay.innerHTML = 'Logs cleared...\n';
+        }
+        
+        function updateStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('statusDisplay');
+            statusDiv.className = `status ${type}`;
+            statusDiv.innerHTML = message;
+        }
+        
+        // Dynamically load PayPal SDK with live client ID
+        function loadPayPalSDK() {
+            const clientId = document.getElementById('liveClientId').value.trim();
+            
+            if (!clientId) {
+                updateStatus('Bitte Live Client ID eingeben!', 'error');
+                return;
+            }
+            
+            if (clientId.length < 50) {
+                updateStatus('Client ID scheint zu kurz zu sein. Bitte überprüfen.', 'warning');
+                return;
+            }
+            
+            addToLog('info', 'Loading PayPal SDK with Live Client ID...');
+            updateStatus('PayPal SDK wird geladen...', 'warning');
+            
+            // Remove existing PayPal script if any
+            const existingScript = document.querySelector('script[src*="paypal.com/sdk"]');
+            if (existingScript) {
+                existingScript.remove();
+            }
+            
+            // Load new PayPal SDK
+            const script = document.createElement('script');
+            script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}&currency=EUR`;
+            script.onload = function() {
+                addToLog('success', 'PayPal Live SDK loaded successfully');
+                updateStatus('✅ PayPal Live SDK geladen! Bereit für Tests.', 'success');
+                document.getElementById('sdkStatus').innerHTML = '<span style="color: green;">✅ Live PayPal SDK geladen</span>';
+                paypalSDKLoaded = true;
+            };
+            script.onerror = function() {
+                addToLog('error', 'Failed to load PayPal Live SDK');
+                updateStatus('❌ Fehler beim Laden der PayPal SDK. Client ID überprüfen!', 'error');
+                document.getElementById('sdkStatus').innerHTML = '<span style="color: red;">❌ SDK Fehler</span>';
+            };
+            
+            document.head.appendChild(script);
+        }
+        
+        // Render PayPal button for testing
+        function renderTestButton(containerId, amount, packageName) {
+            if (!paypalSDKLoaded || typeof paypal === 'undefined') {
+                updateStatus('PayPal SDK noch nicht geladen!', 'error');
+                return;
+            }
+            
+            addToLog('info', `Rendering ${packageName} button for ${amount}€`);
+            
+            // Clear container first
+            document.getElementById(containerId).innerHTML = '';
+            
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    addToLog('info', `Creating LIVE order for ${packageName} - ${amount}€`);
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: amount,
+                                currency_code: 'EUR'
+                            },
+                            description: `glocalSpirit ${packageName} Support (LIVE TEST)`
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    addToLog('info', `Payment approved for ${packageName}, capturing...`);
+                    return actions.order.capture().then(function(details) {
+                        addToLog('success', `LIVE Payment successful for ${packageName}:`, details);
+                        updateStatus(`✅ LIVE Payment erfolgreich für ${packageName}! Payment ID: ${details.id}`, 'success');
+                        
+                        alert(`Zahlung erfolgreich!\n${packageName}: ${amount}€\nPayment ID: ${details.id}`);
+                    });
+                },
+                onError: function(err) {
+                    addToLog('error', `LIVE Payment error for ${packageName}:`, err);
+                    updateStatus(`❌ Payment Fehler für ${packageName}`, 'error');
+                    alert('Payment Fehler. Siehe Console Log für Details.');
+                },
+                onCancel: function(data) {
+                    addToLog('info', `Payment cancelled for ${packageName}:`, data);
+                    updateStatus(`Payment für ${packageName} abgebrochen`, 'warning');
+                }
+            }).render(`#${containerId}`).then(() => {
+                addToLog('success', `${packageName} button rendered successfully`);
+            }).catch(err => {
+                addToLog('error', `Failed to render ${packageName} button:`, err);
+                updateStatus(`Fehler beim Rendern des ${packageName} Buttons`, 'error');
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            addToLog('info', 'Live PayPal Test Page loaded');
+            updateStatus('Bereit für Live PayPal Test. Client ID eingeben zum Starten.', 'warning');
+        });
+    </script>
+</body>
+</html>
