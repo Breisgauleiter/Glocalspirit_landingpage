@@ -1,0 +1,90 @@
+{
+  "about_movement_title": "Ruch i Przepływ",
+  "about_movement_desc": "Ciało, umysł i dusza łączą się poprzez uważne, kreatywne i uzdrawiające formy ruchu. Joga, taniec, praca z oddechem lub intuicyjna praktyka ciała — GlocalSpirit zaprasza do odnalezienia naturalnego rytmu i poczucia harmonii z życiem.",
+  "about_consciousness_title": "Świadomość",
+  "about_consciousness_desc": "Świadomość nie przejawia się przez wiedzę czy koncepcje, lecz przez sposób bycia. W GlocalSpirit chodzi o działanie i życie z postawy świadomości: obecność, połączenie i harmonia z całością.",
+  "about_nutrition_title": "Dobre Produkty i Odżywianie",
+  "about_nutrition_desc": "GlocalSpirit oznacza świadomą konsumpcję, troskliwą dietę i wsparcie dla ciała, umysłu i duszy. Jakość, prostota i autentyczność produktów powinny być w harmonii z 'człowiekiem i naturą'.",
+  "about_healing_title": "Uzdrawianie i Zdrowie",
+  "about_healing_desc": "W GlocalSpirit zdrowie to holistyczne podejście do dobrostanu fizycznego, psychicznego i duchowego. Zapraszamy do postrzegania uzdrawiania jako naturalnego procesu, opartego na świadomości, wspólnocie, więzi z naturą i wewnętrznym spokoju.",
+  "about_hope_title": "Domy Nadziei",
+  "about_hope_desc": "\"Domy Nadziei\" to żywe miejsca spotkań, uzdrawiania i współtworzenia. Służą jako duchowe, społeczne i kulturalne przestrzenie, gdzie ludzie gromadzą się w duchu wewnętrznego pokoju i synarchii. Są fizycznymi punktami zakotwiczenia w sieci GlocalSpirit.",
+  "about_creativity_title": "Kreatywność i Ekspresja",
+  "about_creativity_desc": "GlocalSpirit oferuje chronione przestrzenie do swobodnego rozwoju, twórczego przepływu i autentycznego wyrażania siebie. To, co wcześniej było odczuwane jako presja, tutaj może stać się żywą i odczuwalną kreatywnością.",
+  "about_learning_title": "Nauka i Edukacja",
+  "about_learning_desc": "GlocalSpirit uosabia nową formę wymiany wiedzy, opartą na rezonansie, samorozwoju i wewnętrznej zgodności. Bez presji, ocen i sztywnych programów nauczania.",
+  "about_nature_title": "Natura i Zrównoważony Rozwój",
+  "about_nature_desc": "GlocalSpirit przypomina o naszej pierwotnej więzi z Ziemią. Zachęca do życia w harmonii z naturalnymi cyklami, uważnego korzystania z zasobów i tworzenia regeneracyjnych form życia.",
+  "about_spirituality_title": "Duchowość i Mistyka",
+  "about_spirituality_desc": "Tutaj spotykają się tradycje mądrości, ponadczasowe symbole i nowoczesne formy duchowego przebudzenia. Ta kategoria oferuje przestrzeń dla niewyrażalnego - dla ciszy za słowami, głębi poza myślami i uniwersalnej tajemnicy, która przenika wszystko.",
+  "about_technology_title": "Technologia i Świadomość",
+  "about_technology_desc": "GlocalSpirit łączy pozornie niepołączalne: cyfrową inteligencję i duchową głębię. Technologia nie musi być 'odhumanizowana'. Poprzez świadome projektowanie, techniczne może stać się narzędziem pokoju, połączenia i wewnętrznego rozwoju.",
+  "about_value_title": "Tworzenie Wartości i Finanse",
+  "about_value_desc": "Nowe rozumienie ekonomii - oparte na świadomości, zaufaniu i cyrkulacji. Zamiast maksymalizacji zysku, chodzi o prawdziwe tworzenie wartości poprzez sens, spotkanie i wewnętrzne bogactwo.",
+  "categories": {
+    "bewegung_flow": {
+      "title": "Ruch i Przepływ",
+      "description": "Ciało, umysł i dusza łączą się poprzez uważne, kreatywne i uzdrawiające formy ruchu. Joga, taniec, praca z oddechem lub intuicyjna praktyka ciała — GlocalSpirit zaprasza do odnalezienia naturalnego rytmu i poczucia harmonii z życiem."
+    },
+    "bewusstsein": {
+      "title": "Świadomość",
+      "description": "Świadomość nie przejawia się przez wiedzę czy koncepcje, lecz przez sposób bycia. W GlocalSpirit chodzi o działanie i życie z postawy świadomości: obecność, połączenie i harmonia z całością."
+    },
+    "produkte_ernaehrung": {
+      "title": "Dobre Produkty i Odżywianie",
+      "description": "GlocalSpirit oznacza świadomą konsumpcję, troskliwą dietę i wsparcie dla ciała, umysłu i duszy. Jakość, prostota i autentyczność produktów powinny być w harmonii z 'człowiekiem i naturą'."
+    },
+    "heilung_gesundheit": {
+      "title": "Uzdrawianie i Zdrowie",
+      "description": "W GlocalSpirit zdrowie to holistyczne podejście do dobrostanu fizycznego, psychicznego i duchowego. Zapraszamy do postrzegania uzdrawiania jako naturalnego procesu, opartego na świadomości, wspólnocie, więzi z naturą i wewnętrznym spokoju."
+    },
+    "house_of_hope": {
+      "title": "Domy Nadziei",
+      "description": "'Domy Nadziei' to żywe miejsca spotkań, uzdrawiania i współtworzenia. Służą jako duchowe, społeczne i kulturalne przestrzenie, gdzie ludzie gromadzą się w duchu wewnętrznego pokoju i synarchii. Są fizycznymi punktami zakotwiczenia w sieci GlocalSpirit."
+    },
+    "kreativitaet_ausdruck": {
+      "title": "Kreatywność i Ekspresja",
+      "description": "GlocalSpirit oferuje chronione przestrzenie do swobodnego rozwoju, twórczego przepływu i autentycznego wyrażania siebie. To, co wcześniej było odczuwane jako presja, tutaj może stać się żywą i odczuwalną kreatywnością."
+    },
+    "lernen_bildung": {
+      "title": "Nauka i Edukacja",
+      "description": "GlocalSpirit uosabia nową formę wymiany wiedzy, opartą na rezonansie, samorozwoju i wewnętrznej zgodności. Bez presji, ocen i sztywnych programów nauczania."
+    },
+    "natur_nachhaltigkeit": {
+      "title": "Natura i Zrównoważony Rozwój",
+      "description": "GlocalSpirit przypomina o naszym pierwotnym połączeniu z Ziemią. Zaprasza do życia w harmonii z naturalnymi cyklami, ostrożnego korzystania z zasobów i tworzenia regeneracyjnych form życia."
+    },
+    "spiritualitaet_mystik": {
+      "title": "Duchowość i Mistyka",
+      "description": "Tutaj spotykają się tradycje mądrości, ponadczasowe symbole i nowoczesne formy duchowego przebudzenia. Ta kategoria daje przestrzeń na to, co niewyrażalne: ciszę poza słowami, głębię poza myślą i uniwersalną tajemnicę przenikającą wszystko."
+    },
+    "technologie_bewusstsein": {
+      "title": "Technologia i Świadomość",
+      "description": "GlocalSpirit łączy to, co pozornie nie do pogodzenia: cyfrową inteligencję i duchową głębię. Technologia nie musi być odczłowieczona — świadome jej użycie czyni ją narzędziem pokoju, połączenia i rozwoju wewnętrznego."
+    },
+    "wertschoepfung_finanzen": {
+      "title": "Wartość i Finanse",
+      "description": "Nowe rozumienie ekonomii, oparte na świadomości, zaufaniu i cyrkulacji. Zamiast maksymalizacji zysku — prawdziwa wartość poprzez sens, spotkania i wewnętrzne bogactwo."
+    }
+  },
+  "about_movement_title": "Ruch & Przepływ",
+  "about_movement_desc": "Ciało, umysł i dusza łączą się poprzez świadome, kreatywne i uzdrawiające formy ruchu. Czy to przez jogę, taniec, pracę z oddechem czy intuicyjną praktykę cielesną. GlocalSpirit zaprasza do znalezienia naturalnego rytmu i poczucia harmonii z życiem przez to.",
+  "about_consciousness_title": "Świadomość",
+  "about_consciousness_desc": "Świadomość nie pokazuje się przez wiedzę czy koncepcje, ale przez sposób bycia. W GlocalSpirit chodzi o działanie i życie z świadomej postawy: obecnej, połączonej i w harmonii z większą całością.",
+  "about_nutrition_title": "Dobre produkty & Odżywianie",
+  "about_nutrition_desc": "GlocalSpirit reprezentuje świadomą konsumpcję, uważne odżywianie i pożywienie dla ciała, umysłu i duszy. Idealnie jakość, prostota i autentyczność produktów są w harmonii z \"człowiekiem i naturą\".",
+  "about_healing_title": "Uzdrowienie & Zdrowie",
+  "about_healing_desc": "W GlocalSpirit zdrowie obejmuje holistyczne podejście do dobrostanu fizycznego, emocjonalnego i mentalnego. Zapraszamy do rozumienia uzdrowienia jako naturalnego procesu. Wspieranego przez świadomość, społeczność, połączenie z naturą i wewnętrzny spokój.",
+  "about_hope_title": "Domy Nadziei",
+  "about_hope_desc": "\"Domy Nadziei\" to żywe miejsca spotkań, uzdrowienia i współtworzenia. Służą jako duchowe, społeczne i kulturalne przestrzenie, gdzie ludzie mogą się gromadzić w duchu wewnętrznego spokoju i synarchii. \"Domy Nadziei\" to fizyczne punkty zakotwiczenia w sieci GlocalSpirit.",
+  "about_creativity_title": "Kreatywność & Wyrażanie",
+  "about_creativity_desc": "GlocalSpirit oferuje chronione przestrzenie dla swobodnego rozwoju, kreatywnego przepływu i autentycznego wyrażania siebie. To, co mogło być doświadczane jako presja wydajności, może być tutaj doświadczane jako namacalna, słyszalna i odczuwalna kreatywność.",
+  "about_learning_title": "Nauka & Edukacja",
+  "about_learning_desc": "GlocalSpirit ucieleśnia nową formę wymiany wiedzy opartą na rezonansie, samorozwoju i wewnętrznej spójności. Poza presją, oceną czy stałymi programami nauczania.",
+  "about_nature_title": "Natura & Zrównoważoność",
+  "about_nature_desc": "GlocalSpirit przypomina nam o naszym pierwotnym połączeniu z ziemią. Zaprasza do życia w harmonii z naturalnymi cyklami, świadomego wykorzystywania zasobów i tworzenia regeneracyjnych sposobów życia.",
+  "about_spirituality_title": "Duchowość & Mistycyzm",
+  "about_spirituality_desc": "Tutaj spotykają się tradycje mądrości, ponadczasowe symbole i nowoczesne formy duchowego przebudzenia. Ta kategoria oferuje przestrzeń dla niewysłowionego. Czy to dla ciszy za słowami, głębi poza myśleniem czy uniwersalnej tajemnicy, która przenika wszystko.",
+  "about_technology_title": "Technologia & Świadomość",
+  "about_technology_desc": "GlocalSpirit łączy pozornie niekompatybilne: cyfrową inteligencję i duchową głębię. Technologia nie musi być \"odhumanizowana\". Poprzez świadomy design, elementy techniczne mogą stać się narzędziami dla pokoju, połączenia i wewnętrznego rozwoju."
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Plan Creator - glocalSpirit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .plan-config {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .log-area {
+            background: #000;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        button {
+            background: #007cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #005a8b;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .status.warning { background: #fff3cd; color: #856404; }
+        input, select {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>PayPal Plan Creator - glocalSpirit Sandbox</h1>
+    
+    <div id="statusDisplay"></div>
+    
+    <!-- SDK Test -->
+    <div class="section">
+        <h2>1. PayPal SDK Status</h2>
+        <div id="sdkStatus">Checking...</div>
+        <button onclick="checkSDK()">Check SDK</button>
+    </div>
+    
+    <!-- Product Creation -->
+    <div class="section">
+        <h2>2. Create Product (Required for Plans)</h2>
+        <div class="plan-config">
+            <label>Product Name: <input type="text" id="productName" value="glocalSpirit Membership"></label><br>
+            <label>Product Description: <input type="text" id="productDesc" value="Monthly membership for glocalSpirit community"></label><br>
+            <label>Product Type: 
+                <select id="productType">
+                    <option value="SERVICE">SERVICE</option>
+                    <option value="DIGITAL">DIGITAL</option>
+                </select>
+            </label><br>
+            <label>Category: 
+                <select id="productCategory">
+                    <option value="NONPROFIT">NONPROFIT</option>
+                    <option value="EDUCATIONAL_AND_TEXTBOOKS">EDUCATIONAL</option>
+                    <option value="MEMBERSHIP_CLUBS_AND_ORGANIZATIONS">MEMBERSHIP</option>
+                </select>
+            </label>
+        </div>
+        <button onclick="createProduct()">Create Product</button>
+        <div id="productResult"></div>
+    </div>
+    
+    <!-- Plan Creation -->
+    <div class="section">
+        <h2>3. Create Subscription Plans</h2>
+        <p>Product ID: <span id="currentProductId">Will be created above</span></p>
+        
+        <div class="plan-config">
+            <h3>Early Bird Plan - 22€/month</h3>
+            <button onclick="createPlan('early-bird', 'Early Bird Support', '22.00')">Create Early Bird Plan</button>
+            <div id="plan-early-bird"></div>
+        </div>
+        
+        <div class="plan-config">
+            <h3>Premium Plan - 44€/month</h3>
+            <button onclick="createPlan('premium', 'Premium Support', '44.00')">Create Premium Plan</button>
+            <div id="plan-premium"></div>
+        </div>
+        
+        <div class="plan-config">
+            <h3>Celebration Plan - 55€/month</h3>
+            <button onclick="createPlan('celebration', 'Celebration Support', '55.00')">Create Celebration Plan</button>
+            <div id="plan-celebration"></div>
+        </div>
+    </div>
+    
+    <!-- Test Created Plans -->
+    <div class="section">
+        <h2>4. Test Created Plans</h2>
+        <div id="test-buttons-container"></div>
+        <button onclick="testCreatedPlans()">Test All Created Plans</button>
+    </div>
+    
+    <!-- Console Log -->
+    <div class="section">
+        <h2>Console Log</h2>
+        <div id="logDisplay" class="log-area">Ready...\n</div>
+        <button onclick="clearLogs()">Clear Logs</button>
+    </div>
+    
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AbZZSwNgQGOHCi6tV3NQfWRK8KMxUF7595gs-iwql5VCbV3YFOvkE6yhCa0oNJxiQkngXGBonB634wdN&components=buttons&intent=subscription"></script>
+    
+    <script>
+        let currentProductId = null;
+        let createdPlans = {};
+        
+        // Logging system
+        const logDisplay = document.getElementById('logDisplay');
+        
+        function addToLog(type, ...args) {
+            const timestamp = new Date().toLocaleTimeString();
+            const message = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg, null, 2) : arg).join(' ');
+            logDisplay.innerHTML += `[${timestamp}] ${type.toUpperCase()}: ${message}\n`;
+            logDisplay.scrollTop = logDisplay.scrollHeight;
+        }
+        
+        function clearLogs() {
+            logDisplay.innerHTML = 'Logs cleared...\n';
+        }
+        
+        function updateStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('statusDisplay');
+            statusDiv.className = `status ${type}`;
+            statusDiv.innerHTML = message;
+        }
+        
+        // Check PayPal SDK
+        function checkSDK() {
+            const sdkStatus = document.getElementById('sdkStatus');
+            if (typeof paypal !== 'undefined') {
+                sdkStatus.innerHTML = '<span style="color: green;">✅ PayPal SDK loaded successfully</span>';
+                addToLog('info', 'PayPal SDK loaded successfully');
+                updateStatus('PayPal SDK is ready!', 'success');
+            } else {
+                sdkStatus.innerHTML = '<span style="color: red;">❌ PayPal SDK not loaded</span>';
+                addToLog('error', 'PayPal SDK not loaded');
+                updateStatus('PayPal SDK failed to load!', 'error');
+            }
+        }
+        
+        // Create Product via PayPal API
+        async function createProduct() {
+            addToLog('info', 'Creating PayPal product...');
+            updateStatus('Creating product...', 'warning');
+            
+            const productData = {
+                name: document.getElementById('productName').value,
+                description: document.getElementById('productDesc').value,
+                type: document.getElementById('productType').value,
+                category: document.getElementById('productCategory').value,
+                image_url: 'https://glocalspirit.com/logo.png', // Optional
+                home_url: 'https://glocalspirit.com' // Optional
+            };
+            
+            try {
+                // Note: In a real application, this API call should be made from your backend
+                // This is just for demonstration purposes
+                addToLog('info', 'Product data:', productData);
+                
+                // Simulate product creation (in reality, you'd need to call PayPal API from backend)
+                const mockProductId = 'PROD-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                currentProductId = mockProductId;
+                
+                document.getElementById('currentProductId').textContent = mockProductId;
+                document.getElementById('productResult').innerHTML = 
+                    `<span style="color: green;">✅ Product created: ${mockProductId}</span>`;
+                
+                addToLog('success', 'Product created successfully:', mockProductId);
+                updateStatus('Product created! Now you can create plans.', 'success');
+                
+                // In reality, you would make this API call from your backend:
+                /*
+                const response = await fetch('/api/create-product', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(productData)
+                });
+                const result = await response.json();
+                currentProductId = result.id;
+                */
+                
+            } catch (error) {
+                addToLog('error', 'Error creating product:', error);
+                updateStatus('Failed to create product', 'error');
+                document.getElementById('productResult').innerHTML = 
+                    `<span style="color: red;">❌ Error: ${error.message}</span>`;
+            }
+        }
+        
+        // Create Plan
+        async function createPlan(planType, planName, price) {
+            if (!currentProductId) {
+                addToLog('error', 'No product ID available. Create a product first.');
+                updateStatus('Create a product first!', 'error');
+                return;
+            }
+            
+            addToLog('info', `Creating ${planType} plan...`);
+            
+            const planData = {
+                product_id: currentProductId,
+                name: planName,
+                description: `${planName} - Monthly subscription for glocalSpirit`,
+                billing_cycles: [{
+                    frequency: {
+                        interval_unit: 'MONTH',
+                        interval_count: 1
+                    },
+                    tenure_type: 'REGULAR',
+                    sequence: 1,
+                    total_cycles: 0, // Infinite
+                    pricing_scheme: {
+                        fixed_price: {
+                            value: price,
+                            currency_code: 'EUR'
+                        }
+                    }
+                }],
+                payment_preferences: {
+                    auto_bill_outstanding: true,
+                    setup_fee: {
+                        value: '0.00',
+                        currency_code: 'EUR'
+                    },
+                    setup_fee_failure_action: 'CONTINUE',
+                    payment_failure_threshold: 3
+                },
+                taxes: {
+                    percentage: '0.0',
+                    inclusive: false
+                }
+            };
+            
+            try {
+                // Simulate plan creation
+                const mockPlanId = 'P-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                createdPlans[planType] = mockPlanId;
+                
+                document.getElementById(`plan-${planType}`).innerHTML = 
+                    `<span style="color: green;">✅ Plan created: ${mockPlanId}</span>`;
+                
+                addToLog('success', `${planType} plan created:`, mockPlanId);
+                updateStatus(`${planName} plan created successfully!`, 'success');
+                
+                // In reality, you would make this API call from your backend:
+                /*
+                const response = await fetch('/api/create-plan', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(planData)
+                });
+                const result = await response.json();
+                createdPlans[planType] = result.id;
+                */
+                
+            } catch (error) {
+                addToLog('error', `Error creating ${planType} plan:`, error);
+                updateStatus(`Failed to create ${planName} plan`, 'error');
+                document.getElementById(`plan-${planType}`).innerHTML = 
+                    `<span style="color: red;">❌ Error: ${error.message}</span>`;
+            }
+        }
+        
+        // Test created plans
+        function testCreatedPlans() {
+            const container = document.getElementById('test-buttons-container');
+            container.innerHTML = '';
+            
+            Object.entries(createdPlans).forEach(([planType, planId]) => {
+                const buttonContainer = document.createElement('div');
+                buttonContainer.innerHTML = `<h4>Test ${planType}: ${planId}</h4>`;
+                buttonContainer.id = `test-${planType}`;
+                container.appendChild(buttonContainer);
+                
+                try {
+                    paypal.Buttons({
+                        createSubscription: function(data, actions) {
+                            addToLog('info', `Testing subscription for ${planType} with plan ID: ${planId}`);
+                            return actions.subscription.create({
+                                'plan_id': planId
+                            });
+                        },
+                        onApprove: function(data, actions) {
+                            addToLog('success', `Subscription approved for ${planType}:`, data.subscriptionID);
+                            updateStatus(`${planType} subscription test successful!`, 'success');
+                        },
+                        onError: function(err) {
+                            addToLog('error', `Subscription error for ${planType}:`, err);
+                            updateStatus(`${planType} subscription test failed`, 'error');
+                        }
+                    }).render(`#test-${planType}`);
+                    
+                } catch (error) {
+                    addToLog('error', `Error rendering test button for ${planType}:`, error);
+                }
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            checkSDK();
+            addToLog('info', 'PayPal Plan Creator initialized');
+        });
+    </script>
+</body>
+</html>

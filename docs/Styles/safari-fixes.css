@@ -1,0 +1,359 @@
+/* Safari-specific fixes and optimizations */
+
+/* Fix for Safari's default button styling */
+button, input[type="submit"], input[type="button"] {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+
+/* Fix for Safari's input field zoom on focus */
+input[type="text"], 
+input[type="email"], 
+input[type="tel"], 
+input[type="password"], 
+input[type="search"], 
+input[type="url"],
+textarea, 
+select {
+    font-size: 16px; /* Prevents zoom on iOS Safari */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Fix for Safari's scroll behavior */
+html {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Fix for Safari's backdrop-filter support */
+.backdrop-blur {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Fix for Safari's flexbox issues */
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex-item {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* Fix for Safari's grid issues */
+.grid-container {
+    display: -ms-grid;
+    display: grid;
+}
+
+/* Fix for Safari's transform performance */
+.transform-optimized {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+
+/* Fix for Safari's sticky positioning */
+.sticky-element {
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+/* Fix for Safari's video playback */
+video {
+    -webkit-playsinline: true;
+    playsinline: true;
+}
+
+/* Fix for Safari's font rendering */
+body, html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Fix for Safari's hover states on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .hover-element:hover {
+        /* Remove hover effects on touch devices */
+        background-color: initial;
+        transform: initial;
+    }
+}
+
+/* Fix for Safari's safe area insets (iPhone X and newer) */
+@supports (padding: max(0px)) {
+    .safe-area-inset-top {
+        padding-top: max(20px, env(safe-area-inset-top));
+    }
+    
+    .safe-area-inset-bottom {
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+    
+    .safe-area-inset-left {
+        padding-left: max(20px, env(safe-area-inset-left));
+    }
+    
+    .safe-area-inset-right {
+        padding-right: max(20px, env(safe-area-inset-right));
+    }
+}
+
+/* Fix for Safari's date/time input styling */
+input[type="date"], 
+input[type="time"], 
+input[type="datetime-local"] {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Fix for Safari's range input styling */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+    background: #ddd;
+    height: 4px;
+    border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #007AFF;
+    cursor: pointer;
+    margin-top: -8px;
+}
+
+/* Fix for Safari's selection styling */
+::selection {
+    background-color: rgba(0, 122, 255, 0.3);
+}
+
+::-webkit-selection {
+    background-color: rgba(0, 122, 255, 0.3);
+}
+
+/* Fix for Safari's scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Fix for Safari's animation performance */
+.animate-optimized {
+    will-change: transform, opacity;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+/* Fix for Safari's touch callout */
+.no-touch-callout {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Fix for Safari's tap highlight */
+.no-tap-highlight {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Fix for Safari's momentum scrolling */
+.momentum-scroll {
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+}
+
+/* Fix for Safari's text size adjust */
+body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* Fix for Safari's box-sizing inheritance */
+*, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+/* Fix for Safari's focus outline */
+.custom-focus:focus {
+    outline: 2px solid #007AFF;
+    outline-offset: 2px;
+}
+
+/* Remove default focus for touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .custom-focus:focus {
+        outline: none;
+    }
+}
+
+/* Safari-specific form optimizations */
+@supports (-webkit-appearance: none) {
+    .form-input, .form-textarea {
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 0;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .form-input:focus, .form-textarea:focus {
+        -webkit-tap-highlight-color: transparent;
+        outline: 2px solid #007AFF;
+        outline-offset: 2px;
+    }
+    
+    .submit-button, .form-button {
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 0;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .checkbox-input {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #007AFF;
+        border-radius: 3px;
+        position: relative;
+        cursor: pointer;
+    }
+    
+    .checkbox-input:checked::after {
+        content: '✓';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #007AFF;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+/* Safari form validation styling */
+.form-input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: #FF3B30;
+    box-shadow: 0 0 0 1px rgba(255, 59, 48, 0.2);
+}
+
+.form-input:valid:not(:focus):not(:placeholder-shown) {
+    border-color: #34C759;
+    box-shadow: 0 0 0 1px rgba(52, 199, 89, 0.2);
+}
+
+/* Safari loading spinner optimization */
+@keyframes safari-spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    -webkit-animation: safari-spinner 1s linear infinite;
+    animation: safari-spinner 1s linear infinite;
+    will-change: transform;
+}
+
+/* Safari message animations */
+.message {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Safari button hover optimization for touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .submit-button:hover, .form-button:hover {
+        background-color: initial;
+        transform: initial;
+    }
+    
+    .submit-button:active, .form-button:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Safari-specific viewport fixes for forms */
+.form-container {
+    min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    min-height: calc(100vh - constant(safe-area-inset-top) - constant(safe-area-inset-bottom));
+    min-height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Safari scroll behavior for long forms */
+.form-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+}
+
+/* Safari keyboard avoidance */
+@supports (bottom: env(keyboard-inset-height)) {
+    .form-container {
+        padding-bottom: env(keyboard-inset-height);
+    }
+}
+
+/* Safari date/time input specific fixes */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 3 14 0 0 10-14 0zm3-2 0 4m6-4 0 4'/%3e%3c/svg%3e") no-repeat;
+    background-size: 1em;
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
+}
+
+/* Safari select dropdown optimization */
+select {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    padding-right: 2.5rem;
+}

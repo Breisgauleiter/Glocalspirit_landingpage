@@ -1,4 +1,6 @@
 {
+  "beta_test": "Δοκιμή",
+  "spenden": "Δωρεά",
   "nav": {
     "home": "Αρχική",
     "about": "Σχετικά με εμάς",
@@ -10,12 +12,10 @@
   "footer": {
     "copyright": "© 2025 GlocalSpirit. Όλα τα δικαιώματα διατηρούνται",
     "privacy": "Πολιτική απορρήτου",
-    "imprint": "Impressum",
+    "imprint": "Νομικές Πληροφορίες",
     "email": "info@glocalspirit.de",
     "tagline": "Ένα δίκτυο νοήματος, όχι θορύβου"
   },
-  "beta_test": "Δοκιμή",
-  "spenden": "Δωρεά",
   "home": "Αρχική",
   "about": "Σχετικά με εμάς",
   "roadmap": "Χάρτης πορείας",

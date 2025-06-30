@@ -43,12 +43,13 @@ function initializeSpendenAnimations() {
         }
     });
 
-    // Form title animation (wie hero__title auf Hauptseite)
-    gsap.from(".form-title", {
+    // Package title animations (statt form-title)
+    gsap.from(".package-title", {
         y: 50,
         opacity: 0,
         duration: 1.5,
         ease: "power2.in",
+        stagger: 0.2
     });
 
     // Hero description animation

@@ -5,17 +5,36 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-box-sizing: border-box; /* Safari compatibility */
 }
 
 /* Enable smooth scrolling for better navigation UX */
 html {
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Safari momentum scrolling */
+    -webkit-text-size-adjust: 100%; /* Safari text size adjust */
+    text-size-adjust: 100%;
+}
+
+/* Safari font smoothing */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* Improve focus states for accessibility */
 :focus-visible {
     outline: 2px solid rgb(var(--special-cta-color));
     outline-offset: 2px;
+}
+
+/* Safari-specific focus fallback */
+@media (hover: none) and (pointer: coarse) {
+    :focus {
+        outline: 2px solid rgb(var(--special-cta-color));
+        outline-offset: 2px;
+    }
 }
 
 :root{
@@ -27,7 +46,17 @@ html {
 
     --main-font-color: 255, 255, 255; /*#FFFFFF*/
     --secondary-font-color: 30 29 64; /*#1E1D40*/
+    
+    /* Safari viewport height fix */
+    --vh: 1vh;
 } 
+
+/* Safari CSS custom properties fallback */
+.safari-fallback {
+    --main-background-color: 12, 12, 34;
+    --secondary-links-color: 85, 166, 217;
+    --special-cta-color: 255, 159, 85;
+}
 
 a{
     text-decoration: none;
@@ -96,7 +125,12 @@ main{
     padding: 0.1rem 1rem;
     background-color: rgba(var(--main-font-color),0.05);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Safari compatibility */
     border-bottom: 1px solid rgba(var(--main-font-color),0.10);
+    /* Safari safe area support */
+    padding-top: max(0.1rem, env(safe-area-inset-top));
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
 
     .header__links{
         display: flex;

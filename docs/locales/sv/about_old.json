@@ -1,0 +1,68 @@
+{
+  "categories": {
+    "bewegung_flow": {
+      "title": "Rörelse & Flöde",
+      "description": "Kropp, sinne och själ förenas genom medvetna, kreativa och helande former av rörelse. Oavsett om det är yoga, dans, andningsarbete eller intuitiv kroppspraktik. GlocalSpirit bjuder in dig att hitta din naturliga rytm och känna samklang med livet."
+    },
+    "bewusstsein": {
+      "title": "Medvetenhet",
+      "description": "Medvetenhet visar sig inte genom kunskap eller koncept, utan genom sättet att vara. På GlocalSpirit handlar det om att agera och leva utifrån ett medvetet förhållningssätt: närvarande, förbundet och i harmoni med helheten."
+    },
+    "produkte_ernaehrung": {
+      "title": "Bra produkter & Näring",
+      "description": "GlocalSpirit står för medveten konsumtion, omtänksam näring och näring för kropp, sinne och själ. Kvalitet, enkelhet och äkthet i produkterna bör vara i samklang med 'människa och natur'."
+    },
+    "heilung_gesundheit": {
+      "title": "Läkning & Hälsa",
+      "description": "På GlocalSpirit omfattar hälsa ett holistiskt synsätt på fysiskt, själsligt och andligt välbefinnande. Vi bjuder in till att se läkande som en naturlig process, buren av medvetenhet, gemenskap, naturkontakt och inre frid."
+    },
+    "house_of_hope": {
+      "title": "Hoppets Hus",
+      "description": "'Hoppets Hus' är levande platser för möten, läkande och samskapande. De fungerar som andliga, sociala och kulturella rum där människor samlas i inre fred och synarki. De är fysiska ankarpunkter inom GlocalSpirit-nätverket."
+    },
+    "kreativitaet_ausdruck": {
+      "title": "Kreativitet & Uttryck",
+      "description": "GlocalSpirit erbjuder skyddade rum för fri utveckling, kreativt flöde och autentiskt självuttryck. Det som tidigare upplevdes som prestationskrav kan här bli till levande och påtaglig kreativitet."
+    },
+    "lernen_bildung": {
+      "title": "Lärande & Utbildning",
+      "description": "GlocalSpirit representerar en ny form av kunskapsutbyte, baserad på resonans, självutveckling och inre samklang. Utan press, bedömning eller fasta läroplaner."
+    },
+    "natur_nachhaltigkeit": {
+      "title": "Natur & Hållbarhet",
+      "description": "GlocalSpirit påminner oss om vår ursprungliga koppling till jorden. Inbjuder till att leva i samklang med naturens cykler, använda resurser varsamt och skapa regenerativa livsformer."
+    },
+    "spiritualitaet_mystik": {
+      "title": "Spiritualitet & Mystik",
+      "description": "Här möts visdomstraditioner, tidlösa symboler och moderna former av andligt uppvaknande. Denna kategori ger utrymme för det outsägliga: tystnaden bortom orden, djupet bortom tanken och det universella mysteriet som genomsyrar allt."
+    },
+    "technologie_bewusstsein": {
+      "title": "Teknologi & Medvetenhet",
+      "description": "GlocalSpirit förenar det till synes oförenliga: digital intelligens och andligt djup. Teknik behöver inte vara avhumaniserad — medveten användning gör den till ett verktyg för fred, förbindelse och inre utveckling."
+    },
+    "wertschoepfung_finanzen": {
+      "title": "Värdeskapande & Ekonomi",
+      "description": "En ny förståelse av ekonomi, baserad på medvetenhet, tillit och cirkulation. Istället för vinstmaximering handlar det om verkligt värde genom mening, möten och inre rikedom."
+    }
+  },
+  "about_movement_title": "Rörelse & Flöde",
+  "about_movement_desc": "Kropp, sinne och själ förbinds genom medvetna, kreativa och helande former av rörelse. Oavsett om det är genom yoga, dans, andningsarbete eller intuitiv kroppspraktik. GlocalSpirit inbjuder till att hitta en naturlig rytm och känna sig i harmoni med livet genom det.",
+  "about_consciousness_title": "Medvetenhet",
+  "about_consciousness_desc": "Medvetenhet visas inte genom kunskap eller koncept, utan genom sättet att vara. På GlocalSpirit handlar det om att agera och leva från en medveten attityd: närvarande, ansluten och i harmoni med det större hela.",
+  "about_nutrition_title": "Bra produkter & Näring",
+  "about_nutrition_desc": "GlocalSpirit står för medveten konsumtion, uppmärksam näring och näring för kropp, sinne och själ. Idealt sett är kvalitet, enkelhet och autenticitet hos produkter i harmoni med \"människa och natur\".",
+  "about_healing_title": "Healing & Hälsa",
+  "about_healing_desc": "På GlocalSpirit omfattar hälsa en holistisk approach till fysiskt, emotionellt och mentalt välbefinnande. Vi inbjuder dig att förstå healing som en naturlig process. Stödd av medvetenhet, gemenskap, anslutning till naturen och inre frid.",
+  "about_hope_title": "Hus av Hopp",
+  "about_hope_desc": "\"Hus av Hopp\" är levande platser för möten, healing och medskapande. De fungerar som andliga, sociala och kulturella utrymmen där människor kan samlas i andan av inre frid och synarki. \"Hus av Hopp\" är fysiska ankarpunkter inom GlocalSpirit-nätverket.",
+  "about_creativity_title": "Kreativitet & Uttryck",
+  "about_creativity_desc": "GlocalSpirit erbjuder skyddade utrymmen för fri utveckling, kreativt flöde och autentiskt självuttryck. Det som kanske tidigare upplevdes som prestationspress kan här upplevas som påtaglig, hörbar och kännbar kreativitet.",
+  "about_learning_title": "Lärande & Utbildning",
+  "about_learning_desc": "GlocalSpirit förkroppsligar en ny form av kunskapsutbyte baserad på resonans, själv-utveckling och inre sammanhang. Bortom press, utvärdering eller fasta läroplaner.",
+  "about_nature_title": "Natur & Hållbarhet",
+  "about_nature_desc": "GlocalSpirit påminner oss om vår ursprungliga anslutning till jorden. Det inbjuder oss att leva i harmoni med naturliga cykler, använda resurser medvetet och skapa regenerativa levnadssätt.",
+  "about_spirituality_title": "Spiritualitet & Mystik",
+  "about_spirituality_desc": "Här möts visdomstraditioner, tidlösa symboler och moderna former av andligt uppvaknande. Denna kategori erbjuder utrymme för det outsägliga. Vare sig det är för tystnaden bakom ord, djupet bortom tänkande eller det universella mysteriet som genomsyrar allt.",
+  "about_technology_title": "Teknologi & Medvetenhet",
+  "about_technology_desc": "GlocalSpirit förbinder det till synes oförenliga: digital intelligens och andlig djup. Teknologi behöver inte vara \"avhumaniserad\". Genom medveten design kan tekniska element bli verktyg för fred, anslutning och inre utveckling."
+}

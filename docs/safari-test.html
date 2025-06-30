@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safari Test - glocalSpirit</title>
+    <meta name="description" content="Safari compatibility test page for GlocalSpirit">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="Styles/safari-fixes.css">
+    <link rel="stylesheet" href="Styles/i18n.css">
+    <link rel="stylesheet" media="screen and (max-width: 800px)" href="Styles/tablets.css">
+    <link rel="stylesheet" media="screen and (max-width: 700px)" href="Styles/smallscreens.css">
+    
+    <!-- Safari-specific meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- i18n setup -->
+    <script src="JS_Files/i18n-ultra-simple.js" defer></script>
+    
+    <!-- Core scripts -->
+    <script src="JS_Files/app.js" defer></script>
+    <script src="JS_Files/navigation.js" defer></script>
+    <script src="JS_Files/safari-fixes.js" defer></script>
+    
+    <!-- GSAP dependencies with Safari compatibility -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    
+    <!-- Safari-specific animations -->
+    <script src="JS_Files/animations.js" defer></script>
+    
+    <style>
+        /* Safari Test Specific Styles */
+        .safari-test-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 9999;
+            max-width: 300px;
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+        
+        .test-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        .status-pass { color: green; }
+        .status-fail { color: red; }
+        .status-warning { color: orange; }
+        
+        /* Test specific CSS features */
+        .backdrop-filter-test {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Use CSS custom properties with Safari fallbacks */
+        :root {
+            --primary-color: #007AFF;
+            --secondary-color: #5856D6;
+            --vh: 1vh; /* Safari viewport height fix */
+        }
+        
+        .full-height {
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
+        }
+        
+        .grid-test {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .flexbox-test {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .transform-test {
+            transform: translateX(0) scale(1);
+            transition: transform 0.3s ease;
+        }
+        
+        .transform-test:hover {
+            transform: translateX(10px) scale(1.05);
+        }
+        
+        .scroll-behavior-test {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body id="body" class="scroll-behavior-test">
+    <!-- Safari Detection Info -->
+    <div class="safari-test-info" id="safariInfo">
+        <div>Browser: <span id="browserInfo">Detecting...</span></div>
+        <div>Safari Version: <span id="safariVersion">N/A</span></div>
+        <div>iOS: <span id="iosInfo">N/A</span></div>
+        <div>Touch: <span id="touchInfo">N/A</span></div>
+        <div>Viewport: <span id="viewportInfo">N/A</span></div>
+    </div>
+
+    <div class="background-layer"></div>
+    
+    <!-- Header with Safari optimizations -->
+    <header class="header">
+        <input type="checkbox" id="imenu__toggle" class="menu__toggle">
+        <label for="imenu__toggle" class="toggle__label">
+            <img src="Assets/hamburger.svg" alt="hamburger_menu">
+            <img src="Assets/cross.svg" alt="menu__toggle--closed">
+        </label>
+        <nav class="header__nav">
+            <div class="header__links">
+                <a href="#" class="header__logo">
+                    <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="header__logo-img">
+                </a>
+                <a href="#hero" class="header__link header__link--active" data-i18n="home">Startseite</a>
+                <a href="#safari-tests" class="header__link">Safari Tests</a>
+                <a href="#performance" class="header__link">Performance</a>
+                <a href="index.html" class="header__link">Main Site</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero__content">
+            <h1 class="hero__title" data-i18n="hero_title">Safari Test Page</h1>
+            <p class="hero__subtitle">Testing Safari compatibility and features</p>
+        </div>
+    </section>
+
+    <!-- Safari Compatibility Tests -->
+    <section id="safari-tests" class="test-section">
+        <h2>Safari Compatibility Tests</h2>
+        
+        <div class="grid-test">
+            <div class="test-item">
+                <h3>CSS Grid Support</h3>
+                <div id="gridTest" class="status-warning">Testing...</div>
+            </div>
+            
+            <div class="test-item">
+                <h3>Flexbox Support</h3>
+                <div id="flexTest" class="status-warning">Testing...</div>
+            </div>
+            
+            <div class="test-item">
+                <h3>Backdrop Filter</h3>
+                <div id="backdropTest" class="backdrop-filter-test status-warning">Testing...</div>
+            </div>
+            
+            <div class="test-item">
+                <h3>Touch Events</h3>
+                <div id="touchTest" class="status-warning">Testing...</div>
+            </div>
+            
+            <div class="test-item">
+                <h3>Safari Fixes Status</h3>
+                <div id="safariFixesTest" class="status-warning">Testing...</div>
+            </div>
+            
+            <div class="test-item">
+                <h3>Viewport Height Fix</h3>
+                <div id="viewportHeightTest" class="status-warning">Testing...</div>
+            </div>
+            
+            <div class="test-item">
+                <h3>CSS Custom Properties</h3>
+                <div id="cssPropsTest" class="status-warning">Testing...</div>
+            </div>
+            
+            <div class="test-item">
+                <h3>Scroll Behavior</h3>
+                <div id="scrollTest" class="status-warning">Testing...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Tests -->
+    <section id="performance" class="test-section">
+        <h2>Performance Tests</h2>
+        <div class="test-item">
+            <h3>Page Load Time</h3>
+            <div id="loadTime" class="status-warning">Measuring...</div>
+        </div>
+        <div class="test-item">
+            <h3>DOM Ready Time</h3>
+            <div id="domTime" class="status-warning">Measuring...</div>
+        </div>
+        <div class="test-item">
+            <h3>Memory Usage (if available)</h3>
+            <div id="memoryTest" class="status-warning">Checking...</div>
+        </div>
+    </section>
+
+    <!-- Form Test -->
+    <section class="test-section">
+        <h2>Form Input Tests</h2>
+        <form id="testForm">
+            <div class="test-item">
+                <label for="emailTest">Email Input:</label>
+                <input type="email" id="emailTest" placeholder="test@example.com">
+            </div>
+            <div class="test-item">
+                <label for="dateTest">Date Input:</label>
+                <input type="date" id="dateTest">
+            </div>
+            <div class="test-item">
+                <label for="rangeTest">Range Input:</label>
+                <input type="range" id="rangeTest" min="0" max="100" value="50">
+            </div>
+            <div class="test-item">
+                <button type="button" onclick="testFormValidation()">Test Form Validation</button>
+                <div id="formTestResult" class="status-warning">Not tested</div>
+            </div>
+        </form>
+    </section>
+
+    <!-- Mobile Debug Panel -->
+    <div id="mobileDebug" class="mobile-debug-panel">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <strong>Mobile Debug Console</strong>
+            <button onclick="clearMobileDebug()" style="background: #ff4444; color: white; border: none; padding: 2px 8px; border-radius: 3px;">Clear</button>
+        </div>
+        <div id="mobileDebugContent"></div>
+    </div>
+    
+    <!-- Debug Toggle Button -->
+    <button id="debugToggle" style="position: fixed; bottom: 10px; right: 10px; background: #007AFF; color: white; border: none; padding: 10px; border-radius: 50%; width: 50px; height: 50px; z-index: 10000; font-size: 12px;">🐛</button>
+
+    <script>
+        // Mobile debugging functions
+        let mobileDebugVisible = false;
+        
+        function logToMobile(message, type = 'log') {
+            const content = document.getElementById('mobileDebugContent');
+            const colors = {
+                log: '#ffffff',
+                error: '#ff4444',
+                warn: '#ffaa00',
+                info: '#00aaff'
+            };
+            
+            const logEntry = document.createElement('div');
+            logEntry.style.color = colors[type];
+            logEntry.style.marginBottom = '2px';
+            logEntry.style.fontSize = '10px';
+            logEntry.innerHTML = `[${new Date().toLocaleTimeString()}] ${message}`;
+            content.appendChild(logEntry);
+            content.scrollTop = content.scrollHeight;
+        }
+        
+        function clearMobileDebug() {
+            document.getElementById('mobileDebugContent').innerHTML = '';
+        }
+        
+        function toggleMobileDebug() {
+            mobileDebugVisible = !mobileDebugVisible;
+            document.getElementById('mobileDebug').style.display = mobileDebugVisible ? 'block' : 'none';
+        }
+        
+        // Override console methods for mobile
+        const originalConsole = {
+            log: console.log,
+            error: console.error,
+            warn: console.warn,
+            info: console.info
+        };
+        
+        console.log = function(...args) {
+            originalConsole.log.apply(console, args);
+            logToMobile(args.join(' '), 'log');
+        };
+        
+        console.error = function(...args) {
+            originalConsole.error.apply(console, args);
+            logToMobile(args.join(' '), 'error');
+        };
+        
+        console.warn = function(...args) {
+            originalConsole.warn.apply(console, args);
+            logToMobile(args.join(' '), 'warn');
+        };
+        
+        console.info = function(...args) {
+            originalConsole.info.apply(console, args);
+            logToMobile(args.join(' '), 'info');
+        };
+        
+        // Debug toggle event
+        document.getElementById('debugToggle').addEventListener('click', toggleMobileDebug);
+        
+        // Safari Detection and Testing
+        document.addEventListener('DOMContentLoaded', function() {
+            const startTime = performance.now();
+            
+            // Browser Detection
+            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const safariVersion = navigator.userAgent.match(/Version\/(\d+\.\d+)/);
+            
+            // Update info panel
+            document.getElementById('browserInfo').textContent = isSafari ? 'Safari' : 'Other';
+            document.getElementById('safariVersion').textContent = safariVersion ? safariVersion[1] : 'N/A';
+            document.getElementById('iosInfo').textContent = isIOS ? 'Yes' : 'No';
+            document.getElementById('touchInfo').textContent = 'ontouchstart' in window ? 'Supported' : 'Not supported';
+            document.getElementById('viewportInfo').textContent = window.innerWidth + 'x' + window.innerHeight;
+            
+            // CSS Feature Tests
+            testCSSFeatures();
+            
+            // Touch Events Test
+            testTouchEvents();
+            
+            // Performance Tests
+            window.addEventListener('load', function() {
+                const loadTime = performance.now() - startTime;
+                document.getElementById('loadTime').textContent = loadTime.toFixed(2) + 'ms';
+                document.getElementById('loadTime').className = loadTime < 1000 ? 'status-pass' : 'status-warning';
+                
+                const domTime = performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart;
+                document.getElementById('domTime').textContent = domTime + 'ms';
+                document.getElementById('domTime').className = domTime < 800 ? 'status-pass' : 'status-warning';
+                
+                // Memory test (if available)
+                if (performance.memory) {
+                    const memory = (performance.memory.usedJSHeapSize / 1048576).toFixed(2);
+                    document.getElementById('memoryTest').textContent = memory + ' MB';
+                    document.getElementById('memoryTest').className = 'status-pass';
+                } else {
+                    document.getElementById('memoryTest').textContent = 'Not available';
+                    document.getElementById('memoryTest').className = 'status-warning';
+                }
+            });
+            
+            // GSAP Test
+            if (typeof gsap !== 'undefined') {
+                document.getElementById('gsapTest').textContent = 'GSAP Loaded Successfully';
+                document.getElementById('gsapTest').className = 'status-pass';
+                
+                // Test GSAP animation
+                gsap.to('#gsapTest', {
+                    duration: 2,
+                    x: 20,
+                    yoyo: true,
+                    repeat: -1,
+                    ease: "power2.inOut"
+                });
+            } else {
+                document.getElementById('gsapTest').textContent = 'GSAP Not Loaded';
+                document.getElementById('gsapTest').className = 'status-fail';
+            }
+            
+            // Test Safari Fixes
+            setTimeout(() => {
+                if (window.SafariFixes) {
+                    document.getElementById('safariFixesTest').textContent = 'Safari Fixes Loaded';
+                    document.getElementById('safariFixesTest').className = 'status-pass';
+                    
+                    // Test viewport height fix
+                    const vhValue = getComputedStyle(document.documentElement).getPropertyValue('--vh');
+                    if (vhValue && vhValue !== '1vh') {
+                        document.getElementById('viewportHeightTest').textContent = 'Viewport Height Fixed: ' + vhValue;
+                        document.getElementById('viewportHeightTest').className = 'status-pass';
+                    } else {
+                        document.getElementById('viewportHeightTest').textContent = 'Using Standard Viewport';
+                        document.getElementById('viewportHeightTest').className = 'status-warning';
+                    }
+                    
+                    // Test CSS custom properties
+                    const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+                    if (primaryColor) {
+                        document.getElementById('cssPropsTest').textContent = 'CSS Custom Properties Supported';
+                        document.getElementById('cssPropsTest').className = 'status-pass';
+                    } else {
+                        document.getElementById('cssPropsTest').textContent = 'CSS Custom Properties Not Supported';
+                        document.getElementById('cssPropsTest').className = 'status-fail';
+                    }
+                } else {
+                    document.getElementById('safariFixesTest').textContent = 'Safari Fixes Not Loaded';
+                    document.getElementById('safariFixesTest').className = 'status-fail';
+                }
+            }, 500);
+        });
+        
+        function testCSSFeatures() {
+            // Grid Test
+            const gridSupport = CSS.supports('display', 'grid');
+            document.getElementById('gridTest').textContent = gridSupport ? 'Supported' : 'Not Supported';
+            document.getElementById('gridTest').className = gridSupport ? 'status-pass' : 'status-fail';
+            
+            // Flexbox Test
+            const flexSupport = CSS.supports('display', 'flex');
+            document.getElementById('flexTest').textContent = flexSupport ? 'Supported' : 'Not Supported';
+            document.getElementById('flexTest').className = flexSupport ? 'status-pass' : 'status-fail';
+            
+            // Backdrop Filter Test
+            const backdropSupport = CSS.supports('backdrop-filter', 'blur(10px)') || CSS.supports('-webkit-backdrop-filter', 'blur(10px)');
+            document.getElementById('backdropTest').textContent = backdropSupport ? 'Supported' : 'Not Supported';
+            document.getElementById('backdropTest').className = backdropSupport ? 'status-pass' : 'status-fail';
+            
+            // Scroll Behavior Test
+            const scrollSupport = CSS.supports('scroll-behavior', 'smooth');
+            document.getElementById('scrollTest').textContent = scrollSupport ? 'Supported' : 'Not Supported';
+            document.getElementById('scrollTest').className = scrollSupport ? 'status-pass' : 'status-warning';
+        }
+        
+        function testTouchEvents() {
+            const touchSupported = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            document.getElementById('touchTest').textContent = touchSupported ? 'Touch Supported' : 'No Touch Support';
+            document.getElementById('touchTest').className = touchSupported ? 'status-pass' : 'status-warning';
+            
+            if (touchSupported) {
+                document.addEventListener('touchstart', function(e) {
+                    document.getElementById('touchTest').textContent = 'Touch Event Detected!';
+                    document.getElementById('touchTest').className = 'status-pass';
+                }, { once: true });
+            }
+        }
+        
+        function testFormValidation() {
+            const email = document.getElementById('emailTest');
+            const isValid = email.checkValidity();
+            document.getElementById('formTestResult').textContent = isValid ? 'Form validation works' : 'Enter valid email to test';
+            document.getElementById('formTestResult').className = isValid ? 'status-pass' : 'status-warning';
+        }
+        
+        // Console log for debugging
+        console.log('Safari Test Page Loaded');
+        
+        // Enhanced Safari debugging
+        console.group('🍎 Safari Debug Information');
+        console.log('User Agent:', navigator.userAgent);
+        console.log('Platform:', navigator.platform);
+        console.log('Vendor:', navigator.vendor);
+        console.log('Screen Resolution:', screen.width + 'x' + screen.height);
+        console.log('Viewport Size:', window.innerWidth + 'x' + window.innerHeight);
+        console.log('Device Pixel Ratio:', window.devicePixelRatio);
+        console.log('Touch Support:', 'ontouchstart' in window);
+        console.log('Online Status:', navigator.onLine);
+        
+        // Test CSS support
+        console.group('🎨 CSS Feature Support');
+        console.log('CSS Grid:', CSS.supports('display', 'grid'));
+        console.log('CSS Flexbox:', CSS.supports('display', 'flex'));
+        console.log('Backdrop Filter:', CSS.supports('backdrop-filter', 'blur(10px)'));
+        console.log('CSS Custom Properties:', CSS.supports('color', 'var(--test)'));
+        console.log('Smooth Scrolling:', CSS.supports('scroll-behavior', 'smooth'));
+        console.groupEnd();
+        
+        // Test JavaScript APIs
+        console.group('⚙️ JavaScript API Support');
+        console.log('IntersectionObserver:', 'IntersectionObserver' in window);
+        console.log('ResizeObserver:', 'ResizeObserver' in window);
+        console.log('Performance API:', 'performance' in window);
+        console.log('Service Worker:', 'serviceWorker' in navigator);
+        console.log('Web Share API:', 'share' in navigator);
+        console.groupEnd();
+        
+        console.groupEnd();
+        
+        // Global error handling for debugging
+        window.addEventListener('error', function(e) {
+            console.error('🚨 JavaScript Error:', e.error);
+            console.error('File:', e.filename);
+            console.error('Line:', e.lineno, 'Column:', e.colno);
+            
+            // Show error in UI
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `
+                position: fixed; 
+                top: 50px; 
+                right: 10px; 
+                background: red; 
+                color: white; 
+                padding: 10px; 
+                border-radius: 5px; 
+                z-index: 10000;
+                max-width: 300px;
+                font-size: 12px;
+            `;
+            errorDiv.innerHTML = `<strong>Error:</strong> ${e.error.message}<br><small>${e.filename}:${e.lineno}</small>`;
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => errorDiv.remove(), 10000);
+        });
+        
+        // Network debugging
+        window.addEventListener('online', () => console.log('🌐 Network: Online'));
+        window.addEventListener('offline', () => console.log('🌐 Network: Offline'));
+        
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            if (performance.getEntriesByType) {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.group('⚡ Performance Metrics');
+                console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart + 'ms');
+                console.log('Page Load Complete:', perfData.loadEventEnd - perfData.loadEventStart + 'ms');
+                console.log('DNS Lookup:', perfData.domainLookupEnd - perfData.domainLookupStart + 'ms');
+                console.log('TCP Connection:', perfData.connectEnd - perfData.connectStart + 'ms');
+                console.groupEnd();
+            }
+        });
+    </script>
+</body>
+</html>

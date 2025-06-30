@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="donation_title">Support glocalSpirit - Subscription Packages</title>
-    <meta name="description" data-i18n="donation_meta_description" content="Support glocalSpirit with a monthly subscription. Choose between Support (€20), Premium (€50), or Celebration (€100) packages.">
+    <meta name="description" data-i18n="donation_meta_description" content="Support glocalSpirit with a monthly subscription. Choose between Support (€22), Premium (€44), or Celebration (€55) packages.">
+    
+    <!-- Safari-specific meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="glocalSpirit Spenden">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#007AFF">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" data-i18n="donation_og_title" content="glocalSpirit Subscription Packages">
@@ -13,11 +20,13 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="Styles/safari-fixes.css">
     <link rel="stylesheet" media="screen and (max-width: 800px)" href="Styles/tablets.css">
     <link rel="stylesheet" media="screen and (max-width: 700px)" href="Styles/smallscreens.css">
     <link rel="stylesheet" href="Styles/spendenformular.css">
     
     <!-- Scripts -->
+    <script src="JS_Files/safari-fixes.js" defer></script>
     <script src="JS_Files/app.js" defer></script>
     <script src="JS_Files/config.js" defer></script>
     <script src="JS_Files/i18n-ultra-simple.js" defer></script>
@@ -30,12 +39,12 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
     
-    <!-- Stripe.js -->
-    <script src="https://js.stripe.com/v3/"></script>
+    <!-- PayPal SDK for Live Payments -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AeF9WwYg-UeWYi_GfG95qVEo-nu3SBMPP9W0qK2fA1jT6tR0M88GUbbvtvQyP6O0eLeotkkQrw_eNk1Z&currency=EUR" defer></script>
     
     <!-- Custom Scripts -->
     <script src="JS_Files/spenden-animation.js" defer></script>
-    <script src="JS_Files/stripe-integration.js" defer></script>
+    <script src="JS_Files/paypal-integration.js" defer></script>
     <script src="JS_Files/spenden-validation.js" defer></script>
 </head>
 <body id="body">
@@ -78,7 +87,7 @@
                     
                     <div class="packages-container">
                         <!-- Early Bird Paket -->
-                        <div class="package-card earlybird-package" data-price-id="price_1RagqmPQ7hNB5R7goFBX14jJ">
+                        <div class="package-card earlybird-package">
                             <div class="package-header">
                                 <h2 class="package-title" data-i18n="donation_package_earlybird_title">EARLY BIRD</h2>
                                 <p class="package-description" data-i18n="donation_package_earlybird_description">Personal onboarding for your start</p>
@@ -89,20 +98,14 @@
                                 </ul>
                             </div>
                             <div class="package-price">
-                                <span class="price">€22</span>
-                                <span class="period" data-i18n="donation_package_price_period">/month</span>
+                                <p class="package-price-amount">€22</p>
+                                <p class="package-price-interval" data-i18n="donation_package_interval">pro Monat</p>
                             </div>
-                            <button class="package-button" data-package="earlybird" data-price-id="price_1RagqmPQ7hNB5R7goFBX14jJ">
-                                <span class="button-text" data-i18n="donation_package_button">BOOK NOW</span>
-                                <span class="button-loading" style="display: none;">
-                                    <span class="spinner"></span>
-                                    <span data-i18n="donation_package_loading">Loading...</span>
-                                </span>
-                            </button>
+                            <div id="paypal-button-container-earlybird"></div>
                         </div>
 
                         <!-- Premium Paket -->
-                        <div class="package-card premium-package" data-price-id="price_1RanvQPQ7hNB5R7gOSpGuoMt">
+                        <div class="package-card premium-package">
                             <div class="package-header">
                                 <h2 class="package-title" data-i18n="donation_package_premium_title">PREMIUM</h2>
                                 <p class="package-description" data-i18n="donation_package_premium_description">Onboarding + personal support mentor</p>
@@ -115,43 +118,30 @@
                                 </ul>
                             </div>
                             <div class="package-price">
-                                <span class="price">€44</span>
-                                <span class="period" data-i18n="donation_package_price_period">/month</span>
+                                <p class="package-price-amount">€44</p>
+                                <p class="package-price-interval" data-i18n="donation_package_interval">pro Monat</p>
                             </div>
-                            <button class="package-button" data-package="premium" data-price-id="price_1RanvQPQ7hNB5R7gOSpGuoMt">
-                                <span class="button-text" data-i18n="donation_package_button">BOOK NOW</span>
-                                <span class="button-loading" style="display: none;">
-                                    <span class="spinner"></span>
-                                    <span data-i18n="donation_package_loading">Loading...</span>
-                                </span>
-                            </button>
+                            <div id="paypal-button-container-premium"></div>
                         </div>
 
-                        <!-- Business Paket -->
-                        <div class="package-card business-package" data-price-id="price_1Ranw8PQ7hNB5R7ghbOlhEka">
+                        <!-- Celebration Paket -->
+                        <div class="package-card celebration-package">
                             <div class="package-header">
-                                <h2 class="package-title" data-i18n="donation_package_business_title">BUSINESS</h2>
-                                <p class="package-description" data-i18n="donation_package_business_description">Premium + Newsletter + Pinboard</p>
+                                <h2 class="package-title" data-i18n="donation_package_celebration_title">CELEBRATION</h2>
+                                <p class="package-description" data-i18n="donation_package_celebration_description">Für Visionäre und Wegbereiter</p>
                             </div>
                             <div class="package-features">
                                 <ul>
-                                    <li data-i18n="donation_package_business_feature1">All Premium Features</li>
-                                    <li data-i18n="donation_package_business_feature2">Newsletter Distribution</li>
-                                    <li data-i18n="donation_package_business_feature3">Pinboard</li>
-                                    <li data-i18n="donation_package_business_feature4">Strategic Consulting</li>
+                                    <li data-i18n="donation_package_celebration_feature1">Alle Premium Features</li>
+                                    <li data-i18n="donation_package_celebration_feature2">Exklusive Einblicke</li>
+                                    <li data-i18n="donation_package_celebration_feature3">VIP Veranstaltungen</li>
                                 </ul>
                             </div>
                             <div class="package-price">
-                                <span class="price">€55</span>
-                                <span class="period" data-i18n="donation_package_price_period">/month</span>
+                                <p class="package-price-amount">€55</p>
+                                <p class="package-price-interval" data-i18n="donation_package_interval">pro Monat</p>
                             </div>
-                            <button class="package-button" data-package="business" data-price-id="price_1Ranw8PQ7hNB5R7ghbOlhEka">
-                                <span class="button-text" data-i18n="donation_package_button">BOOK NOW</span>
-                                <span class="button-loading" style="display: none;">
-                                    <span class="spinner"></span>
-                                    <span data-i18n="donation_package_loading">Loading...</span>
-                                </span>
-                            </button>
+                            <div id="paypal-button-container-celebration"></div>
                         </div>
                     </div>
 

@@ -1,4 +1,6 @@
 {
+  "beta_test": "Тестировать",
+  "spenden": "Пожертвовать",
   "nav": {
     "home": "Главная",
     "about": "О нас",
@@ -10,12 +12,10 @@
   "footer": {
     "copyright": "© 2025 GlocalSpirit. Все права защищены",
     "privacy": "Политика конфиденциальности",
-    "imprint": "Импрессум",
+    "imprint": "Правовая информация",
     "email": "info@glocalspirit.de",
     "tagline": "Сеть смысла, а не шума"
   },
-  "beta_test": "Тестировать",
-  "spenden": "Пожертвовать",
   "home": "Главная",
   "about": "О нас",
   "roadmap": "Дорожная карта",
