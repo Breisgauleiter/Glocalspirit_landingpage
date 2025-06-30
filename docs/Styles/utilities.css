@@ -1,0 +1,367 @@
+/* ===== CSS UTILITY CLASSES - ELIMINATING CODE DUPLICATION ===== */
+/* Reusable design patterns consolidated into utility classes */
+
+/* ===== GLASSMORPHISM UTILITIES ===== */
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+}
+
+.glassmorphism--light {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.glassmorphism--strong {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.glassmorphism--dark {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== BUTTON UTILITIES ===== */
+.btn-base {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--main-font-family);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, rgb(var(--special-cta-color)), rgb(var(--secondary-links-color)));
+    color: white;
+    box-shadow: 0 4px 15px rgba(var(--special-cta-color), 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(var(--special-cta-color), 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgb(var(--main-font-color));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* ===== FORM UTILITIES ===== */
+.form-base {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgb(var(--main-font-color));
+    font-family: var(--main-font-family);
+    font-size: 16px; /* Prevents iOS zoom */
+    transition: all 0.3s ease;
+}
+
+.form-base:focus {
+    outline: none;
+    border-color: rgb(var(--special-cta-color));
+    box-shadow: 0 0 0 3px rgba(var(--special-cta-color), 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgb(var(--main-font-color));
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.form-error {
+    color: #ff6b6b;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-error.show {
+    opacity: 1;
+}
+
+/* ===== ANIMATION UTILITIES ===== */
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+    opacity: 0;
+    transform: scale(0.95);
+    animation: scaleIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===== LOADING UTILITIES ===== */
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-dots::after {
+    content: '';
+    animation: loadingDots 1.5s infinite;
+}
+
+@keyframes loadingDots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+/* Standardized breakpoints to eliminate inconsistencies */
+
+:root {
+    /* Consistent breakpoint system */
+    --breakpoint-xs: 480px;   /* Extra small devices */
+    --breakpoint-sm: 768px;   /* Small devices (tablets) */
+    --breakpoint-md: 1024px;  /* Medium devices (small laptops) */
+    --breakpoint-lg: 1280px;  /* Large devices (laptops) */
+    --breakpoint-xl: 1536px;  /* Extra large devices (large desktops) */
+}
+
+/* ===== STANDARD MEDIA QUERIES ===== */
+/* Use these mixins instead of scattered breakpoints */
+
+/* Mobile First Approach - use min-width */
+@media (min-width: 480px) { /* xs+ */
+    .xs\:block { display: block; }
+    .xs\:hidden { display: none; }
+    .xs\:text-base { font-size: 1rem; }
+}
+
+@media (min-width: 768px) { /* sm+ */
+    .sm\:block { display: block; }
+    .sm\:hidden { display: none; }
+    .sm\:text-lg { font-size: 1.125rem; }
+    .sm\:flex { display: flex; }
+    .sm\:grid { display: grid; }
+}
+
+@media (min-width: 1024px) { /* md+ */
+    .md\:block { display: block; }
+    .md\:hidden { display: none; }
+    .md\:text-xl { font-size: 1.25rem; }
+    .md\:w-1\/2 { width: 50%; }
+    .md\:w-1\/3 { width: 33.333%; }
+}
+
+@media (min-width: 1280px) { /* lg+ */
+    .lg\:block { display: block; }
+    .lg\:hidden { display: none; }
+    .lg\:text-2xl { font-size: 1.5rem; }
+}
+
+/* Desktop First Approach - use max-width for backwards compatibility */
+@media (max-width: 1279px) { /* < lg */
+    .max-lg\:hidden { display: none; }
+    .max-lg\:block { display: block; }
+}
+
+@media (max-width: 1023px) { /* < md */
+    .max-md\:hidden { display: none; }
+    .max-md\:block { display: block; }
+    .max-md\:w-full { width: 100%; }
+}
+
+@media (max-width: 767px) { /* < sm */
+    .max-sm\:hidden { display: none; }
+    .max-sm\:block { display: block; }
+    .max-sm\:text-center { text-align: center; }
+    .max-sm\:p-4 { padding: 1rem; }
+}
+
+@media (max-width: 479px) { /* < xs */
+    .max-xs\:text-sm { font-size: 0.875rem; }
+    .max-xs\:p-2 { padding: 0.5rem; }
+}
+
+/* ===== DEVICE-SPECIFIC UTILITIES ===== */
+/* Touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .touch\:no-hover:hover {
+        background-color: initial;
+        transform: initial;
+    }
+    
+    .touch\:tap-highlight {
+        -webkit-tap-highlight-color: rgba(var(--special-cta-color), 0.1);
+    }
+    
+    .touch\:large-target {
+        min-height: 44px; /* iOS recommended minimum */
+        min-width: 44px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .retina\:crisp-edges {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .dark\:text-white { color: white; }
+    .dark\:bg-dark { background-color: #1a1a1a; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .motion-reduce\:transition-none {
+        transition-property: none;
+    }
+    
+    .motion-reduce\:animate-none {
+        animation: none;
+    }
+}
+
+/* High contrast */
+@media (prefers-contrast: high) {
+    .contrast\:border-black { border-color: black; }
+    .contrast\:text-black { color: black; }
+}
+
+/* ===== CONTAINER QUERIES (Future-proof) ===== */
+/* Use these for component-based responsive design */
+.container-responsive {
+    container-type: inline-size;
+}
+
+@container (min-width: 480px) {
+    .container\:xs\:flex { display: flex; }
+}
+
+@container (min-width: 768px) {
+    .container\:sm\:grid { display: grid; }
+}
+
+/* ===== MESSAGE UTILITIES ===== */
+.message {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.message--success {
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    color: #4CAF50;
+}
+
+.message--error {
+    background: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    color: #F44336;
+}
+
+.message--warning {
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    color: #FFC107;
+}
+
+.message__icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+/* ===== CARD UTILITIES ===== */
+.card-base {
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== ACCESSIBILITY UTILITIES ===== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.focus-visible {
+    outline: 2px solid rgb(var(--special-cta-color));
+    outline-offset: 2px;
+}
