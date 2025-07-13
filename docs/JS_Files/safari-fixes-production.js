@@ -121,7 +121,7 @@
             });
             
             // Enable hardware acceleration for animations
-            gsap.set("*", {force3D: true});
+            
         }
     }
     

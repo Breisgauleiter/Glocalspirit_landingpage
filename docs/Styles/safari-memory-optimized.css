@@ -1,0 +1,245 @@
+/* Safari Memory-optimierte CSS - Intelligente Hardware-Beschleunigung */
+
+/* ❌ ENTFERNT: Globale Hardware-Beschleunigung für alle Elemente */
+/* Das war das Hauptproblem - "compositor layer explosion" */
+
+/* ✅ Selektive Hardware-Beschleunigung nur für animierte Elemente */
+@supports (-webkit-appearance: none) {
+    
+    /* Nur für Header während Animationen */
+    .header.animating {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform, opacity;
+    }
+    
+    /* Nur für Hero-Elemente während Animationen */
+    .hero__title.animating,
+    .hero__image.animating {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform, opacity;
+    }
+    
+    /* Nur für ScrollTrigger-Elemente während Scroll */
+    .scroll-element.in-viewport {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform;
+    }
+    
+    /* Memory-optimierte GSAP-Elemente */
+    .gsap-optimized {
+        /* Nur temporär Hardware-Beschleunigung */
+        will-change: auto; /* Standard: keine Hardware-Beschleunigung */
+    }
+    
+    .gsap-optimized.active-animation {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform, opacity;
+    }
+    
+    /* Form-Elemente - nur bei Interaktion */
+    .form-input.focused,
+    .form-button.active {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform;
+    }
+    
+    /* Standard-Zustand: Keine Hardware-Beschleunigung */
+    .form-input,
+    .form-button,
+    .about__item,
+    .roadmap__content {
+        will-change: auto;
+        -webkit-transform: none;
+        transform: none;
+    }
+    
+    /* Safari-spezifische Performance-Optimierungen */
+    
+    /* Viewport-Optimierungen */
+    html {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        /* ❌ Entfernt: Globale Hardware-Beschleunigung */
+    }
+    
+    body {
+        /* Memory-schonende Scroll-Performance */
+        -webkit-overflow-scrolling: touch;
+        /* ❌ Entfernt: transform: translateZ(0) */
+    }
+    
+    /* Optimierte Touch-Interaktionen */
+    button, .button, a {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        /* Keine Hardware-Beschleunigung für Buttons im Ruhezustand */
+    }
+    
+    button:active, .button:active, a:active {
+        /* Nur bei Aktivierung Hardware-Beschleunigung */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform;
+    }
+    
+    /* ScrollSmoother-Fallback ohne Hardware-Beschleunigung */
+    #smooth-wrapper {
+        overflow: visible;
+        /* ❌ Entfernt: transform: translateZ(0) */
+    }
+    
+    #smooth-content {
+        overflow: visible;
+        /* ❌ Entfernt: transform: translateZ(0) */
+    }
+    
+    /* Backdrop-Filter mit Memory-Optimierung */
+    .backdrop-blur {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        /* Fallback ohne Hardware-Beschleunigung */
+        background: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Video-Optimierungen für Safari */
+    video {
+        /* playsinline wird als HTML-Attribut gesetzt, nicht CSS */
+        object-fit: cover; /* Basis-Optimierung für Videos */
+    }
+    
+    video.playing {
+        /* Nur während Wiedergabe Hardware-Beschleunigung */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform;
+    }
+    
+    /* Flexbox/Grid ohne Hardware-Beschleunigung */
+    .flex-container,
+    .grid-container {
+        /* Keine transform-Properties für Layout-Container */
+        will-change: auto;
+    }
+    
+    /* Optimierte Animationsklassen */
+    
+    /* Fade-Animationen */
+    .fade-in-optimized {
+        will-change: opacity;
+        /* Keine transforms für reine Opacity-Animationen */
+    }
+    
+    /* Transform-Animationen */
+    .transform-optimized {
+        will-change: transform;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    
+    /* Nach Animation cleanup */
+    .animation-complete {
+        will-change: auto !important;
+        -webkit-transform: none !important;
+        transform: none !important;
+    }
+    
+    /* Memory-Monitoring-Indikatoren (Development) */
+    .memory-warning {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 0, 0, 0.8);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        z-index: 10000;
+        pointer-events: none;
+    }
+    
+    .memory-ok {
+        background: rgba(0, 255, 0, 0.8);
+    }
+    
+    /* Layer-Count-Indikator */
+    .layer-count::after {
+        content: attr(data-layer-count);
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        z-index: 10000;
+        pointer-events: none;
+    }
+}
+
+/* iOS-spezifische Memory-Optimierungen */
+@supports (-webkit-touch-callout: none) {
+    
+    /* Safe-Area-Insets ohne Hardware-Beschleunigung */
+    .safe-area-inset-top {
+        padding-top: max(20px, env(safe-area-inset-top));
+        /* Keine transforms für Layout-Anpassungen */
+    }
+    
+    .safe-area-inset-bottom {
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+    
+    /* iOS Scroll-Optimierung */
+    body {
+        -webkit-overflow-scrolling: touch;
+        /* Memory-schonend ohne Hardware-Beschleunigung */
+    }
+    
+    /* Input-Zoom-Verhinderung ohne Layer-Explosion */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    textarea,
+    select {
+        font-size: 16px;
+        -webkit-appearance: none;
+        appearance: none;
+        /* Keine Hardware-Beschleunigung für Inputs */
+    }
+    
+    /* Nur bei Focus Hardware-Beschleunigung */
+    input:focus,
+    textarea:focus,
+    select:focus {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform;
+    }
+}
+
+/* Debug-Styles (nur in Development) */
+@media screen and (max-width: 99999px) {
+    .debug-layer-info {
+        position: fixed;
+        top: 50px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: monospace;
+        font-size: 11px;
+        z-index: 10000;
+        pointer-events: none;
+        white-space: pre-line;
+    }
+}

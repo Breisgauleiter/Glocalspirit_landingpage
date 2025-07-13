@@ -1,0 +1,49 @@
+/* Memory-optimierte Safari Performance CSS - Korrektur */
+
+/* ❌ ENTFERNT: Globale Hardware-Beschleunigung */
+/* Original CSS hatte "* { transform: translateZ(0); }" - das ist problematisch */
+
+/* ✅ Selektive Hardware-Beschleunigung nur bei Bedarf */
+@supports (-webkit-appearance: none) {
+    
+    /* Nur für animierte Elemente */
+    .gsap-element.active-animation {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform, opacity;
+    }
+    
+    /* Nach Animation bereinigen */
+    .gsap-element:not(.active-animation) {
+        will-change: auto;
+        -webkit-transform: none;
+        transform: none;
+    }
+    
+    /* Überschreibt problematische globale Regeln */
+    * {
+        /* Entfernt globale Hardware-Beschleunigung */
+        -webkit-transform: initial !important;
+        transform: initial !important;
+        -webkit-backface-visibility: initial !important;
+        backface-visibility: initial !important;
+        -webkit-perspective: initial !important;
+        perspective: initial !important;
+    }
+    
+    /* Selektive Anwendung für Performance-kritische Elemente */
+    .hero__title,
+    .hero__image,
+    .header {
+        /* Nur bei Animationen aktiviert */
+        will-change: auto;
+    }
+    
+    .hero__title.animating,
+    .hero__image.animating,
+    .header.animating {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform, opacity;
+    }
+}

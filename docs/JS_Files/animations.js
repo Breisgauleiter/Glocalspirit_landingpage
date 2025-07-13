@@ -38,20 +38,33 @@ function initializeAnimations() {
     
     gsap.registerPlugin(DrawSVGPlugin, MotionPathHelper, MotionPathPlugin, ScrollTrigger, ScrollSmoother);
 
-    // Only create ScrollSmoother if not already created and required elements exist
+    // Check for Safari and skip ScrollSmoother if detected
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     const smoothWrapper = document.querySelector('#smooth-wrapper');
     const smoothContent = document.querySelector('#smooth-content');
     
-    if (!ScrollSmoother.get() && smoothWrapper && smoothContent) {
+    if (!isSafari && !ScrollSmoother.get() && smoothWrapper && smoothContent) {
         try {
             ScrollSmoother.create({
                 wrapper: '#smooth-wrapper',
                 content: '#smooth-content',
-                smooth: 2,
+                smooth: 1.5,
                 effects: true,
             });
+            console.log('ScrollSmoother created for non-Safari browsers');
         } catch (error) {
             console.log('ScrollSmoother could not be created:', error);
+        }
+    } else if (isSafari) {
+        console.log('Safari detected - using native scroll without ScrollSmoother');
+        // Remove smooth wrapper classes to use normal scrolling
+        if (smoothWrapper) {
+            smoothWrapper.style.overflow = 'visible';
+            smoothWrapper.style.height = 'auto';
+        }
+        if (smoothContent) {
+            smoothContent.style.overflow = 'visible';
+            smoothContent.style.height = 'auto';
         }
     }
 

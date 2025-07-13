@@ -1,0 +1,74 @@
+/* Safari-spezifische CSS-Korrekturen für Footer und Layout */
+
+/* Safari detection und spezifische Korrekturen */
+@supports (-webkit-appearance: none) and (not (transform-style: preserve-3d)) {
+    
+    /* Nur kritische ScrollSmoother Korrekturen für Safari */
+    #smooth-wrapper {
+        height: auto;
+        overflow: visible;
+    }
+    
+    #smooth-content {
+        height: auto;
+        overflow: visible;
+        transform: none;
+    }
+    
+    /* Sanfte Safari Layout-Korrekturen */
+    body {
+        overflow-x: hidden;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+    }
+    
+
+    /* Safari Layout Anpassungen (Footer und Info) */
+    footer {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        height: auto !important;
+    }
+    .info_wrapper {
+        position: relative !important;
+        height: auto !important;
+    }
+    .footer__content {
+        position: relative !important;
+        transform: none !important;
+        margin: 2rem auto !important;
+        width: 90% !important;
+        max-width: 800px !important;
+        height: auto !important;
+    }
+    .tree {
+        position: relative !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        margin-top: -100px !important;
+        width: clamp(200px, 65vw, 600px) !important;
+    }
+    /* Header fix: Limit top padding to avoid excessive thickness */
+    .header__nav {
+        /* Thinner header bar in Safari */
+        padding: 0 1rem !important;
+        max-height: 3rem !important;
+        height: 3rem !important;
+        overflow: hidden !important;
+    }
+}
+
+/* Zusätzliche iOS-spezifische Korrekturen */
+@supports (-webkit-touch-callout: none) {
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    footer {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}

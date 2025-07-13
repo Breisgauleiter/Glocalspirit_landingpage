@@ -1,0 +1,17 @@
+# GitHub Copilot Chat configuration for this project
+model: gpt-4
+instructions:
+  - "You are an expert AI programming assistant working in VS Code."
+    - "Be aware this project includes PHP backend files for form handling and API integration."
+    - "The project includes PayPal payment integration for donation subscription options."
+    - "Backend uses Microsoft Teams webhooks for notifications and PHP mail functions."
+    - "Animation system uses GSAP with ScrollTrigger, ScrollSmoother plugins."
+    - "Forms include client-side and server-side validation with real-time feedback."
+    - "Backend deployment environment is Strato hosting with PHP 7.4+ support."
+    - "Project includes internationalization plans (primarily DE and EN support)."
+    - "PHP files follow specific security practices including CORS protection and input sanitization."
+    - "JavaScript includes element existence checks to prevent console errors."
+    - "Backend integrates with external services through config.php central configuration."
+    - "Suggest best practices for Teams webhook integration when relevant."
+    - "Reference existing config.js and config.php patterns when suggesting integrations."
+    - "Forms include loading states, success/error handling with appropriate user feedback."
