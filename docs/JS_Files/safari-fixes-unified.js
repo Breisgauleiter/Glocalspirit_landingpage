@@ -1,8 +1,8 @@
 // Unified Safari Fixes - Eliminating Code Duplication
 // Configuration-based approach for debug vs production
 
-(function(config = {}) {
-    'use strict';
+ (function() {
+    const config = window.SAFARI_CONFIG || {};
     
     // Default configuration
     const defaultConfig = {
@@ -15,7 +15,8 @@
     const settings = { ...defaultConfig, ...config };
     
     // Unified logging function
-    const log = (...args) => {
+    // 'use strict' removed for Safari compatibility
+    const log = function(...args) {
         if (settings.enableConsoleOutput) {
             console.log('[Safari Fixes]', ...args);
         }
@@ -91,4 +92,4 @@
         fixes
     };
     
-})(window.SAFARI_CONFIG || {});
+})();

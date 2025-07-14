@@ -108,32 +108,41 @@ document.addEventListener('DOMContentLoaded', function() {
     updateActiveNavigation();
     
     // Mobile Navigation UX Improvements
-    const menuToggle = document.querySelector('.menu__toggle');
+
+    const menuBtn = document.querySelector('.menu-toggle-button');
     const headerNav = document.querySelector('.header__nav');
     
-    if (menuToggle && headerNav) {
+    if (menuBtn && headerNav) {
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (menuToggle.checked && 
-                !headerNav.contains(e.target) && 
-                !e.target.closest('.toggle__label')) {
-                menuToggle.checked = false;
+            const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+            if (expanded && !headerNav.contains(e.target) && !e.target.closest('.menu-toggle-button')) {
+                menuBtn.click();
             }
         });
         
         // Close menu on escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && menuToggle.checked) {
-                menuToggle.checked = false;
+            if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
+                menuBtn.click();
             }
         });
         
-        // Prevent body scroll when mobile menu is open
-        menuToggle.addEventListener('change', function() {
-            if (this.checked) {
+        // Toggle mobile nav with button click
+        menuBtn.addEventListener('click', function() {
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            if (!expanded) {
+                this.setAttribute('aria-expanded', 'true');
                 document.body.style.overflow = 'hidden';
+                headerNav.style.display = 'flex';
+                this.querySelector('.burger-icon').style.display = 'none';
+                this.querySelector('.close-icon').style.display = 'block';
             } else {
+                this.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = '';
+                headerNav.style.display = 'none';
+                this.querySelector('.burger-icon').style.display = 'block';
+                this.querySelector('.close-icon').style.display = 'none';
             }
         });
     }

@@ -1007,3 +1007,8 @@ footer{
 .header__language-switcher .language-switcher {
     margin-left: 0 !important;
 }
+
+/* Hide menu toggle button by default on larger screens */
+.menu-toggle-button {
+    display: none;
+}
