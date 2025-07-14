@@ -21,16 +21,16 @@
     <link rel="stylesheet" href="Styles/style.css">
     <link rel="stylesheet" href="Styles/safari-fixes.css">
     <link rel="stylesheet" media="screen and (max-width: 800px)" href="Styles/tablets.css">
-    <link rel="stylesheet" media="screen and (max-width: 700px)" href="Styles/smallscreens.css">
+    <link rel="stylesheet" media="screen and (max-width: 800px)" href="Styles/smallscreens.css">
     <link rel="stylesheet" href="Styles/testformular.css">
     
     <!-- scripts -->
-    <!-- Consolidated Safari JS -->
-    <script src="JS_Files/safari-fixes-unified.js" defer></script>
+    <script src="JS_Files/safari-fixes.js" defer></script>
     <script src="JS_Files/app.js" defer></script>
     <script src="JS_Files/config.js" defer></script>
     <script src="JS_Files/form-backend.js" defer></script>
     <script src="JS_Files/i18n-production.js" defer></script>
+    <script src="JS_Files/navigation.js" defer></script>
     <!-- gsap dependencies-->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <!-- Optimized animations for Safari -->
@@ -40,11 +40,10 @@
 <body id="body">
     <div class="background-layer"></div>
     <header class="header">
-        <input type="checkbox" id="imenu__toggle" class="menu__toggle">
-        <label for="imenu__toggle" class="toggle__label">
-            <img src="Assets/hamburger.svg" alt="hamburger_menu">
-            <img src="Assets/cross.svg" alt="menu__toggle--closed">
-        </label>
+        <button type="button" class="menu-toggle-button" aria-expanded="false" aria-label="Navigation öffnen">
+            <img src="Assets/hamburger.svg" alt="Menü öffnen" class="burger-icon">
+            <img src="Assets/cross.svg" alt="Menü schließen" class="close-icon" style="display:none;">
+        </button>
         <nav class="header__nav">
             <div class="header__links">
                 <a href="index.html" class="header__logo">
