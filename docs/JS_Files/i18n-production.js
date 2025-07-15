@@ -1,230 +1,120 @@
-// Ultra-simple i18n for GlocalSpirit - Production Version (No Debug Output)
-class UltraSimpleI18n {
+// GlocalSpirit Internationalization System
+class GlocalSpiritI18n {
     constructor() {
-        this.currentLanguage = 'de';
-        this.translations = {
-            'de': {
-                // Navigation
-                'home': 'Startseite',
-                'about': 'Über uns',
-                'roadmap': 'Roadmap',
-                'contact': 'Kontakt',
-                'beta_test': 'Testen',
-                'back': '← Zurück',
-                
-                // Test Form
-                'testform_title': 'Beta Test Anmeldung',
-                'testform_subtitle': 'Seien Sie dabei, wenn glocalSpirit erwacht',
-                'testform_name_label': 'Name *',
-                'testform_email_label': 'E-Mail *',
-                'testform_newsletter': 'Updates per Mail erhalten?',
-                'testform_submit': 'SENDEN',
-                'testform_sending': 'WIRD GESENDET...',
-                'testform_success_message': 'Vielen Dank für deine Anmeldung als Beta-Tester. Wir werden uns bald bei dir melden!',
-                'form_success': 'Erfolgreich angemeldet!',
-                'form_error': 'Fehler bei der Anmeldung',
-                'form_error_message': 'Es ist ein Fehler aufgetreten. Bitte versuche es erneut.',
-                
-                // Hero Section
-                'hero_title': 'glocalSpirit',
-                'hero_description': 'GlocalSpirit ist eine Plattform für Bewusstseinsbildung und Vernetzung, die lokale und globale Gemeinschaften verbindet.',
-            },
-            'en': {
-                // Navigation
-                'home': 'Home',
-                'about': 'About',
-                'roadmap': 'Roadmap',
-                'contact': 'Contact',
-                'beta_test': 'Test',
-                'back': '← Back',
-                
-                // Test Form
-                'testform_title': 'Beta Test Registration',
-                'testform_subtitle': 'Be there when glocalSpirit awakens',
-                'testform_name_label': 'Name *',
-                'testform_email_label': 'Email *',
-                'testform_newsletter': 'Receive updates via email?',
-                'testform_submit': 'SEND',
-                'testform_sending': 'SENDING...',
-                'testform_success_message': 'Thank you for registering as a beta tester. We will get in touch soon!',
-                'form_success': 'Successfully registered!',
-                'form_error': 'Registration error',
-                'form_error_message': 'An error occurred. Please try again.',
-                
-                // Hero Section
-                'hero_title': 'glocalSpirit',
-                'hero_description': 'GlocalSpirit is a platform for consciousness building and networking that connects local and global communities.',
-            },
-            'fr': {
-                // Navigation
-                'home': 'Accueil',
-                'about': 'À propos',
-                'roadmap': 'Feuille de route',
-                'contact': 'Contact',
-                'beta_test': 'Tester',
-                'back': '← Retour',
-                
-                // Test Form
-                'testform_title': 'Inscription au test bêta',
-                'testform_subtitle': 'Soyez là quand glocalSpirit s\'éveille',
-                'testform_name_label': 'Nom *',
-                'testform_email_label': 'E-mail *',
-                'testform_newsletter': 'Recevoir des mises à jour par e-mail ?',
-                'testform_submit': 'ENVOYER',
-                'testform_sending': 'ENVOI EN COURS...',
-                'testform_success_message': 'Merci de vous être inscrit comme testeur bêta. Nous vous contacterons bientôt !',
-                'form_success': 'Inscription réussie !',
-                'form_error': 'Erreur d\'inscription',
-                'form_error_message': 'Une erreur s\'est produite. Veuillez réessayer.',
-                
-                // Hero Section
-                'hero_title': 'glocalSpirit',
-                'hero_description': 'GlocalSpirit est une plateforme de sensibilisation et de mise en réseau qui connecte les communautés locales et mondiales.',
-            },
-            'es': {
-                // Navigation
-                'home': 'Inicio',
-                'about': 'Acerca de',
-                'roadmap': 'Hoja de ruta',
-                'contact': 'Contacto',
-                'beta_test': 'Probar',
-                'back': '← Atrás',
-                
-                // Test Form
-                'testform_title': 'Registro de prueba beta',
-                'testform_subtitle': 'Esté ahí cuando glocalSpirit despierte',
-                'testform_name_label': 'Nombre *',
-                'testform_email_label': 'Correo electrónico *',
-                'testform_newsletter': '¿Recibir actualizaciones por correo electrónico?',
-                'testform_submit': 'ENVIAR',
-                'testform_sending': 'ENVIANDO...',
-                'testform_success_message': '¡Gracias por registrarte como probador beta. Nos pondremos en contacto pronto!',
-                'form_success': '¡Registro exitoso!',
-                'form_error': 'Error de registro',
-                'form_error_message': 'Se produjo un error. Por favor, inténtalo de nuevo.',
-                
-                // Hero Section
-                'hero_title': 'glocalSpirit',
-                'hero_description': 'GlocalSpirit es una plataforma de construcción de conciencia y redes que conecta comunidades locales y globales.',
-            }
+        // Supported languages configuration
+        this.languages = {
+            de: { name: 'Deutsch', flag: '🇩🇪' },
+            en: { name: 'English', flag: '🇺🇸' },
+            fr: { name: 'Français', flag: '🇫🇷' },
+            es: { name: 'Español', flag: '🇪🇸' }
         };
         
-        this.supportedLanguages = ['de', 'en', 'fr', 'es']; // Andere Sprachen temporär deaktiviert
-        this.init();
+        this.currentLanguage = 'de'; // Default language
+        this.translations = {};
+        this.isInitialized = false;
+        this.loadingPromise = null;
     }
 
-    async init() {
-        // Detect browser language
-        const browserLang = navigator.language.split('-')[0];
-        if (this.supportedLanguages.includes(browserLang)) {
-            this.currentLanguage = browserLang;
-        }
-        
-        // Check URL parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const langParam = urlParams.get('lang');
-        if (langParam && this.supportedLanguages.includes(langParam)) {
-            this.currentLanguage = langParam;
-        }
-        
-        // Check localStorage
-        const savedLang = localStorage.getItem('glocalspirit-language');
-        if (savedLang && this.supportedLanguages.includes(savedLang)) {
-            this.currentLanguage = savedLang;
-        }
-        
-        // Update content
-        this.updateContent();
-        
-        // Setup language switcher
-        this.setupLanguageSwitcher();
-    }
-
+    // Get translation for a key
     translate(key) {
-        const translation = this.translations[this.currentLanguage]?.[key] || this.translations['de'][key] || key;
-        return translation;
+        if (!key) return '';
+        
+        const [section, translationKey] = key.split('.');
+        
+        // Try current language
+        if (this.translations[this.currentLanguage]?.[section]?.[translationKey]) {
+            return this.translations[this.currentLanguage][section][translationKey];
+        }
+        
+        // Fallback to German
+        if (this.translations['de']?.[section]?.[translationKey]) {
+            return this.translations['de'][section][translationKey];
+        }
+        
+        // Return key if no translation found
+        return key;
     }
 
+    // Update all translatable elements in the DOM
     updateContent() {
-        // Update data-i18n elements
+        // Update elements with data-i18n attribute
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             const translation = this.translate(key);
-            
-            if (element.innerHTML !== translation) {
-                element.innerHTML = translation;
+            if (element.textContent !== translation) {
+                element.textContent = translation;
             }
         });
         
         // Update meta tags
-        const metaTitle = document.querySelector('meta[name="i18n-title"]');
-        if (metaTitle) {
-            const titleKey = metaTitle.getAttribute('content');
-            const titleTranslation = this.translate(titleKey);
-            document.title = titleTranslation;
+        const metaTags = {
+            title: document.querySelector('meta[name="i18n-title"]'),
+            description: document.querySelector('meta[name="i18n-description"]')
+        };
+        
+        if (metaTags.title) {
+            const titleKey = metaTags.title.getAttribute('content');
+            document.title = this.translate(titleKey);
         }
         
-        const metaDescription = document.querySelector('meta[name="i18n-description"]');
-        if (metaDescription) {
-            const descKey = metaDescription.getAttribute('content');
-            const descTranslation = this.translate(descKey);
-            metaDescription.setAttribute('content', descTranslation);
+        if (metaTags.description) {
+            const descKey = metaTags.description.getAttribute('content');
+            const translation = this.translate(descKey);
+            metaTags.description.setAttribute('content', translation);
         }
     }
 
-    changeLanguage(newLang) {
-        if (!this.supportedLanguages.includes(newLang)) {
+    // Load translations for a language
+    async loadTranslations(language) {
+        const sections = ['navigation', 'hero', 'about', 'roadmap', 'forms', 'footer'];
+        
+        if (!this.translations[language]) {
+            this.translations[language] = {};
+        }
+
+        try {
+            await Promise.all(sections.map(async (section) => {
+                try {
+                    const response = await fetch(`locales/${language}/${section}.json`);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    const data = await response.json();
+                    this.translations[language][section] = data;
+                } catch (error) {
+                    console.warn(`Could not load ${section} for ${language}, using fallback`);
+                    // Use German as fallback
+                    if (language !== 'de' && this.translations['de']?.[section]) {
+                        this.translations[language][section] = this.translations['de'][section];
+                    }
+                }
+            }));
+            return true;
+        } catch (error) {
+            console.error(`Failed to load translations for ${language}:`, error);
             return false;
         }
-        
-        this.currentLanguage = newLang;
-        localStorage.setItem('glocalspirit-language', newLang);
-        
-        // Update URL without reload
-        const url = new URL(window.location);
-        url.searchParams.set('lang', newLang);
-        window.history.replaceState({}, '', url);
-        
-        // Update content
-        this.updateContent();
-        
-        // Update language switcher
-        this.updateLanguageSwitcher();
-        
-        return true;
     }
 
+    // Set up the language switcher UI
     setupLanguageSwitcher() {
-        const languageSwitcher = document.querySelector('.header__language-switcher');
-        if (!languageSwitcher) return;
-        
-        const supportedLanguages = [
-            { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-            { code: 'en', name: 'English', flag: '🇺🇸' },
-            { code: 'fr', name: 'Français', flag: '🇫🇷' },
-            { code: 'es', name: 'Español', flag: '🇪🇸' }
-            /* Temporär deaktiviert:
-            { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-            { code: 'pt', name: 'Português', flag: '🇵🇹' },
-            { code: 'sv', name: 'Svenska', flag: '🇸🇪' },
-            { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
-            { code: 'el', name: 'Ελληνικά', flag: '🇬🇷' },
-            { code: 'pl', name: 'Polski', flag: '🇵🇱' }
-            */
-        ];
+        const switcher = document.querySelector('.header__language-switcher');
+        if (!switcher) return;
 
-        languageSwitcher.innerHTML = `
+        // Create language switcher HTML
+        const currentLang = this.languages[this.currentLanguage];
+        
+        switcher.innerHTML = `
             <div class="language-dropdown">
                 <button class="language-button" id="languageButton">
-                    <span class="language-flag">${supportedLanguages.find(lang => lang.code === this.currentLanguage)?.flag}</span>
-                    <span class="language-name">${supportedLanguages.find(lang => lang.code === this.currentLanguage)?.name}</span>
+                    <span class="language-flag">${currentLang.flag}</span>
+                    <span class="language-name">${currentLang.name}</span>
                     <span class="language-arrow">▼</span>
                 </button>
                 <div class="language-menu" id="languageMenu">
-                    ${supportedLanguages.map(lang => `
-                        <button class="language-option ${lang.code === this.currentLanguage ? 'active' : ''}" 
-                                data-lang="${lang.code}">
-                            <span class="language-flag">${lang.flag}</span> ${lang.name}
+                    ${Object.entries(this.languages).map(([code, lang]) => `
+                        <button class="language-option ${code === this.currentLanguage ? 'active' : ''}" 
+                                data-lang="${code}">
+                            <span class="language-flag">${lang.flag}</span>
+                            ${lang.name}
                         </button>
                     `).join('')}
                 </div>
@@ -232,67 +122,163 @@ class UltraSimpleI18n {
         `;
 
         // Add event listeners
-        const languageButton = document.getElementById('languageButton');
-        const languageMenu = document.getElementById('languageMenu');
+        const button = switcher.querySelector('#languageButton');
+        const menu = switcher.querySelector('#languageMenu');
         
-        if (languageButton && languageMenu) {
-            languageButton.addEventListener('click', (e) => {
+        if (button && menu) {
+            // Toggle menu
+            button.addEventListener('click', (e) => {
                 e.preventDefault();
-                languageMenu.classList.toggle('show');
+                menu.classList.toggle('show');
             });
 
-            languageMenu.addEventListener('click', (e) => {
-                if (e.target.classList.contains('language-option')) {
-                    const selectedLang = e.target.getAttribute('data-lang');
-                    this.changeLanguage(selectedLang);
-                    languageMenu.classList.remove('show');
+            // Handle language selection
+            menu.addEventListener('click', (e) => {
+                if (e.target.closest('.language-option')) {
+                    const lang = e.target.closest('.language-option').getAttribute('data-lang');
+                    this.changeLanguage(lang);
+                    menu.classList.remove('show');
                 }
             });
 
             // Close menu when clicking outside
             document.addEventListener('click', (e) => {
-                if (!languageButton.contains(e.target) && !languageMenu.contains(e.target)) {
-                    languageMenu.classList.remove('show');
+                if (!button.contains(e.target) && !menu.contains(e.target)) {
+                    menu.classList.remove('show');
                 }
             });
         }
     }
 
-    updateLanguageSwitcher() {
-        const languageButton = document.getElementById('languageButton');
-        const languageOptions = document.querySelectorAll('.language-option');
+    // Change the current language
+    async changeLanguage(newLang) {
+        if (!this.languages[newLang]) return false;
         
-        if (languageButton) {
-            const currentLang = this.supportedLanguages.includes(this.currentLanguage) ? this.currentLanguage : 'de';
-            const langData = {
-                'de': { name: 'Deutsch', flag: '🇩🇪' },
-                'en': { name: 'English', flag: '🇺🇸' }
-            };
-            
-            languageButton.innerHTML = `
-                <span class="language-flag">${langData[currentLang].flag}</span>
-                <span class="language-name">${langData[currentLang].name}</span>
-                <span class="language-arrow">▼</span>
-            `;
+        const oldLang = this.currentLanguage;
+        this.currentLanguage = newLang;
+        
+        // Update localStorage
+        localStorage.setItem('glocalspirit-language', newLang);
+        
+        // Update URL
+        const url = new URL(window.location);
+        url.searchParams.set('lang', newLang);
+        window.history.replaceState({}, '', url);
+        
+        // Load translations if needed
+        if (!this.translations[newLang]) {
+            await this.loadTranslations(newLang);
         }
         
-        languageOptions.forEach(option => {
-            option.classList.toggle('active', option.getAttribute('data-lang') === this.currentLanguage);
+        // Update UI
+        this.updateContent();
+        this.setupLanguageSwitcher();
+        
+        // Update HTML lang attribute
+        document.documentElement.lang = newLang;
+        
+        return true;
+    }
+
+    // Initialize the i18n system
+    async init() {
+        if (this.isInitialized) return;
+        if (this.loadingPromise) return this.loadingPromise;
+
+        // Hide content while loading
+        document.documentElement.style.visibility = 'hidden';
+        
+        this.loadingPromise = (async () => {
+            try {
+                // Determine initial language
+                const urlLang = new URLSearchParams(window.location.search).get('lang');
+                const storedLang = localStorage.getItem('glocalspirit-language');
+                const browserLang = navigator.language.split('-')[0];
+                
+                // Set initial language with priority: URL > localStorage > browser > default
+                this.currentLanguage = 
+                    (urlLang && this.languages[urlLang]) ? urlLang :
+                    (storedLang && this.languages[storedLang]) ? storedLang :
+                    (this.languages[browserLang]) ? browserLang : 'de';
+
+                // Load German translations first (fallback)
+                await this.loadTranslations('de');
+                
+                // Load current language if different from German
+                if (this.currentLanguage !== 'de') {
+                    await this.loadTranslations(this.currentLanguage);
+                }
+
+                // Update UI
+                this.updateContent();
+                this.setupLanguageSwitcher();
+                
+                // Set HTML lang attribute
+                document.documentElement.lang = this.currentLanguage;
+                
+                // Set up observer for dynamic content
+                this.setupContentObserver();
+                
+                this.isInitialized = true;
+            } finally {
+                // Show content after loading
+                document.documentElement.style.visibility = '';
+                this.loadingPromise = null;
+            }
+        })();
+
+        return this.loadingPromise;
+    }
+
+    // Set up observer for dynamic content changes
+    setupContentObserver() {
+        const observer = new MutationObserver((mutations) => {
+            let needsUpdate = false;
+            
+            for (const mutation of mutations) {
+                if (mutation.type === 'childList') {
+                    // Check if any added nodes need translation
+                    const hasI18nNodes = [...mutation.addedNodes]
+                        .filter(node => node.nodeType === 1)
+                        .some(element => {
+                            return element.hasAttribute?.('data-i18n') ||
+                                   element.querySelector?.('[data-i18n]');
+                        });
+                    
+                    if (hasI18nNodes) {
+                        needsUpdate = true;
+                        break;
+                    }
+                }
+            }
+            
+            if (needsUpdate) {
+                this.updateContent();
+            }
+        });
+
+        // Observe the entire document for changes
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
         });
     }
 }
 
-// Initialize i18n when DOM is ready
+// Initialize when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        window.i18n = new UltraSimpleI18n();
+        window.i18n = new GlocalSpiritI18n();
+        window.i18n.init();
     });
 } else {
-    window.i18n = new UltraSimpleI18n();
+    window.i18n = new GlocalSpiritI18n();
+    window.i18n.init();
 }
 
-// Add CSS for language switcher
-const languageSwitcherCSS = `
+// Add required CSS
+const i18nStyles = document.createElement('style');
+i18nStyles.textContent = `
 .language-dropdown {
     position: relative;
     display: inline-block;
@@ -326,8 +312,10 @@ const languageSwitcherCSS = `
     position: absolute;
     top: 100%;
     right: 0;
-    background: white;
-    border: 1px solid #ddd;
+    background: rgba(247, 247, 247, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 4px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     min-width: 140px;
@@ -341,7 +329,7 @@ const languageSwitcherCSS = `
 .language-menu.show {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(4px);
 }
 
 .language-option {
@@ -360,28 +348,30 @@ const languageSwitcherCSS = `
 }
 
 .language-option:hover {
-    background: #f5f5f5;
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .language-option.active {
-    background: #007AFF;
-    color: white;
+    background: rgba(0, 122, 255, 0.1);
+    color: rgb(0, 122, 255);
 }
 
 .language-flag {
     font-size: 16px;
 }
 
-/* Safari specific fixes for language switcher */
+/* Safari fixes */
 @supports (-webkit-appearance: none) {
-    .language-button, .language-option {
+    .language-button,
+    .language-option {
         -webkit-appearance: none;
         appearance: none;
+    }
+    
+    .language-menu {
+        transform: translateZ(0);
     }
 }
 `;
 
-// Inject CSS
-const style = document.createElement('style');
-style.textContent = languageSwitcherCSS;
-document.head.appendChild(style);
+document.head.appendChild(i18nStyles);
