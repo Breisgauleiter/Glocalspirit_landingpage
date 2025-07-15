@@ -270,7 +270,6 @@ main{
     background: rgb(var(--main-background-color));
     color: rgb(var(--main-font-color));
 }
-}
 
 .toggle__label {
     display: none;

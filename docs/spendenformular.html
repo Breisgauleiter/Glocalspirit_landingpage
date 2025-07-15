@@ -34,6 +34,7 @@
     <script src="JS_Files/app.js" defer></script>
     <script src="JS_Files/config.js" defer></script>
     <script src="JS_Files/i18n-ultra-simple.js" defer></script>
+    <script src="JS_Files/navigation.js" defer></script>
     
     <!-- GSAP Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
@@ -56,17 +57,19 @@
     <header class="header">
         <button type="button" class="menu-toggle-button" aria-expanded="false" aria-label="Navigation öffnen">
             <img src="Assets/hamburger.svg" alt="Menü öffnen" class="burger-icon">
-            <img src="Assets/cross.svg" alt="Menü schließen" class="close-icon" style="display:none;">
+            <img src="Assets/cross.svg" alt="Menü schließen" class="close-icon">
         </button>
         <nav class="header__nav">
-            <div class="header__links">
-                <a href="index.html" class="header__logo">
-                    <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="header__logo-img">
-                </a>
-                <a href="index.html" class="header__link" data-i18n="home">Startseite</a>
-                <a href="index.html#about" class="header__link" data-i18n="about">Über uns</a>
-                <a href="index.html#roadmap" class="header__link" data-i18n="roadmap">Roadmap</a>
-            </div>
+            <ul class="header__links">
+                <li>
+                    <a href="index.html" class="header__logo">
+                        <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="header__logo-img">
+                    </a>
+                </li>
+                <li><a href="index.html" class="header__link" data-i18n="home">Startseite</a></li>
+                <li><a href="index.html#about" class="header__link" data-i18n="about">Über uns</a></li>
+                <li><a href="index.html#roadmap" class="header__link" data-i18n="roadmap">Roadmap</a></li>
+            </ul>
             <div class="header__right-section">
                 <div class="header__beta-tester">
                     <a href="testformular.html" class="header__beta-link" data-i18n="testform">Testformular</a>
