@@ -77,9 +77,7 @@ body {
    
 }
 
-body.is-ios {
-  background-color: green;
-}
+
 
 .background-layer {
   position: fixed;
