@@ -1012,3 +1012,19 @@ footer{
 .menu-toggle-button {
     display: none;
 }
+
+/* Style burger menu icons to match header links */
+.burger-icon,
+.close-icon {
+    filter: drop-shadow(0 0 4.8px rgb(var(--secondary-links-color)));
+}
+
+.burger-icon path,
+.close-icon path {
+    fill: rgb(var(--secondary-links-color));
+}
+
+/* Ensure SVG images have the correct color */
+.menu-toggle-button img {
+    filter: invert(65%) sepia(14%) saturate(1234%) hue-rotate(165deg) brightness(93%) contrast(88%);
+}
