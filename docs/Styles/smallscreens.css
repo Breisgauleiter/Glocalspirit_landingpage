@@ -8,14 +8,18 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px;
+    width: 280px;
     height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     background-color: rgba(247, 247, 247, 0.025);
     padding: 1rem;
     z-index: 999;
     transform: translateX(0);
     transition: transform 0.5s ease-in-out;
     justify-content: flex-start;
+    gap: 1.5rem;
 }
 
 /* hero */
@@ -147,55 +151,49 @@
     }
 }
 
-.header__nav .header__links{
+.header__nav .header__links {
     flex-flow: column nowrap;
-    gap: 2rem;
-    padding: 1rem 0;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
     list-style: none;
     margin: 0;
-    .header__link{
-        font-size: clamp(1.5rem, 2vw, 2rem);
-        font-weight: 400;
-        letter-spacing: clamp(5.3px, 0.5vw, 8px);
-        color: rgb(var(--secondary-links-color));
-        filter: drop-shadow(0 0 4.8px rgb(var(--secondary-links-color)));
-        text-align: center;
-        width: 100%;
-        display: block;
-        margin: 0 auto;
-        &:hover{
-            color: rgb(var(--main-font-color));
-        }
-    }
+    width: 100%;
 }
 
-/* Buttons im Burger-Menü untereinander anordnen */
+.header__nav .header__links .header__link {
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: rgb(var(--secondary-links-color));
+    filter: drop-shadow(0 0 4.8px rgb(var(--secondary-links-color)));
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    padding: 0.5rem;
+}
+
+/* Navigation-Link-Styling auch auf rechte Sektion anwenden */
 .header__nav .header__right-section {
     display: flex;
     flex-direction: column;
-    gap: 2rem; /* Gleicher Abstand wie Haupt-Links */
-    padding: 1rem; /* Einheitlicher Padding rundherum */
-}
-.header__nav .header__right-section > * {
+    gap: 1.5rem;
+    padding: 0.5rem;
     width: 100%;
-    text-align: center; /* zentriert */
-}
-/* Navigation-Link-Styling auch auf rechte Sektion anwenden */
-.header__nav .header__right-section .header__link {
-    font-size: clamp(1.5rem, 2vw, 2rem);
-    font-weight: 400;
-    letter-spacing: clamp(5.3px, 0.5vw, 8px);
-    color: rgb(var(--secondary-links-color));
-    filter: drop-shadow(0 0 4.8px rgb(var(--secondary-links-color)));
-    text-align: center; /* zentriert */
-    text-decoration: none;
-    text-transform: capitalize; /* Großbuchstaben am Anfang */
-    padding-left: 0; /* keine zusätzliche Einrückung */
-}
-.header__nav .header__right-section .header__link:hover {
-    color: rgb(var(--main-font-color));
+    margin-top: auto;
 }
 
+.header__nav .header__right-section > * {
+    width: 100%;
+    text-align: center;
+}
+
+.header__nav .header__right-section .header__link,
+.header__nav .header__beta-link {
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+    padding: 0.5rem;
+    margin: 0;
+}
 
 .header__beta-tester{
     .header__beta-link{
@@ -239,4 +237,36 @@
         width: 2rem;
         height: 2rem;
     }
+}
+
+/* Logo im Mobile-Menü */
+.header__nav .header__logo {
+    height: 48px;
+    min-height: 48px;
+    padding: 4px 0;
+}
+
+.header__nav .header__logo img {
+    height: 100%;
+    width: auto;
+    max-height: 40px;
+}
+
+/* Verbesserte Scrollbar für das Mobile-Menü */
+.header__nav {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--secondary-links-color), 0.3) transparent;
+}
+
+.header__nav::-webkit-scrollbar {
+    width: 6px;
+}
+
+.header__nav::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.header__nav::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--secondary-links-color), 0.3);
+    border-radius: 3px;
 }
