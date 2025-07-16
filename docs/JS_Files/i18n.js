@@ -47,7 +47,17 @@ class I18N {
                             this.translations[language][`sections.${key}.desc`] = value.desc;
                         });
                     } else {
-                        this.translations[language][section] = data;
+                        // Standard structure - merge data directly
+                        Object.assign(this.translations[language], data);
+                        
+                        // Special handling for navigation to support both navigation.key and direct key access
+                        if (section === 'navigation') {
+                            this.translations[language].navigation = data;
+                            // Also add flattened navigation keys
+                            Object.entries(data).forEach(([key, value]) => {
+                                this.translations[language][`navigation.${key}`] = value;
+                            });
+                        }
                     }
                 } catch (err) {
                     console.warn(`Failed to load ${section} for ${language}, using fallback`);
