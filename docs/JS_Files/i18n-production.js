@@ -19,16 +19,23 @@ class GlocalSpiritI18n {
     translate(key) {
         if (!key) return '';
         
-        const [section, translationKey] = key.split('.');
+        const parts = key.split('.');
+        
+        // Support nested paths (e.g. sections.movement.title)
+        const getValue = (obj, path) => {
+            return path.reduce((acc, part) => acc?.[part], obj);
+        };
         
         // Try current language
-        if (this.translations[this.currentLanguage]?.[section]?.[translationKey]) {
-            return this.translations[this.currentLanguage][section][translationKey];
+        const currentTranslation = getValue(this.translations[this.currentLanguage], parts);
+        if (currentTranslation) {
+            return currentTranslation;
         }
         
         // Fallback to German
-        if (this.translations['de']?.[section]?.[translationKey]) {
-            return this.translations['de'][section][translationKey];
+        const germanTranslation = getValue(this.translations['de'], parts);
+        if (germanTranslation) {
+            return germanTranslation;
         }
         
         // Return key if no translation found

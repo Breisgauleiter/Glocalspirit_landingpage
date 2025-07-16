@@ -1,23 +1,9 @@
 {
-  "beta_test": "Test",
-  "spenden": "Donate",
-  "nav": {
-    "home": "Home",
-    "about": "About",
-    "roadmap": "Roadmap",
-    "contact": "Contact",
-    "beta_test": "Test",
-    "back": "← Back"
-  },
-  "footer": {
-    "copyright": "© 2025 GlocalSpirit. All rights reserved",
-    "privacy": "Privacy",
-    "imprint": "Legal Notice",
-    "email": "info@glocalspirit.de",
-    "tagline": "A network of meaning, not noise"
-  },
   "home": "Home",
   "about": "About",
   "roadmap": "Roadmap",
-  "contact": "Contact"
+  "contact": "Contact",
+  "beta_test": "Test",
+  "spenden": "Donate",
+  "back": "← Back"
 }

@@ -36,7 +36,23 @@ class I18N {
                     const response = await fetch(`locales/${language}/${section}.json`);
                     if (!response.ok) throw new Error(`HTTP ${response.status}`);
                     const data = await response.json();
-                    this.translations[language][section] = data;
+                    
+                    // Special handling for about.json which has a sections structure
+                    if (section === 'about' && data.sections) {
+                        Object.entries(data.sections).forEach(([key, value]) => {
+                            // Add both the direct path and the about-prefixed path for compatibility
+                            if (!this.translations[language].sections) {
+                                this.translations[language].sections = {};
+                            }
+                            this.translations[language].sections[key] = value;
+                            this.translations[language][`sections.about.${key}.title`] = value.title;
+                            this.translations[language][`sections.about.${key}.description`] = value.desc;
+                            this.translations[language][`sections.${key}.title`] = value.title;
+                            this.translations[language][`sections.${key}.desc`] = value.desc;
+                        });
+                    } else {
+                        this.translations[language][section] = data;
+                    }
                 } catch (err) {
                     console.warn(`Failed to load ${section} for ${language}, using fallback`);
                     if (language !== this.defaultLanguage && 
@@ -63,16 +79,43 @@ class I18N {
             return this.translationCache.get(cacheKey);
         }
 
-        const [section, translationKey] = key.split('.');
         let result = key;
-
-        // Try current language
-        if (this.translations[this.currentLanguage]?.[section]?.[translationKey]) {
-            result = this.translations[this.currentLanguage][section][translationKey];
+        
+        // Try direct key lookup first
+        let translation = this.translations[this.currentLanguage]?.[key];
+        if (translation) {
+            result = translation;
         }
-        // Fallback to default language
-        else if (this.translations[this.defaultLanguage]?.[section]?.[translationKey]) {
-            result = this.translations[this.defaultLanguage][section][translationKey];
+        // If not found, try nested lookup
+        else {
+            const keyParts = key.split('.');
+            let currentObj = this.translations[this.currentLanguage];
+            
+            // Try current language
+            for (const part of keyParts) {
+                currentObj = currentObj?.[part];
+            }
+            if (currentObj) {
+                result = currentObj;
+            }
+            // Fallback to default language
+            else {
+                // Try direct key lookup in default language
+                translation = this.translations[this.defaultLanguage]?.[key];
+                if (translation) {
+                    result = translation;
+                }
+                // Try nested lookup in default language
+                else {
+                    currentObj = this.translations[this.defaultLanguage];
+                    for (const part of keyParts) {
+                        currentObj = currentObj?.[part];
+                    }
+                    if (currentObj) {
+                        result = currentObj;
+                    }
+                }
+            }
         }
 
         // Cache the result
