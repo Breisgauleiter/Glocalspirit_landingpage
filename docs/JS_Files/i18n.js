@@ -39,13 +39,13 @@ class I18N {
                     
                     // Special handling for about.json which has a sections structure
                     if (section === 'about' && data.sections) {
-                        // Flattened structure for easier access
+                        // Store sections data properly  
+                        this.translations[language].sections = data.sections;
+                        // Also create flattened keys for easier access
                         Object.entries(data.sections).forEach(([key, value]) => {
                             this.translations[language][`sections.${key}.title`] = value.title;
                             this.translations[language][`sections.${key}.desc`] = value.desc;
                         });
-                        // Keep original structure
-                        this.translations[language].sections = data.sections;
                     } else {
                         this.translations[language][section] = data;
                     }
@@ -77,9 +77,9 @@ class I18N {
 
         let result = key;
         
-        // Try direct key lookup first
+        // Try direct key lookup first (for flattened keys like sections.movement.title)
         let translation = this.translations[this.currentLanguage]?.[key];
-        if (translation) {
+        if (translation && typeof translation === 'string') {
             result = translation;
         }
         // If not found, try nested lookup
@@ -98,13 +98,20 @@ class I18N {
             }
             // Fallback to default language
             else if (this.currentLanguage !== this.defaultLanguage) {
-                let fallbackObj = this.translations[this.defaultLanguage];
-                for (const part of keyParts) {
-                    fallbackObj = fallbackObj?.[part];
-                    if (!fallbackObj) break;
-                }
-                if (fallbackObj && typeof fallbackObj === 'string') {
-                    result = fallbackObj;
+                // Try flattened key in default language first
+                translation = this.translations[this.defaultLanguage]?.[key];
+                if (translation && typeof translation === 'string') {
+                    result = translation;
+                } else {
+                    // Try nested lookup in default language
+                    let fallbackObj = this.translations[this.defaultLanguage];
+                    for (const part of keyParts) {
+                        fallbackObj = fallbackObj?.[part];
+                        if (!fallbackObj) break;
+                    }
+                    if (fallbackObj && typeof fallbackObj === 'string') {
+                        result = fallbackObj;
+                    }
                 }
             }
         }
