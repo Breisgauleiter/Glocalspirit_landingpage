@@ -47,9 +47,11 @@ function draw() {
         if (star.y < 0) star.y = height;
         if (star.y > height) star.y = 0;
 
-        fill(255, constrain(star.opacity, 0, 255));
+        // Warmer Farbton für die Sterne (leicht gelblich/orange)
+        const starColor = color(255, 247, 220); // Warmweißer Farbton
+        fill(starColor.levels[0], starColor.levels[1], starColor.levels[2], constrain(star.opacity, 0, 255));
         drawingContext.shadowBlur = 6;
-        drawingContext.shadowColor = color(255, star.opacity);
+        drawingContext.shadowColor = color(255, 247, 220, star.opacity);
 
         ellipse(star.x, star.y, star.r * 2);
     }
