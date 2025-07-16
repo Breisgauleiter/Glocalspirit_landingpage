@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datenschutzerklärung - glocalSpirit</title>
     <meta name="description" content="Datenschutzerklärung von glocalSpirit - Informationen zur Datenverarbeitung">
+    <!-- i18n setup - load early -->
+    <script src="JS_Files/i18n.js"></script>
+    <!-- Prevent FOUC -->
+    <script>
+        document.documentElement.style.visibility = 'hidden';
+        window.addEventListener('load', () => {
+            if (window.i18n) {
+                window.i18n.init().then(() => {
+                    document.documentElement.style.visibility = '';
+                });
+            } else {
+                document.documentElement.style.visibility = '';
+            }
+        });
+    </script>
+    
     <link rel="stylesheet" href="Styles/style.css">
     <link rel="stylesheet" media="screen and (max-width: 800px)" href="Styles/tablets.css">
     <link rel="stylesheet" media="screen and (max-width: 700px)" href="Styles/smallscreens.css">

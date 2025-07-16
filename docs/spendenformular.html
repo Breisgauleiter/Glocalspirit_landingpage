@@ -30,8 +30,22 @@
     <link rel="stylesheet" href="Styles/spendenformular.css">
     
     <!-- Scripts -->
-    <!-- i18n setup -->
-    <script src="JS_Files/i18n.js" defer></script>
+    <!-- i18n setup - load early -->
+    <script src="JS_Files/i18n.js"></script>
+    <!-- Prevent FOUC -->
+    <script>
+        document.documentElement.style.visibility = 'hidden';
+        window.addEventListener('load', () => {
+            if (window.i18n) {
+                window.i18n.init().then(() => {
+                    document.documentElement.style.visibility = '';
+                });
+            } else {
+                document.documentElement.style.visibility = '';
+            }
+        });
+    </script>
+    
     <!-- safari fixes -->
     <script src="JS_Files/safari-fixes.js" defer></script>
     <!-- scripts -->
@@ -75,8 +89,9 @@
             </ul>
             <div class="header__right-section">
                 <div class="header__beta-tester">
-                    <a href="testformular.html" class="header__beta-link" data-i18n="navigation.beta_test">Testformular</a>
+                    <a href="index.html" class="header__beta-link" data-i18n="navigation.back">← Zurück</a>
                 </div>
+                <a href="testformular.html" class="header__link" data-i18n="navigation.beta_test">Testen</a>
                 <div class="header__language-switcher"></div>
             </div>
         </nav>
