@@ -6,7 +6,7 @@ function setup() {
     canvas.style('position', 'fixed');
     canvas.style('top', '0');
     canvas.style('left', '0');
-    canvas.style('z-index', '-1');
+    canvas.style('z-index', '-2'); // Zwischen Nebula (-3) und Content
     canvas.style('pointer-events', 'none');
     
     for (let i = 0; i < 180; i++) {
