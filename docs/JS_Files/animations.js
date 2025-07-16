@@ -38,6 +38,11 @@ function initializeAnimations() {
     
     gsap.registerPlugin(DrawSVGPlugin, MotionPathHelper, MotionPathPlugin, ScrollTrigger, ScrollSmoother);
 
+    // Disable ScrollTrigger markers globally
+    ScrollTrigger.defaults({
+        markers: false
+    });
+
     // Only create ScrollSmoother if not already created and required elements exist
     const smoothWrapper = document.querySelector('#smooth-wrapper');
     const smoothContent = document.querySelector('#smooth-content');
@@ -295,9 +300,9 @@ function initializeAnimations() {
             duration: 1.0,
         }, 24.875);
     }
-    // === MOBILE/TABLET ANIMATIONS (SVG HIDDEN) ===
+    // === MOBILE/TABLET ANIMATIONS ===
     else {
-        console.log("SVG is hidden, using custom card animations.");
+        console.log("Using simplified animations for mobile/tablet");
 
         const cards = document.querySelectorAll(".card01, .card02, .card03, .card04, .card05, .card06, .card07, .card08");
         if (cards.length === 0) {
@@ -305,31 +310,43 @@ function initializeAnimations() {
             return;
         }
 
-        // Reset card positions for mobile/tablet
+        // Reset card positions and prepare for mobile layout
         gsap.set(cards, {
             clearProps: "all",
             position: "relative",
             top: "auto",
             left: "auto",
-            opacity: 1
+            opacity: 0,
+            y: 50,
+            scale: 0.95
         });
 
         // Wait for layout to settle before creating scroll triggers
         requestAnimationFrame(() => {
             cards.forEach((card, index) => {
-                gsap.from(card, {
-                    opacity: 0,
-                    y: 50,
-                    scale: 0.8,
-                    duration: 1.5,
+                gsap.to(card, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.8,
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: card,
-                        start: "top 70%",
-                        end: "top 50%",
-                        scrub: 1.5,
-                        markers: true,
-                        invalidateOnRefresh: true
+                        start: "top 85%",
+                        end: "top 60%",
+                        scrub: false,
+                        once: true,
+                        markers: false,
+                        invalidateOnRefresh: true,
+                        onEnter: () => {
+                            if (card.classList.contains('card--current')) {
+                                gsap.to(card, {
+                                    backgroundColor: "rgba(85, 166, 217, 0.1)",
+                                    borderColor: "rgba(85, 166, 217, 0.3)",
+                                    duration: 0.3
+                                });
+                            }
+                        }
                     },
                 });
             });

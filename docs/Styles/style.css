@@ -460,6 +460,8 @@ main{
     justify-content: center;
     gap: 3rem;
     padding-bottom: 170px;
+    width: 100%;
+    overflow: hidden; /* Prevent horizontal scroll */
 
     h2{
         font-size: clamp(3.4rem,15vw,11.2rem);
@@ -472,11 +474,14 @@ main{
         filter: drop-shadow(0 10px 5px rgba(0, 0, 0, 0.342));
     }
 
-    svg{
-        margin-left: 5%;
-        height: fit-content;
-        width: 25vw;
-        min-width: 400px;
+    svg {
+        margin: 0 auto;
+        display: block;
+        height: auto;
+        width: 100%;
+        max-width: 600px;
+        transform: scale(0.9);
+        transform-origin: center top;
     }
 }
 

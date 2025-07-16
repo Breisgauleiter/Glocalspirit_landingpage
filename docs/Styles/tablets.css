@@ -2,10 +2,32 @@ body{
     /* background-color: yellow; */
 }
 
-.roadmap{
-    padding-bottom: 400px;
-    svg{
-        display: none;
+.roadmap {
+    padding-bottom: 200px;
+    
+    svg {
+        width: 100%;
+        height: auto;
+        max-width: 600px;
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .cards__wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .card {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        opacity: 1 !important;
+        margin-bottom: 2rem;
+        width: 100%;
     }
 }
 .card{
