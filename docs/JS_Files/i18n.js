@@ -86,14 +86,23 @@ class I18N {
         if (translation) {
             result = translation;
         }
-        // If not found, try nested lookup
+        // If not found, try nested lookup for sections
         else {
             const keyParts = key.split('.');
             let currentObj = this.translations[this.currentLanguage];
             
+            // Get the section based on the first part of the key
+            if (keyParts[0] === 'donationform' || keyParts[0] === 'testform') {
+                currentObj = this.translations[this.currentLanguage]?.forms;
+            } else if (keyParts[0] === 'navigation') {
+                currentObj = this.translations[this.currentLanguage]?.navigation;
+            }
+            
             // Try current language
             for (const part of keyParts) {
-                currentObj = currentObj?.[part];
+                if (part !== 'navigation' && part !== 'forms') { // Skip the section identifier
+                    currentObj = currentObj?.[part];
+                }
             }
             if (currentObj) {
                 result = currentObj;

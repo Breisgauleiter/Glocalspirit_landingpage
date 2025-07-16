@@ -49,14 +49,14 @@
                 <a href="index.html" class="header__logo">
                     <img src="Assets/Logo_gradient.svg" alt="glocalSpirit logo" class="header__logo-img">
                 </a>
-                <a href="index.html" class="header__link" data-i18n="home">Startseite</a>
-                <a href="#" class="header__link" data-i18n="about">Über uns</a>
-                <a href="#" class="header__link" data-i18n="contact">Kontakt</a>
-                <a href="index.html#roadmap" class="header__link" data-i18n="roadmap">Roadmap</a>
+                <a href="index.html" class="header__link" data-i18n="navigation.home">Startseite</a>
+                <a href="#" class="header__link" data-i18n="navigation.about">Über uns</a>
+                <a href="#" class="header__link" data-i18n="navigation.contact">Kontakt</a>
+                <a href="index.html#roadmap" class="header__link" data-i18n="navigation.roadmap">Roadmap</a>
             </div>
             <div class="header__right-section">
                 <div class="header__beta-tester">
-                    <a href="index.html" class="header__beta-link" data-i18n="back">← Zurück</a>
+                    <a href="index.html" class="header__beta-link" data-i18n="navigation.back">← Zurück</a>
                 </div>
                 <div class="header__language-switcher">
                     <!-- Sprachmenü wird jetzt per JS erzeugt -->
@@ -69,31 +69,31 @@
             <main class="main">
                 <section class="hero">
                     <div class="form-container hero__form">
-                        <h1 class="form-title" data-i18n="testform_title">Testnutzer werden</h1>
+                        <h1 class="form-title" data-i18n="testform.title">Testnutzer werden</h1>
                         
                         <!-- Success Message -->
                         <div id="successMessage" class="message success-message" style="display: none;">
                             <div class="message-icon">✅</div>
-                            <h3 data-i18n="form_success">Erfolgreich angemeldet!</h3>
-                            <p data-i18n="testform_success_message">Vielen Dank für deine Anmeldung als Beta-Tester. Wir werden uns bald bei dir melden!</p>
+                            <h3 data-i18n="testform.messages.success.title">Erfolgreich angemeldet!</h3>
+                            <p data-i18n="testform.messages.success.text">Vielen Dank für deine Anmeldung als Beta-Tester. Wir werden uns bald bei dir melden!</p>
                         </div>
                         
                         <!-- Error Message -->
                         <div id="errorMessage" class="message error-message" style="display: none;">
                             <div class="message-icon">❌</div>
-                            <h3 data-i18n="form_error">Fehler bei der Anmeldung</h3>
-                            <p id="errorText" data-i18n="form_error_message">Es ist ein Fehler aufgetreten. Bitte versuche es erneut.</p>
+                            <h3 data-i18n="testform.messages.error.title">Fehler bei der Anmeldung</h3>
+                            <p id="errorText" data-i18n="testform.messages.error.general">Es ist ein Fehler aufgetreten. Bitte versuche es erneut.</p>
                         </div>
                         
                         <form class="testform" id="testForm">
                             <div class="form-group">
-                                <label class="form-label" for="name" data-i18n="testform_name_label">Name *</label>
+                                <label class="form-label" for="name" data-i18n="testform.labels.name">Name *</label>
                                 <input type="text" id="name" name="name" class="form-input" required>
                                 <span class="error-text" id="nameError"></span>
                             </div>
                             
                             <div class="form-group">
-                                <label class="form-label" for="email" data-i18n="testform_email_label">E-Mail *</label>
+                                <label class="form-label" for="email" data-i18n="testform.labels.email">E-Mail *</label>
                                 <input type="email" id="email" name="email" class="form-input" required>
                                 <span class="error-text" id="emailError"></span>
                             </div>
@@ -102,15 +102,15 @@
                                 <label class="checkbox-label" for="newsletter">
                                     <input type="checkbox" id="newsletter" name="newsletter" class="checkbox-input">
                                     <span class="checkbox-custom"></span>
-                                    <span class="checkbox-text" data-i18n="testform_newsletter">Updates per Mail erhalten?</span>
+                                    <span class="checkbox-text" data-i18n="testform.labels.newsletter">Updates per Mail erhalten?</span>
                                 </label>
                             </div>
                             
                             <button type="submit" class="submit-button" id="submitBtn">
-                                <span class="btn-text" data-i18n="testform_submit">SENDEN</span>
+                                <span class="btn-text" data-i18n="testform.buttons.submit">SENDEN</span>
                                 <span class="btn-loading" style="display: none;">
                                     <span class="spinner"></span>
-                                    <span data-i18n="testform_sending">WIRD GESENDET...</span>
+                                    <span data-i18n="testform.buttons.sending">WIRD GESENDET...</span>
                                 </span>
                             </button>
                         </form>
