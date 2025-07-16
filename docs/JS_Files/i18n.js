@@ -57,6 +57,7 @@ class I18N {
                             Object.entries(data).forEach(([key, value]) => {
                                 this.translations[language][`navigation.${key}`] = value;
                             });
+                            console.log(`Navigation loaded for ${language}:`, this.translations[language].navigation);
                         }
                     }
                 } catch (err) {
@@ -87,10 +88,18 @@ class I18N {
 
         let result = key;
         
-        // Try direct key lookup first (for flattened keys like sections.movement.title)
+        // Try direct key lookup first (for flattened keys like navigation.home)
         let translation = this.translations[this.currentLanguage]?.[key];
         if (translation && typeof translation === 'string') {
             result = translation;
+        }
+        // Special handling for navigation keys
+        else if (key.startsWith('navigation.')) {
+            const navKey = key.replace('navigation.', '');
+            translation = this.translations[this.currentLanguage]?.navigation?.[navKey];
+            if (translation && typeof translation === 'string') {
+                result = translation;
+            }
         }
         // If not found, try nested lookup
         else {
@@ -106,22 +115,33 @@ class I18N {
             if (currentObj && typeof currentObj === 'string') {
                 result = currentObj;
             }
-            // Fallback to default language
-            else if (this.currentLanguage !== this.defaultLanguage) {
-                // Try flattened key in default language first
-                translation = this.translations[this.defaultLanguage]?.[key];
+        }
+        
+        // Fallback to default language if not found and current language is not default
+        if (result === key && this.currentLanguage !== this.defaultLanguage) {
+            // Try flattened key in default language first
+            translation = this.translations[this.defaultLanguage]?.[key];
+            if (translation && typeof translation === 'string') {
+                result = translation;
+            }
+            // Special handling for navigation keys in default language
+            else if (key.startsWith('navigation.')) {
+                const navKey = key.replace('navigation.', '');
+                translation = this.translations[this.defaultLanguage]?.navigation?.[navKey];
                 if (translation && typeof translation === 'string') {
                     result = translation;
-                } else {
-                    // Try nested lookup in default language
-                    let fallbackObj = this.translations[this.defaultLanguage];
-                    for (const part of keyParts) {
-                        fallbackObj = fallbackObj?.[part];
-                        if (!fallbackObj) break;
-                    }
-                    if (fallbackObj && typeof fallbackObj === 'string') {
-                        result = fallbackObj;
-                    }
+                }
+            }
+            // Try nested lookup in default language
+            else {
+                const keyParts = key.split('.');
+                let fallbackObj = this.translations[this.defaultLanguage];
+                for (const part of keyParts) {
+                    fallbackObj = fallbackObj?.[part];
+                    if (!fallbackObj) break;
+                }
+                if (fallbackObj && typeof fallbackObj === 'string') {
+                    result = fallbackObj;
                 }
             }
         }
