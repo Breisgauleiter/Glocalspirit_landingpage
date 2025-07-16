@@ -39,17 +39,13 @@ class I18N {
                     
                     // Special handling for about.json which has a sections structure
                     if (section === 'about' && data.sections) {
+                        // Flattened structure for easier access
                         Object.entries(data.sections).forEach(([key, value]) => {
-                            // Add both the direct path and the about-prefixed path for compatibility
-                            if (!this.translations[language].sections) {
-                                this.translations[language].sections = {};
-                            }
-                            this.translations[language].sections[key] = value;
-                            this.translations[language][`sections.about.${key}.title`] = value.title;
-                            this.translations[language][`sections.about.${key}.description`] = value.desc;
                             this.translations[language][`sections.${key}.title`] = value.title;
                             this.translations[language][`sections.${key}.desc`] = value.desc;
                         });
+                        // Keep original structure
+                        this.translations[language].sections = data.sections;
                     } else {
                         this.translations[language][section] = data;
                     }
@@ -86,43 +82,29 @@ class I18N {
         if (translation) {
             result = translation;
         }
-        // If not found, try nested lookup for sections
+        // If not found, try nested lookup
         else {
             const keyParts = key.split('.');
             let currentObj = this.translations[this.currentLanguage];
             
-            // Get the section based on the first part of the key
-            if (keyParts[0] === 'donationform' || keyParts[0] === 'testform') {
-                currentObj = this.translations[this.currentLanguage]?.forms;
-            } else if (keyParts[0] === 'navigation') {
-                currentObj = this.translations[this.currentLanguage]?.navigation;
+            // Navigate through the object structure
+            for (const part of keyParts) {
+                currentObj = currentObj?.[part];
+                if (!currentObj) break;
             }
             
-            // Try current language
-            for (const part of keyParts) {
-                if (part !== 'navigation' && part !== 'forms') { // Skip the section identifier
-                    currentObj = currentObj?.[part];
-                }
-            }
-            if (currentObj) {
+            if (currentObj && typeof currentObj === 'string') {
                 result = currentObj;
             }
             // Fallback to default language
-            else {
-                // Try direct key lookup in default language
-                translation = this.translations[this.defaultLanguage]?.[key];
-                if (translation) {
-                    result = translation;
+            else if (this.currentLanguage !== this.defaultLanguage) {
+                let fallbackObj = this.translations[this.defaultLanguage];
+                for (const part of keyParts) {
+                    fallbackObj = fallbackObj?.[part];
+                    if (!fallbackObj) break;
                 }
-                // Try nested lookup in default language
-                else {
-                    currentObj = this.translations[this.defaultLanguage];
-                    for (const part of keyParts) {
-                        currentObj = currentObj?.[part];
-                    }
-                    if (currentObj) {
-                        result = currentObj;
-                    }
+                if (fallbackObj && typeof fallbackObj === 'string') {
+                    result = fallbackObj;
                 }
             }
         }
@@ -133,11 +115,21 @@ class I18N {
     }
 
     updateContent() {
+        // Standard data-i18n elements
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             const translation = this.translate(key);
             if (element.textContent !== translation) {
                 element.textContent = translation;
+            }
+        });
+
+        // HTML content elements (data-i18n-html)
+        document.querySelectorAll('[data-i18n-html]').forEach(element => {
+            const key = element.getAttribute('data-i18n-html');
+            const translation = this.translate(key);
+            if (element.innerHTML !== translation) {
+                element.innerHTML = translation;
             }
         });
 
