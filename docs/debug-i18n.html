@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i18n Debug Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #0C0C22; color: white; padding: 2rem; }
+        .debug-item { margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .key { color: #55A6D9; font-weight: bold; }
+        .value { color: #98D982; }
+    </style>
+</head>
+<body>
+    <h1>i18n Debug Test</h1>
+    <div id="debug-output"></div>
+
+    <h2>Test Elements:</h2>
+    <div class="debug-item">
+        <div class="key">donationform.packages.support.title:</div>
+        <div data-i18n="donationform.packages.support.title">NOT_TRANSLATED</div>
+    </div>
+
+    <div class="debug-item">
+        <div class="key">testform.title:</div>
+        <div data-i18n="testform.title">NOT_TRANSLATED</div>
+    </div>
+
+    <div class="debug-item">
+        <div class="key">navigation.home:</div>
+        <div data-i18n="navigation.home">NOT_TRANSLATED</div>
+    </div>
+
+    <script src="JS_Files/i18n.js"></script>
+    <script>
+        function debugLog(message) {
+            console.log(message);
+            document.getElementById('debug-output').innerHTML += message + '<br>';
+        }
+
+        // Debug the i18n system
+        window.addEventListener('i18nInitialized', () => {
+            debugLog('✅ i18n initialized');
+            
+            if (window.i18n) {
+                debugLog('Current language: ' + window.i18n.currentLanguage);
+                debugLog('Available translations: ' + Object.keys(window.i18n.translations).join(', '));
+                
+                const currentTranslations = window.i18n.translations[window.i18n.currentLanguage];
+                if (currentTranslations) {
+                    debugLog('Translation sections: ' + Object.keys(currentTranslations).join(', '));
+                    
+                    // Test specific keys
+                    const testKeys = [
+                        'donationform.packages.support.title',
+                        'testform.title',
+                        'navigation.home'
+                    ];
+                    
+                    testKeys.forEach(key => {
+                        const translation = window.i18n.translate(key);
+                        debugLog(`Key "${key}" -> "${translation}"`);
+                    });
+                }
+            }
+        });
+
+        // Also log any errors
+        window.addEventListener('error', (e) => {
+            debugLog('❌ Error: ' + e.message);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+{
+  "sections": {
+    "movement": {
+      "title": "Movement & Flow",
+      "desc": "Body, mind, and soul connect through mindful, creative, and healing forms of movement. Whether through yoga, dance, breathwork, or intuitive body practices. GlocalSpirit invites you to find a natural rhythm and feel in harmony with life through it."
+    },
+    "consciousness": {
+      "title": "Consciousness",
+  "about_consciousness_desc": "Consciousness is not shown through knowledge or concepts, but through the way of being. At GlocalSpirit, it's about acting and living from a conscious attitude: present, connected, and in harmony with the greater whole.",
+  "about_nutrition_title": "Good Products & Nutrition",
+  "about_nutrition_desc": "GlocalSpirit stands for conscious consumption, mindful nutrition, and nourishment for body, mind, and soul. Ideally, the quality, simplicity, and authenticity of products are in harmony with \"human and nature\".",
+  "about_healing_title": "Healing & Health",
+  "about_healing_desc": "At GlocalSpirit, health encompasses a holistic approach to physical, emotional, and mental well-being. We invite you to understand healing as a natural process. Supported by consciousness, community, connection to nature, and inner peace.",
+  "about_hope_title": "Houses of Hope",
+  "about_hope_desc": "The \"Houses of Hope\" are living places of encounter, healing, and co-creation. They serve as spiritual, social, and cultural spaces where people can gather in the spirit of inner peace and synarchy. The \"Houses of Hope\" are physical anchor points within the GlocalSpirit network.",
+  "about_creativity_title": "Creativity & Expression",
+  "about_creativity_desc": "GlocalSpirit offers protected spaces for free development, creative flow, and authentic self-expression. What might have been experienced as performance pressure can be experienced here as tangible, audible, and feelable creativity.",
+  "about_learning_title": "Learning & Education",
+  "about_learning_desc": "GlocalSpirit embodies a new form of knowledge exchange based on resonance, self-development, and inner coherence. Beyond pressure, evaluation, or fixed curricula.",
+  "about_nature_title": "Nature & Sustainability",
+  "about_nature_desc": "GlocalSpirit reminds us of our original connection to the earth. It invites us to live in harmony with natural cycles, use resources mindfully, and create regenerative ways of life.",
+  "about_spirituality_title": "Spirituality & Mysticism",
+  "about_spirituality_desc": "Here, wisdom traditions, timeless symbols, and modern forms of spiritual awakening meet. This category offers space for the unspeakable. Whether for the silence behind words, the depth beyond thinking, or the universal mystery that permeates everything.",
+  "about_technology_title": "Technology & Consciousness", 
+  "about_technology_desc": "GlocalSpirit connects the seemingly incompatible: digital intelligence and spiritual depth. Technology doesn't have to be \"dehumanized.\" Through conscious design, technical elements can become tools for peace, connection, and inner development.",
+  "about_value_title": "Value Creation & Finance",
+  "about_value_desc": "A new understanding of economics. One that is based on consciousness, trust, and circulation. Instead of profit maximization, it's about real value creation through meaning, encounter, and inner wealth.",
+  "categories": {
+    "bewegung_flow": {
+      "title": "Movement & Flow",
+      "description": "Body, mind, and soul connect through mindful, creative, and healing forms of movement. Whether through yoga, dance, breathwork, or intuitive body practices. GlocalSpirit invites you to find a natural rhythm and feel in harmony with life through it."
+    },
+    "bewusstsein": {
+      "title": "Consciousness",
+      "description": "Consciousness is not shown through knowledge or concepts, but through the way of being. At GlocalSpirit, it's about acting and living from a conscious attitude: present, connected, and in harmony with the greater whole."
+    },
+    "produkte_ernaehrung": {
+      "title": "Good Products & Nutrition",
+      "description": "GlocalSpirit stands for conscious consumption, mindful nutrition, and nourishment for body, mind, and soul. Ideally, the quality, simplicity, and authenticity of products are in harmony with \"human and nature\"."
+    },
+    "heilung_gesundheit": {
+      "title": "Healing & Health",
+      "description": "At GlocalSpirit, health encompasses a holistic approach to physical, emotional, and mental well-being. We invite you to understand healing as a natural process. Supported by consciousness, community, connection to nature, and inner peace."
+    },
+    "house_of_hope": {
+      "title": "Houses of Hope",
+      "description": "The \"Houses of Hope\" are living places of encounter, healing, and co-creation. They serve as spiritual, social, and cultural spaces where people can gather in the spirit of inner peace and synarchy. The \"Houses of Hope\" are physical anchor points within the GlocalSpirit network."
+    },
+    "kreativitaet_ausdruck": {
+      "title": "Creativity & Expression",
+      "description": "GlocalSpirit offers protected spaces for free development, creative flow, and authentic self-expression. What might have been experienced as performance pressure can be experienced here as tangible, audible, and feelable creativity."
+    },
+    "lernen_bildung": {
+      "title": "Learning & Education",
+      "description": "GlocalSpirit embodies a new form of knowledge exchange based on resonance, self-development, and inner coherence. Beyond pressure, evaluation, or fixed curricula."
+    },
+    "natur_nachhaltigkeit": {
+      "title": "Nature & Sustainability",
+      "description": "GlocalSpirit reminds us of our original connection to the earth. It invites us to live in harmony with natural cycles, use resources mindfully, and create regenerative ways of life."
+    },
+    "spiritualitaet_mystik": {
+      "title": "Spirituality & Mysticism",
+      "description": "Here, wisdom traditions, timeless symbols, and modern forms of spiritual awakening meet. This category offers space for the unspeakable. Whether for the silence behind words, the depth beyond thinking, or the universal mystery that permeates everything."
+    },
+    "technologie_bewusstsein": {
+      "title": "Technology & Consciousness",
+      "description": "GlocalSpirit connects the seemingly incompatible: digital intelligence and spiritual depth. Technology doesn't have to be \"dehumanized.\" Through conscious design, technical elements can become tools for peace, connection, and inner development."
+    },
+    "wertschoepfung_finanzen": {
+      "title": "Value Creation & Finance",
+      "description": "A new understanding of economics. One that is based on consciousness, trust, and circulation. Instead of profit maximization, it's about real value creation through meaning, encounter, and inner wealth."
+    }
+  }
+}

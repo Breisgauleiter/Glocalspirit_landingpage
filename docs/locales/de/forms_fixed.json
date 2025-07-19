@@ -1,0 +1,74 @@
+{
+  "testform": {
+    "title": "Early Access",
+    "labels": {
+      "name": "Name",
+      "email": "E-mail",
+      "newsletter": "Updates per Mail erhalten?"
+    },
+    "buttons": {
+      "submit": "SENDEN",
+      "sending": "WIRD GESENDET..."
+    },
+    "messages": {
+      "success": {
+        "title": "Erfolgreich angemeldet!",
+        "text": "Vielen Dank für deine Anmeldung als Beta-Tester. Wir werden uns bald bei dir melden!"
+      },
+      "error": {
+        "title": "Fehler beim Senden",
+        "network": "Netzwerkfehler - bitte versuche es später erneut.",
+        "validation": "Bitte überprüfe deine Eingaben.",
+        "general": "Ein unerwarteter Fehler ist aufgetreten."
+      }
+    }
+  },
+  "donationform": {
+    "title": "glocalSpirit unterstützen",
+    "description": "Werde Teil der Bewegung für bewusste Vernetzung und spirituelle Gemeinschaft. Wähle dein monatliches Unterstützungspaket:",
+    "packages": {
+      "support": {
+        "title": "SUPPORT",
+        "description": "Grundlegende Unterstützung für die Vision",
+        "price": "€20",
+        "period": "/Monat",
+        "features": {
+          "0": "Früher Zugang zur Beta",
+          "1": "Community-Updates",
+          "2": "Basis-Support"
+        }
+      },
+      "premium": {
+        "title": "PREMIUM", 
+        "description": "Onboarding + persönlicher Support Mentor",
+        "price": "€44",
+        "period": "/Monat",
+        "features": {
+          "0": "Alle Early Bird Features",
+          "1": "Persönlicher Support Mentor",
+          "2": "Besondere Überraschungen"
+        }
+      },
+      "business": {
+        "title": "BUSINESS",
+        "description": "Premium + Newsletter-Versand + Pinnwand",
+        "price": "€55", 
+        "period": "/Monat",
+        "features": {
+          "0": "Alle Premium Features",
+          "1": "Newsletter-Versand",
+          "2": "Pinnwand",
+          "3": "Strategische Beratung"
+        }
+      }
+    },
+    "buttons": {
+      "book": "JETZT BUCHEN",
+      "loading": "Wird geladen..."
+    }
+  },
+  "cta": {
+    "testuser": "TESTNUTZER WERDEN",
+    "donate": "SPENDEN"
+  }
+}

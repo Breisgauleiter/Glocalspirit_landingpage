@@ -1,0 +1,74 @@
+{
+  "testform": {
+    "title": "Accès anticipé",
+    "labels": {
+      "name": "Nom",
+      "email": "E-mail",
+      "newsletter": "Recevoir des mises à jour par e-mail ?"
+    },
+    "buttons": {
+      "submit": "ENVOYER",
+      "sending": "ENVOI EN COURS..."
+    },
+    "messages": {
+      "success": {
+        "title": "Inscription réussie !",
+        "text": "Merci de vous être inscrit comme testeur bêta. Nous vous contacterons bientôt !"
+      },
+      "error": {
+        "title": "Erreur lors de l'envoi",
+        "network": "Erreur réseau - veuillez réessayer plus tard.",
+        "validation": "Veuillez vérifier vos saisies.",
+        "general": "Une erreur inattendue s'est produite."
+      }
+    }
+  },
+  "donationform": {
+    "title": "Soutenir glocalSpirit",
+    "description": "Rejoignez le mouvement pour la mise en réseau consciente et la communauté spirituelle. Choisissez votre forfait de soutien mensuel :",
+    "packages": {
+      "support": {
+        "title": "SOUTIEN",
+        "description": "Soutien de base pour la vision",
+        "price": "€20",
+        "period": "/Mois",
+        "features": {
+          "0": "Accès anticipé à la bêta",
+          "1": "Mises à jour de la communauté",
+          "2": "Support de base"
+        }
+      },
+      "premium": {
+        "title": "PREMIUM", 
+        "description": "Intégration + mentor de soutien personnel",
+        "price": "€44",
+        "period": "/Mois",
+        "features": {
+          "0": "Toutes les fonctionnalités Early Bird",
+          "1": "Mentor de soutien personnel",
+          "2": "Surprises spéciales"
+        }
+      },
+      "business": {
+        "title": "BUSINESS",
+        "description": "Premium + envoi newsletter + tableau d'affichage",
+        "price": "€55", 
+        "period": "/Mois",
+        "features": {
+          "0": "Toutes les fonctionnalités Premium",
+          "1": "Envoi de newsletter",
+          "2": "Tableau d'affichage",
+          "3": "Conseil stratégique"
+        }
+      }
+    },
+    "buttons": {
+      "book": "RÉSERVER MAINTENANT",
+      "loading": "Chargement..."
+    }
+  },
+  "cta": {
+    "testuser": "DEVENIR TESTEUR",
+    "donate": "FAIRE UN DON"
+  }
+}

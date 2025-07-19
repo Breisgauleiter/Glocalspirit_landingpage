@@ -8,8 +8,14 @@ function setup() {
     canvas.style('left', '0');
     canvas.style('z-index', '-2'); // Zwischen Nebula (-3) und Content
     canvas.style('pointer-events', 'none');
+    canvas.style('transform', 'translate3d(0, 0, 0)'); // Hardware-Beschleunigung
+    canvas.style('will-change', 'auto'); // Optimierung deaktivieren
     
-    for (let i = 0; i < 180; i++) {
+    // Stelle sicher, dass der Canvas im body ist, nicht in scrollbaren Containern
+    document.body.appendChild(canvas.canvas);
+    
+    // Weniger Sterne für bessere Performance
+    for (let i = 0; i < 100; i++) {
         stars.push({
             x: random(width),
             y: random(height),
@@ -26,7 +32,7 @@ function setup() {
 }
 
 function draw() {
-    clear();
+    clear(); // Transparenter Hintergrund
     noStroke();
 
     for (let star of stars) {
@@ -48,8 +54,7 @@ function draw() {
         if (star.y > height) star.y = 0;
 
         // Warmer Farbton für die Sterne (leicht gelblich/orange)
-        const starColor = color(255, 247, 220); // Warmweißer Farbton
-        fill(starColor.levels[0], starColor.levels[1], starColor.levels[2], constrain(star.opacity, 0, 255));
+        fill(255, 247, 220, constrain(star.opacity, 0, 255));
         drawingContext.shadowBlur = 6;
         drawingContext.shadowColor = color(255, 247, 220, star.opacity);
 

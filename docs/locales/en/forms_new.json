@@ -1,0 +1,74 @@
+{
+  "testform": {
+    "title": "Early Access",
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "newsletter": "Receive updates via email?"
+    },
+    "buttons": {
+      "submit": "SEND",
+      "sending": "SENDING..."
+    },
+    "messages": {
+      "success": {
+        "title": "Successfully registered!",
+        "text": "Thank you for signing up as a beta tester. We will contact you soon!"
+      },
+      "error": {
+        "title": "Error sending",
+        "network": "Network error - please try again later.",
+        "validation": "Please check your input.",
+        "general": "An unexpected error occurred."
+      }
+    }
+  },
+  "donationform": {
+    "title": "Support glocalSpirit",
+    "description": "Become part of the movement for conscious networking and spiritual community. Choose your monthly support package:",
+    "packages": {
+      "support": {
+        "title": "SUPPORT",
+        "description": "Basic support for the vision",
+        "price": "€20",
+        "period": "/Month",
+        "features": {
+          "0": "Early access to beta",
+          "1": "Community updates",
+          "2": "Basic support"
+        }
+      },
+      "premium": {
+        "title": "PREMIUM", 
+        "description": "Onboarding + personal support mentor",
+        "price": "€44",
+        "period": "/Month",
+        "features": {
+          "0": "All Early Bird Features",
+          "1": "Personal Support Mentor",
+          "2": "Special Surprises"
+        }
+      },
+      "business": {
+        "title": "BUSINESS",
+        "description": "Premium + newsletter sending + pinboard",
+        "price": "€55", 
+        "period": "/Month",
+        "features": {
+          "0": "All Premium Features",
+          "1": "Newsletter sending",
+          "2": "Pinboard",
+          "3": "Strategic consulting"
+        }
+      }
+    },
+    "buttons": {
+      "book": "BOOK NOW",
+      "loading": "Loading..."
+    }
+  },
+  "cta": {
+    "testuser": "BECOME TEST USER",
+    "donate": "DONATE"
+  }
+}

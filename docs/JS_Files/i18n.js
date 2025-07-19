@@ -15,6 +15,15 @@ class I18N {
         
         // Cache für Performance
         this.translationCache = new Map();
+        
+        // Force secure connections
+        this.forceSecureConnections = true;
+    }
+
+    getWebsocketUrl() {
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const host = window.location.host;
+        return `${protocol}//${host}/websocket`;
     }
 
     async loadTranslations(language) {
@@ -28,14 +37,34 @@ class I18N {
         }
 
         try {
-            const sections = ['navigation', 'hero', 'about', 'roadmap', 'forms', 'footer'];
+            // Detect which page we're on and load appropriate sections
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            let sections = ['navigation', 'hero', 'about', 'roadmap', 'forms', 'footer'];
+            
+            // Add specific sections based on current page
+            if (currentPage.includes('spendenformular') || currentPage.includes('testformular')) {
+                sections.push('testform');
+            }
+            
             this.translations[language] = {};
 
             await Promise.all(sections.map(async (section) => {
                 try {
-                    const response = await fetch(`locales/${language}/${section}.json`);
+                    const timestamp = new Date().getTime();
+                    const response = await fetch(`locales/${language}/${section}.json?_=${timestamp}`, {
+                        headers: {
+                            'Cache-Control': 'no-cache',
+                            'Pragma': 'no-cache'
+                        }
+                    });
                     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                    const data = await response.json();
+                    let data;
+                    try {
+                        data = await response.json();
+                    } catch (e) {
+                        console.error(`Failed to parse JSON for ${section} in ${language}:`, e);
+                        throw e;
+                    }
                     
                     // Special handling for about.json which has a sections structure
                     if (section === 'about' && data.sections) {
@@ -47,17 +76,35 @@ class I18N {
                             this.translations[language][`sections.${key}.desc`] = value.desc;
                         });
                     } else {
-                        // Standard structure - merge data directly
-                        Object.assign(this.translations[language], data);
+                        // Standard structure - store the section data properly
+                        this.translations[language][section] = data;
                         
+                        // Special handling for forms section - store flattened keys at top level
+                        if (section === 'forms') {
+                            // Add all form keys directly to top level for easy access
+                            Object.entries(data).forEach(([key, value]) => {
+                                this.translations[language][key] = value;
+                            });
+                        }
                         // Special handling for navigation to support both navigation.key and direct key access
-                        if (section === 'navigation') {
-                            this.translations[language].navigation = data;
+                        else if (section === 'navigation') {
                             // Also add flattened navigation keys
                             Object.entries(data).forEach(([key, value]) => {
                                 this.translations[language][`navigation.${key}`] = value;
                             });
-                            console.log(`Navigation loaded for ${language}:`, this.translations[language].navigation);
+                        }
+                        // Special handling for roadmap to support flat roadmap.cardXX_title structure
+                        else if (section === 'roadmap') {
+                            // Store roadmap data directly - it's already flat
+                            Object.entries(data).forEach(([key, value]) => {
+                                this.translations[language][`roadmap.${key}`] = value;
+                            });
+                        }
+                        // Special handling for hero section
+                        else if (section === 'hero' && data.hero) {
+                            Object.entries(data.hero).forEach(([key, value]) => {
+                                this.translations[language][`hero.${key}`] = value;
+                            });
                         }
                     }
                 } catch (err) {
@@ -88,7 +135,7 @@ class I18N {
 
         let result = key;
         
-        // Try direct key lookup first (for flattened keys like navigation.home)
+        // Try direct key lookup first (for flattened keys)
         let translation = this.translations[this.currentLanguage]?.[key];
         if (translation && typeof translation === 'string') {
             result = translation;
@@ -97,6 +144,13 @@ class I18N {
         else if (key.startsWith('navigation.')) {
             const navKey = key.replace('navigation.', '');
             translation = this.translations[this.currentLanguage]?.navigation?.[navKey];
+            if (translation && typeof translation === 'string') {
+                result = translation;
+            }
+        }
+        // Special handling for roadmap keys
+        else if (key.startsWith('roadmap.')) {
+            translation = this.translations[this.currentLanguage]?.[key];
             if (translation && typeof translation === 'string') {
                 result = translation;
             }
@@ -128,6 +182,13 @@ class I18N {
             else if (key.startsWith('navigation.')) {
                 const navKey = key.replace('navigation.', '');
                 translation = this.translations[this.defaultLanguage]?.navigation?.[navKey];
+                if (translation && typeof translation === 'string') {
+                    result = translation;
+                }
+            }
+            // Special handling for roadmap keys in default language
+            else if (key.startsWith('roadmap.')) {
+                translation = this.translations[this.defaultLanguage]?.[key];
                 if (translation && typeof translation === 'string') {
                     result = translation;
                 }
@@ -284,8 +345,9 @@ class I18N {
         const oldLang = this.currentLanguage;
         this.currentLanguage = newLang;
         
-        // Cache leeren
+        // Cache leeren und Übersetzungen neu laden
         this.translationCache.clear();
+        delete this.translations[newLang]; // Force reload of translations
         
         // Sprache speichern
         localStorage.setItem('glocalspirit-language', newLang);
@@ -299,6 +361,15 @@ class I18N {
         if (!this.translations[newLang]) {
             await this.loadTranslations(newLang);
         }
+        
+        // Debug: Show what roadmap translations we have
+        console.log(`Roadmap translations for ${newLang}:`, 
+            Object.keys(this.translations[newLang] || {}).filter(k => k.startsWith('roadmap.')));
+        
+        // Force clear all roadmap elements before updating
+        document.querySelectorAll('[data-i18n^="roadmap."]').forEach(element => {
+            element.textContent = '...';
+        });
         
         // Inhalt aktualisieren
         this.updateContent();

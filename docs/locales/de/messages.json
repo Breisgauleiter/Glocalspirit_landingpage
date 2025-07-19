@@ -1,0 +1,17 @@
+{
+    "common": {
+        "welcome": "Willkommen bei GlocalSpirit",
+        "loading": "Lädt...",
+        "error": "Ein Fehler ist aufgetreten"
+    },
+    "navigation": {
+        "home": "Startseite",
+        "about": "Über uns",
+        "contact": "Kontakt"
+    },
+    "errors": {
+        "404": "Seite nicht gefunden",
+        "500": "Serverfehler",
+        "networkError": "Netzwerkverbindungsfehler"
+    }
+}

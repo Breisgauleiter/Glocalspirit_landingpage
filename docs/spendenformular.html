@@ -34,15 +34,10 @@
     <script src="JS_Files/i18n.js"></script>
     <!-- Prevent FOUC -->
     <script>
+        // Prevent FOUC (Flash of Untranslated Content)
         document.documentElement.style.visibility = 'hidden';
-        window.addEventListener('load', () => {
-            if (window.i18n) {
-                window.i18n.init().then(() => {
-                    document.documentElement.style.visibility = '';
-                });
-            } else {
-                document.documentElement.style.visibility = '';
-            }
+        window.addEventListener('i18nInitialized', () => {
+            document.documentElement.style.visibility = '';
         });
     </script>
     
@@ -182,6 +177,43 @@
                     </div>
                 </section>
             </main>
+            <footer>
+                <div class="info_wrapper">
+                    <div class="footer__content">
+                        <h2 data-i18n="footer.tagline">Ein Netzwerk der Bedeutung, nicht des lärms</h2>
+                        <div class="footer__social_links">
+                            <ul>
+                                <li>
+                                    <a href="#" class="X__link"><img src="Assets/socialmeida_icons/X-logo.svg" alt="x_icon"></a>
+                                </li>
+                                <li>
+                                    <a href="" class="Insta__link"><img src="Assets/socialmeida_icons/insta-logo.svg" alt="insta_icon"></a>
+                                </li>
+                                <li>
+                                    <a href="mailto:info@glocalspirit.de" class="footer__mail-link">
+                                        <img src="Assets/socialmeida_icons/mail-logo.svg" alt="mail_icon">
+                                        <span data-i18n="footer.email">info@glocalspirit.de</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer__legal_links">
+                            <p data-i18n="footer.copyright">© 2025 GlocalSpirit. Alle Rechte vorbehalten</p>
+                            <ul>
+                                <li>
+                                    <a href="datenschutz.html" target="_blank" rel="privacy-policy" data-i18n="footer.privacy">Datenschutz</a>
+                                </li>
+                                <li>
+                                    <a href="impressum.html" target="_blank" rel="legal" data-i18n="footer.imprint">Impressum</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__wrapper">
+                    <img class="tree" src="Assets/tree.png" alt="tree_img">
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 </body>
