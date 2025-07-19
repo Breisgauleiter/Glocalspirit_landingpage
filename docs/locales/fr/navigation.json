@@ -20,5 +20,12 @@
   "about": "À propos",
   "roadmap": "Feuille de route",
   "contact": "Contact",
-  "back": "← Retour"
+  "back": "← Retour",
+  "menu_open": "Ouvrir la navigation",
+  "menu_close": "Fermer la navigation",
+  "burger_menu_open": "Ouvrir le menu",
+  "burger_menu_close": "Fermer le menu",
+  "arrow_left": "Précédent",
+  "arrow_right": "Suivant",
+  "logo": "Logo glocalSpirit"
 }
