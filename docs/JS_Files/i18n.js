@@ -50,7 +50,7 @@ class I18N {
                         // Standard structure - merge data directly
                         Object.assign(this.translations[language], data);
                         
-                        // Special handling for navigation to support both navigation.key and direct key access
+                        // Special handling for specific sections to support both section.key and direct key access
                         if (section === 'navigation') {
                             this.translations[language].navigation = data;
                             // Also add flattened navigation keys
@@ -58,6 +58,20 @@ class I18N {
                                 this.translations[language][`navigation.${key}`] = value;
                             });
                             console.log(`Navigation loaded for ${language}:`, this.translations[language].navigation);
+                        } else if (section === 'footer') {
+                            this.translations[language].footer = data;
+                            // Also add flattened footer keys
+                            Object.entries(data).forEach(([key, value]) => {
+                                this.translations[language][`footer.${key}`] = value;
+                            });
+                        } else if (section === 'roadmap') {
+                            this.translations[language].roadmap = data;
+                            // Also add flattened roadmap keys
+                            Object.entries(data).forEach(([key, value]) => {
+                                if (typeof value === 'string') {
+                                    this.translations[language][`roadmap.${key}`] = value;
+                                }
+                            });
                         }
                     }
                 } catch (err) {
@@ -170,6 +184,20 @@ class I18N {
             }
         });
 
+        // Alt attribute elements (data-i18n-alt)
+        document.querySelectorAll('[data-i18n-alt]').forEach(element => {
+            const key = element.getAttribute('data-i18n-alt');
+            const translation = this.translate(key);
+            element.setAttribute('alt', translation);
+        });
+
+        // Aria-label attribute elements (data-i18n-aria-label)
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
+            const key = element.getAttribute('data-i18n-aria-label');
+            const translation = this.translate(key);
+            element.setAttribute('aria-label', translation);
+        });
+
         // Update meta tags
         document.querySelectorAll('meta[data-i18n]').forEach(meta => {
             const key = meta.getAttribute('data-i18n');
@@ -257,7 +285,10 @@ class I18N {
                         .filter(node => node.nodeType === 1)
                         .some(element => {
                             return element.hasAttribute?.('data-i18n') ||
-                                   element.querySelector?.('[data-i18n]');
+                                   element.hasAttribute?.('data-i18n-html') ||
+                                   element.hasAttribute?.('data-i18n-alt') ||
+                                   element.hasAttribute?.('data-i18n-aria-label') ||
+                                   element.querySelector?.('[data-i18n], [data-i18n-html], [data-i18n-alt], [data-i18n-aria-label]');
                         });
                     
                     if (hasI18nElements) {

@@ -5,5 +5,12 @@
   "contact": "Contact",
   "beta_test": "Test",
   "spenden": "Donate",
-  "back": "← Back"
+  "back": "← Back",
+  "menu_open": "Open navigation",
+  "menu_close": "Close navigation",
+  "burger_menu_open": "Open menu",
+  "burger_menu_close": "Close menu",
+  "arrow_left": "Previous",
+  "arrow_right": "Next",
+  "logo": "glocalSpirit Logo"
 }

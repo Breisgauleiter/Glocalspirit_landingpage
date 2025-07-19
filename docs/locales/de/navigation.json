@@ -11,5 +11,12 @@
     "roadmap": "Roadmap",
     "contact": "Kontakt",
     "beta_test": "Testen",
-    "spenden": "Spenden"
+    "spenden": "Spenden",
+    "menu_open": "Navigation öffnen",
+    "menu_close": "Navigation schließen",
+    "burger_menu_open": "Menü öffnen",
+    "burger_menu_close": "Menü schließen",
+    "arrow_left": "Nach links",
+    "arrow_right": "Nach rechts",
+    "logo": "glocalSpirit Logo"
 }

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlocalSpirit i18n Tests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0C0C22;
+            color: white;
+            padding: 2rem;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        .test-passed {
+            color: #4CAF50;
+        }
+        .test-failed {
+            color: #f44336;
+        }
+        .language-switch {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .language-btn {
+            background: rgba(85, 166, 217, 0.2);
+            border: 1px solid rgba(85, 166, 217, 0.5);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .language-btn:hover {
+            background: rgba(85, 166, 217, 0.4);
+        }
+        #test-results {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        .test-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .test-key {
+            font-weight: bold;
+            color: #55A6D9;
+        }
+        .test-value {
+            flex: 1;
+            margin-left: 1rem;
+        }
+        .test-expected {
+            color: #888;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>GlocalSpirit i18n Comprehensive Tests</h1>
+        
+        <div class="language-switch">
+            <button class="language-btn" onclick="testLanguage('de')">🇩🇪 Test German</button>
+            <button class="language-btn" onclick="testLanguage('en')">🇺🇸 Test English</button>
+            <button class="language-btn" onclick="testLanguage('fr')">🇫🇷 Test French</button>
+            <button class="language-btn" onclick="testLanguage('es')">🇪🇸 Test Spanish</button>
+            <button class="language-btn" onclick="runAllTests()">🧪 Run All Tests</button>
+        </div>
+
+        <div id="test-results">
+            <h3>Test Results</h3>
+            <div id="results-content">Click a test button to start testing...</div>
+        </div>
+
+        <div class="test-section">
+            <h3>Sample Translations for Visual Testing</h3>
+            <div class="test-item">
+                <span class="test-key">navigation.home:</span>
+                <span class="test-value" data-i18n="navigation.home">Home</span>
+            </div>
+            <div class="test-item">
+                <span class="test-key">hero.title:</span>
+                <span class="test-value" data-i18n="hero.title">glocalSpirit</span>
+            </div>
+            <div class="test-item">
+                <span class="test-key">hero.description:</span>
+                <span class="test-value" data-i18n-html="hero.description">Description...</span>
+            </div>
+            <div class="test-item">
+                <span class="test-key">sections.movement.title:</span>
+                <span class="test-value" data-i18n="sections.movement.title">Movement & Flow</span>
+            </div>
+            <div class="test-item">
+                <span class="test-key">roadmap.title:</span>
+                <span class="test-value" data-i18n="roadmap.title">Roadmap</span>
+            </div>
+            <div class="test-item">
+                <span class="test-key">footer.copyright:</span>
+                <span class="test-value" data-i18n="footer.copyright">© 2025 GlocalSpirit</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="JS_Files/i18n.js"></script>
+    <script>
+        let testResults = {};
+        let currentLanguage = 'de';
+
+        // Expected translations for each language
+        const expectedTranslations = {
+            'de': {
+                'navigation.home': 'Startseite',
+                'hero.title': 'glocalSpirit',
+                'roadmap.title': 'Roadmap',
+                'footer.copyright': '© 2025 GlocalSpirit. Alle Rechte vorbehalten'
+            },
+            'en': {
+                'navigation.home': 'Home',
+                'hero.title': 'glocalSpirit',
+                'roadmap.title': 'Roadmap',
+                'footer.copyright': '© 2025 GlocalSpirit. All rights reserved'
+            },
+            'fr': {
+                'navigation.home': 'Accueil',
+                'hero.title': 'glocalSpirit',
+                'roadmap.title': 'Feuille de route',
+                'footer.copyright': '© 2025 GlocalSpirit. Tous droits réservés'
+            },
+            'es': {
+                'navigation.home': 'Inicio',
+                'hero.title': 'glocalSpirit',
+                'roadmap.title': 'Hoja de ruta',
+                'footer.copyright': '© 2025 GlocalSpirit. Todos los derechos reservados'
+            }
+        };
+
+        function logResult(test, passed, details = '') {
+            const status = passed ? '✅ PASS' : '❌ FAIL';
+            const message = `${status}: ${test} ${details}`;
+            console.log(message);
+            
+            if (!testResults[currentLanguage]) {
+                testResults[currentLanguage] = { passed: 0, failed: 0, tests: [] };
+            }
+            
+            testResults[currentLanguage].tests.push(message);
+            if (passed) {
+                testResults[currentLanguage].passed++;
+            } else {
+                testResults[currentLanguage].failed++;
+            }
+        }
+
+        function updateResultsDisplay() {
+            const content = document.getElementById('results-content');
+            let html = '<h4>Test Summary:</h4>';
+            
+            for (const [lang, results] of Object.entries(testResults)) {
+                html += `<div><strong>${lang.toUpperCase()}:</strong> ${results.passed} passed, ${results.failed} failed</div>`;
+                results.tests.forEach(test => {
+                    html += `<div style="margin-left: 20px; font-size: 0.8rem;">${test}</div>`;
+                });
+                html += '<br>';
+            }
+            
+            content.innerHTML = html;
+        }
+
+        async function testLanguage(lang) {
+            currentLanguage = lang;
+            console.log(`\n=== Testing ${lang.toUpperCase()} ===`);
+            
+            // Test 1: Language switching
+            try {
+                const success = await window.i18n.changeLanguage(lang);
+                logResult(`Language switch to ${lang}`, success);
+                
+                // Wait a bit for DOM updates
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                // Test 2: Check if translations are loaded
+                const hasTranslations = window.i18n.translations[lang] && 
+                                       Object.keys(window.i18n.translations[lang]).length > 0;
+                logResult(`Translations loaded for ${lang}`, hasTranslations, 
+                         `(${Object.keys(window.i18n.translations[lang] || {}).length} keys)`);
+                
+                // Test 3: Test specific key translations
+                const testKeys = ['navigation.home', 'hero.title', 'roadmap.title', 'footer.copyright'];
+                for (const key of testKeys) {
+                    const translation = window.i18n.translate(key);
+                    const expected = expectedTranslations[lang][key];
+                    const isCorrect = expected ? translation === expected : translation !== key;
+                    logResult(`Translation ${key}`, isCorrect, 
+                             `got: "${translation}" ${expected ? `expected: "${expected}"` : ''}`);
+                }
+                
+                // Test 4: Check DOM updates
+                const homeElement = document.querySelector('[data-i18n="navigation.home"]');
+                if (homeElement) {
+                    const domValue = homeElement.textContent;
+                    const expectedValue = expectedTranslations[lang]['navigation.home'];
+                    const domCorrect = expectedValue ? domValue === expectedValue : domValue !== 'navigation.home';
+                    logResult(`DOM update for navigation.home`, domCorrect,
+                             `DOM shows: "${domValue}"`);
+                }
+                
+            } catch (error) {
+                logResult(`Language test ${lang}`, false, `Error: ${error.message}`);
+            }
+            
+            updateResultsDisplay();
+        }
+
+        async function runAllTests() {
+            testResults = {};
+            const languages = ['de', 'en', 'fr', 'es'];
+            
+            for (const lang of languages) {
+                await testLanguage(lang);
+                await new Promise(resolve => setTimeout(resolve, 1000)); // Wait between tests
+            }
+            
+            console.log('\n=== FINAL SUMMARY ===');
+            let totalPassed = 0, totalFailed = 0;
+            for (const [lang, results] of Object.entries(testResults)) {
+                console.log(`${lang}: ${results.passed} passed, ${results.failed} failed`);
+                totalPassed += results.passed;
+                totalFailed += results.failed;
+            }
+            console.log(`TOTAL: ${totalPassed} passed, ${totalFailed} failed`);
+        }
+
+        // Initialize when i18n is ready
+        window.addEventListener('i18nInitialized', () => {
+            console.log('i18n system initialized, ready for testing');
+            logResult('i18n System Initialization', true);
+            updateResultsDisplay();
+        });
+
+        // Auto-run basic test on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (window.i18n && window.i18n.initialized) {
+                    testLanguage('de');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
